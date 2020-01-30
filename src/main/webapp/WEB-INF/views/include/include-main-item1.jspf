@@ -1,0 +1,29 @@
+<%@ page pageEncoding="utf-8" %>
+
+<!-- item 1 -->
+
+<div id="test" class="container">
+	<div>
+		<div
+			style="height: 0px; width: 0px; overflow: hidden; -webkit-margin-top-collapse: separate;"></div>
+		<div class="ttr_Home_html_row0 row">
+			<div class="post_column col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<div class="ttr_Home_html_column00">
+					<div
+						style="height: 0px; width: 0px; overflow: hidden; -webkit-margin-top-collapse:;"></div>
+					<div class="html_content">
+						<p style="text-align: border-left;">
+							<span
+								style="font-family: 'Arial'; font-weight: 700; font-size: 2.143em; color: rgba(5, 38, 55, 1);">편안한
+								집사님! 행복한 댕댕이!</span>
+						</p>
+					</div>
+					여행, 출장, 늦은 퇴근! 걱정하지 마세요!<br>댕댕이를 주인님처럼 모셔드릴 펫시터 분들이<br>
+					댕댕이를 기다리고 있습니다.
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- item 1 -->

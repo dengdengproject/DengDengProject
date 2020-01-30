@@ -1,0 +1,37 @@
+<%@ page pageEncoding="utf-8" %>
+
+<!-- 이미지 슬라이드 다른 방법으로 사용해야 할 것 같음. -->
+
+<!-- 이미지 슬라이드  -->
+   <div class="ttr_banner_slideshow">
+   </div>
+   <div class="ttr_slideshow">
+      <div id="ttr_slideshow_inner">
+         <ul>
+            <li id="Slide0" class="ttr_slide" data-slideEffect="Fade">
+               <a href="http://templatetoaster.com/"></a>
+               <div class="ttr_slideshow_last">
+               </div>
+            </li>
+            <li id="Slide1" class="ttr_slide" data-slideEffect="Fade">
+               <a href="http://templatetoaster.com/"></a>
+               <div class="ttr_slideshow_last">
+               </div>
+            </li>
+            <li id="Slide2" class="ttr_slide" data-slideEffect="Fade">
+               <a href="http://templatetoaster.com/"></a>
+               <div class="ttr_slideshow_last">
+               </div>
+            </li>
+         </ul>
+      </div>
+      <div class="ttr_slideshow_in">
+         <div class="ttr_slideshow_last">
+            <div id="nav"></div>
+         </div>
+      </div>
+   </div>
+   <div class="ttr_banner_slideshow">
+   </div>
+  
+  <!--  이미지 슬라이드 -->

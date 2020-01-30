@@ -1,0 +1,86 @@
+<%@ page pageEncoding="utf-8"%>
+
+<!-- 검색부분 시작 -->
+<div class="tm-main-content" id="top">
+
+	<div style="position: relative; margin-top: 2em; left: 15em;">
+		<span style="font-weight: bold; font-size: 1.5em;">어디에 사시나요?</span> <span
+			style="font-weight: bold; font-size: 1.5em; position: relative; margin-left: 10em;">언제
+			맡기시나요?</span>
+	</div>
+
+	<div class="row">
+
+		<form action="index.html" method="get"
+			class="tm-search-form tm-section-pad-2">
+			<div class="form-row tm-search-form-row" style="text-align: center">
+				<div class="form-group tm-form-element tm-form-element-100"
+					style="position: relative; left: 11em">
+					<i class="fa fa-map-marker fa-2x tm-form-element-icon"></i> <input
+						name="city" type="text" class="form-control"
+						placeholder="사는곳을 입력해주세요.예)논현동" style="font-size: 1em">
+				</div>
+				<div class="form-group tm-form-element tm-form-element-50"
+					style="position: relative; left: 38em; bottom: 3.7em">
+					<i class="fa fa-calendar fa-2x tm-form-element-icon"></i> <input
+						name="check-in" type="text" class="form-control" id="inputCheckIn"
+						placeholder="체크인" style="font-size: 1em">
+				</div>
+				<div class="form-group tm-form-element tm-form-element-50"
+					style="position: relative; margin-left: 5em; left: 59em; bottom: 7.5em">
+					<i class="fa fa-calendar fa-2x tm-form-element-icon"></i> <input
+						name="check-out" type="text" class="form-control"
+						id="inputCheckOut" placeholder="체크아웃" style="font-size: 1em">
+				</div>
+			</div>
+
+			<!-- <div class="form-row tm-search-form-row" style="position: relative; left: 12em; bottom: 4em">
+                                    	<span style="font-weight: bold; font-size: 1.5em; " >원하시는 조건을 선택해주세요.</span>
+                     				</div> -->
+
+			<div
+				style="display: flex; flex-direction: column; margin-left: 150px; width: 700px; bottom: 5em">
+				<p
+					style="font-size: 1.5em; font-weight: 600; color: #393C47; margin-bottom: 27px; margin-left: 3px">원하시는
+					조건을 선택하세요</p>
+				<div style="display: flex; justify-content: space-between">
+					<div
+						style="display: flex; justify-content: space-between; width: 712px">
+						<div
+							style="width: 150px; height: 55px; display: flex; align-items: center; justify-content: center; border: 1.5px solid #DFE3EA; border-radius: 28px; box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.03); cursor: pointer">
+							<p style="font-size: 15px; font-weight: 600; color: #BBC1CC">반려동물
+								없음</p>
+						</div>
+						<div
+							style="width: 122px; height: 55px; display: flex; align-items: center; justify-content: center; border: 1.5px solid #DFE3EA; border-radius: 28px; box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.03); cursor: pointer">
+							<p style="font-size: 15px; font-weight: 600; color: #BBC1CC">픽업
+								가능</p>
+						</div>
+						<div
+							style="width: 136px; height: 55px; display: flex; align-items: center; justify-content: center; border: 1.5px solid #DFE3EA; border-radius: 28px; box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.03); cursor: pointer">
+							<p style="font-size: 15px; font-weight: 600; color: #BBC1CC">대형견
+								가능</p>
+						</div>
+						<div
+							style="width: 122px; height: 55px; display: flex; align-items: center; justify-content: center; border: 1.5px solid #DFE3EA; border-radius: 28px; box-shadow: 0px 3px 3px -3px rgba(0, 0, 0, 0.03); cursor: pointer">
+							<p style="font-size: 15px; font-weight: 600; color: #BBC1CC">마당
+								있음</p>
+						</div>
+						<div
+							style="width: 122px; height: 55px; display: flex; align-items: center; justify-content: center; border: 1.5px solid #DFE3EA; border-radius: 28px; box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.03); cursor: pointer">
+							<p style="font-size: 15px; font-weight: 600; color: #BBC1CC">노견
+								케어</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group tm-form-element tm-form-element-2"
+				style="position: relative; bottom: 4.2em; left: 73em">
+				<button type="submit" class="btn btn-primary1 tm-btn-search"
+					style="font-size: 1.3em">펫시터찾기</button>
+			</div>
+		</form>
+	</div>
+</div>
+<!-- 검색부분 끝 -->

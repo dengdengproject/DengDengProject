@@ -1,0 +1,123 @@
+<%@ page pageEncoding="utf-8"%>
+
+<head>
+<meta charset="utf-8">
+
+<link rel="shortcut icon" type="image⁄x-icon"
+	href="resources/images/favicon.png">
+<!-- favicon은 ico로는 도저히 방법을 찾지 못 해 png로 바꿔서 적용함... -->
+<!-- 확인해서 적용 안되는 부분들은 다 바꾸거나 방법을 찾아야 함. -->
+
+<!-- 다음 우편번호 검색 -->
+<script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
+
+<script type="text/javascript" src="resources/js/jquery.js">
+	
+</script>
+
+<script type="text/javascript" src="resources/js/jquery-ui.min.js">
+	
+</script>
+
+<script type="text/javascript" src="resources/js/tt_slideshow.js">
+	
+</script>
+
+<script type="text/javascript" src="resources/js/bootstrap.min.js">
+	
+</script>
+
+<script type="text/javascript" src="resources/js/Customjs.js">
+	
+</script>
+
+<script type="text/javascript" src="resources/js/contactform.js">
+	
+</script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>댕댕 텔링</title>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
+<link rel="stylesheet" href="resources/css/bootstrap.css"
+	type="text/css" media="screen" />
+<link rel="stylesheet" href="resources/css/style.css" type="text/css"
+	media="screen" />
+<!--[if lte IE 8]>
+<link rel="stylesheet"  href="menuie.css" type="text/css" media="screen"/>
+<link rel="stylesheet"  href="vmenuie.css" type="text/css" media="screen"/>
+<![endif]-->
+<script type="text/javascript" src="resources/js/totop.js">
+	
+</script>
+
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+<link
+	href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css"
+	rel="stylesheet">
+
+<!-- 게시판 에디터 Summernote-->
+<script
+	src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+<script
+	src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+
+<!-- 게시판 에디터 summernote css/js-->
+<link
+	href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css"
+	rel="stylesheet">
+<script
+	src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+
+<!-- 게시판 에디터 스크립트 -->
+<script>
+	$(document).ready(function() {
+		$('#summernote').summernote();
+	});
+</script>
+
+<!-- 매칭부분 -->
+<link rel="stylesheet"
+	href="font-awesome-4.7.0/css/font-awesome.min.css">
+<!-- Font Awesome -->
+<!--    <link rel="stylesheet" href="css/bootstrap.min.css"> -->
+<!-- Bootstrap style -->
+<link rel="stylesheet" type="text/css" href="css/datepicker.css" />
+<link rel="stylesheet" href="css/tooplate-style.css">
+
+<!-- 별점 -->
+<style>
+.star-rating {
+	width: 205px;
+}
+
+.star-rating, .star-rating span {
+	display: inline-block;
+	height: 39px;
+	overflow: hidden;
+	background: url(star.png) no-repeat;
+}
+
+.star-rating span {
+	background-position: left bottom;
+	line-height: 0;
+	vertical-align: top;
+}
+</style>
+<!--[if IE 7]>
+<style type="text/css" media="screen">
+#ttr_vmenu_items  li.ttr_vmenu_items_parent {margin-left:-16px;font-size:0px;}
+</style>
+<![endif]-->
+<!--[if lt IE 9]>
+<script type="text/javascript" src="html5shiv.js">
+</script>
+<script type="text/javascript" src="respond.min.js">
+</script>
+<![endif]-->
+
+</head>
