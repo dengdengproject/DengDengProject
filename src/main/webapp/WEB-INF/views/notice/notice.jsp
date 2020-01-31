@@ -43,21 +43,21 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="board" items="${boardList }">
+					<c:forEach var="row" items="${noList }">
 						<tr>
-							<td class="idx">1</td>
+							<td class="idx">${row.NOTICE_NO }</td>
 							<td align="left" class="subject">
 								<!-- <c:if test="${board.comment >= 10}"><img src="<%=request.getContextPath()%>/img/hit.jpg" /></c:if> -->
-								<a href="view.do?idx=${board.idx}">글제목입니다</a>
+								<a href="view.do?idx=${row.NOTICE_SUBJECT}">글제목입니다</a>
 							</td>
 							<td class="writer"><c:choose>
-									<c:when test="${board.writerId == userId}">
-										<strong>김지영</strong>
+									<c:when test="${fn:length(list) > 0}">
+										<strong>${row.ADMIN_ID }</strong>
 									</c:when>
 									<c:otherwise>.</c:otherwise>
 								</c:choose></td>
-							<td class="hitcount">25</td>
-							<td class="writeDate">2020.01.01</td>
+							<td class="hitcount">${row.NOTICE_COUNT }</td>
+							<td class="writeDate">${row.NOTICE_DATE }</td>
 						</tr>
 					</c:forEach>
 				</tbody>
