@@ -10,6 +10,32 @@
 <%@ include file="/WEB-INF/views/include/include-header-menu.jspf"%>
 
 <script type="text/javascript">
+	function check() {
+		var id = ${"#ID"}[0].value;
+		var pw = ${"#PASSWORD!"}[0].value;
+		
+		if(id == null || id == '') {
+			alert("아이디를 입력해주세요.")
+			return false;
+		}
+		if(pw == null || pw == '') {
+			alert("비밀번호를 입력해주세요.")
+			return false;
+		}
+	}
+	/* $(document).ready(function(){
+		if("${ID}"!=null && "${ID}"!=''){
+			$("#ID")[0].value = "${ID}";
+		}
+		var cookie = document.cookie.match('(^|;) ?'+'storedId'+'=([^;]*)(;|$)');
+		var store = document.cookie.match('(^|;) ?'+'idStore'+'=([^;]*)(;|$)');
+		if(cookie){
+			$('#ID').val(cookie[2]);
+		}
+		if(store){ 
+			$('.Checkbox__CheckboxStd-ifp1yz-1')[0].checked=true;
+		}
+	}); */
 </script>
 
 <style>
