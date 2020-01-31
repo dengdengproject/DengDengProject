@@ -1,4 +1,4 @@
-package project.common.main.service;
+package project.common.login;
 
 import java.util.Map;
 
@@ -6,8 +6,6 @@ import javax.annotation.Resource;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
-
-import project.common.main.dao.LoginDAO;
 
 
 @Service("loginService")

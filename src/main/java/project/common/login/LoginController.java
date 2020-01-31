@@ -1,25 +1,18 @@
-package project.common.main.controller;
+package project.common.login;
 
-import java.math.BigDecimal;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import project.common.common.CommandMap;
-import project.common.main.service.LoginService;
 
 @Controller
 public class LoginController {
@@ -32,13 +25,13 @@ public class LoginController {
 	// Login Form
 	@RequestMapping(value = "/login")
 	public ModelAndView login() throws Exception {
-		ModelAndView mv = new ModelAndView("main/login");
+		ModelAndView mv = new ModelAndView("/main/login");
 		return mv;
 	}
 
-	@RequestMapping(value = "/loginResult", method = RequestMethod.POST)
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ModelAndView loginResult(CommandMap commandMap, HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("main/loginResult");
+		ModelAndView mv = new ModelAndView("/main/loginResult");
 		String message = "";
 		String url = "";
 
