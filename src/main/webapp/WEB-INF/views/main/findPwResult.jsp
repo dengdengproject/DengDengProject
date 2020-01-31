@@ -17,7 +17,7 @@
 <%@ include file="/WEB-INF/views/include/include-header-menu.jspf"%>
 
 
-</head>
+</head> 
 <body>
 
 <div class="result"  style="height: 500px; margin-top: 6em; margin-bottom: 6em; text-align: center;">

@@ -15,7 +15,7 @@ function fIdsubmit(){
 	formId.submit();
 }
 
-function fPwsubmit(){
+function fPwsubmit(){ 
 
 	formPw.submit();
 }
