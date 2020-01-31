@@ -14,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import project.common.service.LoginService;  //추가
 import project.common.common.CommandMap;   //추가
  
-
+ 
 @Controller
 public class CommonController {
 	Logger log = Logger.getLogger(this.getClass());
