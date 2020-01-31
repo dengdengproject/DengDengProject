@@ -2,7 +2,8 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-
+<head>
+<!-- 잠시 테스트 -->
 <%@ include file="/WEB-INF/views/include/include-head.jspf"%>
 
 <%@ include file="/WEB-INF/views/include/include-header.jspf"%>
@@ -11,6 +12,22 @@
 
 <%@ include file="/WEB-INF/views/include/include-board-menu.jspf"%>
 
+<!-- 게시판 에디터 Summernote-->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+
+<!-- 게시판 에디터 summernote css/js-->
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+<!-- 게시판 에디터 스크립트 -->   
+<script>
+$(document).ready(function() {
+	  $('#summernote').summernote();
+});
+
+</script>  
+
+</head>
 <div style="height: 400px; border-top: solid;">
 
 	<!-- <div style="text-align: center; margin-top: 4em;">
@@ -26,7 +43,7 @@
 
 				<div class="form-inline" style="margin-bottom: 1em">
 					<label style="width: 90px">글제목</label> <input type="text"
-						class="form-control" style="width: 400px"
+						id="NOTICE_SUBJECT" name="NOTICE_SUBJECT" class="form-control" style="width: 400px"
 						placeholder="글 제목을 입력하세요." />
 				</div>
 
