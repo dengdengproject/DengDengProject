@@ -9,6 +9,73 @@
 
 <%@ include file="/WEB-INF/views/include/include-header-menu.jspf"%>
 
+<script type="text/javascript">
+function fn_idCheck(){
+	    var ID = {ID : $('#MEM_ID').val()};
+	    $.ajax({
+	        url:"<c:url value='/join/idCheck'/>",
+	        type:'get',
+	        data: ID,
+	        success:function(data){	
+	        	alert(data);
+	            if($.trim(data)==""){
+	            	$('#chkMsg').html("사용가능한 아이디 입니다.").css("color", "blue");         
+	            }else{
+	            	$('#chkMsg').html("사용불가능한 아이디 입니다.").css("color", "red");
+	            }
+	        },
+	        error:function(){
+	                alert("조회할 아이디를 입력해주세요.");
+	        }
+	    });
+	};
+	
+
+	
+	
+	/* 
+ 	$(document).ready(function(){
+		// 취소
+		$("#cancel").on("click", function(){
+			
+			location.href = "/login";
+					    
+		}) 
+		function join(){
+		$("#join").on("submit", function(){
+			if($("#MEM_ID").val()==""){
+				alert("아이디를 입력해주세요.");
+				$("#MEM_ID").focus();
+				return false;
+			}
+			if($("#PASSWORD1").val()==""){
+				alert("비밀번호를 입력해주세요.");
+				$("#PASSWORD1").focus();
+				return false;
+			}
+			if($("#NAME").val()==""){
+				alert("성명을 입력해주세요.");
+				$("#NAME").focus();
+				return false;
+			}
+			alert("회원가입~!!!!!!!!!!!!!!!!!!!!!!!!!");
+		}
+		
+		);
+		
+			
+		
+	})
+	 */
+	
+	
+	
+	
+	
+
+	</script>
+
+
 <!-- 회원가입 입력 시작 -->
 <div style="height: 900px; text-align: center">
 
@@ -19,19 +86,22 @@
 		<span style="">* 표시는 필수 입력 사항입니다.</span>
 	</div>
 
+  <form id="joinForm" method="post">
 	<!-- 아이디 -->
 	<div style="text-align: center;">
 		<div style="position: relative; right: 25em; margin-top: 2em;">
 			<span style="font-weight: bold;">아이디*</span>
 		</div>
 		<div>
-			<input type="text"
+			<input type="text" id="MEM_ID" name="MEM_ID"
 				style="width: 10em; position: relative; right: 13em; bottom: 1.8em;">
 		</div>
 		<div>
-			<input type="button" value="아이디중복확인"
-				style="width: 8em; height: 32px; position: relative; right: 2em; bottom: 4.2em;">
+			<input type="button" value="아이디중복확인" onclick="fn_idCheck();"
+				style="width: 8em; height: 32px; position: relative; right: 2em; bottom: 4.2em; margin-left: 2em;">
+				<span id = "chkMsg" style= "position: relative; bottom:4em"></span>
 		</div>
+		
 	</div>
 	<!-- 아이디 -->
 
@@ -41,7 +111,7 @@
 			<span style="font-weight: bold">비밀번호*</span>
 		</div>
 		<div>
-			<input type="password" name="mb_password" id="reg_mb_password"
+			<input type="password" name="PASSWORD1" id="PASSWORD1"
 				style="width: 15em; position: relative; right: 10.3em; bottom: 3.5em;">
 		</div>
 		<div style="text-align: center;">
@@ -49,7 +119,7 @@
 				<span style="font-weight: bold">비밀번호 확인*</span>
 			</div>
 			<div>
-				<input type="password" name="mb_password_re" id="reg_mb_password_re"
+				<input type="password" name="PASSWORD2" id="PASSWORD2"
 					style="width: 15em; position: relative; right: 10.3em; bottom: 2.9em;">
 			</div>
 			<span id="empty">&nbsp;</span> <span id="alert-success"
@@ -66,7 +136,7 @@
 				</div>
 
 				<div>
-					<input type="text"
+					<input type="text" name="NAME" id="NAME"
 						style="width: 10em; position: relative; right: 13em; bottom: 2.3em;">
 				</div>
 			</div>
@@ -77,7 +147,7 @@
 					<span style="font-weight: bold">연락처*</span>
 				</div>
 				<div>
-					<input type="text"
+					<input type="text" name="PHONE" id="PHONE"
 						style="width: 20em; position: relative; right: 8em; bottom: 2em;">
 				</div>
 			<!-- 연락처 -->
@@ -87,7 +157,7 @@
 						<span style="font-weight: bold">이메일</span>
 					</div>
 					<div>
-						<input type="text"
+						<input type="text" name="EMAIL" id="EMAIL"
 							style="width: 20em; position: relative; right: 8em; bottom: 2em;">
 					</div>
 					
@@ -97,9 +167,9 @@
 							<span style="font-weight: bold">성별*</span>
 						</div>
 						<div style="position: relative; right: 13.7em; bottom: 1.5em;">
-							<label><input type="checkbox" name="male" value="남자"
+							<label><input type="checkbox" name="SEX" value="남자"
 								style="position: relative; right: 20em; bottom: 2em;">남자</label>
-							&nbsp;&nbsp; <label><input type="checkbox" name="female"
+							&nbsp;&nbsp; <label><input type="checkbox" name="SEX"
 								value="여자" style="position: relative; right: 20em; bottom: 2em;">여자</label>
 						</div>
 					</div>
@@ -110,7 +180,7 @@
 							<span style="font-weight: bold">생년월일*</span>
 						</div>
 						<div>
-							<input type="text" placeholder="2020/01/01"
+							<input type="text" placeholder="2020/01/01" name="BIRTHDAY" id="BIRTHDAY"
 								style="width: 20em; position: relative; right: 8em; bottom: 2em;">
 						</div>
 					</div>
@@ -124,10 +194,10 @@
 							style="text-align: center; position: relative; right: 11em; bottom: 1em">
 							<button type="button" style="width: 8em; height: 32px;"
 								onclick="openZipSearch()">우편번호 검색</button>
-							<input type="text" name="zip" style="width: 6em; height: 26px;" />
-							<br> <input type="text" name="addr1"
+							<input type="text" name="ZIPCODE" id="ZIPCODE" style="width: 6em; height: 26px;" />
+							<br> <input type="text" name="ADDRESS1"
 								style="position: relative; left: 3.5em; margin-top: 0.5em; width: 300px; height: 30px;"
-								readonly /><br> <input type="text" name="addr2"
+								readonly /><br> <input type="text" name="ADDRESS2"
 								style="position: relative; left: 3.5em; margin-top: 0.5em; width: 300px; height: 30px;" />
 						</div>
 					</div>
@@ -149,6 +219,7 @@
 							</div>
 						</div>
 					</div>
+			</form>
 
 					<!--   <a href="javascript:" class="my_button" onclick="submitAction();">업로드</a> -->
 
@@ -156,12 +227,12 @@
 						<div
 							style="position: relative; right: 8em; bottom: 18em; margin-top: 1em; width: 15em">
 							<button style="width: 13em; height: 3em"
-								onclick="location.href = 'join_confirm.html1' ">처음으로</button>
+								id="cancel">처음으로</button>
 						</div>
 						<div
 							style="position: relative; left: 13em; bottom: 22em; margin-top: 1em; width: 15em">
-							<button style="width: 13em; height: 3em"
-								onclick="location.href = 'pet_join_form.html' ">다음</button>
+							<button style="width: 13em; height: 3em" id="join" type="submit">
+								가입완료</button>
 						</div>
 					</div>
 				</div>
@@ -213,9 +284,9 @@ input[type=file] {
 	}
 
 	//비밀번호 확인 
-	$('#reg_mb_password_re').focusout(function() {
-		var pwd1 = $("#reg_mb_password").val();
-		var pwd2 = $("#reg_mb_password_re").val();
+	$('#PASSWORD1').focusout(function() {
+		var pwd1 = $("#PASSWORD1").val();
+		var pwd2 = $("#PASSWORD2").val();
 		if (pwd1 != "" || pwd2 != "") {
 			if (pwd1 == pwd2) {
 				$("#empty").css('display', 'none');

@@ -63,13 +63,7 @@ public class CommonController {
 		return mv;
 	}
 	
-	@RequestMapping(value="/join")
-	public ModelAndView join(Map<String, Object> commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView();
-		
-		mv.setViewName("main/join");
-		return mv;
-	}
+
 	
 	//지연: 추후 LoginController를 생성하여 따로 뺄 예정. jsp파일도 view폴더 아래에 새로운 하위폴더를 생성하여 옮길예정
 	  @RequestMapping(value="/findIdPw")  // 아이디 비밀번호 찾기 폼을 보여주는 메소드

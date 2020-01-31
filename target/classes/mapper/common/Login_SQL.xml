@@ -79,33 +79,6 @@
 </select>
 
 
-
-<!-- ID 중복 체크 --> <!-- 일반 회원, 펫시터 TABLE 모두 확인 -->
-<select id="cccc" parameterType="hashmap" resultType="hashmap">
-	<![CDATA[
-		SELECT
-			ID
-		FROM
-			(
-			SELECT
-				MEM_ID AS ID
-			FROM
-				MEMBER
-    
-			UNION all
-
-			SELECT
-				PSMEM_ID AS ID
-			FROM
-				PETSITTER
-			)
-		WHERE
-			ID = #{ID}
-	]]>
-</select>
-
-
-
 <!-- 회원 정보 수정 전 비밀번호 확인 --> <!-- 일반 회원, 펫시터 TABLE 모두 확인 -->
 <select id="dddd" parameterType="hashmap" resultType="hashmap">
 	<![CDATA[
