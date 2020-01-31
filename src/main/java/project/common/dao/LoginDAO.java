@@ -22,7 +22,7 @@ public class LoginDAO extends AbstractDAO{
 		return (Map<String, Object>) selectOne("login.findId", map);
 	}
 	
-	//지연: 비번찾기 DAO
+	//지연: 비번찾기 DAO 
 	@SuppressWarnings("unchecked")
 	public Map<String, Object> findPw(Map<String, Object> map) throws Exception{
 		// TODO Auto-generated method stub

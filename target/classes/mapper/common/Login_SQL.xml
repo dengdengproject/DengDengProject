@@ -13,7 +13,7 @@
 				MEM_ID AS ID, PASSWORD1
 			FROM
 				MEMBER
-    
+     
 			UNION all
 
 			SELECT

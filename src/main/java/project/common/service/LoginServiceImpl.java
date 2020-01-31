@@ -22,7 +22,7 @@ public class LoginServiceImpl implements LoginService{
 		// TODO Auto-generated method stub
 		return loginDAO.selectId(map);
 	}*/
-
+ 
 	@Override
 	public Map<String, Object> findId(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub

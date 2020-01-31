@@ -19,7 +19,7 @@ import project.common.common.CommandMap;   //추가
 public class CommonController {
 	Logger log = Logger.getLogger(this.getClass());
 	
-	@Resource(name = "loginService") //지연:추가
+	@Resource(name = "loginService") //지연:추가 
 	private LoginService loginService; //지연:추가
 	
 	
