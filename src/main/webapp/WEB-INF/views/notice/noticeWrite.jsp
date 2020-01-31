@@ -67,18 +67,49 @@ $(document).ready(function() {
 
 			<div
 				style="text-align: center; width: 8em; height: 2em; position: relative; right: 8em; top: 3em; margin-top: 1em; margin-bottom: 1em;">
-				<button style="width: 8em; height: 2em">등록</button>
+				<button id="write" style="width: 8em; height: 2em">등록</button>
 			</div>
 
 			<div
 				style="text-align: center; width: 8em; height: 2em; position: relative; left: 1em; margin-top: 1em; margin-bottom: 1em;">
 				<button style="width: 8em; height: 2em"
-					onclick="location.href='Notice.html'">취소</button>
+					id="list">취소</button>
 			</div>
+			<!-- id는 #으로 쓴다 -->
+			<%@ include file="/WEB-INF/views/include/include-body.jspf" %> <!-- 이 위치가 맞나? 11:08. 01/31 -->
+			<script type="text/javascript"> 
+			$(document).ready(function(){ 
+				   $("#list").on("click", function(e){ //취소 누르고 게시글 목록으로 돌아가기
+				     e.preventDefault(); 
+				     fn_openBoardList(); 
+				 
+				}); 
+
+				  $("#write").on("click", function(e){ //등록하기 버튼
+				   e.preventDefault(); 
+				   fn_insertBoard(); 
+				  
+				  }); 
+				}); 
+
+				function fn_openBoardList(){ 
+				  var comSubmit = new ComSubmit(); 
+				  comSubmit.setUrl("<c:url value='noticeList' />"); 
+				  comSubmit.submit(); 
+				} 
+
+				function fn_insertBoard(){ 
+				  var comSubmit = new ComSubmit("frm"); 
+				  comSubmit.setUrl("<c:url value='' />"); 
+				  comSubmit.submit(); 
+				}
+			</script>
+
+
 		</div>
 	</div>
 </div>
 
-<%@ include file="/WEB-INF/views/include/include-footer.jspf"%>
+<%-- <%@ include file="/WEB-INF/views/include/include-footer.jspf"%> --%>
 
 </html>

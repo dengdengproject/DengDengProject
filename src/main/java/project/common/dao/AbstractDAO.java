@@ -3,6 +3,8 @@ package project.common.dao;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Resource;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.mybatis.spring.SqlSessionTemplate;

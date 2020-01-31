@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-
+<!-- 잠시 테스트 -->
 <%@ include file="/WEB-INF/views/include/include-head.jspf"%>
 
 <%@ include file="/WEB-INF/views/include/include-header.jspf"%>
