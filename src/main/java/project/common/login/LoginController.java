@@ -48,6 +48,7 @@ public class LoginController {
 			if(Check.get("PASSWORD1").equals(commandMap.get("PASSWORD1"))) {
 				session.setAttribute("ID", commandMap.get("ID"));
 				session.setAttribute("MEM_TYPE", Check.get("MEM_TYPE"));
+				session.setAttribute("NAME", Check.get("NAME"));
 				
 				String MEM_TYPE = (String)Check.get("MEM_TYPE");
 				String NAME = (String)Check.get("NAME");
