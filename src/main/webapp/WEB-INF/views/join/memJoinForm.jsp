@@ -9,15 +9,19 @@
 
 <%@ include file="/WEB-INF/views/include/include-header-menu.jspf"%>
 
+<script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
 <script type="text/javascript">
 function fn_idCheck(){
-	    var ID = {ID : $('#MEM_ID').val()};
+	    var ID = {ID : $('#MEM_ID').val()};    // {ID="입력한 ID값"}
+	    alert(ID +"ID값좀 보여주세요 ㅠㅠ")
 	    $.ajax({
 	        url:"<c:url value='/join/idCheck'/>",
 	        type:'get',
 	        data: ID,
 	        success:function(data){	
-	        	alert(data);
+	        	alert(data +"   id_check에 있는 data값이라는데");
 	            if($.trim(data)==""){
 	            	$('#chkMsg').html("사용가능한 아이디 입니다.").css("color", "blue");         
 	            }else{
@@ -30,43 +34,51 @@ function fn_idCheck(){
 	    });
 	};
 	
-
+	 
+	$(document).ready(function(){
+		
+		$("#cancel").on("click", function(e){
+			e.preventDefault();
+			fn_goHome();
+		});
+		
+		$("#join").on("click", function(e){
+			e.preventDefault();
+			fn_joinSubmit();
+		});
+	});
 	
+	function fn_goHome(){
+		var comSubmit = new ComSubmit();
+		comSubmit.setUrl("<c:url value='/login' />");
+		comSubmit.submit();
+	}
 	
-	/* 
- 	$(document).ready(function(){
-		// 취소
-		$("#cancel").on("click", function(){
-			
-			location.href = "/login";
-					    
-		}) 
-		function join(){
-		$("#join").on("submit", function(){
-			if($("#MEM_ID").val()==""){
-				alert("아이디를 입력해주세요.");
-				$("#MEM_ID").focus();
-				return false;
-			}
-			if($("#PASSWORD1").val()==""){
-				alert("비밀번호를 입력해주세요.");
-				$("#PASSWORD1").focus();
-				return false;
-			}
-			if($("#NAME").val()==""){
-				alert("성명을 입력해주세요.");
-				$("#NAME").focus();
-				return false;
-			}
-			alert("회원가입~!!!!!!!!!!!!!!!!!!!!!!!!!");
-		}
+	function fn_joinSubmit(){
 		
-		);
-		
-			
-		
-	})
-	 */
+		var comSubmit = new ComSubmit("joinForm");
+ 		alert("MEM_ID" + $('#MEM_ID').val());
+		alert("PASSWORD1" + $('#PASSWORD1').val());
+		alert("PASSWORD2" + $('#PASSWORD2').val());
+		alert("NAME" + $('#NAME').val());
+		alert("PHONE" + $('#PHONE').val());
+		alert("EMAIL" + $('#EMAIL').val());
+		alert("SEX" + $('#SEX').val());
+		alert("BIRTHDAY" + $('#BIRTHDAY').val());
+		alert("ZIPCODE" + $('#ZIPCODE').val());
+		alert("ADDRESS1" + $('#ADDRESS1').val());
+		alert("ADDRESS2" + $('#ADDRESS2').val());
+		alert("ADDRESS_ADD" + $('#ADDRESS_ADD').val());
+		alert("JOIN_DATE" + $('#SYSDATE').val());
+		comSubmit.setUrl("<c:url value='/join' />");
+		comSubmit.submit();
+		alert("들어오나????");
+	}
+	
+	$("#joinForm").on("submit",function(e){
+	});
+	
+ 
 	
 	
 	
@@ -86,7 +98,7 @@ function fn_idCheck(){
 		<span style="">* 표시는 필수 입력 사항입니다.</span>
 	</div>
 
-  <form id="joinForm" method="post">
+  <form action="join" id="joinForm" method="post">
 	<!-- 아이디 -->
 	<div style="text-align: center;">
 		<div style="position: relative; right: 25em; margin-top: 2em;">
@@ -150,6 +162,7 @@ function fn_idCheck(){
 					<input type="text" name="PHONE" id="PHONE"
 						style="width: 20em; position: relative; right: 8em; bottom: 2em;">
 				</div>
+			</div>
 			<!-- 연락처 -->
 			<!-- 이메일 -->
 				<div style="text-align: center;">
@@ -160,21 +173,26 @@ function fn_idCheck(){
 						<input type="text" name="EMAIL" id="EMAIL"
 							style="width: 20em; position: relative; right: 8em; bottom: 2em;">
 					</div>
-					
+				</div>	
 					<!-- 성별 -->
-					<div style="text-align: center;">
+					<!-- <div style="text-align: center;">
 						<div style="position: relative; right: 24.2em;">
 							<span style="font-weight: bold">성별*</span>
 						</div>
 						<div style="position: relative; right: 13.7em; bottom: 1.5em;">
-							<label><input type="checkbox" name="SEX" value="남자"
-								style="position: relative; right: 20em; bottom: 2em;">남자</label>
-							&nbsp;&nbsp; <label><input type="checkbox" name="SEX"
-								value="여자" style="position: relative; right: 20em; bottom: 2em;">여자</label>
+							<label><input type="radio" name="SEX" value="남" checked>남자</label>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <label><input type="radio" name="SEX" value="여">여자</label>
 						</div>
-					</div>
+					</div>  -->
+					<div style="position: relative; right: 24.2em;">
+							<span style="font-weight: bold">성별*</span>
+						</div>
+					<div>
+					<input type="text" name="SEX" id="SEX"
+							style="width: 20em; position: relative; right: 8em; bottom: 2em;">
+						</div>
 
-					<!-- 생년월일 -->
+					<!-- 생년월일 --> 
 					<div style="text-align: center;">
 						<div style="position: relative; right: 25.5em;">
 							<span style="font-weight: bold">생년월일*</span>
@@ -195,9 +213,12 @@ function fn_idCheck(){
 							<button type="button" style="width: 8em; height: 32px;"
 								onclick="openZipSearch()">우편번호 검색</button>
 							<input type="text" name="ZIPCODE" id="ZIPCODE" style="width: 6em; height: 26px;" />
-							<br> <input type="text" name="ADDRESS1"
-								style="position: relative; left: 3.5em; margin-top: 0.5em; width: 300px; height: 30px;"
-								readonly /><br> <input type="text" name="ADDRESS2"
+							<br> <input type="text" name="ADDRESS1" id="ADDRESS1"
+								style="position: relative; left: 6em; margin-top: 0.5em; width: 300px; height: 30px;"
+								 />
+								<input type="text" name="ADDRESS_ADD" id="ADDRESS_ADD"
+								style="position: relative; left: 6em; margin-top: 0.5em; width: 300px; height: 30px;" /><br>
+								<input type="text" name="ADDRESS2" id="ADDRESS2"
 								style="position: relative; left: 3.5em; margin-top: 0.5em; width: 300px; height: 30px;" />
 						</div>
 					</div>
@@ -219,7 +240,7 @@ function fn_idCheck(){
 							</div>
 						</div>
 					</div>
-			</form>
+			
 
 					<!--   <a href="javascript:" class="my_button" onclick="submitAction();">업로드</a> -->
 
@@ -231,15 +252,27 @@ function fn_idCheck(){
 						</div>
 						<div
 							style="position: relative; left: 13em; bottom: 22em; margin-top: 1em; width: 15em">
-							<button style="width: 13em; height: 3em" id="join" type="submit">
+							<button style="width: 13em; height: 3em" id="join">
 								가입완료</button>
 						</div>
 					</div>
+					</form>
+					
+					<%@ include file="/WEB-INF/views/include/include-body.jspf" %>
+
+					
 				</div>
-			</div>
-		</div>
-	</div>
-</div>
+	
+
+	
+
+
+<script type="text/javascript">
+$(document).ready(function(){ }); 
+</script>
+
+
+
 
 <style type="text/css">
 input[type=file] {
@@ -276,9 +309,45 @@ input[type=file] {
 	function openZipSearch() {
 		new daum.Postcode({
 			oncomplete : function(data) {
-				$('[name=zip]').val(data.zonecode); // 우편번호 (5자리)
-				$('[name=addr1]').val(data.address);
-				$('[name=addr2]').val(data.buildingName);
+			     // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var addr = ''; // 주소 변수
+                var extraAddr = ''; // 참고항목 변수
+
+                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                    addr = data.roadAddress;
+                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                    addr = data.jibunAddress;
+                }
+
+                // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+                if(data.userSelectedType === 'R'){
+                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                        extraAddr += data.bname;
+                    }
+                    // 건물명이 있고, 공동주택일 경우 추가한다.
+                    if(data.buildingName !== '' && data.apartment === 'Y'){
+                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                    }
+                    // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                    if(extraAddr !== ''){
+                        extraAddr = ' (' + extraAddr + ')';
+                    }
+                    // 조합된 참고항목을 해당 필드에 넣는다.
+                    document.getElementById("ADDRESS_ADD").value = extraAddr;
+                
+                } else {
+                    document.getElementById("ADDRESS_ADD").value = '';
+                }
+				
+				 document.getElementById("ZIPCODE").value = data.zonecode;
+				 document.getElementById("ADDRESS1").value = addr;
+				 document.getElementById("ADDRESS2").focus();
 			}
 		}).open();
 	}

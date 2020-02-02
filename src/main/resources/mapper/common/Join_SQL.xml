@@ -24,7 +24,7 @@
 		WHERE
 			ID = #{ID}
 	]]>
-</select>	
+</select>	 
 
 <!-- 일반 회원 가입 -->
 <insert id="insertMember" parameterType="hashmap">

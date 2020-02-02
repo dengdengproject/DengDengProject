@@ -25,7 +25,7 @@ public class JoinController {
 	@Resource(name="joinService") //service 영역에 접근
 	private JoinService joinService;
 	
-	@RequestMapping(value="/joinForm") //회원가입 폼 
+	@RequestMapping(value="/joinForm", method=RequestMethod.GET) //회원가입 폼 
 	public ModelAndView joinForm(CommandMap commandMap) throws Exception{
 		ModelAndView mv=new ModelAndView("join/memJoinForm");
 		return mv;
@@ -35,7 +35,7 @@ public class JoinController {
 		
 		System.out.println(commandMap.getMap());
 		String idCheck = joinService.selectIdCheck(commandMap.getMap());
-		System.out.println(idCheck);
+		System.out.println(idCheck +"idcheck값이랍니다.");
 
 		
 		return idCheck;
@@ -44,8 +44,9 @@ public class JoinController {
 	@RequestMapping(value="/join", method=RequestMethod.POST)
 	//회원가입 성공
 	public ModelAndView join(CommandMap commandMap, HttpServletRequest request) throws Exception{
+		
 		ModelAndView mv=new ModelAndView("join/joinSuccess");
-		System.out.println(commandMap.get("ID"));
+		System.out.println(commandMap.get("MEM_ID"));
 		
 		joinService.insertMember(commandMap.getMap());
 		

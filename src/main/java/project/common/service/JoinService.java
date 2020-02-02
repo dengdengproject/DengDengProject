@@ -13,3 +13,4 @@ public interface JoinService {
 //	int selectNickCheck(Map<String, Object> map) throws Exception;
 
 }
+ 

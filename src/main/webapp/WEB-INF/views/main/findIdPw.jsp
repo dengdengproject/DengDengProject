@@ -44,7 +44,7 @@ function fPwsubmit(){
 			</div>
 			<div>
 				
-				<input type="number" id="PHONE" name="PHONE" placeholder="가입하셨을 떄 사용한 연락처를 입력해주세요."
+				<input type="text" id="PHONE" name="PHONE" placeholder="가입하셨을 떄 사용한 연락처를 입력해주세요."
 					style="width: 30em; position: relative;  ; bottom: 2em;">
 			</div>
 		</div>
