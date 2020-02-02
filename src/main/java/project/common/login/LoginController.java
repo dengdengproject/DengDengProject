@@ -1,5 +1,6 @@
 package project.common.login;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -24,41 +25,48 @@ public class LoginController {
 
 	// Login Form
 	@RequestMapping(value = "/login")
-	public ModelAndView login() throws Exception {
+	public ModelAndView login(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("/main/login");
 		return mv;
 	}
 
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	@RequestMapping(value = "/loginResult", method = RequestMethod.POST)
 	public ModelAndView loginResult(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		
 		ModelAndView mv = new ModelAndView("/main/loginResult");
+		
 		String message = "";
 		String url = "";
-
+		  
 		HttpSession session = request.getSession();
-
-		Map<String, Object> chk = loginService.loginCheck(commandMap.getMap());
-		if (chk == null) { // 아이디가 있는지 없는지를 확인
-			message = "정확한 아이디를 입력했는지 확인해주세요.";
+		  
+		Map<String, Object> Check = loginService.loginCheck(commandMap.getMap());
+		
+		if(Check == null) {	//DB에서 값을 가져오지 못 하면
+			message = "해당 아이디가 존재하지 않습니다.";
 		} else {
-			if (chk.get("ID").equals(commandMap.get("ID"))) {
-				if(chk.get("PASSWORD1").equals(commandMap.get("PASSWORD1"))) {
-					session.setAttribute("ID", commandMap.get("ID"));
-					session.setAttribute("MEM_TYPE", chk.get("MEM_TYPE"));
-				} else {
-					message = "비밀번호가 맞지 않아요.";
-					url = "/login";
-				}
+			if(Check.get("PASSWORD1").equals(commandMap.get("PASSWORD1"))) {
+				session.setAttribute("ID", commandMap.get("ID"));
+				session.setAttribute("MEM_TYPE", Check.get("MEM_TYPE"));
+				
+				String MEM_TYPE = (String)Check.get("MEM_TYPE");
+				String NAME = (String)Check.get("NAME");
+				
+				message = MEM_TYPE + " " + NAME + " 님의 방문을 환영합니다.";
+				url = "/main";
+			} else {
+				message = "비밀번호가 일치하지 않습니다.";
 			}
-		}
+		} 
 		mv.addObject("message", message);
 		mv.addObject("url", url);
-
+		  
 		return mv;
 	}
-	
-	//로그아웃 구현해야 함. 잊지 말자.
-	@RequestMapping(value = "/logout") 
+
+
+	// 로그아웃 구현해야 함. 잊지 말자.
+	@RequestMapping(value = "/logout")
 	public ModelAndView logout(HttpServletRequest request, CommandMap commandMap) throws Exception {
 		HttpSession session = request.getSession(false);
 		if (session != null)

@@ -10,76 +10,76 @@
 <%@ include file="/WEB-INF/views/include/include-header-menu.jspf"%>
 
 <script type="text/javascript">
-	function check() {
-		var id = ${"#ID"}[0].value;
-		var pw = ${"#PASSWORD1"}[0].value;
-		
-		if(id == null || id == '') {
-			alert("아이디를 입력해주세요.")
-			return false;
+		function loginConfirm() {
+			var form = document.login;
+
+			if (form.ID.value == null || form.ID.value == '') {
+				alert("아이디를 입력해주세요.")
+				form.ID.focus();
+				return false;
+			}
+
+			if (form.PASSWORD1.value == null || form.PASSWORD1.value == '') {
+				alert("비밀번호를 입력해주세요.")
+				form.PASSWORD1.focus();
+				return false;
+			}
+			form.action = "/first/loginResult";
+			form.submit();
 		}
-		if(pw == null || pw == '') {
-			alert("비밀번호를 입력해주세요.")
-			return false;
-		}
-	}
-	/* $(document).ready(function(){
-		if("${ID}"!=null && "${ID}"!=''){
-			$("#ID")[0].value = "${ID}";
-		}
-		var cookie = document.cookie.match('(^|;) ?'+'storedId'+'=([^;]*)(;|$)');
-		var store = document.cookie.match('(^|;) ?'+'idStore'+'=([^;]*)(;|$)');
-		if(cookie){
-			$('#ID').val(cookie[2]);
-		}
-		if(store){ 
-			$('.Checkbox__CheckboxStd-ifp1yz-1')[0].checked=true;
-		}
-	}); */
 </script>
 
 <style>
 </style>
-<form id="Login" name ="login" action="/main/loginResult" method="POST">
-<div style="height: 400px; margin-top: 10em;">
-	<!-- 아이디 -->
-	<div style="text-align: center;">
-		<div style="position: relative; right: 14em; margin-top: 3em">
-			<span style="font-size: 1.5em">아이디</span>
+<form id="login" name="login" method="POST">
+	<div style="height: 400px; margin-top: 10em;">
+		<!-- 아이디 -->
+		<div align="center">
+			<div style="position: relative; right: 14em; margin-top: 3em">
+				<span style="font-size: 1.5em">아이디</span>
+			</div>
+			<div
+				style="width: 15em; position: relative; right: 2em; bottom: 2em;">
+				<input type="text" id="ID" name="ID" placeHolder="아이디"
+					class="loginInput">
+			</div>
 		</div>
-		<div style="width: 15em; position: relative; right: 2em; bottom: 2em;">
-				<input type="text" id="ID" name="ID" placeHolder="아이디" class="loginInput">
+		<!-- 아이디 -->
+		<!-- 패스워드 -->
+		<div style="text-align: center;">
+			<div style="position: relative; right: 14em; margin-top: 1em">
+				<span style="font-size: 1.5em">비밀번호</span>
+			</div>
+			<div>
+				<input
+					style="width: 15em; position: relative; right: 2em; bottom: 2em;"
+					type="password" id="PASSWORD1" name="PASSWORD1" placeHolder="비밀번호"
+					class="loginInput">
+			</div>
+			<!-- 패스워드 -->
+		</div>
+		<div align="center">
+			<div
+				style="position: relative; bottom: 10em; left: 11em; text-align: center; width: 7em">
+				<button type="button" style="width: 7em; height: 8em;"
+					class="loginBt" id="loginBt" onclick="loginConfirm()">로그인</button>
+			</div>
+			<div align="center">
+				<div
+					style="text-align: center; position: relative; bottom: 7em; right: 5em; width: 10em">
+					<button style="height: 2em; width: 10em;"
+						onclick="location.href = 'join.html' ">ID/비밀번호 찾기</button>
+				</div>
+				<div
+					style="text-align: center; position: relative; bottom: 9em; left: 9em; width: 11em">
+					<button style="height: 2em; width: 10em;"
+						onclick="location.href = 'join.html' ">회원가입</button>
+				</div>
+			</div>
 		</div>
 	</div>
-<!-- 아이디 -->
-<!-- 패스워드 -->
-	<div style="text-align: center;">
-		<div style="position: relative; right: 14em; margin-top: 1em">
-			<span style="font-size: 1.5em">비밀번호</span>
-		</div>
-		<div >
-			<input style="width: 15em; position: relative; right: 2em; bottom: 2em;" type="password"id="PASSWORD1" name="PASSWORD1" placeHolder="비밀번호" class="loginInput">
-		</div>
-<!-- 패스워드 -->
-	</div>
-	<div
-		style="position: relative; bottom: 10em; left: 11em; text-align: center; width: 7em">
-		<button style="width: 7em; height: 8em;" type="button" onclick="check();">로그인</button>
-	</div>
-	<div align="center">
-		<div
-			style="text-align: center; position: relative; bottom: 7em; right: 5em; width: 10em">
-			<button style="height: 2em; width: 10em;">ID/비밀번호 찾기</button>
-		</div>
-		<div
-			style="text-align: center; position: relative; bottom: 9em; left: 9em; width: 11em">
-			<button style="height: 2em; width: 10em;"
-				onclick="location.href = 'join.html' ">회원가입</button>
-		</div>
-	</div>
-</div>
-	</form>
-	
+</form>
+
 <%@ include file="/WEB-INF/views/include/include-footer.jspf"%>
 
 </html>

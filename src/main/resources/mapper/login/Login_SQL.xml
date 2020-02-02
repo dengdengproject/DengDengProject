@@ -2,27 +2,27 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="loginSql">
 
-	<!-- 로그인 --> <!-- 일반 회원, 펫시터 TABLE 모두 확인 -->
+	<!-- 로그인 --> <!-- 일반 회원, 펫시터 TABLE 모두 확인 --> <!-- 쿼리 수정함 200202 -->
 	<select id="selectId" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 			SELECT
-				ID, PASSWORD1, MEM_TYPE
+				ID, PASSWORD1, MEM_TYPE, NAME
 			FROM
 				(
 				SELECT
-					MEM_ID AS ID, PASSWORD1, MEMBER_DIVISION AS MEM_TYPE
+					MEM_ID AS ID, PASSWORD1, MEMBER_DIVISION AS MEM_TYPE, NAME
 				FROM
 					MEMBER
    	 
 				UNION all		
 
 				SELECT
-					PSMEM_ID AS ID, PASSWORD1, MEMBER_DIVISION AS MEM_TYPE
+					PSMEM_ID AS ID, PASSWORD1, MEMBER_DIVISION AS MEM_TYPE, NAME
 				FROM
 					PETSITTER
 				)
 			WHERE
-				ID = #{ID} AND PASSWORD1 = #{PASSWORD1}
+				ID = #{ID}
 		]]>
 	</select>
 	
