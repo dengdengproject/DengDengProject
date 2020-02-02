@@ -27,6 +27,13 @@
 			form.action = "/first/loginResult";
 			form.submit();
 		}
+		
+		function findIdPw() {
+			var form = document.login;
+
+			form.action = "/first/findIdPw";
+			form.submit();
+		}
 </script>
 
 <style>
@@ -68,7 +75,7 @@
 				<div
 					style="text-align: center; position: relative; bottom: 7em; right: 5em; width: 10em">
 					<button style="height: 2em; width: 10em;"
-						onclick="location.href = 'join.html' ">ID/비밀번호 찾기</button>
+						onclick="findIdPw()">ID/비밀번호 찾기</button>
 				</div>
 				<div
 					style="text-align: center; position: relative; bottom: 9em; left: 9em; width: 11em">

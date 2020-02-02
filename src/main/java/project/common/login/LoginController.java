@@ -23,13 +23,14 @@ public class LoginController {
 	@Resource(name = "loginService")
 	private LoginService loginService;
 
-	// Login Form
+	//Login Form으로 이동 : 호석
 	@RequestMapping(value = "/login")
 	public ModelAndView login(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("/main/login");
 		return mv;
 	}
 
+	//Login 기능 구현 : 호석
 	@RequestMapping(value = "/loginResult", method = RequestMethod.POST)
 	public ModelAndView loginResult(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		
@@ -65,8 +66,7 @@ public class LoginController {
 		return mv;
 	}
 
-
-	// 로그아웃 구현해야 함. 잊지 말자.
+	//로그아웃 기능 구현 : 호석
 	@RequestMapping(value = "/logout")
 	public ModelAndView logout(HttpServletRequest request, CommandMap commandMap) throws Exception {
 		HttpSession session = request.getSession(false);
@@ -77,71 +77,53 @@ public class LoginController {
 		return mv;
 	}
 
-	/*
-	 * @RequestMapping(value = "/findId") // 아이디 찾기 폼을 보여주는 메소드 public ModelAndView
-	 * findId(CommandMap commandMap) throws Exception { ModelAndView mv = new
-	 * ModelAndView("member/main/findId"); return mv; }
-	 */
+//	@RequestMapping("/needLogin")
+//	// 로그인 인터셉터. 이 부분은 추후 로그인을 하지 않은 아이디를 구분할 때 사용할 예정.
+//	public ModelAndView needLogin(CommandMap commandMap) throws Exception {
+//		ModelAndView mv = new ModelAndView("/member/main/login");
+//		String message = "로그인이 필요한 서비스입니다.";
+//		String url = "/loginForm";
+//		mv.addObject("message", message);
+//		mv.addObject("url", url);
+//		return mv;
+//	}
+//
+//	
+//	@RequestMapping("/tenantOnly") //로그인 인터셉터
+//	public ModelAndView tenantOnly(CommandMap commandMap) throws Exception {
+//		ModelAndView mv = new ModelAndView("member/common/back");
+//		String message = "임대인 계정만 이용할 수 있는 서비스입니다.";
+//		mv.addObject("message",message);
+//		return mv;
+//	}
+	
+	
+	//아이디 비밀번호 찾기 폼으로 이동 : 지연
+	@RequestMapping(value="/findIdPw")
+	public ModelAndView loginSearchForm(CommandMap commandMap) throws Exception { 
+		ModelAndView mv = new ModelAndView();
 
-	/*
-	 * @RequestMapping(value = "/findIdResult", method = RequestMethod.POST) // 입력한
-	 * 정보에 맞춰서 아이디를 찾아주는 거 public ModelAndView findIdResult(CommandMap commandMap)
-	 * throws Exception { ModelAndView mv = new
-	 * ModelAndView("member/main/findIdResult"); if
-	 * (commandMap.get("findIdBy").equals("phone")) { Map<String, Object> map =
-	 * loginService.findIdWithPhone(commandMap.getMap()); mv.addObject("id", map);
-	 * return mv; } else { Map<String, Object> map =
-	 * loginService.findIdWithEmail(commandMap.getMap()); mv.addObject("id", map);
-	 * return mv; } }
-	 */
+		mv.setViewName("/main/findIdPw"); return mv; 
+	}
 
-	/*
-	 * @RequestMapping(value = "/findPw") // 비밀번호 찾기 폼을 보여주는 메소드 public ModelAndView
-	 * findPw(CommandMap commandMap) throws Exception { ModelAndView mv = new
-	 * ModelAndView("member/main/findPw"); return mv; }
-	 */
+	//아이디 찾기 기능 : 지연
+	@RequestMapping(value = "/findIdResult", method = RequestMethod.POST) // 입력한 정보에 맞춰서 아이디를 찾아주는 거
+	public ModelAndView findIdResult(CommandMap commandMap) throws Exception {
+		ModelAndView mv = new ModelAndView("/main/findIdResult");
 
-	/*
-	 * @RequestMapping(value = "/findPwConfirm") // 회원가입 할 경우 해당 이메일 인증을 요구하는 링크를
-	 * 첨부한 이메일을 발송 public ModelAndView sendNewPw(CommandMap commandMap) throws
-	 * Exception { ModelAndView mv = new ModelAndView("member/main/findPwConfirm");
-	 * // mybatis로 inserMeber() 기능 처리 및 해당 이메일로 이메일 발송 int eCheck =
-	 * loginService.selectEmailCheck(commandMap.getMap());
-	 * 
-	 * String tempPw = UUID.randomUUID().toString().replaceAll("-", ""); tempPw =
-	 * tempPw.substring(0, 10);
-	 * 
-	 * if (eCheck > 0) { MailHandler sendMail = new MailHandler(mailSender);
-	 * 
-	 * sendMail.setSubject("니내방 임시비밀번호입니다."); sendMail.setText(new
-	 * StringBuffer().append("<h1>임시비밀번호<h1>") .append("회원님의 임시비밀번호는 {" + tempPw
-	 * .toString() ) .append("} 입니다. 로그인 후 새로운 비밀번호를 저장해주세요.").toString());
-	 * sendMail.setFrom("ezenyoon@gmail.com", "니내방");
-	 * sendMail.setTo(commandMap.getMap().get("MEM_EMAIL").toString());
-	 * sendMail.send();
-	 * 
-	 * commandMap.put("tempPw", tempPw);
-	 * 
-	 * loginService.updateTempPw(commandMap.getMap()); }
-	 * 
-	 * mv.addObject("eCheck", eCheck); return mv; }
-	 */
-
-	@RequestMapping("/needLogin")
-	// 로그인 인터셉터
-	public ModelAndView needLogin(CommandMap commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView("/member/main/login");
-		String message = "로그인이 필요한 서비스입니다.";
-		String url = "/loginForm";
-		mv.addObject("message", message);
-		mv.addObject("url", url);
+		Map<String, Object> map = loginService.findId(commandMap.getMap());
+		mv.addObject("id", map);
 		return mv;
 	}
 
-	/*
-	 * @RequestMapping("/tenantOnly") //로그인 인터셉터 public ModelAndView
-	 * tenantOnly(CommandMap commandMap) throws Exception { ModelAndView mv = new
-	 * ModelAndView("member/common/back"); String message =
-	 * "임대인 계정만 이용할 수 있는 서비스입니다."; mv.addObject("message",message); return mv; }
-	 */
+	//비밀번호 찾기 기능 : 지연
+	@RequestMapping(value = "/findPwResult", method = RequestMethod.POST) // 입력한 정보에 맞춰서 아이디를 찾아주는 거
+	public ModelAndView findPwResult(CommandMap commandMap) throws Exception {
+		ModelAndView mv = new ModelAndView("/main/findPwResult");
+
+		Map<String, Object> map = loginService.findPw(commandMap.getMap());
+		mv.addObject("pw", map);
+		return mv;
+
+	}
 }

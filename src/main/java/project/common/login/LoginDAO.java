@@ -15,11 +15,18 @@ public class LoginDAO extends AbstractDAO {
 		return (Map<String, Object>) selectOne("loginSql.selectId", map);
 	}
 
-	/*
-	 * @SuppressWarnings("unchecked") public Map<String, Object>
-	 * findIdWithPhone(Map<String, Object> map) throws Exception{ // TODO
-	 * Auto-generated method stub return (Map<String, Object>)
-	 * selectOne("login.findIdWithPhone", map); }
-	 */
+	//지연: 아이디찾기 DAO
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> findId(Map<String, Object> map) throws Exception{
+		// TODO Auto-generated method stub
+		return (Map<String, Object>) selectOne("loginSql.findId", map);
+	}
+
+	//지연: 비번찾기 DAO 
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> findPw(Map<String, Object> map) throws Exception{
+		// TODO Auto-generated method stub
+		return (Map<String, Object>) selectOne("loginSql.findPw", map);
+	}
 
 }
