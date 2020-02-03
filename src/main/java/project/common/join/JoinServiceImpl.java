@@ -61,6 +61,18 @@ public class JoinServiceImpl implements JoinService{
 			 
 		 }
 	}
+	 
+	 
+	 @Override public void petRegist(Map<String, Object> map) throws Exception
+	 { // TODO Auto-generated method stub 
+		 joinDAO.insertPet(map); 
+		 
+		
+			
+		
+			 
+		
+	} 
 
 		
 		

@@ -9,6 +9,8 @@ public interface JoinService {
 	String selectIdCheck(Map<String, Object> map) throws Exception;
 
 	void insertMember(Map<String, Object> map, HttpServletRequest request) throws Exception;
+	
+	void petRegist(Map<String, Object> map) throws Exception;
 
 //	void verifyMember(Map<String, Object> map) throws Exception;
 
