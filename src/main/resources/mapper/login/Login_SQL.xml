@@ -48,7 +48,7 @@
 				PETSITTER
 			)
 		WHERE
-			NAME = #{NAME} AND PHONE = #{PHONE}
+			NAME = #{ID_NAME} AND PHONE = #{ID_PHONE}
 	]]>
 	</select>
 
@@ -74,7 +74,7 @@
 				PETSITTER
 			)
 		WHERE
-			ID = #{ID} AND BIRTHDAY = #{BIRTHDAY} AND PHONE = #{PHONE}
+			ID = #{PW_ID} AND BIRTHDAY = #{PW_BIRTHDAY} AND PHONE = #{PW_PHONE}
 	]]>
 	</select>
 

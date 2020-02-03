@@ -7,7 +7,7 @@
 
 <%@ include file="/WEB-INF/views/include/include-header.jspf"%>
 
-<%@ include file="/WEB-INF/views/include/include-header-menu.jspf"%>
+<%@ include file="/WEB-INF/views/include/include-header-menu-admin.jspf"%>
 
 <script type="text/javascript">
 	function adminLoginConfirm() {
@@ -61,7 +61,7 @@
 		<!-- 패스워드 -->
 		<div align="center">
 			<div
-				style="position: relative; bottom: 10em; left: 19em; text-align: center;">
+				style="position: relative; bottom: 10em; left: 19em; text-align: center; width: 7em; height: 8em;">
 				<button type="button" style="width: 7em; height: 8em;"
 					class="adminLoginBt" id="adminLoginBt"
 					onclick="adminLoginConfirm()">로그인</button>
