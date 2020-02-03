@@ -281,11 +281,9 @@ function fn_idCheck(){
 									<img id="img" />
 								</div>
 							</div>
-							<div class="input_wrap">
-								<a href="javascript:" onclick="fileUploadAction();"
-									class="my_button">파일 업로드</a> <input type="file" id="input_imgs"
+							<a href="javascript:" onclick="fileUploadAction();"
+									class="my_button">파일 업로드</a> <input type="file" id="input_imgs" name="file"
 									multiple />
-							</div>
 						</div>
 					</div>
 			
@@ -470,45 +468,7 @@ input[type=file] {
 				});
 	}
 
-	function deleteImageAction(index) {
-		console.log("index : " + index);
-		console.log("sel length : " + sel_files.length);
-
-		sel_files.splice(index, 1);
-
-		var img_id = "#img_id_" + index;
-		$(img_id).remove();
-	}
-
-	function fileUploadAction() {
-		console.log("fileUploadAction");
-		$("#input_imgs").trigger('click');
-	}
-
-	function submitAction() {
-		console.log("업로드 파일 갯수 : " + sel_files.length);
-		var data = new FormData();
-
-		for (var i = 0, len = sel_files.length; i < len; i++) {
-			var name = "image_" + i;
-			data.append(name, sel_files[i]);
-		}
-		data.append("image_count", sel_files.length);
-
-		if (sel_files.length < 1) {
-			alert("한개이상의 파일을 선택해주세요.");
-			return;
-		}
-
-		var xhr = new XMLHttpRequest();
-		xhr.open("POST", "./study01_af.php");
-		xhr.onload = function(e) {
-			if (this.status == 200) {
-				console.log("Result : " + e.currentTarget.responseText);
-			}
-		}
-		xhr.send(data);
-	}
+	
 </script>
 
 <%@ include file="/WEB-INF/views/include/include-footer.jspf"%>

@@ -25,6 +25,10 @@ public class JoinDAO extends AbstractDAO{
 		insert("join.insertMember",map);
 	}
 	
+	public void insertFile(Map<String, Object> map)throws Exception{
+		System.out.println("-----------joinDAO.insertFile()실행중--------------");
+		insert("join.insertMemFile",map);
+	}
 	
 
 } 

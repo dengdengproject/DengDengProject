@@ -48,7 +48,7 @@ public class JoinController {
 		ModelAndView mv=new ModelAndView("join/joinSuccess");
 		System.out.println(commandMap.get("MEM_ID"));
 		
-		joinService.insertMember(commandMap.getMap());
+		joinService.insertMember(commandMap.getMap(), request);
 		
 		return mv;
 	}
