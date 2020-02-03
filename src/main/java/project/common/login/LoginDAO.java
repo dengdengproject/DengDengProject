@@ -9,6 +9,7 @@ import project.common.dao.AbstractDAO;
 @Repository("loginDAO")
 public class LoginDAO extends AbstractDAO { 
 
+	//로그인 : 호석
 	@SuppressWarnings("unchecked")
 	public Map<String, Object> selectId(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
