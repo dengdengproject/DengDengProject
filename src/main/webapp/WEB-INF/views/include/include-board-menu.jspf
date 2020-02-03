@@ -9,38 +9,6 @@
 				<span style="font-weight: bold; font-size: 2em;">Community</span>
 
 			</div>
-<!-- My page 제목 -->
-
-<!-- My page Bar -->
-			<div class="menu-center collapse navbar-collapse"
-				style="margin-left: 3em;">
-				<ul class="ttr_menu_items nav navbar-nav ">
-					<li class="ttr_menu_items_parent dropdown"
-						style="border-style: outset; width: 8em; height: 3em;"><a
-						href="Notice.html" class="ttr_menu_items_parent_link"
-						style="position: relative; right: 2em; text-align: center; width: 9em; line-height: 300%; border-radius: 10px;"><span
-							class="menuchildicon"></span>공지사항</a>
-						<hr class="horiz_separator" /></li>
-					<li class="ttr_menu_items_parent dropdown"
-						style="border-style: outset; width: 7em; height: 3em;"><a
-						href="Q&A.html" class="ttr_menu_items_parent_link"
-						style="position: relative; right: 2.8em; text-align: center; width: 9em; line-height: 300%; border-radius: 10px;"><span
-							class="menuchildicon"></span>Q&A</a>
-						<hr class="horiz_separator" /></li>
-					<li class="ttr_menu_items_parent dropdown"
-						style="border-style: outset; width: 7em; height: 3em;"><a
-						href="Report.html" class="ttr_menu_items_parent_link"
-						style="position: relative; right: 2.8em; text-align: center; width: 9em; line-height: 300%; border-radius: 10px;"><span
-							class="menuchildicon"></span>신고하기</a>
-						<hr class="horiz_separator" /></li>
-					<li class="ttr_menu_items_parent dropdown active"
-						style="border-style: inset; width: 7em; height: 3em;"><a
-						href="MyPetTSO.html" class="ttr_menu_items_parent_link_active"
-						style="position: relative; right: 2.8em; text-align: center; width: 9em; line-height: 300%; border-radius: 10px;"><span
-							class="menuchildicon"></span>댕댕이자랑</a>
-						<hr class="horiz_separator" /></li>
-				</ul>
-			</div>
 		</div>
 	</div>
 </nav>

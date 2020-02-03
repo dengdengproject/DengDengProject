@@ -63,8 +63,8 @@
 					type="password" id="PASSWORD1" name="PASSWORD1" placeHolder="비밀번호"
 					class="loginInput">
 			</div>
-			<!-- 패스워드 -->
 		</div>
+		<!-- 패스워드 -->
 		<div align="center">
 			<div
 				style="position: relative; bottom: 10em; left: 11em; text-align: center; width: 7em">

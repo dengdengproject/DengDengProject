@@ -11,6 +11,48 @@
 
 <%@ include file="/WEB-INF/views/include/include-mymem-menu.jspf"%>
 
+
+
+
+		<!-- My page Bar -->
+			<div class="menu-center collapse navbar-collapse"
+				style="margin-left: 3em;">
+				<ul class="ttr_menu_items nav navbar-nav ">
+					<li class="ttr_menu_items_parent dropdown"
+						style="border-style: outset; width: 8em; height: 3em;"><a
+						href="nml_my_page.html" class="ttr_menu_items_parent_link"
+						style="position: relative; right: 2em; text-align: center; width: 9em; line-height: 300%; border-radius: 10px;"><span
+							class="menuchildicon"></span>회원 정보</a>
+						<hr class="horiz_separator" /></li>
+					<li class="ttr_menu_items_parent dropdown"
+						style="border-style: outset; width: 7em; height: 3em;"><a
+						href="nml_my_pet.html" class="ttr_menu_items_parent_link"
+						style="position: relative; right: 2.8em; text-align: center; width: 9em; line-height: 300%; border-radius: 10px;"><span
+							class="menuchildicon"></span>마이 펫</a>
+						<hr class="horiz_separator" /></li>
+					<li class="ttr_menu_items_parent dropdown active"
+						style="border-style: inset; width: 7em; height: 3em;"><a
+						href="nml_matching_list.html" class="ttr_menu_items_parent_link_active"
+						style="position: relative; right: 2.8em; text-align: center; width: 9em; line-height: 300%; border-radius: 10px;"><span
+							class="menuchildicon"></span>매칭 내역</a>
+						<hr class="horiz_separator" /></li>
+					<li class="ttr_menu_items_parent dropdown"
+						style="border-style: outset; width: 7em; height: 3em;"><a
+						href="nml_petsitter_evaluation.html"
+						class="ttr_menu_items_parent_link"
+						style="position: relative; right: 2.8em; text-align: center; width: 9em; line-height: 300%; border-radius: 10px;"><span
+							class="menuchildicon"></span>이용 후기</a>
+						<hr class="horiz_separator" /></li>
+					<li class="ttr_menu_items_parent dropdown "
+						style="border-style: outset; width: 7em; height: 3em;"><a
+						href="nml_bookMark.html" class="ttr_menu_items_parent_link"
+						style="position: relative; right: 0.7em; text-align: center; width: 5em; line-height: 300%; border-radius: 10px;"><span
+							class="menuchildicon"></span>찜</a>
+						<hr class="horiz_separator" /></li>
+				</ul>
+			</div>
+
+
 <!-- 매칭 내역 -->
 <div style="height: 1000px; border-top: solid;">
 	<div style="text-align: center; margin-top: 4em;">
