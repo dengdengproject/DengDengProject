@@ -38,7 +38,7 @@
 						<span style="font-size: 1.5em">연락처 : </span>
 					</div>
 					<div>
-						<input type="number" id="PHONE" name="PHONE"
+						<input type="text" id="PHONE" name="PHONE"
 							placeholder="연락처를 입력해주세요."
 							style="width: 30em; position: relative;; bottom: 2em;">
 					</div>
@@ -71,7 +71,7 @@
 					<span style="font-size: 1.5em">생년월일 : </span>
 				</div>
 				<div>
-					<input type="number" name="BIRTHDAY" id="BIRTHDAY"
+					<input type="text" name="BIRTHDAY" id="BIRTHDAY"
 						placeholder="생년월일 8자리를 입력해주세요. (예. 19900112)"
 						style="width: 30em; position: relative;; bottom: 2em;">
 				</div>
@@ -82,7 +82,7 @@
 					<span style="font-size: 1.5em">연락처 : </span>
 				</div>
 				<div>
-					<input type="number" name="PHONE" id="PHONE"
+					<input type="text" name="PHONE" id="PHONE"
 						placeholder="연락처를 입력해주세요. (예. 000-0000-0000)"
 						style="width: 30em; position: relative;; bottom: 2em;">
 				</div>

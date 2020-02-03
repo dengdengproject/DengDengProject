@@ -51,21 +51,38 @@ System.out.println(MEM_TYPE);
 							</a>
 							<hr class="horiz_separator" />
 						</li>
+						
 						<li class="ttr_menu_items_parent dropdown">
-							<a href="/first/logout" class="ttr_menu_items_parent_link">
+							<a href="/first/comu" class="ttr_menu_items_parent_link">
 								<span class="menuchildicon"></span>
-								마이 페이지
-								</a>
+								마이페이지
+							</a>
 							<hr class="horiz_separator" />
 						</li>
-						<span>
-						${MEM_TYPE} ${NAME} 님 환영합니다.	<%-- 이 부분 수정해달라고 할 것. 일반 글처럼 보이게. --%>
-							<hr class="horiz_separator" />
-						</span>
-						<span class="ttr_menu_items_parent dropdown"> <!-- 로그아웃도 일반 글 끝에 조그맣게 있는 모양으로, 지금은 너무 메뉴 같음. -->
-							<a href="/first/logout" class="ttr_menu_items_parent_link">로그아웃</a>
-						</span>
+				
+						
+				
+						<li>
+						<div style="text-align:center; width:30em; height: 3em; border:solid; margin-top: 0.2em; border-radius: 10px; border-color: #037FBB">
+								<span style="margin-right: 0.5em; position:relative; top:0.6em;">${MEM_TYPE} </span>
+								
+								<a href="/first/main" class="">  <!-- 마이페이지 링크 넣기 -->
+								<span style="font-weight: bold; position:relative; top:0.6em; color: #ED7D32; "> ${NAME} </span>
+								</a>
+							
+							<span style="position:relative; top:0.6em;">님 환영합니다.	
+								<hr class="horiz_separator" />
+							</span>
+								<a href="/first/logout" class="">
+									<span style=" position:relative; top:0.6em; margin-left: 1.5em; color: gray;">로그아웃 </span>
+								</a>
+							
+						</div>
+						</li>
+						
 					</ul>
+
+					
 				</div>
 				</c:when>
 				<c:otherwise> <%-- ID값이 없다면(비로그인 상태) --%>
