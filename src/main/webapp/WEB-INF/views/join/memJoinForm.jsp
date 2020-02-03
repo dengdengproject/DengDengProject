@@ -11,17 +11,18 @@
 
 <script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script type="text/javascript" src="resources/js/common.js"></script>
 
 <script type="text/javascript">
 function fn_idCheck(){
 	    var ID = {ID : $('#MEM_ID').val()};    // {ID="입력한 ID값"}
-	    alert(ID +"ID값좀 보여주세요 ㅠㅠ")
+	    alert(ID +"입력한 ID값입니다.")
 	    $.ajax({
 	        url:"<c:url value='/join/idCheck'/>",
 	        type:'get',
 	        data: ID,
 	        success:function(data){	
-	        	alert(data +"   id_check에 있는 data값이라는데");
+	        	
 	            if($.trim(data)==""){
 	            	$('#chkMsg').html("사용가능한 아이디 입니다.").css("color", "blue");         
 	            }else{
@@ -109,8 +110,8 @@ function fn_idCheck(){
 		</div>
 		<div>
 			<input type="button" value="아이디중복확인" onclick="fn_idCheck();"
-				style="width: 8em; height: 32px; position: relative; right: 2em; bottom: 4.2em; margin-left: 2em;">
-				<span id = "chkMsg" style= "position: relative; bottom:4em"></span>
+				style="width: 8em; height: 32px; position: relative; left:2em; bottom: 4.2em; margin-left: 2em;">
+				<span id = "chkMsg" style= "position: relative; left:3em; bottom:4em"></span>
 		</div>
 		
 	</div>
