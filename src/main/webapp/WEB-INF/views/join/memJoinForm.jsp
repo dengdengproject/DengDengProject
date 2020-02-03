@@ -72,7 +72,6 @@ function fn_idCheck(){
 		alert("JOIN_DATE" + $('#SYSDATE').val());
 		comSubmit.setUrl("<c:url value='/join' />");
 		comSubmit.submit();
-		alert("들어오나????");
 	}
 	
 	$("#joinForm").on("submit",function(e){
@@ -212,13 +211,13 @@ function fn_idCheck(){
 							style="text-align: center; position: relative; right: 11em; bottom: 1em">
 							<button type="button" style="width: 8em; height: 32px;"
 								onclick="openZipSearch()">우편번호 검색</button>
-							<input type="text" name="ZIPCODE" id="ZIPCODE" style="width: 6em; height: 26px;" />
-							<br> <input type="text" name="ADDRESS1" id="ADDRESS1"
+							<input type="text" name="ZIPCODE" id="ZIPCODE" style="width: 6em; height: 26px;"  placeholder=우편번호"/>
+							<br> <input type="text" name="ADDRESS1" id="ADDRESS1"  placeholder="주소"
 								style="position: relative; left: 6em; margin-top: 0.5em; width: 300px; height: 30px;"
 								 />
 								<input type="text" name="ADDRESS_ADD" id="ADDRESS_ADD"
 								style="position: relative; left: 6em; margin-top: 0.5em; width: 300px; height: 30px;" /><br>
-								<input type="text" name="ADDRESS2" id="ADDRESS2"
+								<input type="text" name="ADDRESS2" id="ADDRESS2"  placeholder="상세주소"
 								style="position: relative; left: 3.5em; margin-top: 0.5em; width: 300px; height: 30px;" />
 						</div>
 					</div>
