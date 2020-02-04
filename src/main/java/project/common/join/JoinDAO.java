@@ -40,6 +40,11 @@ public class JoinDAO extends AbstractDAO{
 		
 	}
 	
+	public void insertPet(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		insert("join.insertPet",map);
+	}
+	
 	
 	
 

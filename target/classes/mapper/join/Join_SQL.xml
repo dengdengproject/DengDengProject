@@ -143,6 +143,59 @@
 
 
 
+<!-- 펫 등록 -->
+<insert id="insertPet" parameterType="hashmap">
+	<![CDATA[
+		INSERT INTO PET_MEMBER (
+			PET_MEM_NO,
+			ID,
+			PET_MEM_ID,
+			PET_MEM_NAME,
+			PET_MEM_SEX,
+			PET_MEM_KIND,
+			PET_MEM_SIZE,
+			PET_MEM_WEIGHT,
+			PET_NO,
+			PET_MEM_AGE,
+			PET_MEM_SEX_CHECK,
+			PET_MEM_CASE,
+			PET_MEM_ZIPCODE,
+			PET_MEM_ADDRESS1,
+			PET_MEM_ADDRESS2,
+			PET_MEM_ADDRESS_ADD,
+			PET_MEM_PHONE,
+			PET_MEM_FEATURE,
+			PET_MEM_USE_TIME,
+			JOIN_DATE
+		)
+		VALUES
+		(
+			PET_MEMBER_SEQ.NEXTVAL,
+			'1111',
+			PET_MEMBER_SEQ.NEXTVAL,
+			#{PET_MEM_NAME},
+			#{PET_MEM_SEX},
+			#{PET_MEM_KIND},
+			#{PET_MEM_SIZE},
+			#{PET_MEM_WEIGHT},
+			#{PET_NO},
+			#{PET_MEM_AGE},
+			#{PET_MEM_SEX_CHECK},
+			#{PET_MEM_CASE},
+			#{PET_MEM_ZIPCODE},
+			#{PET_MEM_ADDRESS1},
+			#{PET_MEM_ADDRESS2},
+			#{PET_MEM_ADDRESS_ADD},
+			#{PET_MEM_PHONE},
+			#{PET_MEM_FEATURE},
+			'0',
+			SYSDATE
+		)
+	]]>
+</insert>
+
+
+
 <!-- 멤버 프로필 파일 업로드 -->
 <insert id="insertMemFile" parameterType="hashmap">
 	<![CDATA[

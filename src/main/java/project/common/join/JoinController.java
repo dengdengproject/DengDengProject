@@ -92,13 +92,34 @@ public class JoinController {
 	//추가 입력 완료
 	public ModelAndView pstAdd(CommandMap commandMap, HttpServletRequest request) throws Exception{
 		
-		ModelAndView mv=new ModelAndView("join/joinSuccess");	
+		ModelAndView mv=new ModelAndView("join/petJoinForm");	
 		System.out.println(commandMap.getMap());
 		joinService.insertPstAdd(commandMap.getMap());
 		
 		return mv;
 	}
 	
+	
+	
+	//댕댕이 입력 부분
+	//댕댕이 정보 입력
+	@RequestMapping(value="/petRegisterForm", method=RequestMethod.GET) 
+	public ModelAndView petRegisterForm(CommandMap commandMap) throws Exception{
+		ModelAndView mv=new ModelAndView("join/petJoinForm");
+		return mv;
+	} 
+	
+	//댕댕이 정보 입력
+	@RequestMapping(value="/petRegister", method=RequestMethod.POST)
+	public ModelAndView petRegister(CommandMap commandMap, HttpServletRequest request) throws Exception{
+		
+		System.out.println("===================petRegister 실행 ======================");
+		ModelAndView mv=new ModelAndView("join/petJoinFormAdd");
+				
+		joinService.petRegist(commandMap.getMap());
+		
+		return mv;
+	}
 
 }
 

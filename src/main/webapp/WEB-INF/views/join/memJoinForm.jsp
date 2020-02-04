@@ -56,7 +56,7 @@ function fn_idCheck(){
 	}
 	
 	function fn_joinSubmit(){
-		
+	
 		var comSubmit = new ComSubmit("joinForm");
 		//값이 넘어가는지 확인하는 alert
  		/* alert("MEM_ID" + $('#MEM_ID').val());
