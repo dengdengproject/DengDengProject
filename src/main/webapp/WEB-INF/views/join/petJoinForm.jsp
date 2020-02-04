@@ -57,7 +57,7 @@
 		<span>* 표시는 필수 입력 사항입니다.</span>
 	</div>
 
-<form action="petRegist" id="joinForm" enctype="multipart/form-data" method="post">
+<form action="" id="joinForm" enctype="multipart/form-data" method="post">
 	<!-- 이름 -->
 	<div style="text-align: center; margin-top: 2em">
 		<div style="position: relative; right: 25em;">
@@ -75,10 +75,10 @@
 			<span style="font-weight: bold;">성별</span>
 		</div>
 		<div style="position: relative; right: 14em; bottom: 1.5em;">
-			<label><input type="radio" name="PET_MEM_SEX" value="수컷"
+			<label><input type="radio" name="PET_MEM_SEX" value="M"
 				style="position: relative; right: 20em; bottom: 2em;" checked>수컷</label>
 			&nbsp;&nbsp; <label><input type="radio" name="PET_MEM_SEX"
-				value="암컷" style="position: relative; right: 20em; bottom: 2em;">암컷</label>
+				value="F" style="position: relative; right: 20em; bottom: 2em;">암컷</label>
 		</div>
 	</div>
 
@@ -113,10 +113,10 @@
 	<!-- 무게 -->
 	<div style="text-align: center;">
 		<div style="position: relative; right: 25em;">
-			<span style="font-weight: bold;">몸무게</span>
+			<span style="font-weight: bold;">몸무게(kg)</span>
 		</div>
 		<div>
-			<input type="text" placeholder="5kg"  id="PET_MEM_WEIGHT" name="PET_MEM_WEIGHT"
+			<input type="text" placeholder="숫자만 입력해주세요"  id="PET_MEM_WEIGHT" name="PET_MEM_WEIGHT"
 				style="width: 10em; position: relative; right: 13em; bottom: 2em;">
 		</div>
 		
@@ -133,13 +133,13 @@
 		</div>
 	</div>
 
-	<!-- 댕댕이 생일 -->
+	<!-- 나이 -->
 	<div style="text-align: center;">
 		<div style="position: relative; right: 26.5em; bottom: 1.7em;">
-			<span style="font-weight: bold;">댕댕이생일</span>
+			<span style="font-weight: bold;">댕댕이나이</span>
 		</div>
 		<div>
-			<input type="text" placeholder="2020/01/01" id="PET_MEM_BIRTHDAY" name="PET_MEM_BIRTHDAY"
+			<input type="text" placeholder="3살" id="PET_MEM_AGE" name="PET_MEM_AGE"
 				style="width: 10em; position: relative; right: 13em; bottom: 3.5em;">
 		</div>
 	</div>
@@ -150,10 +150,10 @@
 			<span style="font-weight: bold;">중성화 여부</span>
 		</div>
 		<div style="position: relative; right: 14em; bottom: 3em;">
-			<label><input type="checkbox" name="PET_MEM_SEX_CHECK" value="예"
+			<label><input type="checkbox" name="PET_MEM_SEX_CHECK" value="Y"
 				style="position: relative; right: 20em; bottom: 2em;">예</label>
 			&nbsp;&nbsp; <label><input type="checkbox" name="PET_MEM_SEX_CHECK"
-				value="아니오" style="position: relative; right: 20em; bottom: 2em;">아니오</label>
+				value="N" style="position: relative; right: 20em; bottom: 2em;">아니오</label>
 		</div>
 	</div>
 
@@ -163,10 +163,10 @@
 			<span style="font-weight: bold;">병력</span>
 		</div>
 		<div style="position: relative; right: 15em; bottom: 3.0em;">
-			<label><input type="checkbox" name="PET_MEM_CASE" value="유"
+			<label><input type="checkbox" name="PET_MEM_CASE" value="Y"
 				style="position: relative; right: 20em; bottom: 2em;">유</label>
 			&nbsp;&nbsp; <label><input type="checkbox" name="PET_MEM_CASE"
-				value="무" style="position: relative; right: 20em; bottom: 2em;">무</label>
+				value="N" style="position: relative; right: 20em; bottom: 2em;">무</label>
 		</div>
 
 	</div>
@@ -213,6 +213,12 @@
 			</div>
 		</div>
 
+		<!-- 회원ID는 로그인한 상태에서 세션에서 가져오고 펫ID 일단 NULL값으로 넣어두고 추후 ID생성해서 저장할 예정-->
+		<input type = "hidden" id="ID" name="ID" value="${ID}">
+		
+		<input type = "hidden" id="PET_MEM_USE_TIME" name="PET_MEM_USE_TIME" value="0">
+		<input type = "hidden" name="MEM_ID" value="${ID}">
+		
 			
 		
 

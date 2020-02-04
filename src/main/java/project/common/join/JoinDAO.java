@@ -35,5 +35,15 @@ public class JoinDAO extends AbstractDAO{
 		insert("join.insertPet",map);
 	}
 	
+	public void insertPetAdd(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		insert("join.insertPetAdd",map);
+	}
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> selectPetMemId(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return (Map<String, Object>) selectOne("join.selectPetMemId", map);
+	}
+	
 
 } 

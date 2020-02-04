@@ -10,7 +10,11 @@ public interface JoinService {
 
 	void insertMember(Map<String, Object> map, HttpServletRequest request) throws Exception;
 	
-	void petRegist(Map<String, Object> map) throws Exception;
+	void petRegist(Map<String, Object> map, HttpServletRequest request) throws Exception;
+	
+	void petRegistAdd(Map<String, Object> map) throws Exception;
+	
+	public Map<String, Object> getPetMemId(Map<String, Object> map) throws Exception;
 
 //	void verifyMember(Map<String, Object> map) throws Exception;
 

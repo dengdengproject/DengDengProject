@@ -63,14 +63,51 @@ public class JoinServiceImpl implements JoinService{
 	}
 	 
 	 
-	 @Override public void petRegist(Map<String, Object> map) throws Exception
+	 @Override public void petRegist(Map<String, Object> map, HttpServletRequest request) throws Exception
 	 { // TODO Auto-generated method stub 
 		 joinDAO.insertPet(map); 
 		 
-		
+		 MultipartHttpServletRequest multipartHttpServletRequest =			
+				 (MultipartHttpServletRequest)request; 
+				 Iterator<String> iterator = multipartHttpServletRequest.getFileNames(); 
+				 MultipartFile multipartFile = null; 
+				 System.out.println("-------------insertMember()실행중----------------");
+				 while(iterator.hasNext()){ 
+					 multipartFile = multipartHttpServletRequest.getFile(iterator.next()); 
+					 if(multipartFile.isEmpty() == false){ 
+						 log.debug("------------- file start -------------"); 
+						 log.debug("name : "+multipartFile.getName()); 
+						 log.debug("filename : "+multipartFile.getOriginalFilename()); 
+						 log.debug("size : "+multipartFile.getSize()); 
+						 log.debug("-------------- file end --------------\n"); 
+						 } 
+					 } 
+				
+				 
+				 List<Map<String,Object>> list = fileUtils.parseInsertFileInfo(map, request);
+				 for(int i=0, size=list.size(); i<size; i++){ 
+					
+					 joinDAO.insertFile(list.get(i));
+					 
+				 }
 			
 		
 			 
+		
+	}
+
+
+	@Override
+	public void petRegistAdd(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		joinDAO.insertPetAdd(map);
+	}
+
+
+	@Override
+	public Map<String, Object> getPetMemId(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return joinDAO.selectPetMemId(map);
 		
 	} 
 
