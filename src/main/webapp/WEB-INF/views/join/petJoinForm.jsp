@@ -34,6 +34,46 @@
 	function fn_joinSubmit(){
 		alert("joinSubmit!!!!!!!!!!!!!!!")
 		var comSubmit = new ComSubmit("joinForm");
+		
+		if(!$("#PET_MEM_NAME").val()){
+			alert("이름 입력해주세요.");
+			$("#PET_MEM_NAME").focus();
+			return false;
+		}
+	
+		if(!$("#PET_MEM_SEX").val()){
+			alert("성별을 입력해주세요.");
+			$("#PET_MEM_SEX").focus();
+			return false;
+		}
+		if(!$("#PET_MEM_KIND").val()){
+			alert("품종을 입력해주세요.");
+			$("#PET_MEM_KIND").focus();
+			return false;
+		}
+		if(!$("#PET_MEM_SIZE").val()){
+			alert("크기를 입력해주세요.");
+			$("#PET_MEM_SIZE").focus();
+			return false;
+		}
+		if(!$("#PET_MEM_AGE").val()){
+			alert("나이를 입력해주세요.");
+			$("#PET_MEM_AGE").focus();
+			return false;
+		}
+
+		if(!$("#PET_MEM_SEX_CHECK").val()){
+			alert("중성화수술여부를 입력해주세요.");
+			$("#PET_MEM_SEX_CHECK").focus();
+			return false;
+		}
+		if(!$("#PET_MEM_CASE").val()){
+			alert("병력유무를 입력해주세요.");
+			$("#PET_MEM_CASE").focus();
+			return false;
+		}
+	
+		
 		comSubmit.setUrl("<c:url value='/petRegister' />");
 		comSubmit.submit();
 	}
