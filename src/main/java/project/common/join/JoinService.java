@@ -8,6 +8,11 @@ public interface JoinService {
 
 	void insertMember(Map<String, Object> map) throws Exception;
 
+	void insertPst(Map<String, Object> map) throws Exception;
+
+	void insertPstAdd(Map<String, Object> map) throws Exception;
+
+	
 //	void verifyMember(Map<String, Object> map) throws Exception;
 
 //	int selectNickCheck(Map<String, Object> map) throws Exception;

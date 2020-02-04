@@ -20,10 +20,26 @@ public class JoinDAO extends AbstractDAO{
 		}
 	}
 	
+	//일반 회원가입
 	public void insertMember(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
 		insert("join.insertMember",map);
 	}
+	
+	//펫시터 회원가입
+	public void insertPst(Map<String, Object> map) throws Exception {
+
+		insert("join.insertPst", map);
+		
+	}
+	
+	//펫시터 추가정보 입력
+	public void insertPstAdd(Map<String, Object> map) throws Exception {
+
+		insert("join.insertPstAdd", map);
+		
+	}
+	
 	
 	
 

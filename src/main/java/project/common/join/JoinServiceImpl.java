@@ -29,6 +29,20 @@ public class JoinServiceImpl implements JoinService{
 		 joinDAO.insertMember(map); 
 	 }
 		
+	 @Override public void insertPst(Map<String, Object> map) throws Exception
+	 { // TODO Auto-generated method stub 
+		 joinDAO.insertPst(map); 
+	 }
+
+
+	@Override
+	public void insertPstAdd(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		
+		 joinDAO.insertPstAdd(map); 
+
+	}
+		
 	
 
 }
