@@ -26,6 +26,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 		Map<String, Object> listMap = null; 
 		//String boardIdx = (String)map.get("IDX");
 		String mem_id = (String)map.get("MEM_ID");
+		String pet_mem_id=(String)map.get("PET_MEM_ID");
 		File file = new File(filePath); 
 		
 		 //파일을 저장할 경로에 해당폴더가 없으면 폴더를 생성
@@ -48,9 +49,11 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 				multipartFile.transferTo(file); 
 				listMap = new HashMap<String,Object>(); 
 				listMap.put("MEM_ID", mem_id); 
+				listMap.put("PET_MEM_ID", pet_mem_id); 
 				listMap.put("PROFILE_ORIGINAL_FILE_NAME", originalFileName); 
 				listMap.put("PROFILE_STORED_FILE_NAME", storedFileName); 
 				listMap.put("PROFILE_FILE_SIZE", multipartFile.getSize()); 
+				
 				list.add(listMap); 
 				} 
 			} return list; 

@@ -45,7 +45,7 @@ System.out.println(MEM_TYPE);
 							<hr class="horiz_separator" />
 						</li>
 						<li class="ttr_menu_items_parent dropdown">
-							<a href="/first/mypage/MyInfodetail" class="ttr_menu_items_parent_link">  <!-- 테스트로 커뮤니티를 클릭하면 마이페이지 회원정보상세로 넘어가게 설정해놨음. 추후변경 -->
+							<a href="/first/MyInfodetail" class="ttr_menu_items_parent_link">  <!-- 테스트로 커뮤니티를 클릭하면 마이페이지 회원정보상세로 넘어가게 설정해놨음. 추후변경 -->
 								<span class="menuchildicon"></span>
 								커뮤니티
 							</a>
@@ -76,7 +76,7 @@ System.out.println(MEM_TYPE);
 								class="menuchildicon"></span>펫시터 매칭</a>
 							<hr class="horiz_separator" /></li>
 						<li class="ttr_menu_items_parent dropdown"><a
-							href="/first/mypage/MyInfodetail" class="ttr_menu_items_parent_link"><span
+							href="/first/MyInfodetail" class="ttr_menu_items_parent_link"><span
 								class="menuchildicon"></span>커뮤니티</a>
 							<hr class="horiz_separator" /></li>
 						<li class="ttr_menu_items_parent dropdown"><a

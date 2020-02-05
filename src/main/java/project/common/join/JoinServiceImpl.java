@@ -67,6 +67,14 @@ public class JoinServiceImpl implements JoinService{
 	 { // TODO Auto-generated method stub 
 		 joinDAO.insertPet(map); 
 		 
+		//PET_MEM_ID를 DB에서 꺼내오기
+		 Map<String, Object> map1= joinDAO.selectPetMemId(map);
+		//PET_MEM_ID를 DB에서 꺼내오기
+		 System.out.println("PET_MEM_ID는" + map1.get("PET_MEM_ID"));
+		//꺼내온 아이디값을 map에 넣어준다. 
+		map.put("PET_MEM_ID", map1.get("PET_MEM_ID"));
+		 
+		 
 		 MultipartHttpServletRequest multipartHttpServletRequest =			
 				 (MultipartHttpServletRequest)request; 
 				 Iterator<String> iterator = multipartHttpServletRequest.getFileNames(); 
@@ -86,7 +94,7 @@ public class JoinServiceImpl implements JoinService{
 				 
 				 List<Map<String,Object>> list = fileUtils.parseInsertFileInfo(map, request);
 				 for(int i=0, size=list.size(); i<size; i++){ 
-					
+					System.out.println(list.get(i));
 					 joinDAO.insertFile(list.get(i));
 					 
 				 }
