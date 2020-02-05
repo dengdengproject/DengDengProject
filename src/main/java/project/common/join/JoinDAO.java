@@ -46,6 +46,25 @@ public class JoinDAO extends AbstractDAO{
 	}
 	
 	
+	//펫시터 이미지 파일 추가
+	public void insertPstImage(Map<String, Object> map)throws Exception{
+		System.out.println("-----------joinDAO.insertFile()실행중--------------");
+		insert("join.insertMemFile",map);
+	}
+	
+	
+	//펫시터 위탁장소 이미지
+	public void insertPstAddImg(Map<String, Object> map)throws Exception{
+		System.out.println("-----------joinDAO.insertPstAddImg()실행중--------------");
+		insert("join.insertAddFile",map);
+	}
+	
+	//펫시터 댕댕이 등록을 위한 ID 가져오기
+	public Map<String, Object> selectPstId(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return (Map<String, Object>) selectOne("join.selectPetMemId",map);
+		
+	}
 	
 
 } 

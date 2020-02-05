@@ -286,14 +286,13 @@ function fn_idCheck(){
 						style="text-align: center; position: relative; left: 20em; bottom: 40em; width: 15em">
 						<span>프로필 사진 등록</span>
 						<div align="center">
-							<div class="imgs_wrap" style="text-align: center;">
-								<img id="img" />
+								<div class="imgs_wrap" style="text-align: center;">
+									<img id="img" />
+								</div>
 							</div>
-						</div>
-						<div class="input_wrap">
 							<a href="javascript:" onclick="fileUploadAction();"
-								class="my_button">파일 업로드</a> <input type="file" id="input_imgs"
-								multiple />
+									class="my_button">파일 업로드</a> <input type="file" id="input_imgs" name="file"
+									multiple />
 						</div>
 					</div>
 				</div>
@@ -429,7 +428,7 @@ $(document).ready(function(){ });
 	charset="utf-8"></script>
 <script type="text/javascript">
 	// 이미지 정보들을 담을 배열
-	var sel_files = [];
+var sel_files = [];
 
 	$(document).ready(function() {
 		$("#input_imgs").on("change", handleImgFileSelect);
@@ -473,46 +472,6 @@ $(document).ready(function(){ });
 					reader.readAsDataURL(f);
 
 				});
-	}
-
-	function deleteImageAction(index) {
-		console.log("index : " + index);
-		console.log("sel length : " + sel_files.length);
-
-		sel_files.splice(index, 1);
-
-		var img_id = "#img_id_" + index;
-		$(img_id).remove();
-	}
-
-	function fileUploadAction() {
-		console.log("fileUploadAction");
-		$("#input_imgs").trigger('click');
-	}
-
-	function submitAction() {
-		console.log("업로드 파일 갯수 : " + sel_files.length);
-		var data = new FormData();
-
-		for (var i = 0, len = sel_files.length; i < len; i++) {
-			var name = "image_" + i;
-			data.append(name, sel_files[i]);
-		}
-		data.append("image_count", sel_files.length);
-
-		if (sel_files.length < 1) {
-			alert("한개이상의 파일을 선택해주세요.");
-			return;
-		}
-
-		var xhr = new XMLHttpRequest();
-		xhr.open("POST", "./study01_af.php");
-		xhr.onload = function(e) {
-			if (this.status == 200) {
-				console.log("Result : " + e.currentTarget.responseText);
-			}
-		}
-		xhr.send(data);
 	}
 </script>
 

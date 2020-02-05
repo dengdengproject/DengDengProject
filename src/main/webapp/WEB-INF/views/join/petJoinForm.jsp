@@ -57,14 +57,10 @@
 		style="text-align: center; position: relative; left: 20em; margin-top: 1em">
 		<span>* 표시는 필수 입력 사항입니다.</span>
 	</div>
-
 	<form action="petRegist" id="joinForm" enctype="multipart/form-data"
 		method="post">
 		
 		
-		<div>
-			<input type="hidden" id="PSMEM_ID" name="PSMEM_ID" value="<%=request.getParameter("pst_id")%>">
-		</div>
 		
 		
 		<!-- 이름 -->

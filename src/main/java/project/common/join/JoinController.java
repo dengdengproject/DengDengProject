@@ -51,8 +51,10 @@ public class JoinController {
 	@RequestMapping(value="/join", method=RequestMethod.POST)
 	//회원가입 성공
 	public ModelAndView join(CommandMap commandMap, HttpServletRequest request) throws Exception{
-		
 		ModelAndView mv=new ModelAndView("join/joinSuccess");
+		
+		 System.out.println("===================joinSuccess 실행 ======================");
+
 		System.out.println(commandMap.get("MEM_ID"));
 		
 		joinService.insertMember(commandMap.getMap());
@@ -76,13 +78,13 @@ public class JoinController {
 	//펫시터 회원 가입 성공 -> 추가 정보 입력페이지 이동 
 	@RequestMapping(value="/joinPst", method=RequestMethod.POST)
 	public ModelAndView joinPst(CommandMap commandMap, HttpServletRequest request) throws Exception{
-		
+		 System.out.println("===================pstJoinFormAdd 실행 ======================");
+
 		ModelAndView mv=new ModelAndView("join/pstJoinFormAdd");
 		
-		String id = request.getParameter("pst_id");
 		System.out.println(commandMap.get("PSMEM_ID"));
 		
-		joinService.insertPst(commandMap.getMap());
+		joinService.insertPst(commandMap.getMap(), request);
 		
 		return mv;
 	}
@@ -92,20 +94,32 @@ public class JoinController {
 	//추가 입력 완료
 	public ModelAndView pstAdd(CommandMap commandMap, HttpServletRequest request) throws Exception{
 		
-		ModelAndView mv=new ModelAndView("join/petJoinForm");	
+		ModelAndView mv=new ModelAndView("join/joinSuccess");	
 		System.out.println(commandMap.getMap());
-		joinService.insertPstAdd(commandMap.getMap());
+		joinService.insertPstAdd(commandMap.getMap(), request);
 		
 		return mv;
 	}
 	
 	
-	
+/*	
 	//댕댕이 입력 부분
 	//댕댕이 정보 입력
-	@RequestMapping(value="/petRegisterForm", method=RequestMethod.GET) 
-	public ModelAndView petRegisterForm(CommandMap commandMap) throws Exception{
+	@RequestMapping(value="/petJoinForm", method=RequestMethod.POST) 
+	public ModelAndView petRegisterForm(CommandMap commandMap,  HttpServletRequest request) throws Exception{
 		ModelAndView mv=new ModelAndView("join/petJoinForm");
+		
+		 System.out.println("===================petRegisterForm 실행 ======================");
+	      
+	      System.out.println("ID는" + commandMap.get("ID"));
+	      
+	      //PET_MEM_ID를 DB에서 꺼내오기
+	      Map<String, Object> map = joinService.getPstId(commandMap.getMap());
+	      //꺼내온 아이디값을 map에 넣어준다. 
+	      commandMap.getMap().put("PET_MEM_ID", map.get("PET_MEM_ID"));
+	            
+	      joinService.petRegist(commandMap.getMap());
+		
 		return mv;
 	} 
 	
@@ -120,6 +134,8 @@ public class JoinController {
 		
 		return mv;
 	}
+	
+	*/
 
 }
 

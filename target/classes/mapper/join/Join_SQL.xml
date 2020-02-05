@@ -171,7 +171,7 @@
 		VALUES
 		(
 			PET_MEMBER_SEQ.NEXTVAL,
-			'1111',
+			#{ID},
 			PET_MEMBER_SEQ.NEXTVAL,
 			#{PET_MEM_NAME},
 			#{PET_MEM_SEX},
@@ -195,29 +195,67 @@
 </insert>
 
 
+<!--펫시터 아이디 꺼내와서 댕댕이에 매칭  -->
+<select id = "selectPetMemId" parameterType = "hashmap" resultType = "hashmap">
+   <![CDATA[
+      SELECT PSMEM_ID FROM PETSITTER_ADD
+     
+   ]]>
+</select>
+
+
+
 
 <!-- 멤버 프로필 파일 업로드 -->
 <insert id="insertMemFile" parameterType="hashmap">
 	<![CDATA[
+		
+		
 		INSERT INTO PROFILE_FILE
 			(
 			PROFILE_NO,
-			MEM_ID,
+			ID,
 			PROFILE_ORIGINAL_FILE_NAME,
 			PROFILE_STORED_FILE_NAME,
-			PROFILE_FILE_SIZE
+			PROFILE_FILE_SIZE,
+			PROFILE_DATE
 		)
 		VALUES
 			(
 			PROFILE_FILE_SEQ.NEXTVAL,
-			#{MEM_ID},
+			#{PSMEM_ID},
 			#{PROFILE_ORIGINAL_FILE_NAME},
 			#{PROFILE_STORED_FILE_NAME},
-			#{PROFILE_FILE_SIZE}
+			#{PROFILE_FILE_SIZE},
+			SYSDATE
+		
 		)
 	]]>
 </insert>
 	
+<!-- 펫시터 위탁장소  사진-->		
+<insert id="insertAddFile" parameterType="hashmap">
+	<![CDATA[
+		INSERT INTO PETSITTER_ADD_IMG
+			(
+			PSMEM_FILE_NO,
+			PSMEM_ID,
+			PSMEM_ORIGINAL_FILE_NAME,
+			PSMEM_STORED_FILE_NAME,
+			PSMEM_FILE_SIZE,
+			PSMEM_DATE
+		)
+		VALUES
+			(
+			PETSITTER_ADD_IMG_SEQ.NEXTVAL,
+			#{PSMEM_ID},
+			#{PSMEM_ORIGINAL_FILE_NAME},
+			#{PSMEM_STORED_FILE_NAME},
+			#{PSMEM_FILE_SIZE},
+			SYSDATE
+		)
+	]]>
+</insert>
 
 
 
