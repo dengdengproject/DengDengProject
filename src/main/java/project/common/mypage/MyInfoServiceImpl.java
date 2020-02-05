@@ -39,5 +39,14 @@ public class MyInfoServiceImpl implements MyInfoService{
 		}
 		return res;
 	}
+
+	@Override  //회원의 마이펫리스트 불러오기
+	public Map<String, Object> selectMyPet(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return myInfoDAO.selectMyPet(map);
+	}
+	
+	
+	
 		
 }  

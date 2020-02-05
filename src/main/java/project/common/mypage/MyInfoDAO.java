@@ -26,6 +26,10 @@ public class MyInfoDAO extends AbstractDAO {
 		update("myInfo.deleteMember",map);
 	}
 	
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> selectMyPet(Map<String, Object> map) throws Exception {
+		return (Map<String, Object>) selectList ("myInfo.selectmypet",map);
+	}
 	
 
 } 

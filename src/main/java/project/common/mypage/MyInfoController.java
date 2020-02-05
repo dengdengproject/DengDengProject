@@ -83,6 +83,22 @@ public ModelAndView MyInfoDeleteConfirm(CommandMap commandMap, HttpServletReques
 	return mv;
 }
 
+	
+	///myPetList  마이펫리스트
+	@RequestMapping(value="/myPetList")
+	public ModelAndView MyPetList(CommandMap commandMap, HttpServletRequest request) throws Exception{
+		ModelAndView mv = new ModelAndView("mypage/myPetList");
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("MEM_ID");
+		commandMap.put("MEM_ID",id);
+		Map<String,Object> map = myInfoService.selectMyPet(commandMap.getMap());	//회원ID로 
+		mv.addObject("map",map); //회원정보를 담은 map을 mv에 저장
+		return mv;
+	}	
+	
+	
+	
+	
 
 }   
   

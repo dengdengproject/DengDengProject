@@ -46,6 +46,16 @@
 </delete>
 
 
+<!-- 일반회원 펫 정보 불러오기 -->
+<select id = "selectmypet" parameterType = "hashmap" resultType = "hashmap">
+	<![CDATA[
+		SELECT * FROM PET_MEMBER
+		WHERE MEM_ID = #{MEM_ID}
+	]]>
+</select>
+
+
+
 
 	
 </mapper>
