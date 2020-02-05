@@ -40,12 +40,7 @@
 			$("#PET_MEM_NAME").focus();
 			return false;
 		}
-	
-		if(!$("#PET_MEM_SEX").val()){
-			alert("성별을 입력해주세요.");
-			$("#PET_MEM_SEX").focus();
-			return false;
-		}
+
 		if(!$("#PET_MEM_KIND").val()){
 			alert("품종을 입력해주세요.");
 			$("#PET_MEM_KIND").focus();
@@ -62,7 +57,7 @@
 			return false;
 		}
 
-		if(!$("#PET_MEM_SEX_CHECK").val()){
+		/* if(!$("#PET_MEM_SEX_CHECK").val()){
 			alert("중성화수술여부를 입력해주세요.");
 			$("#PET_MEM_SEX_CHECK").focus();
 			return false;
@@ -71,7 +66,7 @@
 			alert("병력유무를 입력해주세요.");
 			$("#PET_MEM_CASE").focus();
 			return false;
-		}
+		} */
 	
 		
 		comSubmit.setUrl("<c:url value='/petRegister' />");
@@ -101,7 +96,7 @@
 	<!-- 이름 -->
 	<div style="text-align: center; margin-top: 2em">
 		<div style="position: relative; right: 25em;">
-			<span style="font-weight: bold;">이름</span>
+			<span style="font-weight: bold;">*이름</span>
 		</div>
 		<div>
 			<input type="text" id="PET_MEM_NAME" name="PET_MEM_NAME"
@@ -112,7 +107,7 @@
 	<!-- 성별 -->
 	<div style="text-align: center;">
 		<div style="position: relative; right: 25em;">
-			<span style="font-weight: bold;">성별</span>
+			<span style="font-weight: bold;">*성별</span>
 		</div>
 		<div style="position: relative; right: 14em; bottom: 1.5em;">
 			<label><input type="radio" name="PET_MEM_SEX" value="M"
@@ -125,7 +120,7 @@
 	<!-- 품종 -->
 	<div style="text-align: center;">
 		<div style="position: relative; right: 25em;">
-			<span style="font-weight: bold;">품종</span>
+			<span style="font-weight: bold;">*품종</span>
 		</div>
 		<div>
 			<input type="text" placeholder="품종 입력"  id="PET_MEM_KIND" name="PET_MEM_KIND"
@@ -141,7 +136,7 @@
 	<!-- 크기 -->
 	<div style="text-align: center;">
 		<div style="position: relative; right: 25em;">
-			<span style="font-weight: bold;">크기</span>
+			<span style="font-weight: bold;">*크기</span>
 		</div>
 		<div>
 			<input type="text" placeholder="대형견"  id="PET_MEM_SIZE" name="PET_MEM_SIZE"
@@ -153,7 +148,7 @@
 	<!-- 무게 -->
 	<div style="text-align: center;">
 		<div style="position: relative; right: 25em;">
-			<span style="font-weight: bold;">몸무게(kg)</span>
+			<span style="font-weight: bold;">*몸무게(kg)</span>
 		</div>
 		<div>
 			<input type="text" placeholder="숫자만 입력해주세요"  id="PET_MEM_WEIGHT" name="PET_MEM_WEIGHT"
@@ -165,7 +160,7 @@
 	<!-- 등록번호 -->
 	<div style="text-align: center;">
 		<div style="position: relative; right: 26em; margin-top:1em; bottom: 1.5em;">
-			<span style="font-weight: bold;">등록번호</span>
+			<span style="font-weight: bold;">*등록번호</span>
 		</div>
 		<div>
 			<input type="text" id="PET_NO" name="PET_NO"
@@ -176,7 +171,7 @@
 	<!-- 나이 -->
 	<div style="text-align: center;">
 		<div style="position: relative; right: 26.5em; bottom: 1.7em;">
-			<span style="font-weight: bold;">댕댕이나이</span>
+			<span style="font-weight: bold;">*댕댕이나이</span>
 		</div>
 		<div>
 			<input type="text" placeholder="3살" id="PET_MEM_AGE" name="PET_MEM_AGE"
@@ -187,7 +182,7 @@
 	<!-- 중성화여부 -->
 	<div style="text-align: center;">
 		<div style="position: relative; right: 26.5em; bottom: 1.7em;">
-			<span style="font-weight: bold;">중성화 여부</span>
+			<span style="font-weight: bold;">*중성화 여부</span>
 		</div>
 		<div style="position: relative; right: 14em; bottom: 3em;">
 			<label><input type="checkbox" name="PET_MEM_SEX_CHECK" value="Y"
@@ -200,7 +195,7 @@
 	<!-- 병력 -->
 	<div style="text-align: center;">
 		<div style="position: relative; right: 25em; bottom: 1.5em;">
-			<span style="font-weight: bold;">병력</span>
+			<span style="font-weight: bold;">*병력</span>
 		</div>
 		<div style="position: relative; right: 15em; bottom: 3.0em;">
 			<label><input type="checkbox" name="PET_MEM_CASE" value="Y"
