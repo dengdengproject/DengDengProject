@@ -53,7 +53,7 @@ public class JoinController {
 		return mv;
 	}
  
-	//댕댕이 정보 입력
+	//댕댕이 정보 입력 폼으로 이동
 	@RequestMapping(value="/petRegisterForm", method=RequestMethod.GET) 
 	public ModelAndView petRegisterForm(CommandMap commandMap) throws Exception{
 		ModelAndView mv=new ModelAndView("join/petJoinForm");

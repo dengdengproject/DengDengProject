@@ -37,27 +37,26 @@ public class JoinServiceImpl implements JoinService{
 	 { // TODO Auto-generated method stub 
 		 joinDAO.insertMember(map); 
 		 
-		MultipartHttpServletRequest multipartHttpServletRequest =			
-		 (MultipartHttpServletRequest)request; 
-		 Iterator<String> iterator = multipartHttpServletRequest.getFileNames(); 
-		 MultipartFile multipartFile = null; 
-		 System.out.println("-------------insertMember()실행중----------------");
-		 while(iterator.hasNext()){ 
-			 multipartFile = multipartHttpServletRequest.getFile(iterator.next()); 
-			 if(multipartFile.isEmpty() == false){ 
-				 log.debug("------------- file start -------------"); 
-				 log.debug("name : "+multipartFile.getName()); 
-				 log.debug("filename : "+multipartFile.getOriginalFilename()); 
-				 log.debug("size : "+multipartFile.getSize()); 
-				 log.debug("-------------- file end --------------\n"); 
-				 } 
-			 } 
+		/*
+		 * MultipartHttpServletRequest multipartHttpServletRequest =
+		 * (MultipartHttpServletRequest)request; Iterator<String> iterator =
+		 * multipartHttpServletRequest.getFileNames(); MultipartFile multipartFile =
+		 * null; System.out.println("-------------insertMember()실행중----------------");
+		 * while(iterator.hasNext()){ multipartFile =
+		 * multipartHttpServletRequest.getFile(iterator.next());
+		 * if(multipartFile.isEmpty() == false){
+		 * log.debug("------------- file start -------------");
+		 * log.debug("name : "+multipartFile.getName());
+		 * log.debug("filename : "+multipartFile.getOriginalFilename());
+		 * log.debug("size : "+multipartFile.getSize());
+		 * log.debug("-------------- file end --------------\n"); } }
+		 */
 		
 		 
-		 List<Map<String,Object>> list = fileUtils.parseInsertFileInfo(map, request);
+		 List<Map<String,Object>> list = fileUtils.parseInsertFileInfo_MEM(map, request);
 		 for(int i=0, size=list.size(); i<size; i++){ 
 			
-			 joinDAO.insertFile(list.get(i));
+			 joinDAO.insertMemFile(list.get(i));
 			 
 		 }
 	}
@@ -75,27 +74,26 @@ public class JoinServiceImpl implements JoinService{
 		map.put("PET_MEM_ID", map1.get("PET_MEM_ID"));
 		 
 		 
-		 MultipartHttpServletRequest multipartHttpServletRequest =			
-				 (MultipartHttpServletRequest)request; 
-				 Iterator<String> iterator = multipartHttpServletRequest.getFileNames(); 
-				 MultipartFile multipartFile = null; 
-				 System.out.println("-------------insertMember()실행중----------------");
-				 while(iterator.hasNext()){ 
-					 multipartFile = multipartHttpServletRequest.getFile(iterator.next()); 
-					 if(multipartFile.isEmpty() == false){ 
-						 log.debug("------------- file start -------------"); 
-						 log.debug("name : "+multipartFile.getName()); 
-						 log.debug("filename : "+multipartFile.getOriginalFilename()); 
-						 log.debug("size : "+multipartFile.getSize()); 
-						 log.debug("-------------- file end --------------\n"); 
-						 } 
-					 } 
+		/*
+		 * MultipartHttpServletRequest multipartHttpServletRequest =
+		 * (MultipartHttpServletRequest)request; Iterator<String> iterator =
+		 * multipartHttpServletRequest.getFileNames(); MultipartFile multipartFile =
+		 * null; System.out.println("-------------insertMember()실행중----------------");
+		 * while(iterator.hasNext()){ multipartFile =
+		 * multipartHttpServletRequest.getFile(iterator.next());
+		 * if(multipartFile.isEmpty() == false){
+		 * log.debug("------------- file start -------------");
+		 * log.debug("name : "+multipartFile.getName());
+		 * log.debug("filename : "+multipartFile.getOriginalFilename());
+		 * log.debug("size : "+multipartFile.getSize());
+		 * log.debug("-------------- file end --------------\n"); } }
+		 */
 				
 				 
-				 List<Map<String,Object>> list = fileUtils.parseInsertFileInfo(map, request);
+				 List<Map<String,Object>> list = fileUtils.parseInsertFileInfo_PET(map, request);
 				 for(int i=0, size=list.size(); i<size; i++){ 
 					System.out.println(list.get(i));
-					 joinDAO.insertFile(list.get(i));
+					 joinDAO.insertPetFile(list.get(i));
 					 
 				 }
 			

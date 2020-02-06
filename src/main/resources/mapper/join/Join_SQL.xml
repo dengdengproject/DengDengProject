@@ -71,6 +71,30 @@
 			(
 			PROFILE_NO,
 			MEM_ID,
+			PROFILE_ORIGINAL_FILE_NAME,
+			PROFILE_STORED_FILE_NAME,
+			PROFILE_FILE_SIZE,
+			PROFILE_DATE
+		)
+		VALUES
+			(
+			PROFILE_FILE_SEQ.NEXTVAL,
+			#{MEM_ID},
+			#{PROFILE_ORIGINAL_FILE_NAME},
+			#{PROFILE_STORED_FILE_NAME},
+			#{PROFILE_FILE_SIZE},
+			SYSDATE
+		)
+	]]>
+</insert>
+
+<!-- 멤버 프로필 파일 업로드 -->
+<insert id="insertPetFile" parameterType="hashmap">
+	<![CDATA[
+		INSERT INTO PROFILE_FILE
+			(
+			PROFILE_NO,
+			MEM_ID,
 			PET_MEM_ID,
 			PROFILE_ORIGINAL_FILE_NAME,
 			PROFILE_STORED_FILE_NAME,
@@ -89,6 +113,7 @@
 		)
 	]]>
 </insert>
+
 
 <!-- 반려견 등록 -->
 <insert id="insertPet" parameterType="hashmap">
