@@ -16,7 +16,7 @@
 <script type="text/javascript">
 function fn_idCheck(){
 	    var ID = {ID : $('#MEM_ID').val()};    // {ID="입력한 ID값"}
-	    alert(ID +"입력한 ID값입니다.")
+	  
 	    $.ajax({
 	        url:"<c:url value='/join/idCheck'/>",
 	        type:'get',
@@ -124,7 +124,8 @@ function fn_idCheck(){
 		
 		
 		
-		
+	/* 	var id = $("#MEM_ID").val()
+		comSubmit.addParam("ID", id); */
 		comSubmit.setUrl("<c:url value='/join' />");
 		comSubmit.submit();
 	}
@@ -164,9 +165,13 @@ function fn_idCheck(){
 		</div>
 		<div>
 			<input type="button" value="아이디중복확인" onclick="fn_idCheck();"
-				style="width: 8em; height: 32px; position: relative; left:2em; bottom: 4.2em; margin-left: 2em;">
-				<span id = "chkMsg" style= "position: relative; left:3em; bottom:4em"></span>
+				style="width: 8em; height: 32px; position: relative; left:2em; bottom: 4.2em;">
+				
 		</div>
+		<div>
+			<span id = "chkMsg" style= "position: relative; left:14em; bottom:6em"></span>
+		</div>
+		
 		
 	</div>
 	<!-- 아이디 -->
@@ -194,7 +199,7 @@ function fn_idCheck(){
 				style="display: none; color: #d92742; font-weight: bold; position: relative; bottom: 2.2em; right: 11em">비밀번호가
 				일치하지 않습니다.</span>
 			<!-- 패스워드 -->
-
+		</div>
 			<!-- 이름 -->
 			<div style="text-align: center;">
 				<div style="position: relative; right: 24.2em; bottom: 0.7em">
@@ -252,24 +257,23 @@ function fn_idCheck(){
 					</div>
 
 					<!-- 주소 -->
-					<div style="text-align: center;">
-						<div style="position: relative; right: 24.4em; top: 0.5em">
-							<span style="font-weight: bold">주소</span>
-						</div>
-						<div
-							style="text-align: center; position: relative; right: 11em; bottom: 1em">
-							<button type="button" style="width: 8em; height: 32px;"
-								onclick="openZipSearch()">우편번호 검색</button>
-							<input type="text" name="ZIPCODE" id="ZIPCODE" style="width: 9em; height: 26px; left:1em; placeholder="우편번호"/>
-							<br> <input type="text" name="ADDRESS1" id="ADDRESS1"  placeholder="주소"
-								style="position: relative; left: 80px; margin-top: 0.5em; width: 200px; height: 30px;"
-								 />
-								<input type="text" name="ADDRESS_ADD" id="ADDRESS_ADD"
-								style="position: relative; left: 7em; margin-top: 0.5em; width: 200px; height: 30px;" /><br>
-								<input type="text" name="ADDRESS2" id="ADDRESS2"  placeholder="상세주소"
-								style="position: relative; left: 30px; margin-top: 0.5em; width: 300px; height: 30px;" />
-						</div>
-					</div>
+               <div style="text-align: center;">
+                  <div style="position: relative; right: 24.4em; top: 0.5em">
+                     <span style="font-weight: bold">주소</span>
+                  </div>
+                  <div style="text-align: center; position: relative; right:9em; bottom: 2em">
+                     <button type="button" style="width: 8em; height: 32px;"
+                        onclick="openZipSearch()">우편번호 검색</button>
+                     <input type="text" name="ZIPCODE" id="ZIPCODE" style="width: 9em; height: 26px; left:1em; placeholder="우편번호"/>
+                      <br><input type="text" name="ADDRESS1" id="ADDRESS1"  placeholder="주소"
+                        style="position: relative; left: 80px; margin-top: 0.5em; width: 200px; height: 30px;"
+                         />
+                        <input type="text" name="ADDRESS_ADD" id="ADDRESS_ADD"
+                        style="position: relative; left: 7em; margin-top: 0.5em; width: 200px; height: 30px;" /><br>
+                        <input type="text" name="ADDRESS2" id="ADDRESS2"  placeholder="상세주소"
+                        style="position: relative; left: 30px; margin-top: 0.5em; width: 300px; height: 30px;" />
+                  </div>
+               </div>
 
 					<!-- 프로필 사진 등록 -->
 					<div align="center">
@@ -399,10 +403,10 @@ input[type=file] {
 	}
 
 	//비밀번호 확인 
-	$('#PASSWORD1').focusout(function() {
+	$('#PASSWORD2').keyup(function() {
 		var pwd1 = $("#PASSWORD1").val();
 		var pwd2 = $("#PASSWORD2").val();
-		if (pwd1 != "" || pwd2 != "") {
+		if (pwd1 != "" && pwd2 != "") {
 			if (pwd1 == pwd2) {
 				$("#empty").css('display', 'none');
 				$("#alert-success").css('display', 'inline-block');

@@ -9,7 +9,7 @@
 
 <%@ include file="/WEB-INF/views/include/include-header-menu.jspf"%>
 
-
+<script type="text/javascript" src="resources/js/common.js"></script>
 
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -35,7 +35,7 @@
 	function fn_joinSubmit(){
 		alert("petRegistAdd Submit!!!!!!!!!!!!!!!")
 		var comSubmit = new ComSubmit("joinForm");
-		comSubmit.setUrl("<c:url value='/petRegisterAdd' />");
+		comSubmit.setUrl("<c:url value='petRegisterAdd' />");
 		comSubmit.submit();
 	}
 	
@@ -52,7 +52,7 @@
 	</div>
 
 	<div align="center">
-	<form action="petRegistAdd" id="joinForm" method="post">
+	<form action="petRegisterAdd" id="joinForm" method="post">
 		<div style="text-align: left; border: 0.3em dashed rgb(3, 127, 187); margin-top: 2em; width: 50em; height: 15em;">
 			<span
 				style="position: relative; top: 1em; left: 1em; font-weight: bold;">1.
