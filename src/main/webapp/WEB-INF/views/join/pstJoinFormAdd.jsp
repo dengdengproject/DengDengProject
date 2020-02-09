@@ -4,7 +4,7 @@
 <html>
 
 <%@ include file="/WEB-INF/views/include/include-head.jspf"%>
-
+ 
 <%@ include file="/WEB-INF/views/include/include-header.jspf"%>
 
 <%@ include file="/WEB-INF/views/include/include-header-menu.jspf"%>
@@ -141,7 +141,7 @@
 					style="text-align: center; position: relative; bottom: 4.7em; margin-left:1em; width: 5.5em;">
 
 					<label
-						style="outline: none; background: #337AB7; color: white; width: 5.5em; height: 2em; line-height: 190%; border-radius: 10px;">
+						style="outline: none; background: #337AB7; color: white; width: 5.5em; height: 2em; line-height: 190%; border-radius: 10px; margin-left:1em;">
 
 						파일 추가<input type="file" id="input-file"
 						style="position: relative;">
@@ -157,7 +157,7 @@
 	</div>
 <div id="field"></div>
 <div
-	style="text-align: center; position: relative; bottom: 4.7em; right: 5.5em">
+	style="text-align: center; position: relative; margin-top:1em; bottom: 4.7em; right: 5.5em">
 
 	<button style="width: 17em" onclick="add_item()">자격증 추가</button>
 </div>
@@ -198,16 +198,12 @@
 	<input type="hidden" id="PSMEM_CONSIGNMENT_ADDRESS_ADD" name="PSMEM_CONSIGNMENT_ADDRESS_ADD" value="OOOO"> 
 	<input type="hidden" id="PSMEM_INTRODUCE" name="PSMEM_INTRODUCE" value="OOOO">
 	
-<div align="center">
-	<div
-		style="text-align: center; position: relative; right: 8em; bottom: 16em; margin-top: 1em; width: 14em">
-		<button style="width: 13em; height: 3em" id="cancle">처음으로</button>
+
+	<div style="margin-top:2em;text-align: center; position: relative">
+		<button style="width: 13em; height: 3em;" id="cancle">처음으로</button>
+		<button style="width: 13em; height: 3em; margin-left:3em;" id="join">다음</button>
 	</div>
-	<div
-		style="text-align: center; position: relative; left: 13em; bottom: 20em; margin-top: 1em; width: 14em">
-		<button style="width: 13em; height: 3em" id="join">다음</button>
-	</div>
-</div>
+
      넘어온 펫시터 아이디는<p>${map.PSMEM_ID}</p>입니다. 
 </form>
 

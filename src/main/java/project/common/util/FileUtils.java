@@ -151,7 +151,7 @@ public class FileUtils {
 		return list;
 	}
 
-//자격증 등록
+//자격증 등록  
 	public List<Map<String, Object>> parseInsertCerti(Map<String, Object> map, HttpServletRequest request)
 			throws Exception {
 		
@@ -167,6 +167,7 @@ public class FileUtils {
 //String boardIdx = (String)map.get("IDX");
 		String mem_id = (String) map.get("PSMEM_ID");
 		System.out.println(mem_id);
+		System.out.println("펫시터 자격증 등록 FileUtil");
 		File file = new File(filePath);
 
 		// 파일을 저장할 경로에 해당폴더가 없으면 폴더를 생성
