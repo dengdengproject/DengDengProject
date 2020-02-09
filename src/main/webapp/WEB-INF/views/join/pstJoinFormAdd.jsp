@@ -31,6 +31,12 @@
 			e.preventDefault();
 			fn_joinSubmit();
 		});
+		
+		$("#addFile").on("click", function(e){ 
+			//파일 추가 버튼 
+			e.preventDefault();
+			fn_addFile(); 
+		});
 	});
 
 	function fn_goHome() {
@@ -71,6 +77,26 @@
 
 	$("#joinForm").on("submit", function(e) {
 	});
+	
+	
+	var gfv_count = 1;
+	
+	function fn_addFile(){
+        var str = "<input type='text' placeholder='자격 명칭' style='width: 10em' id='CERTI_NAME' name='CERTI_NAME'></input><input type='text' placeholder='발급기관' style='width:10em;' id='CERTI_ORG' name='CERTI_ORG'></input><br><input type='text' placeholder='취득일자' style='width:10em;' id='CERTI_DATE' name='CERTI_DATE'></input><input type='file' name='file_"+(gfv_count++)+"'><a href='#this' class='btn' name='delete'>삭제</a>";   
+        
+		$("#fileDiv").append(str);
+        $("a[name='delete']").on("click",function(e){
+            e.preventDefault();
+            fn_deleteFile($(this));
+           });
+        }
+        
+        function fn_deleteFile(obj) {
+           obj.parent().remove();
+        }
+	
+	
+	
 </script>
 
 
@@ -124,7 +150,29 @@
 				name="PSMEM_CERTI_CHECK">아니오</label>
 		</div>
 		
+		
 		<div
+			style="text-align: center; margin-top: 1em; margin-bottom:2em; position: relative; right: 3em">
+			<span style="font-weight: bold;">자격증 정보</span>
+	
+		<!-- 자격증 파일 추가 -->
+		<!-- <div id="fileDiv" style="text-align: center">   -->
+		
+			
+				<input type="text" placeholder="자격 명칭" style="width: 10em; margin-left:5em;" id="CERTI_NAME" name="CERTI_NAME"></input>
+				<input type="text" placeholder="발급기관" style="width:10em; margin-left:1em" id="CERTI_ORG" name="CERTI_ORG"></input>
+				<input type="text" placeholder="취득일자" style="width:10em; margin-lefg:1em" id="CERTI_DATE" name="CERTI_DATE"></input><br>
+				<input type="file" id="file" name="file_0" style="position: relative; left: 56em; margin-top:1em;">
+ 		
+		</div>
+			<!--  다중업로드할떄 다시 쓸예정 <a href="#this" class="btn" id="addFile">자격증 추가</a> -->
+		
+		
+		
+		
+		
+		
+		<!-- <div
 			style="text-align: center; position: relative; right: 21.9em; bottom: 0.5em;">
 			<span style="font-weight: bold;">자격증 등록</span>
 		</div>
@@ -154,13 +202,13 @@
 			<span
 				style="position: relative; bottom: 4.5em; right: 10em;" id="PSMEM_CERTI_FILE" name="PSMEM_CERTI_FILE">선택된
 				파일 없음</span>
-	</div>
-<div id="field"></div>
+	</div> -->
+<!-- <div id="field"></div>
 <div
 	style="text-align: center; position: relative; margin-top:1em; bottom: 4.7em; right: 5.5em">
 
 	<button style="width: 17em" onclick="add_item()">자격증 추가</button>
-</div>
+</div> -->
 
 
 <!-- 관련학과 졸업여부-->
@@ -204,7 +252,7 @@
 		<button style="width: 13em; height: 3em; margin-left:3em;" id="join">다음</button>
 	</div>
 
-     넘어온 펫시터 아이디는<p>${map.PSMEM_ID}</p>입니다. 
+    <%--  넘어온 펫시터 아이디는<p>${map.PSMEM_ID}</p>입니다.  --%>
 </form>
 
 <%@ include file="/WEB-INF/views/include/include-body.jspf"%>
@@ -212,9 +260,6 @@
 </div>
 
 <style type="text/css">
-input[type=file] {
-	display: none;
-}
 
 .my_button {
 	display: inline-block;

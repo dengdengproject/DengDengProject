@@ -95,7 +95,7 @@
 	var gfv_count = 1;
 	
 	function fn_addFile(){
-        var str = "<p><input type='file' name='file_"+(gfv_count++)+"'><a href='#this' class='btn' name='delete'>삭제</a><p>";
+        var str = "<p><input type='file' name='file_"+(gfv_count++)+"'style='position: relative; left: 56em;'><a href='#this' class='btn' name='delete'>삭제</a><p>";
            
         $("#fileDiv").append(str);
         $("a[name='delete']").on("click",function(e){
@@ -137,7 +137,7 @@
 	<div style="text-align: center;">
 
 		<div
-			style="text-align: center; position: relative; right: 5.3em; bottom: 1em">
+			style="text-align: center; position: relative; right: 5.3em; bottom: 1.3em">
 			<button type="button" style="width: 8em; height: 32px;"
 				onclick="openZipSearch()">우편번호 검색</button>
 			<input type="text" name="PSMEM_CONSIGNMENT_ZIPCODE"
@@ -154,6 +154,18 @@
 				style="position: relative; left: 30px; margin-top: 0.5em; width: 300px; height: 30px;" />
 		</div>
 	
+	
+	<!-- 위탁장소 이미지 파일 추가 -->
+	<div style="text-align: center; position: relative; right: 5.3em; margin-top:1em;">
+		<span style="font-weight: bold; position: relative; right: 15em; ">위탁장소 이미지</span>
+		<div id="fileDiv" style="position: relative; margin-left:5em; bottom:1em">  
+			<input type="file" id="file" name="file_0" style="position: relative; left: 56em;" ><a href="#this" id="delete" name="delete">삭제</a> 
+				
+				
+		</div>
+			<p style="position:relative; bottom:1em;"><a href="#this" class="btn" id="addFile">파일 추가</a></p>
+	
+	</div>
 
 	<div
 		style="text-align: center; position: relative; right: 20.5em; top: 1em; margin-top: 1em">
@@ -165,6 +177,8 @@
 		<textarea style="width: 500px; height: 5em; resize: none;"
 			id="PSMEM_INTRODUCE" name="PSMEM_INTRODUCE"></textarea>
 	</div>
+	
+	
 
 
 	<!-- 프로필 사진 등록 -->
@@ -186,12 +200,7 @@
 				</div> -->
 				
 				
-				<div id="fileDiv" style="position: relative; margin-left:5em; left:20em;">  
-					<input type="file" id="file" name="file_0" ><a href="#this" class="btn" id="delete" name="delete">삭제</a> 
 				
-				
-				</div>
-			<a href="#this" class="btn" id="addFile">파일 추가</a>
 	</div>
 				
 				
@@ -201,9 +210,9 @@
 		
 	<div align="center">
 		<div
-			style="text-align: center; position: relative; right: 2em;  margin-top: 2em">
+			style="text-align: center; position: relative; right: 2em;  margin-top: 2em; margin-bottom:2em">
 			<button style="width: 13em; height: 3em" id="cancle">처음으로</button>
-			<button style="width: 13em; height: 3em; margin-left:2em;" id="join">다음</button>
+			<button style="width: 13em; height: 3em; margin-left:2em;" id="join">완료</button>
 		</div>
 	</div>
 
