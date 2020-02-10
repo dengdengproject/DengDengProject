@@ -1,3 +1,4 @@
+<!-- 2010.02.10 오후4:41 작성  -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -11,22 +12,8 @@
 
 <script type="text/javascript">
 	function fIdsubmit() {
-		var formID = document.formId;
-		
-		if(formID.ID_NAME.value == null || formID.ID_NAME.value == '') {
-			alert("이름을 입력해주세요.")
-			formID.ID_NAME.focus();
-			return false;
-		}
-		
-		if(formID.ID_PHONE.value == null || formID.ID_PHONE.value == '') {
-			alert("연락처를 입력해주세요.")
-			formID.ID_PHONE.focus();
-			return false
-		}
-		formID.submit();
-	}
-	
+		formId.submit();
+	} 
 	function fPwsubmit() {
 		var formPW = document.formPw;
 		

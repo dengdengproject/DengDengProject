@@ -19,16 +19,28 @@ public class MyInfoServiceImpl implements MyInfoService{
 	@Resource(name="loginDAO")
 	private LoginDAO loginDAO;
 	
-	@Override
-	public Map<String, Object> selectMyInfoDetail(Map<String, Object> map) throws Exception {
-	return myInfoDAO.selectMyInfoDetail(map);
+	@Override //상세 일반회원정보 불러오기 
+	public Map<String, Object> selectMemMyInfoDetail(Map<String, Object> map) throws Exception {
+	return myInfoDAO.selectMemMyInfoDetail(map);
 	}
 	
-	@Override
+	@Override //상세 펫시터회원정보 불러오기
+	public Map<String, Object> selectPstMyInfoDetail(Map<String, Object> map) throws Exception {
+	return myInfoDAO.selectPstMyInfoDetail(map);
+	}
+	
+	
+	@Override  //상세 펫시터 추가 회원정보 불러오기
+	public Map<String, Object> selectPstMyInfoAddDetail(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return myInfoDAO.selectPstMyInfoAddDetail(map);
+	}
+
+	@Override //회원정보 수정
 	public void updateMyInfoModify(Map<String, Object> map) throws Exception {
 		myInfoDAO.updateMyInfoModify(map);
 	}
-	@Override
+	@Override //회원정보 삭제 
 	public int deleteMyInfo(Map<String, Object> map) throws Exception {
 		int res;
 		Map<String,Object> member = loginDAO.selectId(map);

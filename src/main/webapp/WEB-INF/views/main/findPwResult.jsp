@@ -1,3 +1,4 @@
+<!-- 2010.02.10 오후4:41 작성  -->
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <!DOCTYPE html>

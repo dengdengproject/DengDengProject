@@ -16,14 +16,14 @@
 
 %>
 
-
+ 
 
 
 <script type="text/javascript">
 
 function fn_idCheck(){
 	    var ID = {ID : $('#PSMEM_ID').val()};    // {ID="입력한 ID값"}
-	    alert(ID +"입력한 ID값입니다.")
+	   
 	    $.ajax({
 	        url:"<c:url value='/join/idCheck'/>",
 	        type:'get',
@@ -117,13 +117,13 @@ function fn_idCheck(){
 		else{
 			
 			
-			var id = joinForm.PSMEM_ID.value;
+			var id = joinForm.PSMEM_ID.value; //id값을 다음페이지에 넘겨준다. 
 			joinForm.pst_id.value = id;
 			
 			alert("가입이 완료되었습니다! 추가정보 입력 페이지로 이동합니다.");
 			
 			
-			comSubmit.setUrl("<c:url value='/joinPst' />");
+			comSubmit.setUrl("<c:url value='/joinPst1' />");
 			comSubmit.submit();
 			return false;
 		}
@@ -156,7 +156,7 @@ function fn_idCheck(){
 		<span style="">* 표시는 필수 입력 사항입니다.</span>
 	</div>
 
-	<form action="join" id="joinForm" enctype="multipart/form-data"
+	<form action="joinPst1" id="joinForm" enctype="multipart/form-data"
 		method="post">
 		<!-- 아이디 -->
 		<div style="text-align: center;">
@@ -170,11 +170,13 @@ function fn_idCheck(){
 			</div>
 			<div>
 				<input type="button" value="아이디중복확인" onclick="fn_idCheck();"
-					style="width: 8em; height: 32px; position: relative; left: 2em; bottom: 4.2em; margin-left: 2em;">
-				<span id="chkMsg" style="position: relative; left: 3em; bottom: 4em"></span>
-			</div>
-
+					style="width: 8em; height: 32px; position: relative; left:2em; bottom: 4.2em;">
+				</div>
+		<div>
+			<span id = "chkMsg" style= "position: relative; left:14em; bottom:6em"></span>
 		</div>
+		</div>
+		
 		<!-- 아이디 -->
 
 		<!-- 패스워드 -->
@@ -200,6 +202,7 @@ function fn_idCheck(){
 					style="display: none; color: #d92742; font-weight: bold; position: relative; bottom: 2.2em; right: 11em">비밀번호가
 					일치하지 않습니다.</span>
 				<!-- 패스워드 -->
+				</div>
 
 				<!-- 이름 -->
 				<div style="text-align: center;">
@@ -402,10 +405,10 @@ $(document).ready(function(){ });
 	}
 
 	//비밀번호 확인 
-	$('#PASSWORD1').focusout(function() {
+	$('#PASSWORD2').keyup(function() {
 		var pwd1 = $("#PASSWORD1").val();
 		var pwd2 = $("#PASSWORD2").val();
-		if (pwd1 != "" || pwd2 != "") {
+		if (pwd1 != "" && pwd2 != "") {
 			if (pwd1 == pwd2) {
 				$("#empty").css('display', 'none');
 				$("#alert-success").css('display', 'inline-block');

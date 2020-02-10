@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import project.common.join.JoinDAO;
 import project.common.util.FileUtils;
 
 
@@ -20,7 +19,7 @@ import project.common.util.FileUtils;
 public class JoinServiceImpl implements JoinService {
 
 	Logger log = Logger.getLogger(this.getClass());
-
+ 
 	@Resource(name="fileUtils") 
 	private FileUtils fileUtils;
 	
@@ -64,31 +63,61 @@ public class JoinServiceImpl implements JoinService {
 
 	}
 
-	@Override
+	@Override  //첫번째 펫시터 추가정보등록 
 	public void insertPstAdd(Map<String, Object> map, HttpServletRequest request) throws Exception {
 		// TODO Auto-generated method stub
 		joinDAO.insertPstAdd(map);
 		
-		
-
-		
-		 List<Map<String,Object>> list = fileUtils.parseInsertPesiterImage(map, request);
+		//자격증파일 등록
+		List<Map<String,Object>> list = fileUtils.parseInsertCerti(map, request);
 		 for(int i=0, size=list.size(); i<size; i++){ 
 			System.out.println(list.get(i));
 			
-			 joinDAO.insertPstAddImg(list.get(i));
-			 
+			 joinDAO.insertCerti(list.get(i));
+		
+		 }		 
+		 
+	}
+	
+	@Override  //두번째 펫시터 추가정보(위탁장소, 자기소개) 등록
+	public void insertPstAdd2(Map<String, Object> map, HttpServletRequest request) throws Exception {
+		// TODO Auto-generated method stub
+		joinDAO.insertPstAdd2(map);
+		
+		//위탁장소 이미지 등록
+		List<Map<String,Object>> list = fileUtils.parseInsertPlace(map, request);
+		 for(int i=0, size=list.size(); i<size; i++){ 
+			System.out.println(list.get(i));
+			
+			 joinDAO.insertPstPlaceImg(list.get(i));
+		
 		 }
 
 		 
 		 
 	}
 
-	@Override
-	public void petRegist(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
-		joinDAO.insertPet(map);
-	}
+	
+	
+//댕댕이 등록
+	 @Override public void petRegist(Map<String, Object> map, HttpServletRequest request) throws Exception
+	 { // TODO Auto-generated method stub 
+		 joinDAO.insertPet(map); 
+		 
+		//PET_MEM_ID를 DB에서 꺼내오기
+		 String pet_mem_id= joinDAO.selectPetMemId(map);
+		//PET_MEM_ID를 DB에서 꺼내오기
+		 System.out.println("PET_MEM_ID는" +pet_mem_id);
+		//꺼내온 아이디값을 map에 넣어준다. 
+		map.put("PET_MEM_ID", pet_mem_id);
+		
+		 List<Map<String,Object>> list = fileUtils.parseInsertFileInfo_PET(map, request);
+		 for(int i=0, size=list.size(); i<size; i++){ 
+			System.out.println(list.get(i));
+			 joinDAO.insertPetFile(list.get(i));
+			 
+		 }
+}
 
 	@Override
 	public Map<String, Object> getPstId(Map<String, Object> map) throws Exception {

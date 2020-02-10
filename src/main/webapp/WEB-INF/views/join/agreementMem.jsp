@@ -10,7 +10,7 @@
 <%@ include file="/WEB-INF/views/include/include-header-menu.jspf"%>
 
 <script type="text/javascript">
-function fn_join() {
+function fn_join() { 
 	
 	var chk = $("input[name=agree_required]");
 	

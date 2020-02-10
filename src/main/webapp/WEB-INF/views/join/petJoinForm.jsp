@@ -13,7 +13,7 @@
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript" src="resources/js/common.js"></script>
 
-<script type="text/javascript">
+<script type="text/javascript"> 
 	$(document).ready(function() {
 
 		$("#cancel").on("click", function(e) {
@@ -220,7 +220,7 @@
 
 		<!-- 특징 -->
 		<div style="text-align: center; margin-top: 1em">
-			<div style="position: relative; right: 25em;">
+			<div style="position: relative; right: 25em;"> 
 				<span style="font-weight: bold;">특징</span>
 			</div>
 			<div>

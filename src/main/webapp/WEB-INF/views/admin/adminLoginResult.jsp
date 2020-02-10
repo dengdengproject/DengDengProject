@@ -7,7 +7,7 @@
 
 <%@ include file="/WEB-INF/views/include/include-header.jspf"%>
 
-<%@ include file="/WEB-INF/views/include/include-header-menu-admin.jspf"%>
+<%@ include file="/WEB-INF/views/include/include-header-menu.jspf"%>
 
 <head>
 <script type="text/javascript">

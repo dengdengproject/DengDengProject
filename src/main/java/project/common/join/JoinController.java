@@ -24,7 +24,7 @@ public class JoinController {
 	@Resource(name = "joinService") // service 영역에 접근
 	private JoinService joinService;
 
-	@RequestMapping(value = "/join/idCheck") // 아이디 중복확인 체크
+	@RequestMapping(value = "/join/idCheck") // 아이디 중복확인 체크 
 	public @ResponseBody String idCheck(CommandMap commandMap) throws Exception {
 
 		System.out.println(commandMap.getMap());
@@ -90,30 +90,89 @@ public class JoinController {
 		return mv;
 	}
 
-	// 펫시터 회원 가입 성공 -> 추가 정보 입력페이지 이동
-	@RequestMapping(value = "/joinPst", method = RequestMethod.POST)
-	public ModelAndView joinPst(CommandMap commandMap, HttpServletRequest request) throws Exception {
-		System.out.println("===================pstJoinFormAdd 실행 ======================");
+	// 펫시터 회원 가입 성공 -> 추가 정보 1입력페이지 이동
+	@RequestMapping(value = "/joinPst1", method = RequestMethod.POST)
+	public ModelAndView joinPst1(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		System.out.println("===================pstJoinFormAdd1 실행 ======================");
 
 		ModelAndView mv = new ModelAndView("join/pstJoinFormAdd");
 
-		System.out.println(commandMap.get("PSMEM_ID"));
-
+		//System.out.println(commandMap.get("PSMEM_ID"));
+		
 		joinService.insertPst(commandMap.getMap(), request);
+		mv.addObject("map", commandMap.getMap());
 
 		return mv;
 	}
+	
+	// 펫시터 추가 정보 2입력페이지 이동
+	@RequestMapping(value = "/joinPst2", method = RequestMethod.POST)
+	public ModelAndView joinPst2(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		System.out.println("===================pstJoinFormAdd2 실행 ======================");
+
+		ModelAndView mv = new ModelAndView("join/pstJoinFormAdd2");
+
+		System.out.println("두번째 페이지에서 넘어온 펫시터ID는" +request.getParameter("PSMEM_ID"));
+		commandMap.getMap().put("PSMEM_ID",request.getParameter("PSMEM_ID"));
+		joinService.insertPstAdd(commandMap.getMap(), request);
+		mv.addObject("map", commandMap.getMap());
+		return mv;
+	}
+	
+	
 
 	@RequestMapping(value = "/joinPstAdd", method = RequestMethod.POST)
 	// 추가 입력 완료
 	public ModelAndView pstAdd(CommandMap commandMap, HttpServletRequest request) throws Exception {
 
 		ModelAndView mv = new ModelAndView("join/joinSuccess");
-		System.out.println(commandMap.getMap());
-		joinService.insertPstAdd(commandMap.getMap(), request);
+		System.out.println("마지막 페이지에서 넘어온 펫시터ID는" +request.getParameter("PSMEM_ID"));
+		commandMap.getMap().put("PSMEM_ID",request.getParameter("PSMEM_ID"));
+		joinService.insertPstAdd2(commandMap.getMap(), request);
 
 		return mv;
 	}
+	
+	
+	
+	//댕댕이 정보 입력 폼으로 이동
+		@RequestMapping(value="/petRegisterForm", method=RequestMethod.GET) 
+		public ModelAndView petRegisterForm(CommandMap commandMap) throws Exception{
+			ModelAndView mv=new ModelAndView("join/petJoinForm");
+			return mv;
+		} 
+		
+		//댕댕이 정보 입력
+		@RequestMapping(value="/petRegister", method=RequestMethod.POST)
+		public ModelAndView petRegister(CommandMap commandMap, HttpServletRequest request) throws Exception{
+			
+			System.out.println("===================petRegister 실행 ======================");
+			ModelAndView mv=new ModelAndView("join/petJoinFormAdd");
+					
+			joinService.petRegist(commandMap.getMap(), request);
+			mv.addObject("map", commandMap.getMap());
+			return mv;
+		}
+		
+		//댕댕이 추가 정보 입력
+		@RequestMapping(value="/petRegisterAdd", method=RequestMethod.POST)
+		public ModelAndView petRegisterAdd(CommandMap commandMap, HttpServletRequest request) throws Exception{
+			
+			System.out.println("===================petRegisterADD 실행 ======================");
+			ModelAndView mv=new ModelAndView("main/main");
+			
+			System.out.println("ID는" + commandMap.get("ID"));
+			System.out.println("PET_MEM_NAME은" + commandMap.get("PET_MEM_NAME"));
+			
+			//PET_MEM_ID를 DB에서 꺼내오기
+			String pet_mem_id = joinService.getPetMemId(commandMap.getMap());
+			//꺼내온 아이디값을 map에 넣어준다. 
+			commandMap.getMap().put("PET_MEM_ID", pet_mem_id);
+					
+			joinService.petRegistAdd(commandMap.getMap());
+			
+			return mv;
+		}
 
 	/*
 	 * //댕댕이 입력 부분 //댕댕이 정보 입력

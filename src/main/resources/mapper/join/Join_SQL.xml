@@ -11,7 +11,7 @@
 			(
 			SELECT
 				MEM_ID AS ID
-			FROM
+			FROM 
 				MEMBER
     
 			UNION all
@@ -65,7 +65,7 @@
 </insert>
 
 
-<!-- 멤버 프로필 파일 업로드 -->
+<!-- 일반회원 프로필 파일 업로드 -->
 <insert id="insertMemFile" parameterType="hashmap">
 	<![CDATA[
 		INSERT INTO PROFILE_FILE
@@ -137,10 +137,7 @@
 			PSMEM_NO,
 			PSMEM_ID,
 			PSMEM_JOB,
-			PSMEM_LICENSE_CHECK,
-			PSMEM_LICENSE_NAME,
-			PSMEM_LICENSE_FILE,
-			PSMEM_LICENSE_FILE_SIZE,	
+			PSMEM_CERTI_CHECK,
 			PSMEM_SCHOOL_FINISH_CHECK,
 			PSMEM_CONSIGNMENT_ZIPCODE,
 			PSMEM_CONSIGNMENT_ADDRESS1,
@@ -153,10 +150,7 @@
 			PETSITTER_ADD_SEQ.NEXTVAL,
 			#{PSMEM_ID},
 			#{PSMEM_JOB},
-			#{PSMEM_LICENSE_CHECK},
-			#{PSMEM_LICENSE_NAME},
-			1111,
-			1111,
+			#{PSMEM_CERTI_CHECK},
 			#{PSMEM_SCHOOL_FINISH_CHECK},
 			#{PSMEM_CONSIGNMENT_ZIPCODE},
 			#{PSMEM_CONSIGNMENT_ADDRESS1},
@@ -168,20 +162,86 @@
 	]]>
 </insert>
 
-<!-- 펫시터 자격증 파일  -->
-<insert id="insertLicense" parameterType="hashmap">
-	<![CDATA[
-		INSERT INTO PETSITTER_ADD (
 
-			PSMEM_LICENSE_FILE,
-			PSMEM_LICENSE_FILE_SIZE,		
+<!-- 펫시터 자격증 파일  -->
+<insert id="insertCerti" parameterType="hashmap">
+	<![CDATA[
+		INSERT INTO CERTI_FILE(
+
+			CERTI_NO,
+			PSMEM_ID,	
+			CERTI_NAME, 
+			CERTI_ORG,
+			CERTI_DATE,
+			PROFILE_ORIGINAL_FILE_NAME,
+			PROFILE_STORED_FILE_NAME,
+			PROFILE_FILE_SIZE,
+			PROFILE_DATE
 		)
 		VALUES (
-			#{PSMEM_LICENSE_FILE},
-			#{PSMEM_LICENSE_FILE_SIZE},
+			CERTI_FILE_SEQ.NEXTVAL,
+			#{PSMEM_ID},		
+			#{CERTI_NAME}, 
+			#{CERTI_ORG},
+			#{CERTI_DATE},
+			#{PROFILE_ORIGINAL_FILE_NAME},
+			#{PROFILE_STORED_FILE_NAME},
+			#{PROFILE_FILE_SIZE},
+			SYSDATE
 		)
 	]]>
 </insert>
+
+
+<!-- 펫시터 프로필 파일 업로드 -->
+<insert id="insertPstFile" parameterType="hashmap">
+	<![CDATA[
+		INSERT INTO PROFILE_FILE
+			(
+			PROFILE_NO,
+			PSMEM_ID,
+			PROFILE_ORIGINAL_FILE_NAME,
+			PROFILE_STORED_FILE_NAME,
+			PROFILE_FILE_SIZE,
+			PROFILE_DATE
+		)
+		VALUES
+			(
+			PROFILE_FILE_SEQ.NEXTVAL,
+			#{PSMEM_ID},
+			#{PROFILE_ORIGINAL_FILE_NAME},
+			#{PROFILE_STORED_FILE_NAME},
+			#{PROFILE_FILE_SIZE},
+			SYSDATE
+		)
+		
+	]]>
+</insert>
+	
+<!-- 펫시터 위탁장소  사진-->		
+<insert id="insertPstPlaceFile" parameterType="hashmap">
+	<![CDATA[
+		INSERT INTO PETSITTER_ADD_IMG
+			(
+			PSMEM_FILE_NO,
+			PSMEM_ID,
+			PSMEM_ORIGINAL_FILE_NAME,
+			PSMEM_STORED_FILE_NAME,
+			PSMEM_FILE_SIZE,
+			PSMEM_DATE
+		)
+		VALUES
+			(
+			PETSITTER_ADD_IMG_SEQ.NEXTVAL,
+			#{PSMEM_ID},
+			#{PSMEM_ORIGINAL_FILE_NAME},
+			#{PSMEM_STORED_FILE_NAME},
+			#{PSMEM_FILE_SIZE},
+			SYSDATE
+		)
+	]]>
+</insert>
+
 
 
 
@@ -236,25 +296,65 @@
 	]]>
 </insert>
 
+<!-- 펫 정보 추가 입력 -->
+<insert id="insertPetAdd" parameterType="hashmap">
+	<![CDATA[
+		INSERT INTO PET_MEMBER_ADD (
+			PET_MEMBER_ADD_NO,
+			ID,
+			PET_MEM_ID,
+			PET_MEMBER_ADD_RESPONSE,
+			PET_MEMBER_ADD_HUMAN,
+			PET_MEMBER_ADD_BARK,
+			PET_MEMBER_ADD_TRAINING,
+			PET_MEMBER_ADD_DDONG_STYLE,
+			PET_MEMBER_ADD_SHARP_BODY,
+			PET_MEMBER_ADD_ATTACK,
+			PET_MEMBER_ADD_VACCINATION
+		)
+		VALUES (
+			PET_MEMBER_ADD_SEQ.NEXTVAL,
+			#{ID},
+			#{PET_MEM_ID},
+			#{PET_MEMBER_ADD_RESPONSE},
+			#{PET_MEMBER_ADD_HUMAN},
+			#{PET_MEMBER_ADD_BARK},
+			#{PET_MEMBER_ADD_TRAINING},
+			#{PET_MEMBER_ADD_DDONG_STYLE},
+			#{PET_MEMBER_ADD_SHARP_BODY},
+			#{PET_MEMBER_ADD_ATTACK},
+			#{PET_MEMBER_ADD_VACCINATION}
+		)
+	]]>
+</insert>
+
+
 
 <!--펫시터 아이디 꺼내와서 댕댕이에 매칭  -->
-<select id = "selectPetMemId" parameterType = "hashmap" resultType = "hashmap">
+<select id = "selectPstMemId" parameterType = "hashmap" resultType = "hashmap">
    <![CDATA[
       SELECT PSMEM_ID FROM PETSITTER_ADD
      
    ]]>
 </select>
 
+<!-- 댕댕이 아이디 꺼내오기 -->
+<select id = "selectPetMemId" parameterType = "hashmap" resultType = "hashmap">
+	<![CDATA[
+		SELECT PET_MEM_ID FROM PET_MEMBER
+		WHERE ID = #{ID} AND PET_MEM_NAME=#{PET_MEM_NAME}
+	]]>
+</select>
 
 
-
-<!-- 펫시터 프로필 파일 업로드 -->
-<insert id="insertPstFile" parameterType="hashmap">
+<!-- 펫 프로필 파일 업로드 -->
+<insert id="insertPetFile" parameterType="hashmap">
 	<![CDATA[
 		INSERT INTO PROFILE_FILE
 			(
 			PROFILE_NO,
-			PSMEM_ID,
+			MEM_ID,
+			PET_MEM_ID,
 			PROFILE_ORIGINAL_FILE_NAME,
 			PROFILE_STORED_FILE_NAME,
 			PROFILE_FILE_SIZE,
@@ -263,39 +363,35 @@
 		VALUES
 			(
 			PROFILE_FILE_SEQ.NEXTVAL,
-			#{PSMEM_ID},
+			#{MEM_ID},
+			#{PET_MEM_ID},
 			#{PROFILE_ORIGINAL_FILE_NAME},
 			#{PROFILE_STORED_FILE_NAME},
 			#{PROFILE_FILE_SIZE},
 			SYSDATE
 		)
-		
 	]]>
 </insert>
-	
-<!-- 펫시터 위탁장소  사진-->		
-<insert id="insertAddFile" parameterType="hashmap">
+
+<!-- 펫시터 회원가입 위탁장소입력 페이지에서 정보를 수정하는 형식으로 쓰는 쿼리 -->
+<update id="insertPstPlace" parameterType="hashMap">
 	<![CDATA[
-		INSERT INTO PETSITTER_ADD_IMG
-			(
-			PSMEM_FILE_NO,
-			PSMEM_ID,
-			PSMEM_ORIGINAL_FILE_NAME,
-			PSMEM_STORED_FILE_NAME,
-			PSMEM_FILE_SIZE,
-			PSMEM_DATE
-		)
-		VALUES
-			(
-			PETSITTER_ADD_IMG_SEQ.NEXTVAL,
-			#{PSMEM_ID},
-			#{PSMEM_ORIGINAL_FILE_NAME},
-			#{PSMEM_STORED_FILE_NAME},
-			#{PSMEM_FILE_SIZE},
-			SYSDATE
-		)
+		UPDATE
+			PETSITTER_ADD
+		SET
+			PSMEM_CONSIGNMENT_ZIPCODE = #{PSMEM_CONSIGNMENT_ZIPCODE},
+			PSMEM_CONSIGNMENT_ADDRESS1 = #{PSMEM_CONSIGNMENT_ADDRESS1},
+			PSMEM_CONSIGNMENT_ADDRESS2 = #{PSMEM_CONSIGNMENT_ADDRESS2},
+			PSMEM_CONSIGNMENT_ADDRESS_ADD = #{PSMEM_CONSIGNMENT_ADDRESS_ADD},
+			PSMEM_INTRODUCE = #{PSMEM_INTRODUCE}
+		
+		WHERE
+		
+			PSMEM_ID = #{PSMEM_ID}				
 	]]>
-</insert>
+</update>
+
+
 
 
 

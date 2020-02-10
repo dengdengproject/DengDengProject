@@ -12,7 +12,7 @@
 
 <script type="text/javascript">
 		
-	 
+	
 	function fn_submit(){
 		
 		if(!$("#PASSWORD1").val()){
@@ -271,10 +271,10 @@ input[type=file] {
 	}
 
 	//비밀번호 확인 
-	$('#PASSWORD1').keyup(function() {
+	$('#PASSWORD1').focusout(function() {
 		var pwd1 = $("#PASSWORD1").val();
 		var pwd2 = $("#PASSWORD2").val();
-		if (pwd1 != "" && pwd2 != "") {
+		if (pwd1 != "" || pwd2 != "") {
 			if (pwd1 == pwd2) {
 				$("#empty").css('display', 'none');
 				$("#alert-success").css('display', 'inline-block');

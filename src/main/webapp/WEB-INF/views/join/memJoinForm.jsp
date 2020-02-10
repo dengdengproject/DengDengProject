@@ -13,10 +13,10 @@
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript" src="resources/js/common.js"></script>
 
-<script type="text/javascript">
+<script type="text/javascript"> 
 function fn_idCheck(){
 	    var ID = {ID : $('#MEM_ID').val()};    // {ID="입력한 ID값"}
-	    alert(ID +"입력한 ID값입니다.")
+	  
 	    $.ajax({
 	        url:"<c:url value='/join/idCheck'/>",
 	        type:'get',
@@ -56,7 +56,6 @@ function fn_idCheck(){
 	}
 	
 	function fn_joinSubmit(){
-<<<<<<< HEAD
 		
 		var comSubmit = new ComSubmit("joinForm");
 		//값이 넘어가는지 확인하는 alert
@@ -127,7 +126,6 @@ function fn_idCheck(){
 		
 	/* 	var id = $("#MEM_ID").val()
 		comSubmit.addParam("ID", id); */
-=======
 	
 		var comSubmit = new ComSubmit("joinForm");
 		//값이 넘어가는지 확인하는 alert
@@ -197,7 +195,6 @@ function fn_idCheck(){
 		
 		
 		
->>>>>>> refs/remotes/origin/main_ui
 		comSubmit.setUrl("<c:url value='/join' />");
 		comSubmit.submit();
 	}
@@ -237,9 +234,13 @@ function fn_idCheck(){
 		</div>
 		<div>
 			<input type="button" value="아이디중복확인" onclick="fn_idCheck();"
-				style="width: 8em; height: 32px; position: relative; left:2em; bottom: 4.2em; margin-left: 2em;">
-				<span id = "chkMsg" style= "position: relative; left:3em; bottom:4em"></span>
+				style="width: 8em; height: 32px; position: relative; left:2em; bottom: 4.2em;">
+				
 		</div>
+		<div>
+			<span id = "chkMsg" style= "position: relative; left:14em; bottom:6em"></span>
+		</div>
+		
 		
 	</div>
 	<!-- 아이디 -->
@@ -267,7 +268,7 @@ function fn_idCheck(){
 				style="display: none; color: #d92742; font-weight: bold; position: relative; bottom: 2.2em; right: 11em">비밀번호가
 				일치하지 않습니다.</span>
 			<!-- 패스워드 -->
-
+		</div>
 			<!-- 이름 -->
 			<div style="text-align: center;">
 				<div style="position: relative; right: 24.2em; bottom: 0.7em">
@@ -342,6 +343,7 @@ function fn_idCheck(){
                         style="position: relative; left: 30px; margin-top: 0.5em; width: 300px; height: 30px;" />
                   </div>
                </div>
+
 					<!-- 프로필 사진 등록 -->
 					<div align="center">
 						<div
@@ -470,10 +472,10 @@ input[type=file] {
 	}
 
 	//비밀번호 확인 
-	$('#PASSWORD1').focusout(function() {
+	$('#PASSWORD2').keyup(function() {
 		var pwd1 = $("#PASSWORD1").val();
 		var pwd2 = $("#PASSWORD2").val();
-		if (pwd1 != "" || pwd2 != "") {
+		if (pwd1 != "" && pwd2 != "") {
 			if (pwd1 == pwd2) {
 				$("#empty").css('display', 'none');
 				$("#alert-success").css('display', 'inline-block');

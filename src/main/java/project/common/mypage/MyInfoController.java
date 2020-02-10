@@ -24,21 +24,39 @@ public class MyInfoController {
 	@Resource(name="myInfoService") 
 	private MyInfoService myInfoService;
 	
-	
+	 
 	@Resource(name="joinService") 
 	private JoinService joinService;
 	
-///MyInfoDetail  일반회원 마이페이지 회원정보 상세보기
+///MyInfoDetail  마이페이지 회원정보 상세보기
 @RequestMapping(value="/MyInfodetail")
 public ModelAndView MyInfoDetail(CommandMap commandMap, HttpServletRequest request) throws Exception{
-	ModelAndView mv = new ModelAndView("mypage/memMyInfo");
+	
 	HttpSession session = request.getSession();
 	String id = (String)session.getAttribute("ID");
+	String mem_type = (String)session.getAttribute("MEM_TYPE");
+	commandMap.put("MEM_TYPE",mem_type);	
 	
-	System.out.println("id값은" +id);
-	commandMap.put("MEM_ID",id);
-	Map<String,Object> map = myInfoService.selectMyInfoDetail(commandMap.getMap());	//해당 ID값으로 회원상세정보들을 읽어온후 map에 저장. 
-	mv.addObject("map",map); //회원정보를 담은 map을 mv에 저장
+	//펫시터일때
+	if(mem_type.equals("펫시터")){ 
+		ModelAndView mv = new ModelAndView("mypage/pstMyInfo");
+		commandMap.put("PSMEM_ID",id);
+		Map<String,Object> map = myInfoService.selectPstMyInfoDetail(commandMap.getMap());	//해당 ID값으로 회원상세정보들을 읽어온후 map에 저장. 
+		Map<String,Object> map1 = myInfoService.selectPstMyInfoAddDetail(commandMap.getMap());
+		mv.addObject("map",map); //회원정보를 담은 map을 mv에 저장
+		mv.addObject("map1",map1); //회원정보를 담은 map을 mv에 저장
+		return mv;
+	} 
+	
+	//일반회원일때
+		ModelAndView mv = new ModelAndView("mypage/memMyInfo");
+		commandMap.put("MEM_ID",id);
+		Map<String,Object> map = myInfoService.selectMemMyInfoDetail(commandMap.getMap());	//해당 ID값으로 회원상세정보들을 읽어온후 map에 저장. 
+		mv.addObject("map",map); //회원정보를 담은 map을 mv에 저장
+		String path = myInfoService.selectProfile(commandMap.getMap());  //DB에서  MEM_ID값으로 저장된 프로필이미지파일이름을 가져온다.
+		
+		mv.addObject("path",path); //회원정보를 담은 map을 mv에 저장
+	
 	return mv;
 }
 
@@ -47,23 +65,49 @@ public ModelAndView MyInfoDetail(CommandMap commandMap, HttpServletRequest reque
 public ModelAndView MyInfoModifyForm(CommandMap commandMap, HttpServletRequest request) throws Exception{
 	
 	System.out.println("-----------------memInfoModify 컨트롤러들어옴------------");
-	ModelAndView mv = new ModelAndView("mypage/memInfoModify");
+	
 	HttpSession session = request.getSession();
-	String id = (String) session.getAttribute("MEM_ID");  //수정할 회원의 정보를 읽어오기 위해 MEM_ID값을 가져온다. 
+	String id = (String) session.getAttribute("ID");  //수정할 회원의 정보를 읽어오기 위해 MEM_ID값을 가져온다. 
+	String mem_type = (String)session.getAttribute("MEM_TYPE");
+	
+	if(mem_type.equals("펫시터")){
+		ModelAndView mv = new ModelAndView("mypage/pstModify");
+		commandMap.put("PSMEM_ID",id); //id값을 map에 저장하고
+		Map<String,Object> map = myInfoService.selectPstMyInfoDetail(commandMap.getMap()); //수정할 회원의 정보들을 읽어온후 map에 저장
+		Map<String,Object> map1 = myInfoService.selectPstMyInfoAddDetail(commandMap.getMap()); //추가 정보를 읽어온후 map1에 저장
+		//System.out.println("map에 들어있는 아이디와 이름은 " + map.get("PSMEM_ID") + map.get("NAME"));
+		mv.addObject("map",map); // map을 mv에 저장
+		mv.addObject("map1",map1); // map을 mv에 저장
+		return mv;
+	}
+	
+	//일반회원일때
+	ModelAndView mv = new ModelAndView("mypage/memModify");
 	commandMap.put("MEM_ID",id); //id값을 map에 저장하고
-	Map<String,Object> map = myInfoService.selectMyInfoDetail(commandMap.getMap()); //수정할 회원의 정보들을 읽어온후 map에 저장
+	Map<String,Object> map = myInfoService.selectMemMyInfoDetail(commandMap.getMap()); //수정할 회원의 정보들을 읽어온후 map에 저장
 	mv.addObject("map",map); // map을 mv에 저장
 	return mv;
 }
+
 ///MyInfoModify  회원정보수정. 회원정보수정페이지에서 정보수정후 확인버튼을 누르면 여기로 이동함. 
 @RequestMapping(value="/memInfoModify") 
 public ModelAndView MyInfoModify(CommandMap commandMap, HttpServletRequest request)throws Exception{
 	ModelAndView mv=new ModelAndView("redirect:/MyInfodetail");	
 	HttpSession session = request.getSession();
-	String id = (String) session.getAttribute("MEM_ID");
+	String id = (String) session.getAttribute("ID");
+	String mem_type = (String)session.getAttribute("MEM_TYPE");
+	commandMap.put("MEM_TYPE", mem_type); //회원유형에 따라 DAO에서 다른 SQL문 수행
+	
+	//펫시터일때
+	if(mem_type.equals("펫시터")){
+		commandMap.put("PSMEM_ID",id);
+		myInfoService.updateMyInfoModify(commandMap.getMap());	
+		return mv;
+	}
+	
+	//일반회원일때
 	commandMap.put("MEM_ID",id);
 	myInfoService.updateMyInfoModify(commandMap.getMap());	
-	//mv.addObject("MyInfo", commandMap.get("MyInfo"));
 	return mv;
 }
 
@@ -95,9 +139,9 @@ public ModelAndView MyInfoDeleteConfirm(CommandMap commandMap, HttpServletReques
 	public ModelAndView MyPetList(Map<String, Object> commandMap, HttpServletRequest request) throws Exception{
 		ModelAndView mv = new ModelAndView("mypage/memPetList");
 		HttpSession session = request.getSession();
-		String id = (String) session.getAttribute("MEM_ID");
-		commandMap.put("MEM_ID",id);
-		//System.out.println("commandMap에 있는 MEM_ID는" + commandMap.get("MEM_ID"));
+		String id = (String) session.getAttribute("ID");
+		commandMap.put("ID",id);
+		System.out.println("commandMap에 있는 MEM_ID는" + commandMap.get("ID"));
 		
 		List<Map<String,Object>> list= myInfoService.selectMyPetList(commandMap);	//회원ID로 펫리스트 꺼내오기
 		commandMap.put("ID",id );
@@ -110,7 +154,7 @@ public ModelAndView MyInfoDeleteConfirm(CommandMap commandMap, HttpServletReques
 		//꺼내온 아이디값을 map에 넣어준다. 
 		commandMap.put("PET_MEM_ID", pet_mem_id);
 
-		System.out.println("마이펫리스트에서 불러올 펫 이미지 회원 아이디와 펫아이디는 "+ commandMap.get("MEM_ID") + commandMap.get("PET_MEM_ID"));
+		System.out.println("마이펫리스트에서 불러올 펫 이미지 회원 아이디와 펫아이디는 "+ commandMap.get("ID") + commandMap.get("PET_MEM_ID"));
 		
 		//DB에서 PET_MEM_ID값과 MEM_ID값으로 저장된 프로필이미지파일이름을 가져온다.
 		String path = myInfoService.selectProfile(commandMap);

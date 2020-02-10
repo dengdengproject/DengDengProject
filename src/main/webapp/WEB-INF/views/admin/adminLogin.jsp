@@ -7,7 +7,7 @@
 
 <%@ include file="/WEB-INF/views/include/include-header.jspf"%>
 
-<%@ include file="/WEB-INF/views/include/include-header-menu-admin.jspf"%>
+<%@ include file="/WEB-INF/views/include/include-header-menu.jspf"%>
 
 <script type="text/javascript">
 	function adminLoginConfirm() {

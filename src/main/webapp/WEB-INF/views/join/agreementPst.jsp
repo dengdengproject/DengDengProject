@@ -11,7 +11,7 @@
 
 <script type="text/javascript">
 function fn_join() {
-	
+	 
 	var chk = $("input[name=agree_required]");
 	
 	if(chk[0].checked==false){

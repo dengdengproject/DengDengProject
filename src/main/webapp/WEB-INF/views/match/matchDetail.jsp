@@ -459,7 +459,7 @@ function showSlides(n) {
 					<form method="get" class="tm-search-form tm-section-pad-2">
 						<div class="form-group tm-form-element tm-form-element-50" style="width: 22em; right: 3em; bottom: 1em">
 							<i class="fa fa-calendar fa-2x tm-form-element-icon"></i>
-							<input name="rangeDate" type="text" class="flatpickr-input" id="rangeDate" placeholder="펫시팅이 가능한 날짜를 선택해주세요." style="font-size: 1em">
+							<input name="basicDate" type="text" class="flatpickr-input" id="basicDate" placeholder="펫시팅이 가능한 날짜를 선택해주세요." style="font-size: 1em">
 						</div>
 					</form>
 				</div>
@@ -634,7 +634,7 @@ function showSlides(n) {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.js"></script>
 <!-- flatpickr -->  
 <script id="INLINE_PEN_JS_ID">
-	//var form = document.matchInsert.datePic;
+	var form = document.matchInsert.datePic;
 	
 	//alert(document.getElementById(form.value))
 
