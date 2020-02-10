@@ -220,7 +220,7 @@
 
 		<!-- 특징 -->
 		<div style="text-align: center; margin-top: 1em">
-			<div style="position: relative; right: 25em;">
+			<div style="position: relative; right: 25em;"> 
 				<span style="font-weight: bold;">특징</span>
 			</div>
 			<div>

@@ -1,5 +1,6 @@
 package project.common.mypage;
 import java.util.Map;
+import java.util.List;
 import javax.annotation.Resource;
 
 import org.apache.log4j.Logger;
@@ -18,16 +19,28 @@ public class MyInfoServiceImpl implements MyInfoService{
 	@Resource(name="loginDAO")
 	private LoginDAO loginDAO;
 	
-	@Override
-	public Map<String, Object> selectMyInfoDetail(Map<String, Object> map) throws Exception {
-	return myInfoDAO.selectMyInfoDetail(map);
+	@Override //상세 일반회원정보 불러오기
+	public Map<String, Object> selectMemMyInfoDetail(Map<String, Object> map) throws Exception {
+	return myInfoDAO.selectMemMyInfoDetail(map);
 	}
 	
-	@Override
+	@Override //상세 펫시터회원정보 불러오기
+	public Map<String, Object> selectPstMyInfoDetail(Map<String, Object> map) throws Exception {
+	return myInfoDAO.selectPstMyInfoDetail(map);
+	}
+	
+	
+	@Override  //상세 펫시터 추가 회원정보 불러오기
+	public Map<String, Object> selectPstMyInfoAddDetail(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return myInfoDAO.selectPstMyInfoAddDetail(map);
+	}
+
+	@Override //회원정보 수정
 	public void updateMyInfoModify(Map<String, Object> map) throws Exception {
 		myInfoDAO.updateMyInfoModify(map);
 	}
-	@Override
+	@Override //회원정보 삭제 
 	public int deleteMyInfo(Map<String, Object> map) throws Exception {
 		int res;
 		Map<String,Object> member = loginDAO.selectId(map);
@@ -41,9 +54,15 @@ public class MyInfoServiceImpl implements MyInfoService{
 	}
 
 	@Override  //회원의 마이펫리스트 불러오기
-	public Map<String, Object> selectMyPet(Map<String, Object> map) throws Exception {
+	public List<Map<String, Object>> selectMyPetList(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
-		return myInfoDAO.selectMyPet(map);
+		return myInfoDAO.selectMyPetList(map);
+	}
+
+	@Override  //프로필 사진 꺼내오기
+	public String selectProfile(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return  myInfoDAO.selectProfile(map);
 	}
 	
 	

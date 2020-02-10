@@ -2,12 +2,61 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="myInfo">
 
-<select id = "selectmyinfo" parameterType = "hashmap" resultType = "hashmap">
+<!-- 일반회원 상세정보 꺼내오기 -->
+<select id = "selectmeminfo" parameterType = "hashmap" resultType = "hashmap">
 	<![CDATA[
 		SELECT * FROM MEMBER
 		WHERE MEM_ID = #{MEM_ID}
 	]]>
 </select>
+
+<!-- 펫시터 상세정보 꺼내오기 -->
+<select id = "selectpstinfo" parameterType = "hashmap" resultType = "hashmap">
+	<![CDATA[
+		SELECT * FROM PETSITTER
+		WHERE PSMEM_ID = #{PSMEM_ID}
+	]]>
+</select>
+
+<!-- 펫시터 추가상세정보 꺼내오기 -->
+<select id = "selectpstaddinfo" parameterType = "hashmap" resultType = "hashmap">
+	<![CDATA[
+		SELECT * FROM PETSITTER_ADD
+		WHERE PSMEM_ID = #{PSMEM_ID}
+	]]>
+</select>
+
+<!-- 일반회원 프로필사진 꺼내오기 -->
+<select id="selectMemProfile" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[
+		SELECT	PROFILE_STORED_FILE_NAME FROM PROFILE_FILE
+		WHERE MEM_ID = #{MEM_ID} AND PET_MEM_ID IS NULL
+	]]>
+</select>
+
+<!-- 펫시터회원 프로필사진 꺼내오기 -->
+<select id="selectPstProfile" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[
+		SELECT	PROFILE_STORED_FILE_NAME FROM PROFILE_FILE
+		WHERE PSMEM_ID = #{PSMEM_ID} AND PET_MEM_ID IS NULL
+	]]>
+</select>		
+
+<!-- 일반회원 댕댕이 프로필사진 꺼내오기 -->
+<select id="selectMemPetProfile" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[
+		SELECT	PROFILE_STORED_FILE_NAME FROM PROFILE_FILE
+		WHERE PET_MEM_ID = #{PET_MEM_ID} AND MEM_ID = #{ID}
+	]]>
+</select>
+
+<!-- 펫시터 댕댕이 프로필사진 꺼내오기 -->
+<select id="selectPstPetProfile" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[
+		SELECT	PROFILE_STORED_FILE_NAME FROM PROFILE_FILE
+		WHERE PET_MEM_ID = #{PET_MEM_ID} AND PSMEM_ID = #{PSMEM_ID}
+	]]>
+</select>	
 
 <!-- 일반 회원 정보 수정 --> <!-- 로그인한 값(MEM_ID인지 PSMEM_ID인지)으로 조건을 줘 MEM_ID에 값이 있을 경우, 코드 앞에서 이 쿼리문이 포함된 메서드를 작동하도록 한다. -->
 <!-- (예. if(mem_id != null && mem_id != "") {
@@ -16,10 +65,32 @@
 	펫시터 회원 전용 쿼리문 작동
      }...     ) -->
 
-<update id="insertmyinfo" parameterType="hashMap">
+<!-- 일반회원 회원정보 수정 -->
+<update id="updatememinfo" parameterType="hashMap">
 	<![CDATA[
 		UPDATE
 			MEMBER
+		SET
+			PASSWORD1 = #{PASSWORD1},
+			PASSWORD2 = #{PASSWORD2},
+			PHONE = #{PHONE}, 
+			EMAIL = #{EMAIL},
+			BIRTHDAY = #{BIRTHDAY},
+			ZIPCODE = #{ZIPCODE},
+			ADDRESS1 = #{ADDRESS1},
+			ADDRESS2 = #{ADDRESS2},
+			ADDRESS_ADD = #{ADDRESS_ADD}
+		WHERE
+		
+			MEM_ID = #{MEM_ID}				
+	]]>
+</update>
+
+<!-- 펫시터 회원정보 수정 -->
+<update id="updatepstinfo" parameterType="hashMap">
+	<![CDATA[
+		UPDATE
+			PETSITTER
 		SET
 			PASSWORD1 = #{PASSWORD1},
 			PASSWORD2 = #{PASSWORD2},
@@ -32,7 +103,23 @@
 			ADDRESS_ADD = #{ADDRESS_ADD}
 		WHERE
 		
-			MEM_ID = #{MEM_ID}				
+			PSMEM_ID = #{PSMEM_ID}				
+	]]>
+</update>
+
+<!-- 펫시터 추가회원정보 수정 -->
+<update id="updatepstaddinfo" parameterType="hashMap">
+	<![CDATA[
+		UPDATE
+			PETSITTER_ADD
+		SET
+			PSMEM_JOB = #{PSMEM_JOB},
+			PSMEM_CERTI_CHECK = #{PSMEM_CERTI_CHECK},
+			PSMEM_SCHOOL_FINISH_CHECK = #{PSMEM_SCHOOL_FINISH_CHECK},
+			PSMEM_CAREER = #{PSMEM_CAREER},
+			PSMEM_INTRODUCE = #{PSMEM_INTRODUCE}		
+		WHERE		
+			PSMEM_ID = #{PSMEM_ID}				
 	]]>
 </update>
 
@@ -50,7 +137,7 @@
 <select id = "selectmypet" parameterType = "hashmap" resultType = "hashmap">
 	<![CDATA[
 		SELECT * FROM PET_MEMBER
-		WHERE MEM_ID = #{MEM_ID}
+		WHERE ID = #{ID}
 	]]>
 </select>
 

@@ -29,7 +29,7 @@
 			<span style="font-weight: bold;">아이디*</span>
 		</div>
 		<div style ="position: relative; bottom:1.5em; ">
-			<p>${map.MEM_ID}</p>
+			<p>${map.PSMEM_ID}</p>
 		</div>
 	</div>
 
@@ -95,24 +95,77 @@
 				<p>${map.ZIPCODE}&nbsp;&nbsp; ${map.ADDRESS1} &nbsp;&nbsp;${map.ADDRESS_ADD}&nbsp;&nbsp;${map.ADDRESS2}</p>
 				</div>
 
-			
-			<!-- 프로필 사진 등록 -->
-				<div align="center">
-					<div
-						style="text-align: center; position: relative; left: 30em; bottom: 25em; width: 15em">
-						<span>프로필 사진</span>
-						<div align="center">
-								<div class="imgs_wrap" style="text-align: center;">
-									<img id="img" src ="/first/resources/downimage/${path}" />
-								</div>
-							</div>
-							
-						</div>
-					</div>
+		<!-- 직업 -->
+			<div style="text-align: center; margin-top: 1em;">
+				<div style="position: relative; right: 24.2em; margin-top: 0.5em;" >
+					<span style="font-weight: bold">직업*</span>
 				</div>
+				<div style ="position: relative; bottom:1.5em; ">	
+					<p>${map1.PSMEM_JOB}</p>
+				</div>
+			</div>
+
+       <!-- 자격증 -->
+       	<div style="text-align: center; margin-top: 1em;">
+       		<div style="position: relative; right: 24.2em; margin-top: 0.5em;" >
+				<span style="font-weight: bold;">자격증 보유 여부*</span>
+			</div>
+			<div style ="position: relative; bottom:1.5em; ">	
+					<p>${map1.PSMEM_CERTI_CHECK}</p>
+			</div>
+		</div>
+       
+        <!-- 자격증 정보 -->
+       <div style="text-align: center; margin-top: 1em;">
+       		<div style="position: relative; right: 24.2em; margin-top: 0.5em;" >
+				<span style="font-weight: bold;">자격증 정보</span>
+			</div>
+			<div style ="position: relative; bottom:1.5em; ">	
+					<p>${map1.PSMEM_CERTI_CHECK}</p>
+			</div>
+		</div>
+		
+		<!-- 관련학과 졸업 여부-->
+		<div style="text-align: center; margin-top: 1em;">
+       		<div style="position: relative; right: 24.2em; margin-top: 0.5em;" >
+				<span style="font-weight: bold;">관련학과 졸업 여부</span>
+			</div>
+			<div style ="position: relative; bottom:1.5em; ">	
+					<p>${map1.PSMEM_SCHOOL_FINISH_CHECK}</p>
+			</div>
+		</div>
+		
+		<!-- 위탁장소 -->
+			<div style="text-align: center; margin-top: 1em;">
+				<div style="position: relative; right: 24.4em; margin-top: 0.5em;" >
+					<span style="font-weight: bold">위탁장소</span>
+				</div>
+				<div style ="position: relative; bottom:1.2em; ">	
+				<p>${map1.PSMEM_CONSIGNMENT_ZIPCODE}&nbsp;&nbsp; ${map1.PSMEM_CONSIGNMENT_ADDRESS1} &nbsp;&nbsp;${map.PSMEM_CONSIGNMENT_ADDRESS_ADD}&nbsp;&nbsp;${map.PSMEM_CONSIGNMENT_ADDRESS2}</p>
+				</div>
+			</div>
 			
-
-
+			
+		<!-- 활동경력-->
+		<div style="text-align: center; margin-top: 1em;">
+       		<div style="position: relative; right: 24.2em; margin-top: 0.5em;" >
+				<span style="font-weight: bold;">활동경력</span>
+			</div>
+			<div style ="position: relative; bottom:1.5em; ">	
+					<p>${map1.PSMEM_CAREER}</p>
+			</div>
+		</div>	
+		
+			<!-- 자기소개-->
+		<div style="text-align: center; margin-top: 1em;">
+       		<div style="position: relative; right: 24.2em; margin-top: 0.5em;" >
+				<span style="font-weight: bold;">자기소개</span>
+			</div>
+			<div style ="position: relative; bottom:1.5em; ">	
+					<p>${map1.PSMEM_INTRODUCE}</p>
+			</div>
+		</div>
+       
 
 			</div>
 			
@@ -160,7 +213,7 @@ input[type=file] {
 	width: 15em;
 	height: 15em;
 	border: 2px solid #A8A8A8;
-	margin-top: 20px;
+	margin-top: 30px;
 	margin-bottom: 15px;
 }
 
