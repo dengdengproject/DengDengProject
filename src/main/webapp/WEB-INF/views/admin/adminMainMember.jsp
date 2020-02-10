@@ -7,10 +7,45 @@
 
 <%@ include file="/WEB-INF/views/include/include-header.jspf"%>
 
-<%@ include file="/WEB-INF/views/include/include-header-menu.jspf"%>
+<%@ include file="/WEB-INF/views/include/include-header-menu-admin.jspf"%>
 
 <%@ include file="/WEB-INF/views/include/include-admin-menu.jspf"%>
+ 
+ <!-- My page Bar -->
+			<div class="menu-center collapse navbar-collapse"
+				style="margin-left: 3em;">
+				<ul class="ttr_menu_items nav navbar-nav ">
+					<li class="ttr_menu_items_parent dropdown active"
+						style="border-style: inset; width: 8em; height: 3em;"><a
+						href="/first/adminMain" class="ttr_menu_items_parent_link_active"
+						style="position: relative; right: 2em; text-align: center; width: 9em; line-height: 300%; border-radius: 10px;"><span
+							class="menuchildicon"></span>회원 관리</a>
+						<hr class="horiz_separator" /></li>
+					<li class="ttr_menu_items_parent dropdown"
+						style="border-style: outset; width: 7em; height: 3em;"><a
+						href="/first/adminMatch" class="ttr_menu_items_parent_link"
+						style="position: relative; right: 2.8em; text-align: center; width: 9em; line-height: 300%; border-radius: 10px;"><span
+							class="menuchildicon"></span>매칭관리</a>
+						<hr class="horiz_separator" /></li>
+					<li class="ttr_menu_items_parent dropdown"
+						style="border-style: outset; width: 7em; height: 3em;"><a
+						href="/first/adminBoard"
+						class="ttr_menu_items_parent_link"
+						style="position: relative; right: 2.8em; text-align: center; width: 9em; line-height: 300%; border-radius: 10px;"><span
+							class="menuchildicon"></span>게시판 관리</a>
+						<hr class="horiz_separator" /></li>
+					<li class="ttr_menu_items_parent dropdown"
+						style="border-style: outset; width: 7em; height: 3em;"><a
+						href="/first/adminServer" class="ttr_menu_items_parent_link"
+						style="position: relative; right: 2.8em; text-align: center; width: 9em; line-height: 300%; border-radius: 10px;"><span
+							class="menuchildicon"></span>서버 관리</a>
+						<hr class="horiz_separator" /></li>
+				</ul>
+			</div>
 
+ 
+ 
+ 
 <!-- 회원 정보 -->
 <div style="height: 850px; border-top: solid;">
 	<div

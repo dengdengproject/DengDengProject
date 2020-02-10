@@ -9,6 +9,13 @@
 
 <%@ include file="/WEB-INF/views/include/include-header-menu.jspf"%>
 
+<%
+ String id=request.getParameter("pst_id");
+
+%>
+
+
+
 <div style="height: 950px">
 	<div style="text-align: center; margin-top: 3em">
 		<span style="font-size: 1.5em; font-weight: bold;">댕댕이의 성향을
