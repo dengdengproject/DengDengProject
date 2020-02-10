@@ -192,8 +192,9 @@ public class FileUtils {
 				listMap.put("CERTI_NAME", (String) map.get("CERTI_NAME"));
 				listMap.put("CERTI_ORG", (String) map.get("CERTI_ORG"));
 				listMap.put("CERTI_DATE", (String) map.get("CERTI_DATE"));
-				listMap.put("PSMEM_LICENSE_FILE", originalFileName);
-				listMap.put("PSMEM_LICENSE_FILE_SIZE", multipartFile.getSize());
+				listMap.put("PROFILE_ORIGINAL_FILE_NAME", originalFileName);
+				listMap.put("PROFILE_STORED_FILE_NAME", storedFileName);
+				listMap.put("PROFILE_FILE_SIZE", multipartFile.getSize());
 				list.add(listMap);
 			}
 		}
