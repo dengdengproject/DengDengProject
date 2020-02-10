@@ -24,7 +24,7 @@ public class MyInfoController {
 	@Resource(name="myInfoService") 
 	private MyInfoService myInfoService;
 	
-	
+	 
 	@Resource(name="joinService") 
 	private JoinService joinService;
 	

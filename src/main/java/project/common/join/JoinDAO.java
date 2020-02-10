@@ -8,7 +8,7 @@ import project.common.dao.AbstractDAO;
 
 @Repository("joinDAO")
 public class JoinDAO extends AbstractDAO {
-
+ 
 	//지연: 아이디 꺼내오기
 	public String selectIdCheck(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub

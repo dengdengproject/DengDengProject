@@ -12,7 +12,7 @@ public class MyInfoDAO extends AbstractDAO {
 	public Map<String, Object> selectMemMyInfoDetail(Map<String, Object> map) throws Exception {
 		return (Map<String, Object>) selectOne ("myInfo.selectmeminfo",map);
 	}
-	
+	 
 	//펫시터회원상세정보보기
 	@SuppressWarnings("unchecked")
 	public Map<String, Object> selectPstMyInfoDetail(Map<String, Object> map) throws Exception {

@@ -13,7 +13,7 @@ public interface JoinService {
 	void insertPst(Map<String, Object> map, HttpServletRequest request) throws Exception; //준호
  
 	void insertPstAdd(Map<String, Object> map, HttpServletRequest request) throws Exception; 
-	
+	 
 	void insertPstAdd2(Map<String, Object> map, HttpServletRequest request) throws Exception; 
 
 	void petRegist(Map<String, Object> map, HttpServletRequest request) throws Exception;//지연

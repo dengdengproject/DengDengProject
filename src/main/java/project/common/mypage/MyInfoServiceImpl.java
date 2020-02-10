@@ -19,7 +19,7 @@ public class MyInfoServiceImpl implements MyInfoService{
 	@Resource(name="loginDAO")
 	private LoginDAO loginDAO;
 	
-	@Override //상세 일반회원정보 불러오기
+	@Override //상세 일반회원정보 불러오기 
 	public Map<String, Object> selectMemMyInfoDetail(Map<String, Object> map) throws Exception {
 	return myInfoDAO.selectMemMyInfoDetail(map);
 	}

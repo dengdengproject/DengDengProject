@@ -11,7 +11,7 @@
 			(
 			SELECT
 				MEM_ID AS ID
-			FROM
+			FROM 
 				MEMBER
     
 			UNION all

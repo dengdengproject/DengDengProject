@@ -9,7 +9,7 @@
 		WHERE MEM_ID = #{MEM_ID}
 	]]>
 </select>
-
+ 
 <!-- 펫시터 상세정보 꺼내오기 -->
 <select id = "selectpstinfo" parameterType = "hashmap" resultType = "hashmap">
 	<![CDATA[

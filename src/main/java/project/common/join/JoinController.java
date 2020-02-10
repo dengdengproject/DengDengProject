@@ -24,7 +24,7 @@ public class JoinController {
 	@Resource(name = "joinService") // service 영역에 접근
 	private JoinService joinService;
 
-	@RequestMapping(value = "/join/idCheck") // 아이디 중복확인 체크
+	@RequestMapping(value = "/join/idCheck") // 아이디 중복확인 체크 
 	public @ResponseBody String idCheck(CommandMap commandMap) throws Exception {
 
 		System.out.println(commandMap.getMap());

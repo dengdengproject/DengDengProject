@@ -17,5 +17,5 @@ public interface MyInfoService {
 	//프로필 사진꺼내기
 	String selectProfile(Map<String, Object> map) throws Exception;
 }
-
+ 
   

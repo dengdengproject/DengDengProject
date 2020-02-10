@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import project.common.join.JoinDAO;
 import project.common.util.FileUtils;
 
 
@@ -20,7 +19,7 @@ import project.common.util.FileUtils;
 public class JoinServiceImpl implements JoinService {
 
 	Logger log = Logger.getLogger(this.getClass());
-
+ 
 	@Resource(name="fileUtils") 
 	private FileUtils fileUtils;
 	
