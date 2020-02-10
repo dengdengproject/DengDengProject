@@ -10,7 +10,7 @@
 <%@ include file="/WEB-INF/views/include/include-header-menu.jspf"%>
 <script type="text/javascript" src="resources/js/common.js"></script>
 
-<script type="text/javascript">
+<script type="text/javascript"> 
 
 function fn_submit(id){	
 	alert(id);

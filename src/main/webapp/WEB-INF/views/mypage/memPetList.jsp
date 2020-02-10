@@ -11,7 +11,7 @@
 
 <%@ include file="/WEB-INF/views/include/include-mymem-menu.jspf"%>
 
-
+ 
 
 <!-- 댕댕이 목록 -->
 <div style="height: 700px; border-top: solid; margin-left:5em; margin-right:10m;">

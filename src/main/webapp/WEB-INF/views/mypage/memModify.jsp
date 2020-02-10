@@ -12,7 +12,7 @@
 
 <script type="text/javascript">
 		
-	
+	 
 	function fn_submit(){
 		
 		if(!$("#PASSWORD1").val()){
