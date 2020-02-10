@@ -35,7 +35,7 @@ public class JoinController {
 	}
 
 	// 회원가입 페이지
-	@RequestMapping(value = "/joinPage", method = RequestMethod.GET)
+	@RequestMapping(value = "/joinPage", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView joinPage(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		
 		ModelAndView mv = new ModelAndView("join/join");

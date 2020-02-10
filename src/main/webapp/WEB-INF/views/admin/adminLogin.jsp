@@ -69,6 +69,7 @@
 		</div>
 </form>
 </div>
+
 <%@ include file="/WEB-INF/views/include/include-footer.jspf"%>
 
 </html>

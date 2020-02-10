@@ -64,4 +64,3 @@ public class MyInfoDAO extends AbstractDAO {
 			return (String)((Map)selectOne("myInfo.selectMemProfile",map)).get("PROFILE_STORED_FILE_NAME");
 		}
 } 
- 

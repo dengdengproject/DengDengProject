@@ -64,8 +64,5 @@ public class MyInfoServiceImpl implements MyInfoService{
 		// TODO Auto-generated method stub
 		return  myInfoDAO.selectProfile(map);
 	}
+}
 	
-	
-	
-		
-}  

@@ -1,4 +1,3 @@
-//2010.02.10 오후4:41 작성 
 package project.common.login;
 
 import java.util.HashMap;

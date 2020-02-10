@@ -18,4 +18,3 @@ public interface MyInfoService {
 	String selectProfile(Map<String, Object> map) throws Exception;
 }
  
-  

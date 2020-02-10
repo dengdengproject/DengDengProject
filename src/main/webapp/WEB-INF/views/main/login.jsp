@@ -35,6 +35,31 @@
 			form.action = "/first/findIdPw";
 			form.submit();
 		}
+		
+		function loginConfirm() {
+			var form = document.login;
+
+			if (form.ID.value == null || form.ID.value == '') {
+				alert("아이디를 입력해주세요.")
+				form.ID.focus();
+				return false;
+			}
+
+			if (form.PASSWORD1.value == null || form.PASSWORD1.value == '') {
+				alert("비밀번호를 입력해주세요.")
+				form.PASSWORD1.focus();
+				return false;
+			}
+			form.action = "/first/loginResult";
+			form.submit();
+		}
+		
+		function goJoin() {
+			var form = document.login;
+
+			form.action = "/first/joinPage";
+			form.submit();
+		}
 </script>
 
 <style>
@@ -81,7 +106,7 @@
 				<div
 					style="text-align: center; position: relative; bottom: 9em; left: 9em; width: 11em">
 					<button style="height: 2em; width: 10em;"
-						onclick="location.href = 'join.html' ">회원가입</button>
+						onclick="goJoin()">회원가입</button>
 				</div>
 			</div>
 		</div>

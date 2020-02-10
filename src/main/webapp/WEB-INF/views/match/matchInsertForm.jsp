@@ -609,10 +609,9 @@ function showSlides(n) {
 	$("#rangeDate").flatpickr({	//이 방식은 일반 회원이 사용
 		mode: "range",		//시작에서 끝까지 from to 형식으로 선택
 		dateFormat: "Y-m-d",
-		minDate: "today",
+		minDate: "today"//,
 		//enable: ["", "", ""]  //이 부분은 테이블에 불가능한 날짜를 리스트로 저장하고, 회원이 일정 고를 때 긁어와서 저기에 넣어야 할 것 같음.
 	});
-
 </script>
 
 <!-- flatPickr 나머지 기능 -->
