@@ -30,7 +30,7 @@
 			</div>
 			<div class="form-group tm-form-element tm-form-element-2" style="position: relative; left: 97em; margin-top: 1em">
 				<button type="submit" class="btn btn-primary1 tm-btn-search" style="font-size: 1em">전체보기</button>	<!-- 이 부분에 모든 매칭 리스트 뽑아오는 쿼리 -->
-			</div>
+			</div><!-- 각 버튼은 검색 결과 페이지로 넘어가는데, 리스트를 모두 다 가져온다. 그리고 페이징 해야지! -->
 			
 			<div class="ttr_Services_html_row3 row" style="margin-top: 2em">
 				<c:forEach var="all" items="${allList}" end="4">

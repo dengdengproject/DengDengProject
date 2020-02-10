@@ -314,22 +314,27 @@
 	<select id="matchSearch" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 			SELECT
-				MATCH_NO
+				*
 			FROM
 				MATCH_REGISTER
 			WHERE
-				<foreach collection="searchDay" item="day" separator=" AND ">
-					MATCH_DATE LIKE '%'||'#{day.value}'||'%'
-				</foreach>
-				<choose>
-					<when test="searchCheckArr != '' || searchCheckArr != null>
-						<foreach collection="searchCheckArr" item="service">
-							AND POSSIBLE_SERVICE LIKE '%'||'#{service.value'||'%'
-						</foreach>
-					</when>
-				</choose>
+				<foreach collection="searchAddress" item="add" separator=" AND ">
+					PSMEM_ADDRESS1 LIKE '%'||'#{add.value}'||'%'
+				</foreach>		
+
 			ORDER BY MATCH_NO DESC
 		]]>
 	</select>
-	
+					<!-- <choose>
+					<when test="searchDay != '' || searchDay != null>
+						<foreach collection="searchDay" item="day">
+							AND MATCH_DATE LIKE '%'||'#{day.value}'||'%'
+						</foreach>
+					</when>
+					<when test="searchCheckArr != '' || searchCheckArr != null>
+						<foreach collection="searchCheckArr" item="service">
+							AND POSSIBLE_SERVICE LIKE '%'||'#{service.value}'||'%'
+						</foreach>
+					</when>
+				</choose> -->
 </mapper>

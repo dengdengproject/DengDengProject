@@ -142,6 +142,8 @@ public class MatchController {
 		String[] flikr = flickr.split(",");
 		System.out.println(Arrays.toString(flikr));
 		
+		
+		
 		mv.addObject("flikr", flikr);
 		mv.addObject("flickr", flickr);
 		mv.addObject("flatFlickr", dateflikr);
@@ -158,32 +160,37 @@ public class MatchController {
 	}
 	
 	//Match Search
-	@RequestMapping(value = "/matchSearchClick")
+	@RequestMapping(value = "/matchSearchClick") //이 부분부터 하면 된다!
 	public ModelAndView matchSearchClick(CommandMap commandMap, HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("/match/matchResult");
+		ModelAndView mv = new ModelAndView("/match/matchResultList");
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
-		//이 부분에 서비스 목록 찍은거 가져와서 배열로 만들어서 담자. 스트링 ㄴㄴ 배열.
-		if(request.getParameterValues("searchCheck") != null) {
-			String[] arr = request.getParameterValues("searchCheck");
-			
-			map.put("searchCheckArr", arr);
-		} else {
-			map.put("searchCheckArr", "");
-		}
+		if(request.getParameter("ADDRESS1") != null) {
+			String Address1 = request.getParameter("ADDRESS1");
+			String[] searchAddress = Address1.split(" ");
+			System.out.println(Arrays.toString(searchAddress));
+			map.put("searchAddress", searchAddress);
+		}	//주소 배열로 쪼개넣기 끝
 		
-		//이 부분에서는 날짜 검색한 스트링을 ','를 기준으로 스플릿 해서 배열로 넣자.
-		String searchDate = request.getParameter("searchDateCheck");
-		String[] searchDay = searchDate.split(",");
+		if(request.getParameter("basicDate") != null) {
+			String searchDate = request.getParameter("basicDate");
+			String[] searchDay = searchDate.split(",");
+			System.out.println(Arrays.toString(searchDay));
+			map.put("searchDay", searchDay);
+		}	//예약 날짜 쪼개기 끝
+		System.out.println(request.getParameterValues("searchCheck"));
+//		if(request.getParameterValues("searchCheck") != null) {	//이게 어레이로 넘어오던가?
+//			String[] arr = request.getParameterValues("searchCheck");
+//			System.out.println(Arrays.toString(arr));
+//			map.put("searchCheckArr", arr);
+//		} 
 		
-		map.put("searchDay", searchDay);
+		List<Map<String, Object>> resultComplete = matchService.mtchSearch(map);
 		
-		List<Map<String, Object>> searchResult = matchService.mtchSearch(map);	//검색 결과 가져오기
-		
-		mv.addObject("searchResult", searchResult);
+		mv.addObject("resultComplete", resultComplete);
 			
 		return mv;
 	}
-		
+	//basicDate는 , 기준으로 스플릿해서 리스트나 배열에 넣고 하나씩 꺼내 사용.    serviceChk은 마찬가지로 리스트나 배열에 넣어서 하나씩 꺼내 사용.searchDay./searchCheckArr
 }

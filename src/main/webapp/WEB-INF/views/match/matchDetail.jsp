@@ -59,15 +59,17 @@ function showSlides(n) {
 	}	
 	
 </script>
-${flikr}
+
 <form id="matchInsert" name="matchInsert" method="post">
 	<input type="hidden" name="address1" id="address1" value="${pstAdd.PSMEM_CONSIGNMENT_ADDRESS1}" />
 	<input type="hidden" name="address2" id="address2" value="${pstAdd.PSMEM_CONSIGNMENT_ADDRESS2}" />	
 	<input type="hidden" name="PSMEM_ID" id="PSMEM_ID" value="${ID}" />
 	<input type="hidden" name="name" id="name" value="${name}"/>
 	<input type="hidden" name="GRADE" id="GRADE" value="${grade}"/>
-	
-	<input type="hidden" name="datePic" id="datePic" value="${flikr}" /> 
+	<!-- <input type="hidden" name="datePic" id="datePic" value="${flikr}"/>
+	<c:forEach items="${flikr}" var="dP">
+		${dP}"
+	</c:forEach> -->
 	
 <!-- 이미지 슬라이드 -->
 	<div class="container" style="text-align: center;">
@@ -130,7 +132,7 @@ ${flikr}
 							<div style="display: block; width: 200px; height: 69px; float: left; position: relative; text-align: cetner;">
 								<div style="display: inline-block; float: left; position: relative; text-align: cetner; margin-left: 30px;">
 								<img width="32" height="32" src="resources/images/service1.png"></div>
-								<div style="display: inline-block; margin-left: 13px; position: relative; width: 150;">
+								<div style="display: inline-block; margin-left: auto; margin-right: auto; position: relative; width: 150;">
 									<p style="font-family: &amp; amp; amp; amp; quot; Noto Sans KR&amp;amp; amp; amp; quot; , sans-serif; font-size: 13px; letter-spacing: -0.2px; line-height: 13px; color: rgb(85, 85, 85);">
 										<b>픽업</b></p>
 									<p style="font-size: 11px; letter-spacing: -0.2px; line-height: 11px; color: rgb(94, 99, 109); margin-top: 5px;">
@@ -632,14 +634,16 @@ ${flikr}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.js"></script>
 <!-- flatpickr -->  
 <script id="INLINE_PEN_JS_ID">
-	var flikr = document.matchInsert.getElementById(datePic).value;
+	//var form = document.matchInsert.datePic;
+	
+	//alert(document.getElementById(form.value))
 
 	$("#basicDate").flatpickr({  // 이 방식은 펫시터가 사용. //일단 disable이 불가능한 것 같으니 일반 회원도 이걸로 사용.
 		mode: "multiple",	//다중 선택
 		dateFormat: "Y-m-d",
 		minDate: "today"  //펫시터가 선택하는 날짜는 DB에 리스트로 저장했다가 일반 회원이 고를 때 enable로 가능한 날짜만 표시.
 	});					  //그렇게 DB에 저장하면 펫시터가 원하는 날짜만 골라서 매칭할 수 있을 것 같음.
-	alert(flikr)
+	
 	$("#rangeDate").flatpickr({	//이 방식은 일반 회원이 사용
 		mode: "range",		//시작에서 끝까지 from to 형식으로 선택	//이 방식은 또 어떻게 검색해야 할지 감이 안 온다.
 		dateFormat: "Y-m-d",
