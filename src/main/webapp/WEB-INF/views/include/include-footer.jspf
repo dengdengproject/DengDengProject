@@ -1,5 +1,7 @@
 <%@ page pageEncoding="utf-8" %>
 
+
+
 <!-- 푸터 -->
 <div style="height: 0px; width: 0px; overflow: hidden;"></div>
 <footer id="ttr_footer">
@@ -184,4 +186,8 @@
 		s.parentNode.insertBefore(wf, s);
 	})();
 </script>
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="slick/slick.min.js"></script>
+
 </body>

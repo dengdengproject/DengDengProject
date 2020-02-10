@@ -12,8 +12,8 @@
 			<div class="ttr_headershape01">
 				<div class="html_content">
 					<p>
-						<span style="font-size: 0.857em; color: rgba(243, 243, 243, 1);">+
-							1 800 2306 2500</span>
+						<span style="font-size: 0.857em; color: rgba(243, 243, 243, 1);">
+							+1 800 2306 2500</span>
 					</p>
 				</div>
 			</div>
@@ -26,10 +26,8 @@
 			</div>
 		</div>
 	</header>
-	<!--  헤더 끝 -->
+	<!-- 헤더 끝 -->
 	
 	<!-- jQuery -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="<c:url value='/js/common.js'/>" charset="utf-8"></script>
-
-
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="<c:url value='/js/common.js'/>" charset="utf-8"></script>

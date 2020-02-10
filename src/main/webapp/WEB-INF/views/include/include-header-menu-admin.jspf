@@ -30,7 +30,7 @@ System.out.println(ADMIN_NAME);
 					<div class="menu-center collapse navbar-collapse">
 						<ul class="ttr_menu_items nav navbar-nav navbar-right">
 							<li class="ttr_menu_items_parent dropdown"><a
-								href="/first/match" class="ttr_menu_items_parent_link"> <span
+								href="/first/matchMain" class="ttr_menu_items_parent_link"> <span
 									class="menuchildicon">펫시터 매칭</span>
 							</a>
 								<hr class="horiz_separator" /></li>
@@ -68,7 +68,7 @@ System.out.println(ADMIN_NAME);
 					<div class="menu-center collapse navbar-collapse">
 						<ul class="ttr_menu_items nav navbar-nav navbar-right">
 							<li class="ttr_menu_items_parent dropdown"><a
-								href="/first/match" class="ttr_menu_items_parent_link"><span
+								href="/first/matchMain" class="ttr_menu_items_parent_link"><span
 									class="menuchildicon"></span>펫시터 매칭</a>
 								<hr class="horiz_separator" /></li>
 							<li class="ttr_menu_items_parent dropdown"><a
@@ -80,7 +80,7 @@ System.out.println(ADMIN_NAME);
 									class="menuchildicon"></span>로그인</a>
 								<hr class="horiz_separator" /></li>
 							<li class="ttr_menu_items_parent dropdown"><a
-								href="/first/join" class="ttr_menu_items_parent_link"><span
+								href="/first/joinPage" class="ttr_menu_items_parent_link"><span
 									class="menuchildicon"></span>회원가입</a>
 								<hr class="horiz_separator" /></li>
 						</ul>

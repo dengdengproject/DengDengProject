@@ -47,6 +47,60 @@ function showSlides(n) {
 // 매치 등록
 	function matchConfirm() {
 		var form = document.matchInsert;
+		
+		if (form.SUBJECT.value == null || form.SUBJECT.value == '') {
+			alert("제목을 입력해주세요.")
+			form.SUBJECT.focus();
+			return false;
+		}
+		
+		if (form.basicDate.value == null || form.basicDate.value == '') {
+			alert("날짜를 선택해주세요.")
+			form.basicDate.focus();
+			return false;
+		}
+		
+		if (form.checkInTime.value == "선택") {
+			alert("체크인 시간을 선택해주세요.")
+			form.checkInTime.focus();
+			return false;
+		}
+		
+		if (form.checkOutTime.value == "선택") {
+			alert("체크아웃 시간을 선택해주세요.")
+			form.checkOutTime.focus();
+			return false;
+		}
+
+		if (form.smallAll.value == "선택") {
+			alert("요금을 설정해주세요.")
+			form.smallAll.focus();
+			return false;
+		}
+
+		if (form.smallHalf.value == "선택") {
+			alert("요금을 설정해주세요.")
+			form.smallHalf.focus();
+			return false;
+		}
+
+		if (form.mediumAll.value == "선택") {
+			alert("요금을 설정해주세요.")
+			form.mediumAll.focus();
+			return false;
+		}
+
+		if (form.mediumHalf.value == "선택") {
+			alert("요금을 설정해주세요.")
+			form.mediumHalf.focus();
+			return false;
+		}
+
+		if (form.largeAll.value == "선택") {
+			alert("요금을 설정해주세요.")
+			form.largeAll.focus();
+			return false;
+		}
 
 		if (form.largeHalf.value == "선택") {
 			alert("요금을 설정해주세요.")
@@ -54,20 +108,26 @@ function showSlides(n) {
 			return false;
 		}
 		
+		
+		/* if (form.serviceChk.value == null || form.serviceChk.value == '') {
+			alert("가능한 서비스를 선택해주세요.")
+			return false;
+		} */
 		form.action = "/first/matchCommit";
 		form.submit();
 	}	
 	
 </script>
-${flikr}
+
 <form id="matchInsert" name="matchInsert" method="post">
 	<input type="hidden" name="address1" id="address1" value="${pstAdd.PSMEM_CONSIGNMENT_ADDRESS1}" />
 	<input type="hidden" name="address2" id="address2" value="${pstAdd.PSMEM_CONSIGNMENT_ADDRESS2}" />	
 	<input type="hidden" name="PSMEM_ID" id="PSMEM_ID" value="${ID}" />
 	<input type="hidden" name="name" id="name" value="${name}"/>
 	<input type="hidden" name="GRADE" id="GRADE" value="${grade}"/>
-	
-	<input type="hidden" name="datePic" id="datePic" value="${flikr}" /> 
+	<c:forEach items="${pstImg}" end="0" var="firstImg">
+		<input type="hidden" name="firstFile" id="firstFile" value="${firstImg.PSMEM_ORIGINAL_FILE_NAME}"/>
+	</c:forEach>
 	
 <!-- 이미지 슬라이드 -->
 	<div class="container" style="text-align: center;">
@@ -80,10 +140,10 @@ ${flikr}
   			</div>
     	</c:forEach>
     	
- 		<div style="display: flex; flex-direction: row; margin-top: 10px; float: right; position: relative; left: -50%; clear: both;">
+ 		<div class="minirow" style="margin-top: 10px;" >
   			<c:forEach var="petIMAGE" items="${pstImg}" varStatus="status">
-				<div style="display: flex; flex-direction: column; float: left; position: relative; left: 48%;">
-					<img class="demo cursor" src="resources/images/<c:out value='${petIMAGE.PSMEM_ORIGINAL_FILE_NAME}'/>" style="width: auto; height: 100px;" onclick="currentSlide(<c:out value='${status.count}'/>)" />
+				<div class="minicolumn">
+					<img class="demo cursor" src="resources/images/<c:out value='${petIMAGE.PSMEM_ORIGINAL_FILE_NAME}'/>" style="width:100%; height: 100px;" onclick="currentSlide(<c:out value='${status.count}'/>)" />
 				</div>
 	    	</c:forEach>
 	    </div>
@@ -97,234 +157,60 @@ ${flikr}
 					<img width="100" height="100" style="object-fit: cover; display: inline-block;" src="resources/images/${pstPfl.PROFILE_ORIGINAL_FILE_NAME}"/>
 			<!-- 윗단은 멤버 프로필 사진 --> <!-- 프로필 사진도 가져와야 함 -->
 				</div>
-				<div style="overflow: hidden; width: 430px;">
+				<div style="overflow: hidden; width: 400px;">
 					<h1 style="font-family: Noto Sans KR, sans-serif; font-size: 15px; color: #4C5056; line-height: 22px; letter-spacing: -0.2px">
-						<span style="color: rgb(94, 99, 109)">${pstAdd.PSMEM_CONSIGNMENT_ADDRESS1}</span><br/> 
-						<span style="font-weight: bold; color: gold;">${grade} 펫시터 </span><b>&nbsp;&nbsp;&nbsp;&nbsp;${name}</b> 님</h1>
-					<p style="font-family: Noto Sans KR, sans-serif; margin-top: 5px; font-size: 25px; color: #383C48; line-height: 30px; letter-spacing: -0.2px;">
-						${matchDtl.MATCH_SUBJECT}
+						<span style="color: rgb(94, 99, 109)">${pstAdd.PSMEM_CONSIGNMENT_ADDRESS1}</span> <span style="font-weight: bold; color: gold">${pst.MEMBER_DIVISION}</span>  ${name} 님</h1>
+					<p style="font-family: Noto Sans KR, sans-serif; margin-top: 5px; font-size: 25px; color: #383C48; line-height: 37px; letter-spacing: -0.2px;">
+						<input style="font-family: Noto Sans KR, sans-serif; margin-top: 10px; font-size: 20px; color: #383C48; line-height: 1px;"
+							type="text" id="SUBJECT" name="SUBJECT" placeholder='"매칭 페이지에 보일 제목을 작성해주세요."'/>
 					</p>
 					<!-- 해시 태그 시작 x service로 바꿈 -->
 				</div>
 			</div>
-			<div style="display: flex; flex-direction: row"> <!-- 다음에 수정할 때는 이 지랄하지 말고 테이블에 넣어서 반복 돌려야지... 이건 미친 짓이다. -->
-				<div> <!-- 서비스 부분은 컨트롤러에서 스플릿 해서 배열로 담아오자. 그 다음 반복문으로 꺼내면서 조건문을 포함해서 나오도록. -->
-					<div style="display: flex; margin-top: 50px; width: 600px; position: relative; text-align: center;">
-					<h2 style="font-weight: 600; font-size: 17px; letter-spacing: 1px; margin-bottom: 30px; line-height: 25px; color: #393C47">
-						<img width="17px" height="17px" style="object-fit: cover; display: inline-block; margin-right: 5px;" src="resources/images/point.png"> ${name} 펫시터님의 상세 조건입니다.</h2>
+			<div>
+				<div>
+					<div style="display: flex; flex-wrap: wrap; flex-direction: row; margin-top: 50px; width: 458px">
+					<h2 style="font-weight: 600; font-size: 17px; letter-spacing: 1px; margin-bottom: 30; line-height: 25px; color: #393C47">
+						<img width="17px" height="17px" style="object-fit: cover; display: inline-block; margin-right: 5px;" src="resources/images/point.png"> 조건을 선택해 주세요.</h2>
 					</div>
-					<c:forEach var="service" items="${serviceList}">
-						<c:if test="${service == 'service1'}">
-							<div style="display: block; width: 200px; height: 69px; float: left; position: relative; text-align: cetner;">
-								<div style="display: inline-block; float: left; position: relative; text-align: cetner; margin-left: 30px;">
-								<img width="32" height="32" src="resources/images/service1.png"></div>
-								<div style="display: inline-block; margin-left: 13px; position: relative; width: 150;">
-									<p style="font-family: &amp; amp; amp; amp; quot; Noto Sans KR&amp;amp; amp; amp; quot; , sans-serif; font-size: 13px; letter-spacing: -0.2px; line-height: 13px; color: rgb(85, 85, 85);">
-										<b>반려동물 없음</b></p>
-									<p style="font-size: 11px; letter-spacing: -0.2px; line-height: 11px; color: rgb(94, 99, 109); margin-top: 5px;">
-										현재 반려동물 없음!</p>
-								</div>
-							</div>
-						</c:if>
-						<c:if test="${service == 'service2'}">
-							<div style="display: block; width: 200px; height: 69px; float: left; position: relative; text-align: cetner;">
-								<div style="display: inline-block; float: left; position: relative; text-align: cetner; margin-left: 30px;">
-								<img width="32" height="32" src="resources/images/service1.png"></div>
-								<div style="display: inline-block; margin-left: 13px; position: relative; width: 150;">
-									<p style="font-family: &amp; amp; amp; amp; quot; Noto Sans KR&amp;amp; amp; amp; quot; , sans-serif; font-size: 13px; letter-spacing: -0.2px; line-height: 13px; color: rgb(85, 85, 85);">
-										<b>픽업</b></p>
-									<p style="font-size: 11px; letter-spacing: -0.2px; line-height: 11px; color: rgb(94, 99, 109); margin-top: 5px;">
-										집 앞 픽업 가능</p>
-								</div>
-							</div>
-						</c:if>
-						<c:if test="${service == 'service3'}">
-							<div style="display: block; width: 200px; height: 69px; float: left; position: relative; text-align: cetner;">
-								<div style="display: inline-block; float: left; position: relative; text-align: cetner; margin-left: 30px;">
-								<img width="32" height="32" src="resources/images/service1.png"></div>
-								<div style="display: inline-block; margin-left: 13px; position: relative; width: 150;">
-									<p style="font-family: &amp; amp; amp; amp; quot; Noto Sans KR&amp;amp; amp; amp; quot; , sans-serif; font-size: 13px; letter-spacing: -0.2px; line-height: 13px; color: rgb(85, 85, 85);">
-										<b>대형견</b></p>
-									<p style="font-size: 11px; letter-spacing: -0.2px; line-height: 11px; color: rgb(94, 99, 109); margin-top: 5px;">
-										대형견 예약 가능</p>
-								</div>
-							</div>
-						</c:if>
-						<c:if test="${service == 'service4'}">
-							<div style="display: block; width: 200px; height: 69px; float: left; position: relative; text-align: cetner;">
-								<div style="display: inline-block; float: left; position: relative; text-align: cetner; margin-left: 30px;">
-								<img width="32" height="32" src="resources/images/service1.png"></div>
-								<div style="display: inline-block; margin-left: 13px; position: relative; width: 150;">
-									<p style="font-family: &amp; amp; amp; amp; quot; Noto Sans KR&amp;amp; amp; amp; quot; , sans-serif; font-size: 13px; letter-spacing: -0.2px; line-height: 13px; color: rgb(85, 85, 85);">
-										<b>마당 있음</b></p>
-									<p style="font-size: 11px; letter-spacing: -0.2px; line-height: 11px; color: rgb(94, 99, 109); margin-top: 5px;">
-										뛰어놀 마당 보유</p>
-								</div>
-							</div>
-						</c:if>
-						<c:if test="${service == 'service5'}">
-							<div style="display: block; width: 200px; height: 69px; float: left; position: relative; text-align: cetner;">
-								<div style="display: inline-block; float: left; position: relative; text-align: cetner; margin-left: 30px;">
-								<img width="32" height="32" src="resources/images/service1.png"></div>
-								<div style="display: inline-block; margin-left: 13px; position: relative; width: 150;">
-									<p style="font-family: &amp; amp; amp; amp; quot; Noto Sans KR&amp;amp; amp; amp; quot; , sans-serif; font-size: 13px; letter-spacing: -0.2px; line-height: 13px; color: rgb(85, 85, 85);">
-										<b>노견 케어</b></p>
-									<p style="font-size: 11px; letter-spacing: -0.2px; line-height: 11px; color: rgb(94, 99, 109); margin-top: 5px;">
-										노견 집중 케어 가능</p>
-								</div>
-							</div>
-						</c:if>
-						<c:if test="${service == 'service6'}">
-							<div style="display: block; width: 200px; height: 69px; float: left; position: relative; text-align: cetner;">
-								<div style="display: inline-block; float: left; position: relative; text-align: cetner; margin-left: 30px;">
-								<img width="32" height="32" src="resources/images/service1.png"></div>
-								<div style="display: inline-block; margin-left: 13px; position: relative; width: 150;">
-									<p style="font-family: &amp; amp; amp; amp; quot; Noto Sans KR&amp;amp; amp; amp; quot; , sans-serif; font-size: 13px; letter-spacing: -0.2px; line-height: 13px; color: rgb(85, 85, 85);">
-										<b>장기 예약</b></p>
-									<p style="font-size: 11px; letter-spacing: -0.2px; line-height: 11px; color: rgb(94, 99, 109); margin-top: 5px;">
-										14일 이상 돌봄 가능</p>
-								</div>
-							</div>
-						</c:if>
-						<c:if test="${service == 'service7'}">
-							<div style="display: block; width: 200px; height: 69px; float: left; position: relative; text-align: cetner;">
-								<div style="display: inline-block; float: left; position: relative; text-align: cetner; margin-left: 30px;">
-								<img width="32" height="32" src="resources/images/service1.png"></div>
-								<div style="display: inline-block; margin-left: 13px; position: relative; width: 150;">
-									<p style="font-family: &amp; amp; amp; amp; quot; Noto Sans KR&amp;amp; amp; amp; quot; , sans-serif; font-size: 13px; letter-spacing: -0.2px; line-height: 13px; color: rgb(85, 85, 85);">
-										<b>실내 놀이</b></p>
-									<p style="font-size: 11px; letter-spacing: -0.2px; line-height: 11px; color: rgb(94, 99, 109); margin-top: 5px;">
-										편한 실내 놀이 가능</p>
-								</div>
-							</div>
-						</c:if>
-						<c:if test="${service == 'service8'}">
-							<div style="display: block; width: 200px; height: 69px; float: left; position: relative; text-align: cetner;">
-								<div style="display: inline-block; float: left; position: relative; text-align: cetner; margin-left: 30px;">
-								<img width="32" height="32" src="resources/images/service1.png"></div>
-								<div style="display: inline-block; margin-left: 13px; position: relative; width: 150;">
-									<p style="font-family: &amp; amp; amp; amp; quot; Noto Sans KR&amp;amp; amp; amp; quot; , sans-serif; font-size: 13px; letter-spacing: -0.2px; line-height: 13px; color: rgb(85, 85, 85);">
-										<b>매일 산책</b></p>
-									<p style="font-size: 11px; letter-spacing: -0.2px; line-height: 11px; color: rgb(94, 99, 109); margin-top: 5px;">
-										매일 근처 산책 가능</p>
-								</div>
-							</div>
-						</c:if>
-						<c:if test="${service == 'service9'}">
-							<div style="display: block; width: 200px; height: 69px; float: left; position: relative; text-align: cetner;">
-								<div style="display: inline-block; float: left; position: relative; text-align: cetner; margin-left: 30px;">
-								<img width="32" height="32" src="resources/images/service1.png"></div>
-								<div style="display: inline-block; margin-left: 13px; position: relative; width: 150;">
-									<p style="font-family: &amp; amp; amp; amp; quot; Noto Sans KR&amp;amp; amp; amp; quot; , sans-serif; font-size: 13px; letter-spacing: -0.2px; line-height: 13px; color: rgb(85, 85, 85);">
-										<b>목욕 가능</b></p>
-									<p style="font-size: 11px; letter-spacing: -0.2px; line-height: 11px; color: rgb(94, 99, 109); margin-top: 5px;">
-										댕댕이 목욕 가능</p>
-								</div>
-							</div>
-						</c:if>
-						<c:if test="${service == 'service10'}">
-							<div style="display: block; width: 200px; height: 69px; float: left; position: relative; text-align: cetner;">
-								<div style="display: inline-block; float: left; position: relative; text-align: cetner; margin-left: 30px;">
-								<img width="32" height="32" src="resources/images/service1.png"></div>
-								<div style="display: inline-block; margin-left: 13px; position: relative; width: 150;">
-									<p style="font-family: &amp; amp; amp; amp; quot; Noto Sans KR&amp;amp; amp; amp; quot; , sans-serif; font-size: 13px; letter-spacing: -0.2px; line-height: 13px; color: rgb(85, 85, 85);">
-										<b>약물 경구 복용</b></p>
-									<p style="font-size: 11px; letter-spacing: -0.2px; line-height: 11px; color: rgb(94, 99, 109); margin-top: 5px;">
-										약물 먹이기 가능</p>
-								</div>
-							</div>
-						</c:if>
-						<c:if test="${service == 'service11'}">
-							<div style="display: block; width: 200px; height: 69px; float: left; position: relative; text-align: cetner;">
-								<div style="display: inline-block; float: left; position: relative; text-align: cetner; margin-left: 30px;">
-								<img width="32" height="32" src="resources/images/service1.png"></div>
-								<div style="display: inline-block; margin-left: 13px; position: relative; width: 150;">
-									<p style="font-family: &amp; amp; amp; amp; quot; Noto Sans KR&amp;amp; amp; amp; quot; , sans-serif; font-size: 13px; letter-spacing: -0.2px; line-height: 13px; color: rgb(85, 85, 85);">
-										<b>강아지 케어</b></p>
-									<p style="font-size: 11px; letter-spacing: -0.2px; line-height: 11px; color: rgb(94, 99, 109); margin-top: 5px;">
-										어린 댕댕 집중 관리</p>
-								</div>
-							</div>
-						</c:if>
-						<c:if test="${service == 'service12'}">
-							<div style="display: block; width: 200px; height: 69px; float: left; position: relative; text-align: cetner;">
-								<div style="display: inline-block; float: left; position: relative; text-align: cetner;  margin-left: 30px;">
-								<img width="32" height="32" src="resources/images/service1.png"></div>
-								<div style="display: inline-block; margin-left: 13px; position: relative; width: 150;">
-									<p style="font-family: &amp; amp; amp; amp; quot; Noto Sans KR&amp;amp; amp; amp; quot; , sans-serif; font-size: 13px; letter-spacing: -0.2px; line-height: 13px; color: rgb(85, 85, 85);">
-										<b>아파트</b></p>
-									<p style="font-size: 11px; letter-spacing: -0.2px; line-height: 11px; color: rgb(94, 99, 109); margin-top: 5px;">
-										아파트 주거 중</p>
-								</div>
-							</div>
-						</c:if>
-						<c:if test="${service == 'service13'}">
-							<div style="display: block; width: 200px; height: 69px; float: left; position: relative; text-align: cetner;">
-								<div style="display: inline-block; float: left; position: relative; text-align: cetner; margin-left: 30px;">
-								<img width="32" height="32" src="resources/images/service1.png"></div>
-								<div style="display: inline-block; margin-left: 13px; position: relative; width: 150;">
-									<p style="font-family: &amp; amp; amp; amp; quot; Noto Sans KR&amp;amp; amp; amp; quot; , sans-serif; font-size: 13px; letter-spacing: -0.2px; line-height: 13px; color: rgb(85, 85, 85);">
-										<b>빌라</b></p>
-									<p style="font-size: 11px; letter-spacing: -0.2px; line-height: 11px; color: rgb(94, 99, 109); margin-top: 5px;">
-										빌라 거주 중</p>
-								</div>
-							</div>
-						</c:if>
-						<c:if test="${service == 'service14'}">
-							<div style="display: block; width: 200px; height: 69px; float: left; position: relative; text-align: cetner;">
-								<div style="display: inline-block; float: left; position: relative; text-align: cetner; margin-left: 30px;">
-								<img width="32" height="32" src="resources/images/service1.png"></div>
-								<div style="display: inline-block; margin-left: 13px; position: relative; width: 150;">
-									<p style="font-family: &amp; amp; amp; amp; quot; Noto Sans KR&amp;amp; amp; amp; quot; , sans-serif; font-size: 13px; letter-spacing: -0.2px; line-height: 13px; color: rgb(85, 85, 85);">
-										<b>단독 주택</b></p>
-									<p style="font-size: 11px; letter-spacing: -0.2px; line-height: 11px; color: rgb(94, 99, 109); margin-top: 5px;">
-										단독 주택 거주 중</p>
-								</div>
-							</div>
-						</c:if>
-						<c:if test="${service == 'service15'}">
-							<div style="display: block; width: 200px; height: 69px; float: left; position: relative; text-align: cetner;">
-								<div style="display: inline-block; float: left; position: relative; text-align: cetner; margin-left: 30px;">
-								<img width="32" height="32" src="resources/images/service1.png"></div>
-								<div style="display: inline-block; margin-left: 13px; position: relative; width: 150;">
-									<p style="font-family: &amp; amp; amp; amp; quot; Noto Sans KR&amp;amp; amp; amp; quot; , sans-serif; font-size: 13px; letter-spacing: -0.2px; line-height: 13px; color: rgb(85, 85, 85);">
-										<b>싱글</b></p>
-									<p style="font-size: 11px; letter-spacing: -0.2px; line-height: 11px; color: rgb(94, 99, 109); margin-top: 5px;">
-										집중 케어가 가능해요</p>
-								</div>
-							</div>
-						</c:if>
-						<c:if test="${service == 'service16'}">
-							<div style="display: block; width: 200px; height: 69px; float: left; position: relative; text-align: cetner;">
-								<div style="display: inline-block; float: left; position: relative; text-align: cetner; margin-left: 30px;">
-								<img width="32" height="32" src="resources/images/service1.png"></div>
-								<div style="display: inline-block; margin-left: 13px; position: relative; width: 150;">
-									<p style="font-family: &amp; amp; amp; amp; quot; Noto Sans KR&amp;amp; amp; amp; quot; , sans-serif; font-size: 13px; letter-spacing: -0.2px; line-height: 13px; color: rgb(85, 85, 85);">
-										<b>아이 없음</b></p>
-									<p style="font-size: 11px; letter-spacing: -0.2px; line-height: 11px; color: rgb(94, 99, 109); margin-top: 5px;">
-										집중 케어가 가능해요</p>
-								</div>
-							</div>
-						</c:if>
-						<c:if test="${service == 'service17'}">
-							<div style="display: block; width: 200px; height: 69px; float: left; position: relative; text-align: cetner;">
-								<div style="display: inline-block; float: left; position: relative; text-align: cetner; margin-left: 30px;">
-								<img width="32" height="32" src="resources/images/service1.png"></div>
-								<div style="display: inline-block; margin-left: 13px; position: relative; width: 150;">
-									<p style="font-family: &amp; amp; amp; amp; quot; Noto Sans KR&amp;amp; amp; amp; quot; , sans-serif; font-size: 13px; letter-spacing: -0.2px; line-height: 13px; color: rgb(85, 85, 85);">
-										<b>반려동물 등록 가능</b></p>
-									<p style="font-size: 11px; letter-spacing: -0.2px; line-height: 11px; color: rgb(94, 99, 109); margin-top: 5px;">
-										댕댕 등록 대행 가능</p>
-								</div>
-							</div>
-						</c:if>
-					</c:forEach>
+						<table style="border-spacing: 60px 15px; margin: auto;">
+							<tr>
+								<td><input type="checkbox" id="serviceChk1" class="serviceChk" name="serviceChk" value="service1"/><label for="serviceChk1">반려동물 없음</label></td>
+								<td><input type="checkbox" id="serviceChk2" class="serviceChk" name="serviceChk" value="service2"/><label for="serviceChk2">픽업</label></td>
+								<td><input type="checkbox" id="serviceChk3" class="serviceChk" name="serviceChk" value="service3"/><label for="serviceChk3">대형견</label></td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" id="serviceChk4" class="serviceChk" name="serviceChk" value="service4"/><label for="serviceChk4">마당 있음</label></td>
+								<td><input type="checkbox" id="serviceChk5" class="serviceChk" name="serviceChk" value="service5"/><label for="serviceChk5">노견 케어</label></td>
+								<td><input type="checkbox" id="serviceChk6" class="serviceChk" name="serviceChk" value="service6"/><label for="serviceChk6">장기 예약</label></td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" id="serviceChk7" class="serviceChk" name="serviceChk" value="service7"/><label for="serviceChk7">실내 놀이</label></td>
+								<td><input type="checkbox" id="serviceChk8" class="serviceChk" name="serviceChk" value="service8"/><label for="serviceChk8">매일 산책</label></td>
+								<td><input type="checkbox" id="serviceChk9" class="serviceChk" name="serviceChk" value="service9"/><label for="serviceChk9">목욕 가능</label></td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" id="serviceChk10" class="serviceChk" name="serviceChk" value="service10"/><label for="serviceChk10">약물 경구 복용</label></td>
+								<td><input type="checkbox" id="serviceChk11" class="serviceChk" name="serviceChk" value="service11"/><label for="serviceChk11">강아지 케어</label></td>
+								<td><input type="checkbox" id="serviceChk12" class="serviceChk" name="serviceChk" value="service12"/><label for="serviceChk12">아파트</label></td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" id="serviceChk13" class="serviceChk" name="serviceChk" value="service13"/><label for="serviceChk13">빌라</label></td>
+								<td><input type="checkbox" id="serviceChk14" class="serviceChk" name="serviceChk" value="service14"/><label for="serviceChk14">단독 주택</label></td>
+								<td><input type="checkbox" id="serviceChk15" class="serviceChk" name="serviceChk" value="service15"/><label for="serviceChk15">싱글</label></td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" id="serviceChk16" class="serviceChk" name="serviceChk" value="service16"/><label for="serviceChk16">아이 없음</label></td>
+								<td><input type="checkbox" id="serviceChk17" class="serviceChk" name="serviceChk" value="service17"/><label for="serviceChk1">반려동물 등록 가능</label></td>
+							</tr>
+							<!-- 체크 박스와 관련된 jquery를 만들어서, 등록 버튼을 누르면 값을 가지고 넘어가도록 한다. -->
+					<!-- 서비스 체크 박스 끝 -->
+					</table>
 				</div>
 			</div>
 			<!-- 펫시터 소개 상단 끝 -->
 			
 			<!-- 펫시터 소개 시작 -->
-			<div>
 			<c:choose>
 				<c:when test="${grade=='프로'}">
 					<div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 85px; margin-top: 50px; border-radius: 5px; background-color: rgb(243, 243, 243); position: relative;">
@@ -378,7 +264,6 @@ ${flikr}
 						</p>
 					</div>
 			</div>
-			</div>
 
 			<!--펫시터 자격증 및 교육 수료 --> <!-- 이 부분은 리스트를 불러와서  하나씩 뽑아야 함. -->
 			<div style="margin-top: 58px">
@@ -403,18 +288,18 @@ ${flikr}
 				</c:forEach>
 				<c:choose>
 					<c:when test="${school=='Y'}">
-						<div style="display: flex; align-items: center; margin-left: 20px;">
+						<div style="display: flex; align-items: center;">
 							<img width="16" height="23" src="resources/images/medal.png">
-							<p style="font-size: 12px; letter-spacing: -0.2px; line-height: 18px; color: #555555; margin-top: 15px">
+							<p style="font-size: 12px; letter-spacing: -0.2px; line-height: 18px; color: #555555; margin-left: 20px; margin-top: 15px">
 								&nbsp;&nbsp;&nbsp;${name} 님은 <font color="red" size="2"><b>반려동물 관련 학과</b></font>를 졸업한 전문 인재입니다.</p>
 						</div>
 					</c:when>
 				</c:choose>
 				<c:choose>
 					<c:when test="${certiChk=='Y'}">
-						<div style="display: flex; align-items: center; margin-left: 20px;">
+						<div style="display: flex; align-items: center;">
 							<img width="16" height="23" src="resources/images/medal.png">
-							<p style="font-size: 12px; letter-spacing: -0.2px; line-height: 18px; color: #555555; margin-top: 15px">
+							<p style="font-size: 12px; letter-spacing: -0.2px; line-height: 18px; color: #555555; margin-left: 20px; margin-top: 15px">
 								&nbsp;&nbsp;&nbsp;${name} 님은 <font color="red" size="2"><b>반려동물 관련 자격증</b></font>을 취득한 전문 인재입니다.</p>
 						</div>
 					</c:when>
@@ -457,28 +342,57 @@ ${flikr}
 					<form method="get" class="tm-search-form tm-section-pad-2">
 						<div class="form-group tm-form-element tm-form-element-50" style="width: 22em; right: 3em; bottom: 1em">
 							<i class="fa fa-calendar fa-2x tm-form-element-icon"></i>
-							<input name="rangeDate" type="text" class="flatpickr-input" id="rangeDate" placeholder="펫시팅이 가능한 날짜를 선택해주세요." style="font-size: 1em">
+							<input name="basicDate" type="text" class="flatpickr-input" id="basicDate" placeholder="펫시팅이 가능한 날짜를 선택해주세요." style="font-size: 1em">
 						</div>
 					</form>
 				</div>
 
-				<!-- 예약 시간 선택 --> <!-- 이 부분은 조건문으로 저장된 값보다 작은 값은 나오지 않게 해야 함. 하려고 했지만 귀찮으니 나중에 적용 -->
+				<!-- 예약 시간 선택 -->
 				<div style="display: flex; flex-direction: row; justify-content: space-between; margin-top: 38px">
 					<div style="width: 149px">
-						<div style="display: flex; flex-direction: column; align-items: center; justify-content: space-between; margin-bottom: 8px; position: relative;">
-							<p style="font-family: Noto Sans KR; font-size: 14px; letter-spacing: -0.2px; line-height: 20px; color: #393C47; margin-bottom: 18px; text-align: center;">
-								<b>체크인 시간</b>
-							</p>
-							<p style="font-weight: 600; font-size: 13px; line-height: 18px; color: #6597F4">${matchDtl.MATCH_CHECK_IN} 이후</p>
-						</div>
+						<p style="font-family: Noto Sans KR; font-size: 14px; letter-spacing: -0.2px; line-height: 20px; color: #393C47; margin-bottom: 18px">
+							체크인 시간
+						</p>
+						<select id="checkInTime" name="checkInTime" style="width: 10.5em">
+							<option value="선택">선택</option>
+							<option value="10:00">10:00</option>
+							<option value="11:00">11:00</option>
+							<option value="12:00">12:00</option>
+							<option value="13:00">13:00</option>
+							<option value="14:00">14:00</option>
+							<option value="15:00">15:00</option>
+							<option value="16:00">16:00</option>
+							<option value="17:00">17:00</option>
+							<option value="18:00">18:00</option>
+							<option value="19:00">19:00</option>
+							<option value="20:00">20:00</option>
+							<option value="21:00">21:00</option>
+							<option value="22:00">22:00</option>
+						</select>
 					</div>
 					<div style="width: 149px">
-						<div style="display: flex; flex-direction: column; align-items: center; justify-content: space-between; margin-bottom: 8px; text-align: center;">
-							<p style="font-family: Noto Sans KR; font-size: 14px; letter-spacing: -0.2px; line-height: 20px; color: #393C47; margin-bottom: 18px; text-align: center;">
-								<b>체크아웃 시간</b>
+						<div style="display: flex; flex-direction: row; align-items: center; justify-content: space-between; margin-bottom: 8px">
+							<p style="font-family: Noto Sans KR; font-size: 14px; letter-spacing: -0.2px; line-height: 20px; color: #393C47">
+								체크아웃 시간
 							</p>
-							<p style="font-weight: 600; font-size: 13px; line-height: 18px; color: #6597F4">${matchDtl.MATCH_CHECK_OUT} 이전</p>
+							<p style="font-weight: 600; font-size: 13px; line-height: 18px; color: #6597F4"></p>
 						</div>
+						<select id="checkOutTime" name="checkOutTime" style="width: 10.5em">
+							<option value="선택">선택</option>
+							<option value="10:00">10:00</option>
+							<option value="11:00">11:00</option>
+							<option value="12:00">12:00</option>
+							<option value="13:00">13:00</option>
+							<option value="14:00">14:00</option>
+							<option value="15:00">15:00</option>
+							<option value="16:00">16:00</option>
+							<option value="17:00">17:00</option>
+							<option value="18:00">18:00</option>
+							<option value="19:00">19:00</option>
+							<option value="20:00">20:00</option>
+							<option value="21:00">21:00</option>
+							<option value="22:00">22:00</option>
+						</select>
 					</div>
 				</div>
 				<!-- 예약 시간 선택 끝 -->
@@ -505,12 +419,30 @@ ${flikr}
 					<div style="display: flex; flex-direction: row">
 						<div style="display: flex; align-items: center; flex-direction: row">
 							<p style="font-size: 12px; letter-spacing: 0.5px; line-height: 1px; color: #4E525B; margin-right: 11px">
-								${matchDtl.PRICE_SMALL_ALL}
+								<select id="smallAll" name="smallAll" style="width: 7em; margin-right: 2px">
+									<option value="선택">선택</option>
+									<option value="30,000원">30,000원</option>
+									<option value="29,000원">29,000원</option>
+									<option value="28,000원">28,000원</option>
+									<option value="27,000원">27,000원</option>
+									<option value="26,000원">26,000원</option>
+									<option value="25,000원">25,000원</option>
+									<option value="예약 불가">예약 불가</option>
+								</select>
 							</p>
 						</div>
 						<div style="display: flex; flex-direction: column; align-items: center; width: 62px">
 							<p style="font-size: 12px; letter-spacing: 0.5px; line-height: 20px; color: #4E525B">
-								${matchDtl.PRICE_SMALL_HALF}
+								<select id="smallHalf" name="smallHalf" style="width: 7em">
+									<option value="선택">선택</option>
+									<option value="25,000원">25,000원</option>
+									<option value="24,000원">24,000원</option>
+									<option value="23,000원">23,000원</option>
+									<option value="22,000원">22,000원</option>
+									<option value="21,000원">21,000원</option>
+									<option value="20,000원">20,000원</option>
+									<option value="예약 불가">예약 불가</option>
+								</select>
 							</p>
 						</div>
 					</div>
@@ -524,12 +456,30 @@ ${flikr}
 					<div style="display: flex; flex-direction: row">
 						<div style="display: flex; align-items: center; flex-direction: row">
 							<p style="font-size: 12px; letter-spacing: 0.5px; line-height: 1px; color: #4E525B; margin-right: 11px">
-								${matchDtl.PRICE_MEDIUM_ALL}
+								<select id="mediumAll" name="mediumAll" style="width: 7em; margin-right: 2px">
+									<option value="선택">선택</option>
+									<option value="40,000원">40,000원</option>
+									<option value="39,000원">39,000원</option>
+									<option value="38,000원">38,000원</option>
+									<option value="37,000원">37,000원</option>
+									<option value="36,000원">36,000원</option>
+									<option value="35,000원">35,000원</option>
+									<option value="예약 불가">예약 불가</option>
+								</select>
 							</p>
 						</div>
 						<div style="display: flex; flex-direction: column; align-items: center; width: 62px">
 							<p style="font-size: 12px; letter-spacing: 0.5px; line-height: 20px; color: #4E525B">
-								${matchDtl.PRICE_MEDIUM_HALF}
+								<select id="mediumHalf" name="mediumHalf" style="width: 7em">
+									<option value="선택">선택</option>
+									<option value="35,000원">35,000원</option>
+									<option value="34,000원">34,000원</option>
+									<option value="33,000원">33,000원</option>
+									<option value="32,000원">32,000원</option>
+									<option value="31,000원">31,000원</option>
+									<option value="30,000원">30,000원</option>
+									<option value="예약 불가">예약 불가</option>
+								</select>
 							</p>
 						</div>
 					</div>
@@ -543,12 +493,30 @@ ${flikr}
 					<div style="display: flex; flex-direction: row">
 						<div style="display: flex; align-items: center; flex-direction: row">
 							<p style="font-size: 12px; letter-spacing: 0.5px; line-height: 1px; color: #4E525B; margin-right: 11px">
-								${matchDtl.PRICE_LARGE_ALL}
+								<select id="largeAll" name="largeAll" style="width: 7em; margin-right: 2px">
+									<option value="선택">선택</option>
+									<option value="50,000원">50,000원</option>
+									<option value="49,000원">49,000원</option>
+									<option value="48,000원">48,000원</option>
+									<option value="47,000원">47,000원</option>
+									<option value="46,000원">46,000원</option>
+									<option value="45,000원">45,000원</option>
+									<option value="예약 불가">예약 불가</option>
+								</select>
 							</p>
 						</div>
 						<div style="display: flex; flex-direction: column; align-items: center; width: 62px">
 							<p style="font-size: 12px; letter-spacing: 0.5px; line-height: 20px; color: #4E525B">
-								${matchDtl.PRICE_LARGE_HALF}
+								<select id="largeHalf" name="largeHalf" style="width: 7em">
+									<option value="선택">선택</option>
+									<option value="45,000원">45,000원</option>
+									<option value="44,000원">44,000원</option>
+									<option value="43,000원">43,000원</option>
+									<option value="42,000원">42,000원</option>
+									<option value="41,000원">41,000원</option>
+									<option value="40,000원">40,000원</option>
+									<option value="예약 불가">예약 불가</option>
+								</select>
 							</p>
 						</div>
 					</div>
@@ -558,8 +526,8 @@ ${flikr}
 			<!-- 이용 요금 소개 끝 -->
 			<!-- 카카오 지도 API: 펫시터 위치 표시 -->
 			<div style="position: relative; line-height: 1em; display: flex; flex-direction: column; width: 375px; height: 400px; border-radius: 8px; border: 1px solid #DFE3EA; box-shadow: 1px 3px 7px rgba(0, 0, 0, 0.07); margin-top: 38px; overflow: hidden; text-align: center;">
-				<h2 style="font-weight: 600; font-size: 17px; letter-spacing: -0.2px; line-height: 25px; color: #393C47; margin-bottom: 8px">${name} 펫시터님의 동네 위치입니다.</h2>
-					<p style="font-size: 12px; letter-spacing: -0.2px; line-height: 10px">매칭이 성사되면 정확한 위치를 확인하실 수 있어요!</p>
+				<h2 style="font-weight: 600; font-size: 17px; letter-spacing: -0.2px; line-height: 25px; color: #393C47; margin-bottom: 8px">${name} 펫시터님의 위탁 장소 위치입니다.</h2>
+					<p style="font-size: 12px; letter-spacing: -0.2px; line-height: 10px">위치가 정확한지 확인해주세요!</p>
 				<div id="map" style="position: absolute; height: 300px; border-radius: 4px; border: 1px solid #DFE3EA; overflow: hidden; display: inline-block; text-align: center; top: 23%; left: 52.5%; width: 95%; margin-top: -0.5em; margin-left: -50%;">
 					<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=bd69701c52c23858bb7f642b6fddbe23&libraries=services,clusterer,drawing"></script>
 
@@ -567,7 +535,7 @@ ${flikr}
 						var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
 						var options = { //지도를 생성할 때 필요한 기본 옵션
 							center : new kakao.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
-							level : 4 //지도의 레벨(확대, 축소 정도)
+							level : 3 //지도의 레벨(확대, 축소 정도)
 						};
 
 						var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
@@ -588,8 +556,8 @@ ${flikr}
 						var geocoder = new kakao.maps.services.Geocoder();
 
 						// 주소로 좌표를 검색합니다 + 주소를 가져와서 합쳐도 출력이 된다는 것을 알았으니 나중에 조건문을 넣어서 진행 단계에 따라 다르게 나오도록 하면 될 듯함.
-						geocoder.addressSearch((matchInsert.address1.value), function(result, status) {
-						//geocoder.addressSearch('경기도 의정부시 용민로 21', function(result, status) { //확인용
+						geocoder.addressSearch((matchInsert.address1.value + matchInsert.address2.value), function(result, status) {
+						//geocoder.addressSearch('경기도 의정부시 용민로 21번길 101', function(result, status) { //확인용
 							// 정상적으로 검색이 완료됐으면 
 							if (status === kakao.maps.services.Status.OK) {
 								var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
@@ -603,7 +571,7 @@ ${flikr}
 
 								// 인포윈도우로 장소에 대한 설명을 표시합니다 + 인포 윈도우는 다르게 수정할 수 있으니까 시간 나면 알아보자.
 								var infowindow = new kakao.maps.InfoWindow({
-									content : '<div style="width:150px;text-align:center;padding:6px 0;">위탁 지역</div>'
+									content : '<div style="width:150px;text-align:center;padding:1px 0;">위탁 장소</div>'
 								});
 								infowindow.open(map, marker);
 
@@ -632,20 +600,17 @@ ${flikr}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.js"></script>
 <!-- flatpickr -->  
 <script id="INLINE_PEN_JS_ID">
-	var flikr = document.matchInsert.getElementById(datePic).value;
-
-	$("#basicDate").flatpickr({  // 이 방식은 펫시터가 사용. //일단 disable이 불가능한 것 같으니 일반 회원도 이걸로 사용.
+	$("#basicDate").flatpickr({  // 이 방식은 펫시터가 사용.
 		mode: "multiple",	//다중 선택
 		dateFormat: "Y-m-d",
 		minDate: "today"  //펫시터가 선택하는 날짜는 DB에 리스트로 저장했다가 일반 회원이 고를 때 enable로 가능한 날짜만 표시.
 	});					  //그렇게 DB에 저장하면 펫시터가 원하는 날짜만 골라서 매칭할 수 있을 것 같음.
-	alert(flikr)
+
 	$("#rangeDate").flatpickr({	//이 방식은 일반 회원이 사용
-		mode: "range",		//시작에서 끝까지 from to 형식으로 선택	//이 방식은 또 어떻게 검색해야 할지 감이 안 온다.
+		mode: "range",		//시작에서 끝까지 from to 형식으로 선택
 		dateFormat: "Y-m-d",
 		minDate: "today",
-		disable: [flikr]	//배열을 읽지를 못하네 어쩌지
-		//disable: ["2020-02-18", "2020-02-19", "2020-02-21", "2020-02-20", "2020-02-27", "2020-02-26"]  //이 부분은 테이블에 불가능한 날짜를 리스트로 저장하고, 회원이 일정 고를 때 긁어와서 저기에 넣어야 할 것 같음.
+		//enable: ["", "", ""]  //이 부분은 테이블에 불가능한 날짜를 리스트로 저장하고, 회원이 일정 고를 때 긁어와서 저기에 넣어야 할 것 같음.
 	});
 
 </script>
