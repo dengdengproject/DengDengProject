@@ -14,7 +14,7 @@
 	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript" src="resources/js/common.js"></script>
 
-<%-- <%
+<%-- <% 
 	String id = request.getParameter("PSMEM_ID");
 %> --%>
 

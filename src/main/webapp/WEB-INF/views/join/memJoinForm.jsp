@@ -13,7 +13,7 @@
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript" src="resources/js/common.js"></script>
 
-<script type="text/javascript">
+<script type="text/javascript"> 
 function fn_idCheck(){
 	    var ID = {ID : $('#MEM_ID').val()};    // {ID="입력한 ID값"}
 	  

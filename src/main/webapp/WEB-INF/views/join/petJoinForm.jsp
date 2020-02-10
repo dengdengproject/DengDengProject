@@ -13,7 +13,7 @@
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript" src="resources/js/common.js"></script>
 
-<script type="text/javascript">
+<script type="text/javascript"> 
 	$(document).ready(function() {
 
 		$("#cancel").on("click", function(e) {
