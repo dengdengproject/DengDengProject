@@ -15,7 +15,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 public class FileUtils {
 
 	
-
+ 
 	// 일반회원 파일업로드
 	public List<Map<String, Object>> parseInsertFileInfo_MEM(Map<String, Object> map, HttpServletRequest request)
 			throws Exception {
