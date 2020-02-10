@@ -84,7 +84,7 @@ System.out.println(MEM_TYPE);
 								class="menuchildicon"></span>로그인</a>
 							<hr class="horiz_separator" /></li>
 						<li class="ttr_menu_items_parent dropdown"><a
-							href="/first/join" class="ttr_menu_items_parent_link"><span
+							href="/first/joinPage" class="ttr_menu_items_parent_link"><span
 								class="menuchildicon"></span>회원가입</a>
 							<hr class="horiz_separator" /></li>
 					</ul>
