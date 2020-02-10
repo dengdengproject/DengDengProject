@@ -24,12 +24,15 @@ public class MyPetBoardController {
 
 	Logger log = Logger.getLogger(this.getClass());
 	
+	
+	
 	private int currentPage = 1;
 	private int totalCount;
 	private int blockCount = 5;   //화면에 보여줄 개시글의 수
 	private int blockpaging = 10;
 	private String pagingHtml;
 	private Paging paging;           
+	
 
 	@Resource(name = "mypetService") // Service 영역의 접근을 위한 선언
 	private MyPetService mypetService;
@@ -155,12 +158,12 @@ public class MyPetBoardController {
 		Map<String, Object> map = mypetService.selectBoardDetail(commandMap.getMap());
 		
 		//댓글을 위해서 
-		String ID = (String)session.getAttribute("ID"); 
-		Map<String, Object> mapp = new HashMap<String, Object>(); mapp.put("ID", ID);
+		//String ID = (String)session.getAttribute("ID"); 
+		//Map<String, Object> mapp = new HashMap<String, Object>(); mapp.put("ID", ID);
 		  
-		Map<String, Object> mem = mypetService.selectMemInfo(mapp);
+		//Map<String, Object> mem = mypetService.selectMemInfo(mapp);
 		  
-		mv.addObject("mem", mem);
+		//mv.addObject("mem", mem);
 
 		mv.addObject("map", map.get("map"));
 		mv.addObject("list", map.get("list"));
@@ -222,6 +225,13 @@ public class MyPetBoardController {
 		//System.out.println(" 컨트롤러에서 받아오는 값 : " + commandMap.getMap());
 		mypetService.insertComment(commandMap.getMap());
 		mv.addObject("BOARD_NO", commandMap.get("BOARD_NO"));
+		
+		String ID = (String)session.getAttribute("ID"); 
+	    Map<String, Object> map = new HashMap<String, Object>();
+	    map.put("ID", ID);
+	    
+	    Map<String, Object> mem = mypetService.selectMemInfo(map);
+	    mv.addObject("mem", mem);
 		
 		
 		 //혹시 몰라서 넣어봄 

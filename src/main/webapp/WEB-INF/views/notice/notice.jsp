@@ -17,6 +17,8 @@
 
 <%@ include file="/WEB-INF/views/include/include-header-add.jspf" %>
 
+
+
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta http-equiv="Cache-Control" content="no-cache" />
 <meta http-equiv="Expires" content="0" />
@@ -31,7 +33,7 @@
 			</div>
 			
 			<!-- search -->
-			 <div class="navBar" >
+			  <div class="navBar" >
 				<form id="frm">
 					<select id="type" name="searchNum"
 						style="width: 5em; position: relative; right: 10em;">
@@ -42,7 +44,9 @@
 						type="submit" value="검색"
 						style="width: 3em; position: relative; right: 10em;" />
 				</form>
-			</div>  
+			</div>   
+			
+			
 			
 			<!-- <form>
 									<select name="searchNum">

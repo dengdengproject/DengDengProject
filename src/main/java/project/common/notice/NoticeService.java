@@ -21,4 +21,6 @@ public interface NoticeService {
 
 	Map<String, Object> selectAdminInfo(Map<String, Object> map) throws Exception;
 
+	
+
 }

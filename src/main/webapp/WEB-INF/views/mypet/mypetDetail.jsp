@@ -101,6 +101,7 @@
 				<button style="width: 8em; height: 2em">목록</button>
 			</div> -->
 			
+			<!-- 댓글 -->
 			<form id="frm" >
 				<table  id="comment_table">
 					<colgroup>
@@ -142,8 +143,10 @@
 									<tr>
 										<td>${rows.MYPET_COMMENT_NO }</td>
 										<td>${rows.MYPET_COMMENT_WRITER }
-										  <input type="hidden" name="ID" id="ID" value="${mem_ID}"/>
-										  <input type="hidden" name="MYPET_COMMENT_WRITER" name="MYPET_COMMENT_WRITER" value="${mem_NAME}"/>  
+										<input type="hidden" id="MYPET_COMMENT_WRITER" name="MYPET_COMMENT_WRITER" value="${rows.MYPET_COMMENT_WRITER }"/>
+										<input type="hidden" id="ID" name="ID" value="${mem.ID }" />
+										  <%-- <input type="hidden" name="ID" id="ID" value="${mem_ID}"/>
+										  <input type="hidden" name="MYPET_COMMENT_WRITER" name="MYPET_COMMENT_WRITER" value="${mem_NAME}"/>   --%>
 										</td>
 										<td>${rows.MYPET_COMMENT_DATE }</td>
 										<td>${rows.MYPET_COMMENT_CONTENT }</td>

@@ -208,7 +208,7 @@
 	</update>
 	
 	<!-- 공지사항 검색 <제목, 작성자, 내용> -->
-<select id="noticeSearch" resultType="hashmap" parameterType="hashmap">
+<!-- <select id="noticeSearch" resultType="hashmap" parameterType="hashmap">
 	<![CDATA[
 		SELECT *
 		FROM
@@ -227,7 +227,28 @@
 			</choose>
 		ORDER BY NOTICE_NO DESC
 	]]>
-</select>
+</select> -->
+
+<!-- 제목검색 -->
+	<select id="noticeSearch0" resultType="hashmap" parameterType="hashmap">
+		SELECT * FROM NOTICE
+		 WHERE subject like #{search}
+		 ORDER BY no DESC
+	</select>
+	
+	<!-- 내용검색 -->
+	<select id="noticeSearch1" resultType="hashmap" parameterType="hashmap">
+		SELECT * FROM NOTICE
+		WHERE content like #{search}
+		ORDER BY no DESC
+	</select>
+
+	<!-- 작성자검색 -->
+	<select id="noticeSearch2" resultType="hashmap" parameterType="hashmap">
+		SELECT * FROM NOTICE
+		WHERE name like #{search}
+		ORDER BY no DESC
+	</select>
 
 
 

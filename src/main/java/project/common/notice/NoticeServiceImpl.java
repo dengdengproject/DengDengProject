@@ -94,6 +94,10 @@ public class NoticeServiceImpl implements NoticeService {
 		
 		return noticeDAO.selectAdminInfo(map);
 	}
+
+	
+	
+	
 	
 	
 	

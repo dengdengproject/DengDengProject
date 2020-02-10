@@ -26,6 +26,7 @@ public class NoticeController {
 	@Resource(name="noticeService")
 	private NoticeService noticeService;
 	
+	
 	private int currentPage = 1;
 	private int totalCount;
 	private int blockCount = 10;
@@ -59,9 +60,6 @@ ModelAndView mv = new ModelAndView();
 				smap.put("NOTICE_SUBJECT", isSearch);
 				noList = noticeService.noticeSearch(smap.getMap());
 			}else if(searchNum == 1){
-				smap.put("NOTICE_WRITER", isSearch);
-				noList = noticeService.noticeSearch(smap.getMap());
-			}else if(searchNum == 3){
 				smap.put("NOTICE_CONTENT", isSearch);
 				noList = noticeService.noticeSearch(smap.getMap());
 			}
