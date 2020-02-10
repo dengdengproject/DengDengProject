@@ -33,4 +33,3 @@ function ComSubmit(opt_formId) {
 		frm.submit(); 
 		}; 
 }
-

@@ -1,174 +1,23 @@
 <%@ page pageEncoding="utf-8"%>
 
-<!-- item 4 -->
 
-<div class="ttr_Home_html_row2 row">
-	<div class="post_column col-lg-12 col-md-12 col-sm-12 col-xs-12">
-		<div class="ttr_Home_html_column20">
-			<div
-				style="height: 0px; width: 0px; overflow: hidden; -webkit-margin-top-collapse: separate;"></div>
-			<div class="html_content">
-				<p>
-					<span class="ttr_image"
-						style="float: Left; overflow: hidden; margin: 0em 2.14em 0em 0em;"><span><img
-							class="ttr_uniform" src="resources/images/32.jpeg"
-							style="max-width: 350px; max-height: 250px;" /></span></span><span
-						style="font-family: 'Arial'; font-weight: 700; font-size: 1.571em; color: rgba(5, 38, 55, 1);">N</span><span
-						style="font-family: 'Arial'; font-weight: 700; font-size: 1.571em; color: rgba(5, 38, 55, 1);">ULLAM</span><span
-						style="font-family: 'Arial'; font-weight: 700; font-size: 1.571em; color: rgba(5, 38, 55, 1);">
-					</span><span
-						style="font-family: 'Arial'; font-weight: 700; font-size: 1.571em; color: rgba(5, 38, 55, 1);">WXS</span><span
-						style="font-family: 'Arial'; font-weight: 700; font-size: 1.571em; color: rgba(5, 38, 55, 1);">
-					</span><span
-						style="font-family: 'Arial'; font-weight: 700; font-size: 1.571em; color: rgba(5, 38, 55, 1);">CONVALLIS</span><span
-						style="font-family: 'Arial'; font-weight: 700; font-size: 1.571em; color: rgba(5, 38, 55, 1);">
-					</span><span
-						style="font-family: 'Arial'; font-weight: 700; font-size: 1.571em; color: rgba(5, 38, 55, 1);">EST.</span>
-				</p>
-				<p
-					style="margin: 0.71em 0em 0em 0em; line-height: 1.76056338028169;">
-					<span style="color: rgba(5, 38, 55, 1);">Quisque aliquam.
-						Donec faucibus. Nunc iaculis suscipit dui.Nam sit amet sem.
-						Aliquam libero nisi, imperdiet at, tincidunt nec, gravida
-						vehicula, nisl.Praesent mattis, massa quis luctus fermentum,
-						turpis mi volutpat justo, eu volutpat enim diam eget
-						metus.Maecenas ornare tortor.Quisque aliquam. Donec faucibus. Nunc
-						iaculis suscipit dui.Nam sit amet sem. Aliquam libero nisi,
-						imperdiet at, tincidunt nec, gravida vehicula, nisl.Praesent
-						mattis, massa quis luctus fermentum, turpis mi volutpat justo</span><span
-						style="color: rgba(5, 38, 55, 1);">.</span>
-				</p>
+<div align="center">
 
 
-				<!-- READ MORE 버튼 -->
-				<p
-					style="margin: 0.71em 0em 0em 0em; line-height: 1.76056338028169;">
-					<span><a HREF="#" target="_self"
-						class="btn btn-md btn-default">READ MORE</a></span>
-				</p>
+	<div style="margin-top: 10em; height: 500px">
+
+		<div>
+			<img src="resources/images/Logo.png" style="margin-bottom: 2em">
+		</div>
+
+		<span style="font-size: 2.5em; margin-top: 2em;">지금 바로 이용해보세요!</span>
 
 
-				<p
-					style="margin: 0.71em 0em 0em 0em; line-height: 1.76056338028169;">
-					<br style="color: rgba(5, 38, 55, 1);" />
-				</p>
-				<p
-					style="margin: 0.71em 0em 0em 0em; line-height: 1.76056338028169;">
-					<br style="color: rgba(5, 38, 55, 1);" />
-				</p>
-				<p
-					style="margin: 0.71em 0em 0em 0em; line-height: 1.76056338028169;">
-					<span class="ttr_image"
-						style="float: Left; overflow: hidden; margin: 0em 2.14em 0em 0em;"><span><img
-							class="ttr_uniform" src="resources/images/33.jpeg"
-							style="max-width: 350px; max-height: 250px;" /></span></span><span
-						style="font-family: 'Arial'; font-weight: 700; font-size: 1.571em; color: rgba(5, 38, 55, 1);">ALIQUAM
-						LIBERO NISI TUPIS NEC.</span>
-				</p>
-				<p
-					style="margin: 0.71em 0em 0em 0em; line-height: 1.76056338028169;">
-					<span style="color: rgba(5, 38, 55, 1);">Quisque aliquam.
-						Donec faucibus. Nunc iaculis suscipit dui.Nam sit amet sem.
-						Aliquam libero nisi, imperdiet at, tincidunt nec, gravida
-						vehicula, nisl.Praesent mattis, massa quis luctus fermentum,
-						turpis mi volutpat justo, eu volutpat enim diam eget
-						metus.Maecenas ornare tortor.Quisque aliquam. Donec faucibus. Nunc
-						iaculis suscipit dui.Nam sit amet sem. Aliquam libero nisi,
-						imperdiet at, tincidunt nec, gravida vehicula, nisl.Praesent
-						mattis, massa quis luctus fermentum, turpis mi volutpat justo</span><span
-						style="color: rgba(5, 38, 55, 1);">.</span>
-				</p>
-
-
-				<!-- READ MORE 버튼 -->
-				<p
-					style="margin: 0.71em 0em 0em 0em; line-height: 1.76056338028169;">
-					<span><a HREF="#" target="_self"
-						class="btn btn-md btn-default">READ MORE</a></span>
-				</p>
-
-
-			</div>
-			<div
-				style="height: 0px; width: 0px; overflow: hidden; -webkit-margin-top-collapse: separate;"></div>
-			<div style="clear: both;"></div>
+		<div
+			style="border-radius: 14px; background-color: #5483EC; width: 10em; height: 4em; position: relative; top: 6em" onclick="location.href='/first/joinPage'">
+			<p
+				style="color: white; font-size: 1.5em; font-weight: bold; position: relative; top: 0.6em;">가입 하기</p>
 		</div>
 	</div>
 
-
-	<div
-		class="clearfix visible-lg-block visible-sm-block visible-md-block visible-xs-block">
-	</div>
 </div>
-<div class="ttr_Home_html_row3 row">
-	<div class="post_column col-lg-12 col-md-12 col-sm-12 col-xs-12">
-		<div class="ttr_Home_html_column30">
-			<div
-				style="height: 0px; width: 0px; overflow: hidden; -webkit-margin-top-collapse: separate;"></div>
-			<div class="html_content">
-				<p style="text-align: Center;">
-					<span
-						style="font-family: 'Arial'; font-weight: 700; font-size: 1.857em; color: rgba(255, 255, 255, 1);">LATEST
-						NEWS</span>
-				</p>
-			</div>
-			<div
-				style="height: 0px; width: 0px; overflow: hidden; -webkit-margin-top-collapse: separate;"></div>
-			<div style="clear: both;"></div>
-		</div>
-	</div>
-	<div
-		class="clearfix visible-lg-block visible-sm-block visible-md-block visible-xs-block">
-	</div>
-</div>
-<div class="ttr_Home_html_row4 row">
-	<div class="post_column col-lg-6 col-md-6 col-sm-6 col-xs-12">
-		<div class="ttr_Home_html_column40">
-			<div
-				style="height: 0px; width: 0px; overflow: hidden; -webkit-margin-top-collapse: separate;"></div>
-			<div class="html_content">
-				<p>
-					<span class="ttr_image"
-						style="float: Left; overflow: hidden; margin: 0em 2.14em 0em 0em;"><span><img
-							class="ttr_uniform" src="resources/images/34.png"
-							style="max-width: 50px; max-height: 50px;" /></span></span><span
-						style="font-family: 'Arial'; font-weight: 700; font-size: 1.143em; color: rgba(255, 255, 255, 1);">N</span><span
-						style="font-family: 'Arial'; font-weight: 700; font-size: 1.143em; color: rgba(255, 255, 255, 1);">UNC</span><span
-						style="font-family: 'Arial'; font-weight: 700; font-size: 1.143em; color: rgba(255, 255, 255, 1);">
-					</span><span
-						style="font-family: 'Arial'; font-weight: 700; font-size: 1.143em; color: rgba(255, 255, 255, 1);">IACULIS</span><span
-						style="font-family: 'Arial'; font-weight: 700; font-size: 1.143em; color: rgba(255, 255, 255, 1);">
-					</span><span
-						style="font-family: 'Arial'; font-weight: 700; font-size: 1.143em; color: rgba(255, 255, 255, 1);">SUSCIPIT</span><span
-						style="font-family: 'Arial'; font-weight: 700; font-size: 1.143em; color: rgba(255, 255, 255, 1);">
-					</span><span
-						style="font-family: 'Arial'; font-weight: 700; font-size: 1.143em; color: rgba(255, 255, 255, 1);">DUI</span><span
-						style="font-family: 'Arial'; font-weight: 700; font-size: 1.143em; color: rgba(255, 255, 255, 1);">.N</span><span
-						style="font-family: 'Arial'; font-weight: 700; font-size: 1.143em; color: rgba(255, 255, 255, 1);">AM</span><span
-						style="font-family: 'Arial'; font-weight: 700; font-size: 1.143em; color: rgba(255, 255, 255, 1);">
-					</span><span
-						style="font-family: 'Arial'; font-weight: 700; font-size: 1.143em; color: rgba(255, 255, 255, 1);">SIT</span><span
-						style="font-family: 'Arial'; font-weight: 700; font-size: 1.143em; color: rgba(255, 255, 255, 1);">
-					</span><span
-						style="font-family: 'Arial'; font-weight: 700; font-size: 1.143em; color: rgba(255, 255, 255, 1);">AMET</span><span
-						style="font-family: 'Arial'; font-weight: 700; font-size: 1.143em; color: rgba(255, 255, 255, 1);">
-					</span><span
-						style="font-family: 'Arial'; font-weight: 700; font-size: 1.143em; color: rgba(255, 255, 255, 1);">SEM</span><span
-						style="font-family: 'Arial'; font-weight: 700; font-size: 1.143em; color: rgba(255, 255, 255, 1);">.
-					</span>
-				</p>
-				<p style="margin: 1.43em 0em 0.36em 5.71em;">
-					<span style="color: rgba(255, 255, 255, 1);">Aliquam libero
-						nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl.Praesent
-						mattis, massa quis luctus fermentum, turpis mi volutpat justo, eu
-						volutpat enim diam eget metus.Maecenas ornare tortor.</span>
-				</p>
-			</div>
-			<div
-				style="height: 0px; width: 0px; overflow: hidden; -webkit-margin-top-collapse: separate;"></div>
-			<div style="clear: both;"></div>
-		</div>
-	</div>
-
-
-	<!-- item 4 -->

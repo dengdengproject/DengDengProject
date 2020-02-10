@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import project.common.dao.AbstractDAO;
 
+
 @Repository("joinDAO")
 public class JoinDAO extends AbstractDAO {
 

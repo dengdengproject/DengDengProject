@@ -56,6 +56,7 @@ function fn_idCheck(){
 	}
 	
 	function fn_joinSubmit(){
+<<<<<<< HEAD
 		
 		var comSubmit = new ComSubmit("joinForm");
 		//값이 넘어가는지 확인하는 alert
@@ -126,6 +127,77 @@ function fn_idCheck(){
 		
 	/* 	var id = $("#MEM_ID").val()
 		comSubmit.addParam("ID", id); */
+=======
+	
+		var comSubmit = new ComSubmit("joinForm");
+		//값이 넘어가는지 확인하는 alert
+ 		/* alert("MEM_ID" + $('#MEM_ID').val());
+		alert("PASSWORD1" + $('#PASSWORD1').val());
+		alert("PASSWORD2" + $('#PASSWORD2').val());
+		alert("NAME" + $('#NAME').val());
+		alert("PHONE" + $('#PHONE').val());
+		alert("EMAIL" + $('#EMAIL').val());
+		alert("SEX" + $('#SEX').val());
+		alert("BIRTHDAY" + $('#BIRTHDAY').val());
+		alert("ZIPCODE" + $('#ZIPCODE').val());
+		alert("ADDRESS1" + $('#ADDRESS1').val());
+		alert("ADDRESS2" + $('#ADDRESS2').val());
+		alert("ADDRESS_ADD" + $('#ADDRESS_ADD').val());
+		alert("JOIN_DATE" + $('#SYSDATE').val()); */
+		
+		if(!$("#MEM_ID").val()){
+			alert("아이디를 입력해주세요.");
+			$("#MEM_ID").focus();
+			return false;
+		}
+		if($("#chkMsg").html()!="사용가능한 아이디 입니다."){
+			alert("아이디 중복확인을 해주세요.");
+			return false;
+		}
+		if(!$("#PASSWORD1").val()){
+			alert("비밀번호를 입력해주세요.");
+			$("#PASSWORD1").focus();
+			return false;
+		}
+		if(!$("#PASSWORD2").val()){
+			alert("비밀번호 확인을 입력해주세요.");
+			$("#PASSWORD2").focus();
+			return false;
+		}
+		if(!$("#NAME").val()){
+			alert("이름을 입력해주세요.");
+			$("#NAME").focus();
+			return false;
+		}
+		if(!$("#PHONE").val()){
+			alert("연락처를 입력해주세요.");
+			$("#PHONE").focus();
+			return false;
+		}
+
+		if(!$("#BIRTHDAY").val()){
+			alert("생일을 입력해주세요.");
+			$("#BIRTHDAY").focus();
+			return false;
+		}
+		if(!$("#ZIPCODE").val()){
+			alert("우편번호를 입력해주세요.");
+			$("#ZIPCODE").focus();
+			return false;
+		}
+		if(!$("#ADDRESS1").val()){
+			alert("주소를 입력해주세요.");
+			$("#ADDRESS1").focus();
+			return false;
+		}
+
+	
+		
+		
+		
+		
+		
+>>>>>>> refs/remotes/origin/main_ui
 		comSubmit.setUrl("<c:url value='/join' />");
 		comSubmit.submit();
 	}
@@ -270,7 +342,6 @@ function fn_idCheck(){
                         style="position: relative; left: 30px; margin-top: 0.5em; width: 300px; height: 30px;" />
                   </div>
                </div>
-
 					<!-- 프로필 사진 등록 -->
 					<div align="center">
 						<div
