@@ -165,6 +165,22 @@
 					<p>${map1.PSMEM_INTRODUCE}</p>
 			</div>
 		</div>
+		
+		
+		<!-- 프로필 사진 등록 -->
+				<div align="center">
+					<div
+						style="text-align: center; position: relative; left: 28em; bottom: 45em; width: 15em">
+						<span>프로필 사진</span>
+						<div align="center">
+								<div class="imgs_wrap" style="text-align: center;">
+									<img id="img" src ="/first/resources/downimage/${path}" />
+								</div>									
+							</div>
+						</div>
+					</div>
+			
+		
        
 
 			</div>

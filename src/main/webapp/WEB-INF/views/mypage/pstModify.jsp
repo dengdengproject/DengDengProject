@@ -292,15 +292,20 @@
 						<span>프로필 사진 등록</span>
 						<div align="center">
 								<div class="imgs_wrap" style="text-align: center;">
-									<img id="img" src ="/first/resources/images/dog_photo.jpg" />
+									<img id="img" src ="/first/resources/downimage/${path}" />
 								</div>
 							</div>
 							<a href="javascript:" onclick="fileUploadAction();"
 									class="my_button">파일 수정</a> <input type="file" id="input_imgs" name="file"
 									multiple />
 						</div>
+						<input type="hidden" id="PROFILE_NO" name="PROFILE_NO" value="${map2.PROFILE_NO}">	
 					</div>
 				</div>
+				
+				
+				
+				
 
 
 				<!--   <a href="javascript:" class="my_button" onclick="submitAction();">업로드</a> -->
@@ -324,6 +329,9 @@
 </div>
 
 <style type="text/css">
+input[type=file] {
+	display: none;
+} 
 
 .my_button {
 	display: inline-block;

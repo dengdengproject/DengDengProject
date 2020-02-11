@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 2020.02.11. PM6:10 -->
+
 <mapper namespace="myInfo">
+
+
 
 <!-- 일반회원 상세정보 꺼내오기 -->
 <select id = "selectmeminfo" parameterType = "hashmap" resultType = "hashmap">
@@ -26,37 +30,34 @@
 	]]>
 </select>
 
-<!-- 일반회원 프로필사진 꺼내오기 -->
-<select id="selectMemProfile" parameterType="hashmap" resultType="hashmap">
+<!-- 펫시터 자격증정보 꺼내오기 -->
+<select id = "selectcertiinfo" parameterType = "hashmap" resultType = "hashmap">
 	<![CDATA[
-		SELECT	PROFILE_STORED_FILE_NAME FROM PROFILE_FILE
-		WHERE MEM_ID = #{MEM_ID} AND PET_MEM_ID IS NULL
+		SELECT * FROM CERTI_FILE
+		WHERE PSMEM_ID = #{PSMEM_ID}
 	]]>
 </select>
 
-<!-- 펫시터회원 프로필사진 꺼내오기 -->
-<select id="selectPstProfile" parameterType="hashmap" resultType="hashmap">
-	<![CDATA[
-		SELECT	PROFILE_STORED_FILE_NAME FROM PROFILE_FILE
-		WHERE PSMEM_ID = #{PSMEM_ID} AND PET_MEM_ID IS NULL
-	]]>
-</select>		
 
-<!-- 일반회원 댕댕이 프로필사진 꺼내오기 -->
-<select id="selectMemPetProfile" parameterType="hashmap" resultType="hashmap">
+<!-- 회원/펫 프로필 정보 꺼내오기 --> <!-- 일단 일반회원 먼저 테스트후 성공하면 ID로 바꿔서 다시 수정 -->
+<select id = "selectProfileInfo" parameterType = "hashmap" resultType = "hashmap">
 	<![CDATA[
-		SELECT	PROFILE_STORED_FILE_NAME FROM PROFILE_FILE
-		WHERE PET_MEM_ID = #{PET_MEM_ID} AND MEM_ID = #{ID}
+		SELECT * FROM PROFILE_FILE
+		WHERE ID = #{ID}    
 	]]>
 </select>
 
-<!-- 펫시터 댕댕이 프로필사진 꺼내오기 -->
-<select id="selectPstPetProfile" parameterType="hashmap" resultType="hashmap">
+
+
+
+<!-- 프로필사진 꺼내오기 -->
+<select id="selectProfile" parameterType="hashmap" resultType="hashmap">
 	<![CDATA[
 		SELECT	PROFILE_STORED_FILE_NAME FROM PROFILE_FILE
-		WHERE PET_MEM_ID = #{PET_MEM_ID} AND PSMEM_ID = #{PSMEM_ID}
+		WHERE ID = #{ID}
 	]]>
-</select>	
+</select>
+
 
 <!-- 일반 회원 정보 수정 --> <!-- 로그인한 값(MEM_ID인지 PSMEM_ID인지)으로 조건을 줘 MEM_ID에 값이 있을 경우, 코드 앞에서 이 쿼리문이 포함된 메서드를 작동하도록 한다. -->
 <!-- (예. if(mem_id != null && mem_id != "") {
@@ -124,6 +125,23 @@
 </update>
 
 
+<!-- 펫시터 자격증 수정 파일 업로드 수정을 추후에 -->
+<update id="updatecertiinfo" parameterType="hashMap">
+	<![CDATA[
+		UPDATE
+			CERTI_FILE
+		SET
+			CERTI_NAME = #{CERTI_NAME},
+			CERTI_ORG = #{CERTI_ORG},
+			CERTI_DATE = #{CERTI_DATE}			
+		WHERE		
+			PSMEM_ID = #{PSMEM_ID}				
+	]]>
+</update>
+
+
+
+
 <!-- 일반 회원 탈퇴 -->
 <delete id="deleteMember" parameterType="hashmap"> 
 	<![CDATA[
@@ -140,6 +158,60 @@
 		WHERE ID = #{ID}
 	]]>
 </select>
+
+
+<!-- 프로필이미지 수정 -->
+<update id="updateProfile" parameterType="hashmap">
+	<![CDATA[
+		UPDATE
+			PROFILE_FILE
+		SET
+			PROFILE_ORIGINAL_FILE_NAME = #{PROFILE_ORIGINAL_FILE_NAME},
+			PROFILE_FILE_SIZE = #{PROFILE_FILE_SIZE},
+			PROFILE_STORED_FILE_NAME = #{PROFILE_STORED_FILE_NAME}
+		WHERE
+			PROFILE_NO = #{PROFILE_NO} AND ID = #{ID}	
+	]]>
+</update>
+
+
+<!-- 파일 리스트 -->
+ <select id="selectPstPlaceList" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[
+		SELECT
+		     PSMEM_FILE_NO,
+		     PSMEM_ORIGINAL_FILE_NAME,
+		     ROUND(PSMEM_FILE_SIZE/1024,1) AS PSMEM_FILE_SIZE
+			
+		FROM
+		     PETSITTER_ADD_IMG
+		WHERE
+		     PSMEM_ID = #{ID}
+		]]>
+</select> <!-- BOARD_FILE_NO -->
+
+<!-- 위탁장소 파일 삭제 -->
+<update id="deleteFile" parameterType="hashmap">
+		<![CDATA[
+			UPDATE PETSITTER_ADD_IMG
+			SET 
+				FILE_DEL = 'Y' 
+			WHERE 
+				PSMEM_FILE_NO = #{PSMEM_FILE_NO}
+		]]>
+</update>
+
+
+<!-- 위탁장소 파일 수정 -->
+<update id="updateFile" parameterType="hashmap">
+		<![CDATA[
+			UPDATE PETSITTER_ADD_IMG
+			SET
+				FILE_DEL = 'N'
+			WHERE
+				PSMEM_FILE_NO = #{PSMEM_FILE_NO}	
+		]]>
+</update>
 
 
 

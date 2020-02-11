@@ -1,3 +1,4 @@
+//2020.02.11. PM6:10
 /* MyInfoService MyInfoController MyInfoDAO
 http://localhost:8080/ninaebang/myPage/MyInfoDetail		내 정보 보기	/myInfo/MyInfoDetail		MyInfoDetail()		selectInfoDetail	MyInfoDetail.jsp
 http://localhost:8080/ninaebang/myPage/MyInfoModifyForm	정보 수정 폼	/myInfo/MyInfoModifyForm	MyInfoModify()		selectInfoDetail	MyInfoModifyForm.jsp	
@@ -35,16 +36,21 @@ public ModelAndView MyInfoDetail(CommandMap commandMap, HttpServletRequest reque
 	HttpSession session = request.getSession();
 	String id = (String)session.getAttribute("ID");
 	String mem_type = (String)session.getAttribute("MEM_TYPE");
-	commandMap.put("MEM_TYPE",mem_type);	
+	commandMap.put("MEM_TYPE",mem_type);
+	commandMap.put("ID",id);
 	
 	//펫시터일때
 	if(mem_type.equals("펫시터")){ 
 		ModelAndView mv = new ModelAndView("mypage/pstMyInfo");
 		commandMap.put("PSMEM_ID",id);
 		Map<String,Object> map = myInfoService.selectPstMyInfoDetail(commandMap.getMap());	//해당 ID값으로 회원상세정보들을 읽어온후 map에 저장. 
-		Map<String,Object> map1 = myInfoService.selectPstMyInfoAddDetail(commandMap.getMap());
+		Map<String,Object> map1 = myInfoService.selectPstMyInfoAddDetail(commandMap.getMap());  //펫시터 추가 정보 불러오기
+		Map<String,Object> certi = myInfoService.selectCertiInfo(commandMap.getMap()); //펫시터 자격증 정보 불러오기
 		mv.addObject("map",map); //회원정보를 담은 map을 mv에 저장
 		mv.addObject("map1",map1); //회원정보를 담은 map을 mv에 저장
+		mv.addObject("certi", certi); //펫시터 자격증 정보 mv에 저장
+		String path = myInfoService.selectProfile(commandMap.getMap());  //DB에서  PSMEM_ID값으로 저장된 프로필이미지파일이름을 가져온다.
+		mv.addObject("path",path); //회원정보를 담은 map을 mv에 저장
 		return mv;
 	} 
 	
@@ -56,7 +62,9 @@ public ModelAndView MyInfoDetail(CommandMap commandMap, HttpServletRequest reque
 		String path = myInfoService.selectProfile(commandMap.getMap());  //DB에서  MEM_ID값으로 저장된 프로필이미지파일이름을 가져온다.
 		
 		mv.addObject("path",path); //회원정보를 담은 map을 mv에 저장
-	
+		
+		//Map<String,Object> map1 = myInfoService.selectProfileInfo(commandMap.getMap());	//해당 ID값으로 회원상세정보들을 읽어온후 map에 저장. 
+		//mv.addObject("map1", map1);
 	return mv;
 }
 
@@ -67,17 +75,34 @@ public ModelAndView MyInfoModifyForm(CommandMap commandMap, HttpServletRequest r
 	System.out.println("-----------------memInfoModify 컨트롤러들어옴------------");
 	
 	HttpSession session = request.getSession();
-	String id = (String) session.getAttribute("ID");  //수정할 회원의 정보를 읽어오기 위해 MEM_ID값을 가져온다. 
-	String mem_type = (String)session.getAttribute("MEM_TYPE");
+	String id = (String) session.getAttribute("ID");  //수정할 회원의 정보를 읽어오기 위해 ID값을 가져온다. 
+	String mem_type = (String)session.getAttribute("MEM_TYPE"); //회원유형에 따라 
+	commandMap.put("MEM_TYPE",mem_type); 
+	commandMap.put("ID", id);
 	
+	List<Map<String, Object>> list = null;
+	
+	
+	//펫시터일때
 	if(mem_type.equals("펫시터")){
 		ModelAndView mv = new ModelAndView("mypage/pstModify");
 		commandMap.put("PSMEM_ID",id); //id값을 map에 저장하고
 		Map<String,Object> map = myInfoService.selectPstMyInfoDetail(commandMap.getMap()); //수정할 회원의 정보들을 읽어온후 map에 저장
 		Map<String,Object> map1 = myInfoService.selectPstMyInfoAddDetail(commandMap.getMap()); //추가 정보를 읽어온후 map1에 저장
-		//System.out.println("map에 들어있는 아이디와 이름은 " + map.get("PSMEM_ID") + map.get("NAME"));
+		Map<String,Object> certi = myInfoService.selectCertiInfo(commandMap.getMap()); //펫시터 자격증 정보 불러오기
+		list = myInfoService.selectPstPlaceInfo(commandMap.getMap()); //펫시터 위탁장소 이미지 불러오기
+		
 		mv.addObject("map",map); // map을 mv에 저장
 		mv.addObject("map1",map1); // map을 mv에 저장
+		mv.addObject("certi", certi); //펫시터 자격증 정보 mv에 저장
+		mv.addObject("list", list); //위탁장소 이미지 저장
+		
+		String path = myInfoService.selectProfile(commandMap.getMap());  //DB에서  PSMEM_ID값으로 저장된 프로필이미지파일이름을 가져온다.
+		mv.addObject("path",path); //프로필 저장경로를 mv에 저장
+		
+		Map<String,Object> map2 = myInfoService.selectProfileInfo(commandMap.getMap());	//프로필 이미지 정보 가져오기
+		mv.addObject("map2", map2);
+		
 		return mv;
 	}
 	
@@ -86,6 +111,13 @@ public ModelAndView MyInfoModifyForm(CommandMap commandMap, HttpServletRequest r
 	commandMap.put("MEM_ID",id); //id값을 map에 저장하고
 	Map<String,Object> map = myInfoService.selectMemMyInfoDetail(commandMap.getMap()); //수정할 회원의 정보들을 읽어온후 map에 저장
 	mv.addObject("map",map); // map을 mv에 저장
+	
+	String path = myInfoService.selectProfile(commandMap.getMap());  //DB에서  MEM_ID값으로 저장된 프로필이미지파일이름을 가져온다.
+	mv.addObject("path",path); //프로필 저장경로를 mv에 저장
+	
+	Map<String,Object> map1 = myInfoService.selectProfileInfo(commandMap.getMap());	//프로필 이미지 정보 가져오기
+	mv.addObject("map1", map1);
+	
 	return mv;
 }
 
@@ -96,18 +128,22 @@ public ModelAndView MyInfoModify(CommandMap commandMap, HttpServletRequest reque
 	HttpSession session = request.getSession();
 	String id = (String) session.getAttribute("ID");
 	String mem_type = (String)session.getAttribute("MEM_TYPE");
+	String profile_num =(String)commandMap.get("PROFILE_NO"); //프로필 수정을 위한 프로필번호값
+	System.out.println("PROFILE_NO1값은" +profile_num);
 	commandMap.put("MEM_TYPE", mem_type); //회원유형에 따라 DAO에서 다른 SQL문 수행
 	
 	//펫시터일때
 	if(mem_type.equals("펫시터")){
 		commandMap.put("PSMEM_ID",id);
-		myInfoService.updateMyInfoModify(commandMap.getMap());	
+		myInfoService.updateMyInfoModify(commandMap.getMap(), request);	
+		myInfoService.updatePstPlace(commandMap.getMap(), request);
 		return mv;
 	}
 	
 	//일반회원일때
 	commandMap.put("MEM_ID",id);
-	myInfoService.updateMyInfoModify(commandMap.getMap());	
+	commandMap.put("PROFILE_NO", profile_num);
+	myInfoService.updateMyInfoModify(commandMap.getMap(), request);	
 	return mv;
 }
 
@@ -170,4 +206,3 @@ public ModelAndView MyInfoDeleteConfirm(CommandMap commandMap, HttpServletReques
 	
 
 }   
-  
