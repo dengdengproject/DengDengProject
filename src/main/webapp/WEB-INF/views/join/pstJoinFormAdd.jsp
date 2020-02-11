@@ -68,6 +68,8 @@
 			$("#PHONE").focus();
 			return false;
 		}
+		
+
 
 		comSubmit.setUrl("<c:url value='/joinPstAdd' />");
 		comSubmit.submit();
@@ -82,13 +84,13 @@
 
 <!--  회원가입 탭 -->
 <div style="height: 950px">
-	<div style="text-align: center; margin-top: 3em">
-		<span style="font-size: 2em; font-weight: bold;">펫시터 정보 입력</span>
+	<div style="text-align: center; margin-top: 3em; filter: drop-shadow(0 0 15px rgba(0, 0, 0, 0.7));">
+		<span style="font-size: 2em; font-weight: bold; color:black">펫시터 정보 입력</span>
 	</div>
 
 	<div
 		style="text-align: center; position: relative; left: 20em; margin-top: 1em">
-		<span>* 표시는 필수 입력 사항입니다.</span>
+		<span style="color:black">* 표시는 필수 입력 사항입니다.</span>
 	</div>
 
 
@@ -127,6 +129,7 @@
 				type="radio" value="N" id="PSMEM_LICENSE_CHECK"
 				name="PSMEM_LICENSE_CHECK">아니오</label>
 		</div>
+		
 		<div
 			style="text-align: center; position: relative; right: 21.9em; bottom: 0.5em;">
 			<span style="font-weight: bold;">자격증 등록</span>
@@ -134,7 +137,7 @@
 		<div id="license_add" style="text-align: center">
 			<div
 				style="text-align: center; position: relative; right: 9em; bottom: 2.5em;">
-				<input type="text" placeholder="자격 명칭" style="width: 10em"></input>
+				<input type="text" placeholder="자격 명칭" style="width: 10em" id="PSMEM_LICENSE_NAME" name="PSMEM_LICENSE_NAME"></input>
 			</div>
 
 			<div align="center">
@@ -152,8 +155,8 @@
 				</div>
 			</div>
 
-			<span id="upload-name"
-				style="position: relative; bottom: 4.5em; right: 10em;">선택된
+			<span
+				style="position: relative; bottom: 4.5em; right: 10em;" id="PSMEM_LICENSE_FILE" name="PSMEM_LICENSE_FILE">선택된
 				파일 없음</span>
 </div>
 <div id="field"></div>
@@ -162,6 +165,7 @@
 
 	<button style="width: 17em" onclick="add_item()">자격증 추가</button>
 </div>
+
 <div
 	style="text-align: center; position: relative; right: 23em; bottom: 0.5em;">
 	<span style="font-weight: bold;">관련학과 졸업 여부*</span>
@@ -174,6 +178,7 @@
 		type="radio" value="N" id="PSMEM_SCHOOL_FINISH_CHECK"
 		name="PSMEM_SCHOOL_FINISH_CHECK">아니오</label>
 </div>
+
 <div
 	style="text-align: center; position: relative; right: 21em; bottom: 0.5em;">
 	<span style="font-weight: bold;">위탁 장소*</span>
@@ -182,7 +187,7 @@
 
 	<div
 		style="text-align: center; position: relative; right: 5.3em; bottom: 1em">
-		<button type="button" style="width: 8em; height: 32px;"
+		<button type="button" style="width: 8em; height: 32px;" class="mini_btn"
 			onclick="openZipSearch()">우편번호 검색</button>
 		<input type="text" name="PSMEM_CONSIGNMENT_ZIPCODE"
 			id="PSMEM_CONSIGNMENT_ZIPCODE"
@@ -243,21 +248,24 @@
 				<img id="img" />
 			</div>
 		</div>
-		<a href="javascript:" onclick="fileUploadAction();" class="my_button">파일
+		<a href="javascript:" onclick="fileUploadAction();" class="my_button" style="color:white">이미지
 			업로드</a> <input type="file" id="input_imgs" name="file" multiple />
 	</div>
 </div>
-</div>
+
+
+
 <div align="center">
 	<div
 		style="text-align: center; position: relative; right: 8em; bottom: 16em; margin-top: 1em; width: 14em">
-		<button style="width: 13em; height: 3em" id="cancle">처음으로</button>
+		<button style="width: 13em; height: 3em" id="cancle" class="btn_style">처음으로</button>
 	</div>
 	<div
 		style="text-align: center; position: relative; left: 13em; bottom: 20em; margin-top: 1em; width: 14em">
-		<button style="width: 13em; height: 3em" id="join">다음</button>
+		<button style="width: 13em; height: 3em" id="join" class="btn_style">다음</button>
 	</div>
 </div>
+
 </form>
 
 <%@ include file="/WEB-INF/views/include/include-body.jspf"%>
@@ -268,6 +276,36 @@
 input[type=file] {
 	display: none;
 }
+
+.mini_btn {
+	font-weight: bold;
+	border: none;
+	background-color: #79BFFF;
+	color: white;
+	border-radius: 5px;
+}
+
+.btn_style {
+	background: #5483EC;
+	color: #fff;
+	font-weight: bold;
+	border-radius: 20px;
+	transition: 0.4s;
+	border: none;
+}
+
+.btn_style:hover {
+	cursor: pointer;
+	background: #0B2564;
+}
+
+
+
+span {
+	color: #5483EC;
+}
+
+
 
 .my_button {
 	display: inline-block;
@@ -360,7 +398,7 @@ input[type=file] {
 	//자격증 파일 이름 적용
 	document.getElementById('input-file').addEventListener('change',
 			function() {
-				var filename = document.getElementById('upload-name');
+				var filename = document.getElementById('PSMEM_LICENSE_FILE');
 				if (this.files[0] == undefined) {
 					filename.innerText = '선택된 파일없음';
 					return;

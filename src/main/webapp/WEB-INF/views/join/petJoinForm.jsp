@@ -47,15 +47,18 @@
 <!-- 댕댕이정보 입력 시작 -->
 <div style="height: 1200px;">
 	<div style="text-align: center; margin-top: 4em">
-		<span style="font-size: 2em; font-weight: bold;">댕댕이 정보 입력</span>
+		<div style="filter: drop-shadow(0 0 15px rgba(0, 0, 0, 0.7));">
+				<span style="font-size: 2em; font-weight: bold; color:black">댕댕이 정보 입력</span>
+		
+		</div>
 		<div style="text-align: center; margin-top: 1em">
-			<span style="font-size: 1em; position: relative; right: 10.5em;"><br>지금
+			<span style="font-size: 1em; position: relative; right: 10.5em; color:black"><br>지금
 				댕댕이 등록을 하지 않으셔도 회원 가입은 완료하실 수 있습니다.</br></span>
 		</div>
 	</div>
 	<div
 		style="text-align: center; position: relative; left: 20em; margin-top: 1em">
-		<span>* 표시는 필수 입력 사항입니다.</span>
+		<span style=" color:black">* 표시는 필수 입력 사항입니다.</span>
 	</div>
 	<form action="petRegist" id="joinForm" enctype="multipart/form-data"
 		method="post">
@@ -98,7 +101,7 @@
 					style="width: 10em; position: relative; right: 13em; bottom: 2em;">
 			</div>
 			<div>
-				<button type="button"
+				<button type="button" class="mini_btn"
 					style="width: 8em; height: 32px; position: relative; right: 3em; bottom: 4.3em;">품종
 					검색</button>
 			</div>
@@ -191,18 +194,18 @@
 			<div
 				style="text-align: center; position: relative; right: 10.5em; bottom: 1em">
 				<button type="button" style="width: 8em; height: 32px;"
-					onclick="openZipSearch()">우편번호 검색</button>
+					onclick="openZipSearch()" class="mini_btn">우편번호 검색</button>
 				<input type="text" name="PET_MEM_ZIPCODE" id="PET_MEM_ZIPCODE"
 					placeholder="우편번호" style="width: 9em; height: 26px; left: 1em;" />
 				<br> <input type="text" name="PET_MEM_ADDRESS1"
 					id="PET_MEM_ADDRESS1"
-					style="position: relative; left: 6em; margin-top: 0.5em; width: 200px; height: 30px;"
+					style="position: relative; left: 5.8em; margin-top: 0.5em; width: 200px; height: 30px;"
 					readonly /> <input type="text" name="PET_MEM_ADDRESS_ADD"
 					id="PET_MEM_ADDRESS_ADD"
 					style="position: relative; left: 7em; margin-top: 0.5em; width: 200px; height: 30px;" /><br>
 				<input type="text" name="PET_MEM_ADDRESS2" id="PET_MEM_ADDRESS2"
 					placeholder="상세주소"
-					style="position: relative; right: 1em; margin-top: 0.5em; width: 200px; height: 30px;" />
+					style="position: relative; right: 1.4em; margin-top: 0.5em; width: 200px; height: 30px;" />
 			</div>
 		</div>
 
@@ -233,7 +236,7 @@
 		<input type="hidden" id="ID" name="ID" value="${ID}"> <input
 			type="hidden" id="PET_MEM_ID" name="PET_MEM_ID" value="123">
 		<input type="hidden" id="PET_MEM_USE_TIME" name="PET_MEM_USE_TIME"
-			value="0"> <span style="font-weight: bold;">회원 아이디 값은</span>
+			value="0"> <span style="font-weight: bold;"></span>
 		<p>${ID}</p>
 
 		<!-- 프로필 사진 등록 -->
@@ -247,8 +250,8 @@
 					</div>
 				</div>
 				<div class="input_wrap">
-					<a href="javascript:" onclick="fileUploadAction();"
-						class="my_button">파일 업로드</a> <input type="file" id="input_imgs"
+					<a href="javascript:" onclick="fileUploadAction();" style="color:white"
+						class="my_button">이미지 업로드</a> <input type="file" id="input_imgs"
 						name="file" multiple />
 				</div>
 			</div>
@@ -258,13 +261,13 @@
 
 		<div align="center">
 			<div
-				style="text-align: center; position: relative; right: 8em; bottom: 16em; margin-top: 1em; width: 14em">
-				<button style="width: 13em; height: 3em" id="cancel">이전</button>
+				style="text-align: center; position: relative; right: 8em; bottom: 19em; margin-top: 1em; width: 14em">
+				<button style="width: 13em; height: 3em" id="cancel" class="btn_style">이전</button>
 			</div>
 
 			<div
-				style="text-align: center; position: relative; left: 13em; bottom: 20em; margin-top: 1em; width: 14em">
-				<button style="width: 13em; height: 3em" id="join">다음</button>
+				style="text-align: center; position: relative; left: 13em; bottom: 23em; margin-top: 1em; width: 14em">
+				<button style="width: 13em; height: 3em" id="join" class="btn_style">다음</button>
 			</div>
 		</div>
 	</form>
@@ -279,6 +282,34 @@
 input[type=file] {
 	display: none;
 }
+
+ span {
+	color: #5483EC;
+} 
+
+.mini_btn {
+	font-weight: bold;
+	border: none;
+	background-color: #79BFFF;
+	color: white;
+	border-radius: 5px;
+}
+
+.btn_style {
+	background: #5483EC;
+	color: #fff;
+	font-weight: bold;
+	border-radius: 20px;
+	transition: 0.4s;
+	border: none;
+}
+
+.btn_style:hover {
+	cursor: pointer;
+	background: #0B2564;
+}
+
+
 
 .my_button {
 	display: inline-block;
