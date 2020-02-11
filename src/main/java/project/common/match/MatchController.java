@@ -1,5 +1,8 @@
 package project.common.match;
-
+//
+//2020.02.11 호석
+//
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -11,12 +14,12 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import net.sf.json.JSONArray;
 import project.common.common.CommandMap;
 
 @Controller
@@ -103,12 +106,14 @@ public class MatchController {
 	}
 	
 	//Match Detail로 이동 : 호석
-	@SuppressWarnings("null")
+	@SuppressWarnings("static-access")
 	@RequestMapping(value = "/matchDetail", method = {RequestMethod.GET})
 	public ModelAndView matchDetail(CommandMap commandmap, @RequestParam("seq") int seq, @RequestParam("ID") String ID) throws Exception {
 		ModelAndView mv = new ModelAndView("/match/matchDetail");
 
 		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		//세션에서 ID 가져오기
 		map.put("ID", ID);
 		
 		Map<String, Object> mthdtl = matchService.matchDetail(seq);
@@ -121,73 +126,125 @@ public class MatchController {
 		List<Map<String, Object>> pstImg = matchService.selPetsitterAddImg(map);//위탁 장소 이미지 가져오기
 		List<Map<String, Object>> certi = matchService.selCertificate(map);//자격증 이미지 가져오기
 		
+		//가능한 서비스 목록 가져오기
 		String serviceLt = (String) mthdtl.get("POSSIBLE_SERVICE");
 		String[] serviceList = serviceLt.split(",");
 		
-		//System.out.println(Arrays.toString(serviceList));
+		System.out.println("가능한 서비스 : " + Arrays.toString(serviceList));
 		
-		String dateflickr = (String) mthdtl.get("MATCH_DATE");
-		String[] dateflikr = dateflickr.split(",");
+		//가능한 날짜 목록 가져오기
+		ArrayList<String> flickr = new ArrayList<String>();
 		
-		System.out.println(Arrays.toString(dateflikr));
+		String date1 = (String) mthdtl.get("MATCH_DATE");
+		String[] date2 = date1.split(",");
 		
-		String flickr = "";
+		System.out.println("선택 가능 날짜(배열) : " + Arrays.toString(date2));
 		
-		for(int i = 0; i < dateflikr.length; i++) {
-			flickr += '\"' + dateflikr[i] + '\"' + ",";
+		String date3 = "";
+		
+		for(int i = 0; i < date2.length; i++) {
+			date3 += '\"' + date2[i] + '\"' + ",";
 		}
 		
-		System.out.println(flickr);
+		System.out.println("큰 따옴표 붙인 날짜(스트링) : " + date3);
 		
-		String[] flikr = flickr.split(",");
-		System.out.println(Arrays.toString(flikr));
+		String[] date4 = date3.split(",");
 		
+		System.out.println("큰 따옴표 붙인 날짜(배열) : " + Arrays.toString(date4));
 		
+		for(String item : date4) {
+			flickr.add(item);
+		}
+		//이 부분은 리스트를 넘겨서 확인하는 부분입니다.
+		List<String> chkList = new ArrayList<String>();
+		for(String item1 : date4) {
+			chkList.add(item1);
+		}
+		System.out.println(chkList);
+		//이 위까지 확인 부분입니다.
 		
-		mv.addObject("flikr", flikr);
-		mv.addObject("flickr", flickr);
-		mv.addObject("flatFlickr", dateflikr);
+		System.out.println("선택 가능 날짜(리스트) : " + flickr);
 		
-		mv.addObject("serviceList", serviceList);
-		mv.addObject("matchDtl", mthdtl);
-		mv.addObject("pst", pst);
-		mv.addObject("pstAdd", pstAdd);
-		mv.addObject("pet", pet);
-		mv.addObject("pstPfl", pstPfl);
-		mv.addObject("pstImg", pstImg);
-		mv.addObject("certi", certi);
+		JSONArray flikr = new JSONArray();
+		
+		mv.addObject("chkList", chkList);	//리스트 넘어가나 확인 중
+		mv.addObject("flikr", flikr.fromObject(flickr));				//선택 날짜 리스트
+		mv.addObject("serviceList", serviceList);	//선택 서비스 배열
+		mv.addObject("matchDtl", mthdtl);			//매치 정보(해당 글)
+		mv.addObject("pst", pst);					//펫시터 정보
+		mv.addObject("pstAdd", pstAdd);				//펫시터 추가 정보
+		mv.addObject("pet", pet);					//펫 정보(펫시터)
+		mv.addObject("pstPfl", pstPfl);				//펫 프로필 이미지(펫시터)
+		mv.addObject("pstImg", pstImg);				//펫시터 위탁 장소 이미지
+		mv.addObject("certi", certi);				//펫시터 자격증 이미지
+		
 		return mv;
 	}
 	
 	//Match Search
-	@RequestMapping(value = "/matchSearchClick") //이 부분부터 하면 된다!
+	@RequestMapping(value = "/matchSearchClick")
 	public ModelAndView matchSearchClick(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/match/matchResultList");
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
-		if(request.getParameter("ADDRESS1") != null) {
+		//이 부분은 값이 넘어오는지 확인하는 부분
+		System.out.println("넘어온 주소값(스트링) : " + request.getParameter("ADDRESS1"));
+		
+		//이 부분은 주소값 만들기 부분
+		if(request.getParameter("ADDRESS1") != null && request.getParameter("ADDRESS1") != "") {
 			String Address1 = request.getParameter("ADDRESS1");
 			String[] searchAddress = Address1.split(" ");
-			System.out.println(Arrays.toString(searchAddress));
-			map.put("searchAddress", searchAddress);
-		}	//주소 배열로 쪼개넣기 끝
+			System.out.println("주소값(배열) : " + Arrays.toString(searchAddress));
+			
+			for(int i = 0; i < searchAddress.length; i++ ) {
+				map.put("add1", searchAddress[0]);
+				map.put("add2", searchAddress[1]);
+			}
+		
+			for(Map.Entry<String, Object> elem : map.entrySet()) {
+				String key = elem.getKey();
+				Object value = elem.getValue();
+				
+				System.out.println("저장된 주소값 : " + key + " : " + value);
+			}
+		}	//주소 배열 쪼개서 조건값 2개(도, 시(구)) 만들기 끝.
+		
+		//조건 검색 만들기 부분
+		ArrayList<String> serviceLt = new ArrayList<String>();
+		
+		String arr[] = request.getParameterValues("serviceChk");
+		
+		System.out.println("넘어온 서비스(배열) : " + Arrays.toString(arr));
+		
+		for(String item : arr) {
+			serviceLt.add(item);
+		}
+		
+		System.out.println("서비스 리스트 : " + serviceLt);
+		try {
+			map.put("serviceLt", serviceLt);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		//날짜 선택 부분
+		System.out.println("넘어온 날짜(스트링) : " + request.getParameter("basicDate"));
 		
 		if(request.getParameter("basicDate") != null) {
 			String searchDate = request.getParameter("basicDate");
 			String[] searchDay = searchDate.split(",");
-			System.out.println(Arrays.toString(searchDay));
+			System.out.println("날짜 배열 : " + Arrays.toString(searchDay));
 			map.put("searchDay", searchDay);
 		}	//예약 날짜 쪼개기 끝
-		System.out.println(request.getParameterValues("searchCheck"));
-//		if(request.getParameterValues("searchCheck") != null) {	//이게 어레이로 넘어오던가?
-//			String[] arr = request.getParameterValues("searchCheck");
-//			System.out.println(Arrays.toString(arr));
-//			map.put("searchCheckArr", arr);
-//		} 
+		
+		//맵 키, 값 확인하기
+		for(Map.Entry<String, Object> entry : map.entrySet()) {
+			System.out.println("[key] : " + entry.getKey() + ", " + "[value] : " + entry.getValue());
+		}
 		
 		List<Map<String, Object>> resultComplete = matchService.mtchSearch(map);
-		
+		//이 윗부분 실행해서 값이 null이거나 ""이면 알럿 띄우고 다시 메인으로 돌아가게 해야 함.
 		mv.addObject("resultComplete", resultComplete);
 			
 		return mv;

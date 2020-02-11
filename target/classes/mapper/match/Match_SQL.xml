@@ -1,16 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="matchSql">
-
-	<!-- 매치 리스트 가져오기--> <!-- 현재 실패 -->
-	<select id="matchList" parameterType="hashmap" resultType="hashmap">
-		<![CDATA[
-			SELECT *
-			FROM
-				MATCH_REGISTER
-		]]>
-	</select>
-
+<!-- 
+2020.02.11 호석
+ -->
 	<!-- 매치 등록 폼 이동 버튼 --> <!-- 사실 이 쿼리는 그냥 각각의 테이블을 호출하는 쿼리문을 사용했어도 됐다. -->
 	<!-- <select id="matchInsertForm" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
@@ -312,29 +305,25 @@
 	
 	<!-- 검색 기능 : 존나 어렵네 -->
 	<select id="matchSearch" parameterType="hashmap" resultType="hashmap">
-		<![CDATA[
 			SELECT
 				*
 			FROM
 				MATCH_REGISTER
 			WHERE
-				<foreach collection="searchAddress" item="add" separator=" AND ">
-					PSMEM_ADDRESS1 LIKE '%'||'#{add.value}'||'%'
-				</foreach>		
-
-			ORDER BY MATCH_NO DESC
-		]]>
-	</select>
-					<!-- <choose>
-					<when test="searchDay != '' || searchDay != null>
+				PSMEM_ADDRESS1 LIKE '%'||#{add1}||'%' AND PSMEM_ADDRESS1 LIKE '%'||#{add2}||'%' 
+			    <choose>
+			    	<when test="serviceLt != null || serviceLt != null">
+						<foreach item="item" collection="serviceLt" index="index">
+							AND POSSIBLE_SERVICE LIKE '%'||#{item}||'%'
+						</foreach>
+					</when>
+					<when test="searchDay != '' || searchDay != null">
 						<foreach collection="searchDay" item="day">
-							AND MATCH_DATE LIKE '%'||'#{day.value}'||'%'
+							AND MATCH_DATE LIKE '%'||'#{day}'||'%'
 						</foreach>
 					</when>
-					<when test="searchCheckArr != '' || searchCheckArr != null>
-						<foreach collection="searchCheckArr" item="service">
-							AND POSSIBLE_SERVICE LIKE '%'||'#{service.value}'||'%'
-						</foreach>
-					</when>
-				</choose> -->
+				</choose>
+			ORDER BY MATCH_NO DESC
+	</select>
+					
 </mapper>

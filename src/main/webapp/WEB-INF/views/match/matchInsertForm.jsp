@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<!-- 
+2020.02.11 호석 
+-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="kr" lang="kr">
 
@@ -175,19 +178,19 @@ function showSlides(n) {
 					</div>
 						<table style="border-spacing: 60px 15px; margin: auto;">
 							<tr>
-								<td><input type="checkbox" id="serviceChk1" class="serviceChk" name="serviceChk" value="service1"/><label for="serviceChk1">반려동물 없음</label></td>
-								<td><input type="checkbox" id="serviceChk2" class="serviceChk" name="serviceChk" value="service2"/><label for="serviceChk2">픽업</label></td>
-								<td><input type="checkbox" id="serviceChk3" class="serviceChk" name="serviceChk" value="service3"/><label for="serviceChk3">대형견</label></td>
+								<td><input type="checkbox" id="serviceChk1" class="serviceChk" name="serviceChk" value="service01"/><label for="serviceChk1">반려동물 없음</label></td>
+								<td><input type="checkbox" id="serviceChk2" class="serviceChk" name="serviceChk" value="service02"/><label for="serviceChk2">픽업</label></td>
+								<td><input type="checkbox" id="serviceChk3" class="serviceChk" name="serviceChk" value="service03"/><label for="serviceChk3">대형견</label></td>
 							</tr>
 							<tr>
-								<td><input type="checkbox" id="serviceChk4" class="serviceChk" name="serviceChk" value="service4"/><label for="serviceChk4">마당 있음</label></td>
-								<td><input type="checkbox" id="serviceChk5" class="serviceChk" name="serviceChk" value="service5"/><label for="serviceChk5">노견 케어</label></td>
-								<td><input type="checkbox" id="serviceChk6" class="serviceChk" name="serviceChk" value="service6"/><label for="serviceChk6">장기 예약</label></td>
+								<td><input type="checkbox" id="serviceChk4" class="serviceChk" name="serviceChk" value="service04"/><label for="serviceChk4">마당 있음</label></td>
+								<td><input type="checkbox" id="serviceChk5" class="serviceChk" name="serviceChk" value="service05"/><label for="serviceChk5">노견 케어</label></td>
+								<td><input type="checkbox" id="serviceChk6" class="serviceChk" name="serviceChk" value="service06"/><label for="serviceChk6">장기 예약</label></td>
 							</tr>
 							<tr>
-								<td><input type="checkbox" id="serviceChk7" class="serviceChk" name="serviceChk" value="service7"/><label for="serviceChk7">실내 놀이</label></td>
-								<td><input type="checkbox" id="serviceChk8" class="serviceChk" name="serviceChk" value="service8"/><label for="serviceChk8">매일 산책</label></td>
-								<td><input type="checkbox" id="serviceChk9" class="serviceChk" name="serviceChk" value="service9"/><label for="serviceChk9">목욕 가능</label></td>
+								<td><input type="checkbox" id="serviceChk7" class="serviceChk" name="serviceChk" value="service07"/><label for="serviceChk7">실내 놀이</label></td>
+								<td><input type="checkbox" id="serviceChk8" class="serviceChk" name="serviceChk" value="service08"/><label for="serviceChk8">매일 산책</label></td>
+								<td><input type="checkbox" id="serviceChk9" class="serviceChk" name="serviceChk" value="service09"/><label for="serviceChk9">목욕 가능</label></td>
 							</tr>
 							<tr>
 								<td><input type="checkbox" id="serviceChk10" class="serviceChk" name="serviceChk" value="service10"/><label for="serviceChk10">약물 경구 복용</label></td>

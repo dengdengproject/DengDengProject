@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<!-- 
+2020.02.11 호석 
+-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="kr" lang="kr">
 
@@ -66,15 +69,21 @@ function showSlides(n) {
 	<input type="hidden" name="PSMEM_ID" id="PSMEM_ID" value="${ID}" />
 	<input type="hidden" name="name" id="name" value="${name}"/>
 	<input type="hidden" name="GRADE" id="GRADE" value="${grade}"/>
-	<!-- <input type="hidden" name="datePic" id="datePic" value="${flikr}"/>
-	<c:forEach items="${flikr}" var="dP">
-		${dP}"
-	</c:forEach> -->
+	<input type="hidden" name="flikr1" id="fiikr1" value="${flikr}"/>
+	<input type="hidden" name="chkList" id="chkList" value="${chkList}"/>
+	<!-- 기능 완료되면 삭제할 부분 아래 3줄 -->
+	<c:forEach items="${flikr}" var="list">
+	${list}
+	</c:forEach>
+	<br/>
+	<c:forEach items="${chkList}" var="list1">
+	${list1}
+	</c:forEach>
 	
 <!-- 이미지 슬라이드 -->
 	<div class="container" style="text-align: center;">
 		<!-- <a class="prev" onclick="plusSlides(-1)">❮</a>
-  		<a class="next" onclick="plusSlides(1)">❯</a> -->
+  		<a class="next" onclick="plusSlides(1)">❯</a> 앞 뒤 이동 버튼. 적용하면 이상해져서 안 함 -->
 		<c:forEach var="pstIMG" items="${pstImg}" varStatus="status">
   			<div class="mySlides">
    	 			<div class="numbertext"><c:out value="${status.count}"/> / <c:out value="${status.end}"/></div>
@@ -116,7 +125,7 @@ function showSlides(n) {
 						<img width="17px" height="17px" style="object-fit: cover; display: inline-block; margin-right: 5px;" src="resources/images/point.png"> ${name} 펫시터님의 상세 조건입니다.</h2>
 					</div>
 					<c:forEach var="service" items="${serviceList}">
-						<c:if test="${service == 'service1'}">
+						<c:if test="${service == 'service01'}">
 							<div style="display: block; width: 200px; height: 69px; float: left; position: relative; text-align: cetner;">
 								<div style="display: inline-block; float: left; position: relative; text-align: cetner; margin-left: 30px;">
 								<img width="32" height="32" src="resources/images/service1.png"></div>
@@ -128,7 +137,7 @@ function showSlides(n) {
 								</div>
 							</div>
 						</c:if>
-						<c:if test="${service == 'service2'}">
+						<c:if test="${service == 'service02'}">
 							<div style="display: block; width: 200px; height: 69px; float: left; position: relative; text-align: cetner;">
 								<div style="display: inline-block; float: left; position: relative; text-align: cetner; margin-left: 30px;">
 								<img width="32" height="32" src="resources/images/service1.png"></div>
@@ -140,7 +149,7 @@ function showSlides(n) {
 								</div>
 							</div>
 						</c:if>
-						<c:if test="${service == 'service3'}">
+						<c:if test="${service == 'service03'}">
 							<div style="display: block; width: 200px; height: 69px; float: left; position: relative; text-align: cetner;">
 								<div style="display: inline-block; float: left; position: relative; text-align: cetner; margin-left: 30px;">
 								<img width="32" height="32" src="resources/images/service1.png"></div>
@@ -152,7 +161,7 @@ function showSlides(n) {
 								</div>
 							</div>
 						</c:if>
-						<c:if test="${service == 'service4'}">
+						<c:if test="${service == 'service04'}">
 							<div style="display: block; width: 200px; height: 69px; float: left; position: relative; text-align: cetner;">
 								<div style="display: inline-block; float: left; position: relative; text-align: cetner; margin-left: 30px;">
 								<img width="32" height="32" src="resources/images/service1.png"></div>
@@ -164,7 +173,7 @@ function showSlides(n) {
 								</div>
 							</div>
 						</c:if>
-						<c:if test="${service == 'service5'}">
+						<c:if test="${service == 'service05'}">
 							<div style="display: block; width: 200px; height: 69px; float: left; position: relative; text-align: cetner;">
 								<div style="display: inline-block; float: left; position: relative; text-align: cetner; margin-left: 30px;">
 								<img width="32" height="32" src="resources/images/service1.png"></div>
@@ -176,7 +185,7 @@ function showSlides(n) {
 								</div>
 							</div>
 						</c:if>
-						<c:if test="${service == 'service6'}">
+						<c:if test="${service == 'service06'}">
 							<div style="display: block; width: 200px; height: 69px; float: left; position: relative; text-align: cetner;">
 								<div style="display: inline-block; float: left; position: relative; text-align: cetner; margin-left: 30px;">
 								<img width="32" height="32" src="resources/images/service1.png"></div>
@@ -188,7 +197,7 @@ function showSlides(n) {
 								</div>
 							</div>
 						</c:if>
-						<c:if test="${service == 'service7'}">
+						<c:if test="${service == 'service07'}">
 							<div style="display: block; width: 200px; height: 69px; float: left; position: relative; text-align: cetner;">
 								<div style="display: inline-block; float: left; position: relative; text-align: cetner; margin-left: 30px;">
 								<img width="32" height="32" src="resources/images/service1.png"></div>
@@ -200,7 +209,7 @@ function showSlides(n) {
 								</div>
 							</div>
 						</c:if>
-						<c:if test="${service == 'service8'}">
+						<c:if test="${service == 'service08'}">
 							<div style="display: block; width: 200px; height: 69px; float: left; position: relative; text-align: cetner;">
 								<div style="display: inline-block; float: left; position: relative; text-align: cetner; margin-left: 30px;">
 								<img width="32" height="32" src="resources/images/service1.png"></div>
@@ -212,7 +221,7 @@ function showSlides(n) {
 								</div>
 							</div>
 						</c:if>
-						<c:if test="${service == 'service9'}">
+						<c:if test="${service == 'service09'}">
 							<div style="display: block; width: 200px; height: 69px; float: left; position: relative; text-align: cetner;">
 								<div style="display: inline-block; float: left; position: relative; text-align: cetner; margin-left: 30px;">
 								<img width="32" height="32" src="resources/images/service1.png"></div>
@@ -634,21 +643,21 @@ function showSlides(n) {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.js"></script>
 <!-- flatpickr -->  
 <script id="INLINE_PEN_JS_ID">
-	var form = document.matchInsert.datePic;
-	
-	//alert(document.getElementById(form.value))
+	var form = document.matchInsert;
 
+	
 	$("#basicDate").flatpickr({  // 이 방식은 펫시터가 사용. //일단 disable이 불가능한 것 같으니 일반 회원도 이걸로 사용.
 		mode: "multiple",	//다중 선택
 		dateFormat: "Y-m-d",
-		minDate: "today"  //펫시터가 선택하는 날짜는 DB에 리스트로 저장했다가 일반 회원이 고를 때 enable로 가능한 날짜만 표시.
+		minDate: "today",  //펫시터가 선택하는 날짜는 DB에 리스트로 저장했다가 일반 회원이 고를 때 enable로 가능한 날짜만 표시.
+		disable: [form]
 	});					  //그렇게 DB에 저장하면 펫시터가 원하는 날짜만 골라서 매칭할 수 있을 것 같음.
 	
 	$("#rangeDate").flatpickr({	//이 방식은 일반 회원이 사용
 		mode: "range",		//시작에서 끝까지 from to 형식으로 선택	//이 방식은 또 어떻게 검색해야 할지 감이 안 온다.
 		dateFormat: "Y-m-d",
 		minDate: "today",
-		disable: [flikr]	//배열을 읽지를 못하네 어쩌지
+		disable: [form]	//배열을 읽지를 못하네 어쩌지
 		//disable: ["2020-02-18", "2020-02-19", "2020-02-21", "2020-02-20", "2020-02-27", "2020-02-26"]  //이 부분은 테이블에 불가능한 날짜를 리스트로 저장하고, 회원이 일정 고를 때 긁어와서 저기에 넣어야 할 것 같음.
 	});
 
