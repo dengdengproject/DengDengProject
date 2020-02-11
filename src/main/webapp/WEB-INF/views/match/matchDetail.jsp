@@ -18,46 +18,48 @@
 <c:set var="certiChk" value="${pstAdd.PSMEM_CERTI_CHECK}" />
 
 <script type="text/javascript">
-// 이미지 슬라이드
-var slideIndex = 1;
-showSlides(slideIndex);
+	// 이미지 슬라이드
+	var slideIndex = 1;
+	showSlides(slideIndex);
 
-function plusSlides(n) {
-  showSlides(slideIndex += n);
-}
+	function plusSlides(n) {
+		showSlides(slideIndex += n);
+	}
 
-function currentSlide(n) {
-  showSlides(slideIndex = n);
-}
+	function currentSlide(n) {
+		showSlides(slideIndex = n);
+	}
 
-function showSlides(n) {
-  var i;
-  var slides = document.getElementsByClassName("mySlides");
-  var dots = document.getElementsByClassName("demo");
-  var captionText = document.getElementById("caption");
-  if (n > slides.length) {slideIndex = 1}
-  if (n < 1) {slideIndex = slides.length}
-  for (i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none";
-  }
-  for (i = 0; i < dots.length; i++) {
-      dots[i].className = dots[i].className.replace(" active", "");
-  }
-  slides[slideIndex-1].style.display = "block";
-  dots[slideIndex-1].className += " active";
-  captionText.innerHTML = dots[slideIndex-1].alt;
-}
+	function showSlides(n) {
+		var i;
+		var slides = document.getElementsByClassName("mySlides");
+		var dots = document.getElementsByClassName("demo");
+		var captionText = document.getElementById("caption");
+		if (n > slides.length) {slideIndex = 1}
+		if (n < 1) {slideIndex = slides.length}
+		for (i = 0; i < slides.length; i++) {
+			slides[i].style.display = "none";
+		}
+		for (i = 0; i < dots.length; i++) {
+			dots[i].className = dots[i].className.replace(" active", "");
+		}
+		slides[slideIndex-1].style.display = "block";
+		dots[slideIndex-1].className += " active";
+		captionText.innerHTML = dots[slideIndex-1].alt;
+	}
+	
 // 매치 등록
-	function matchConfirm() {
+	function petsittingInsert() {
 		var form = document.matchInsert;
 
+		//이 부분에는 이제 입력할 값을 넣어야 한다는 거
 		if (form.largeHalf.value == "선택") {
 			alert("요금을 설정해주세요.")
 			form.largeHalf.focus();
 			return false;
 		}
 		
-		form.action = "/first/matchCommit";
+		form.action = "/first/petsittingReserve";
 		form.submit();
 	}	
 	
@@ -69,7 +71,7 @@ function showSlides(n) {
 	<input type="hidden" name="PSMEM_ID" id="PSMEM_ID" value="${ID}" />
 	<input type="hidden" name="name" id="name" value="${name}"/>
 	<input type="hidden" name="GRADE" id="GRADE" value="${grade}"/>
-	<input type="hidden" name="flikr1" id="fiikr1" value="${flikr}"/>
+	<input type="hidden" name="flikr" id="fiikr" value="${flikr}"/>
 	<input type="hidden" name="chkList" id="chkList" value="${chkList}"/>
 	<!-- 기능 완료되면 삭제할 부분 아래 3줄 -->
 	<c:forEach items="${flikr}" var="list">
@@ -399,7 +401,7 @@ function showSlides(n) {
 				<div style="display: flex; flex-direction: column; border-top: 1px solid rgb(235, 235, 235); padding: 10px 0px; ">
 					<div style="display: flex; flex-direction: row; align-items: center;">
 						<img width="200" height="100" src="resources/images/${certi.PROFILE_ORIGINAL_FILE_NAME}" style="object-fit: cover; margin-left: 20px; margin-right: 30px;">
-						<div style="margin-left: 18px;">
+						<div style="margin-left: 18px;">	
 							<p style="font-family: &amp; amp; amp; amp; quot; Noto Sans KR&amp;amp; amp; amp; quot; , sans-serif; font-size: 15px; letter-spacing: -0.2px; line-height: 22px; color: rgb(56, 60, 72);">
 								<b>${certi.CERTI_NAME}</b></p>
 							<p style="font-size: 14px; letter-spacing: -0.2px; line-height: 19px; color: rgb(56, 60, 72); margin-top: 20px;">
@@ -456,19 +458,19 @@ function showSlides(n) {
 					</div>
 				</c:forEach>
 			</div>
+			<!-- 이 부분에 펫시터 문의하기랑 이용후기가 달려야 함. -->
 		</div>
 		<div style="float: left; width: 30%;">
-			<!-- 펫시터 후기 --> <!-- 이미지 댓글 형식으로 만들어야 함 -->
 			<!-- 펫시터 예약 날짜 선택 -->
 			<div style="width: 375px; border-radius: 8px; border: 1px solid #DFE3EA; box-shadow: 1px 3px 7px rgba(0, 0, 0, 0.07); padding-left: 32px; padding-right: 32px; padding-bottom: 32px">
 				<p style="font-size: 17px; letter-spacing: -0.2px; line-height: 25px; color: #393C47; margin-top: 38px; margin-bottom: 30px; font-weight: 600">
-					펫시팅 가능 일정
+					예약 날짜 선택
 				</p>
 				<div style="display: flex; flex-grow: 1; margin-top: 1em">
 					<form method="get" class="tm-search-form tm-section-pad-2">
 						<div class="form-group tm-form-element tm-form-element-50" style="width: 22em; right: 3em; bottom: 1em">
 							<i class="fa fa-calendar fa-2x tm-form-element-icon"></i>
-							<input name="basicDate" type="text" class="flatpickr-input" id="basicDate" placeholder="펫시팅이 가능한 날짜를 선택해주세요." style="font-size: 1em">
+							<input name="basicDate" type="text" class="flatpickr-input" id="basicDate" placeholder="클릭해서 예약 날짜를 선택해주세요." style="font-size: 1em">
 						</div>
 					</form>
 				</div>
@@ -625,13 +627,20 @@ function showSlides(n) {
 					</script>
 				</div>
 			</div>
-		</div>
-	</div>
-	<div style="width: 100%">
-		<div style="margin-top: 100px">
-			<div style="position: relative; bottom: 10em; left: 11em; text-align: center; width: 7em">
-				<button type="button" style="width: 7em; height: 3em;"
-					class="matchButton" id="matchInsertBt" onclick="matchConfirm()">등록</button>
+			<div style="width: 375px; border-radius: 8px; border: 1px solid #DFE3EA; box-shadow: 1px 3px 7px rgba(0, 0, 0, 0.07); padding-left: 25px; padding-right: 25px; padding-bottom: 32px; margin-top: 40px; text-align: center; vertical-align: middle; align-items: center; position: relative;">
+				<p style="font-size: 17px; letter-spacing: -0.2px; line-height: 25px; color: #393C47; margin-top: 38px; margin-bottom: 30px; font-weight: 600"></p>
+				<div style="display: block; height: 80px; width: auto; position: relative; text-align: center; vertical-align: middle;">
+					<div style="display: inline-block; height: auto; width: auto; text-align: center; position: relative; vertical-align: middle;">
+						<div style="height: 30px; width: auto; margin-top: 10px; margin-left: 10px; margin-right: 10px; text-align: center; position: relative; vertical-align: middle;">
+							<button type="button" style="height: 50px; width: 130px; font-size: 20px; font: bold; background-color: #037FBB; border: none; color:#fff; cursor: pointer; border-radius: 10px;" name="petsittingReserveBt" id="petsittingReserveBt" onclick="petsittingInsert()">예약하기</button>
+						</div>
+					</div>
+					<div style="display: inline-block; height: auto; width: auto; text-align: center; position: relative; vertical-align: middle;">
+						<div style="height: 30px; width: auto; margin-top: 10px; margin-left: 10px; margin-right: 10px; text-align: center; position: relative; vertical-align: middle;">
+							<button type="button" style="height: 50px; width: 130px; font-size: 20px; font: bold; background-color: #037FBB; border: none; color:#fff; cursor: pointer; border-radius: 10px;" name="petsittingReserveBt" id="petsittingReserveBt" onclick="petsittingInsert()">찜하기</button>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

@@ -1,5 +1,7 @@
 <%@ page pageEncoding="utf-8"%>
-
+<!-- 
+200211 호석
+ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
@@ -65,8 +67,7 @@
 <!-- Font Awesome -->
 <!--    <link rel="stylesheet" href="css/bootstrap.min.css"> -->
 <!-- Bootstrap style -->
-<link rel="stylesheet" type="text/css" href="css/datepicker.css" />
-<link rel="stylesheet" href="css/tooplate-style.css">
+<link rel="stylesheet" href="resoureces/css/tooplate-style.css">
 
 <!--  Flatpicker Styles  -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.css">

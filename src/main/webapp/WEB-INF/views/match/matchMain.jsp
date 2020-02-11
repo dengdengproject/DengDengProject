@@ -104,7 +104,7 @@
 			<button type="submit" class="btn btn-primary1 tm-btn-search" style="font-size: 1em">전체보기</button>
 		</div>
 
-		<div class="ttr_Services_html_row3 row" style="margin-top: 2em">
+		<div class="ttr_Services_html_row3 row" style="margin-top: 2em; margin-bottom: 100px;">
 			<c:forEach var="nlt" items="${newList}" end="4">
 			<div style="position: relative; text-align: center; cursor: pointer;" onclick="location.href='matchDetail?seq=${nlt.MATCH_NO}&&ID=${nlt.ID}'">
 				<div style="float: left; position: relative; text-align: center; width: 18%; margin-left: 1.5%">
@@ -130,9 +130,32 @@
 			</c:forEach>
 		</div>
 			<!-- 아래는 버튼, 이 부분은 조건을 넣어야 함. 일반인지 펫시터인지. -->
-		<div>
-			<button style="height: 2em; width: 10em;" id="insrtMtch" name="insrtMtch" onclick="insertForm()">매칭 등록</button>
-		</div>
+		<c:choose>
+			<c:when test="${MEM_TYPE == '펫시터'}">
+				<div style="text-align: center; margin-top: 5em">
+					<span style="font-weight: bold; font-size: 1.8em; margin-bottom: 15px;">펫시터님! 매칭 등록은 하셨나요?</span>
+					<br/>
+					<p style="color:#BDBDBD; margin-top: 15px;">매칭 등록을 완료하셔야 매칭 서비스에 노출이 됩니다.</p>
+				</div>
+				<div style="display: block; height: 150px; width: auto; position: relative; text-align: center; vertical-align: middle; margin-bottom: 15px;">
+					<div style="display: inline-block; height: auto; width: auto; text-align: center; position: relative; vertical-align: middle;">
+						<div style="height: 30px; width: 30%; margin-top: 45px; margin-left: 50px; margin-right: 50px; text-align: center; position: relative; vertical-align: middle;">
+							<button style="height: 50px; width: 200px; font-size: 25px; font: bold; background-color: #FFBF00; border: none; color:#fff; cursor: pointer; border-radius: 10px;" id="insrtMtch" name="insrtMtch" onclick="insertForm()">매칭 등록</button>
+						</div>
+					</div>
+					<div style="display: inline-block; height: auto; width: auto; text-align: center; position: relative; vertical-align: middle;">
+						<div style="height: 30px; width: 30%; margin-top: 45px; margin-left: 50px; margin-right: 50px; text-align: center; position: relative; vertical-align: middle;">
+							<button style="height: 50px; width: 200px; font-size: 25px; font: bold; background-color: #FFBF00; border: none; color:#fff; cursor: pointer; border-radius: 10px;" id="insrtMtch" name="insrtMtch" onclick="insertForm()">매칭 관리</button>
+						</div>
+					</div>
+					<div style="display: inline-block; height: auto; width: auto; text-align: center; position: relative; vertical-align: middle;">
+						<div style="height: 30px; width: 30%; margin-top: 45px; margin-left: 50px; margin-right: 50px; text-align: center; position: relative; vertical-align: middle;">
+							<button style="height: 50px; width: 200px; font-size: 25px; font: bold; background-color: #FFBF00; border: none; color:#fff; cursor: pointer; border-radius: 10px;" id="insrtMtch" name="insrtMtch" onclick="insertForm()">매칭 숨김</button>
+						</div>
+					</div>
+				</div>
+			</c:when>
+		</c:choose>
 	</div>
 </form>
 

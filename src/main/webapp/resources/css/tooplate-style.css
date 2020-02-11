@@ -175,8 +175,8 @@ p {
 }
 
 .btn-primary1 {
-	background-color: #ee5057;
-	border-color: #ee5057;
+	background-color: #045FB4;
+	border-color: #045FB4;
 	border-radius: 0;
 	cursor: pointer;
 	font-size: 0.7rem;
@@ -188,8 +188,8 @@ p {
 .btn-primary:hover,
 .btn-primary:focus,
 .btn-primary:active {
-	background-color: #d53239;
-	border-color: #d53239;
+	background-color: #58ACFA;
+	border-color: #58ACFA;
 }
 
 .tm-search-form .tm-form-element { padding: 0 5px; }

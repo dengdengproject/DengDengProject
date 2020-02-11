@@ -36,13 +36,13 @@
 	<div style="position: relative; margin-top: 10px; text-align: center;">
 			<div style="display: block; width: auto; height: 80px; position: relative; text-align: cetner;">
 				<div style="display: inline-block; position: relative; width: 600px;">
-					<input name="ADDRESS1" ID="ADDRESS1" type="text" style="width: 500px; font-size: 16px;" onclick="openZipSearch()" placeholder="거주하고 계신 곳을 입력해주세요.">
+					<input name="ADDRESS1" ID="ADDRESS1" type="text" style="width: 500px; font-size: 16px;" onclick="openZipSearch()" placeholder="    클릭해서 거주 지역을 선택해주세요.">
 					<input type="hidden" name="ZIPCODE" id="ZIPCODE"/>
 					<input type="hidden" name="ADDRESS2" id="ADDRESS2"/>
                     <input type="hidden" name="ADDRESS_ADD" id="ADDRESS_ADD"/>
 				</div>
 				<div style="display: inline-block; position: relative; width: 600px;">
-					<input name="basicDate" type="text" class="flatpickr-input" id="basicDate" style="width: 500px; font-size: 16px;" placeholder="예약 날짜를 선택해주세요.">
+					<input name="basicDate" type="text" class="flatpickr-input" id="basicDate" style="width: 500px; font-size: 16px;" placeholder="    클릭해서 예약 날짜를 선택해주세요.">
 				</div>
 			</div>
 
@@ -78,7 +78,7 @@
 				</div>
 			</div>
 		</div>
-		<div style="display: flex; width: auto; height: 40px; margin-top: 100px; margin-bottom: 40px; position: relative; text-align: cetner;">
+		<div style="display: flex; width: auto; height: 40px; margin-top: 100px; margin-bottom: 60px; position: relative; text-align: cetner;">
 			<div style="display: inline-block; position: relative; width: 800px; margin: auto; text-align: center;">
 				<button type="submit" style="background-color: #037fbb; border: none; color: #fff; padding: 12px 0; text-decoration: none; cursor: pointer; border-radius: 15px; 
 					font-size: 1.5em; width: 700px; height: 50px; margin: auto;" onclick="searchResult()">펫시터찾기</button>
