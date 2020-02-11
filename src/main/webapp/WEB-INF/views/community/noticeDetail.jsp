@@ -9,6 +9,8 @@
 
 <%@ include file="/WEB-INF/views/include/include-header-menu.jspf"%>
 
+<%@ include file="/WEB-INF/views/include/include-board-menu.jspf"%>
+
 <div style="height: 400px; border-top: solid;">
 
 	<!-- <div style="text-align: center; margin-top: 4em;">

@@ -19,7 +19,7 @@
 
 <%@ include file="/WEB-INF/views/include/include-main-item4.jspf"%>
 
-<%@ include file="/WEB-INF/views/include/include-main-item5.jspf"%>
+
 
 <%@ include file="/WEB-INF/views/include/include-footer.jspf"%>
 

@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-public class CommandMap {		//전송된 데이터는 맵으로 바로 받을 수 없기 대문에 이와 같이 설정해줘야 한다. 참고 홈페이지 (11) HandlerMethodArgumentResolver 내용 참고.
+public class CommandMap {		//전송된 데이터는 맵으로 바로 받을 수 없기 때문에 이와 같이 설정해줘야 한다. 참고 홈페이지 (11) HandlerMethodArgumentResolver 내용 참고.
 
 	Map<String, Object> map = new HashMap<String, Object>();
 	

@@ -16,7 +16,7 @@
 		http://www.springframework.org/schema/cache
 		http://www.springframework.org/schema/cache/spring-cache.xsd">
 	
-	<context:component-scan base-package="lastbd">	<!-- action-servlet.xml에서 Controller만 추가했는데, context-common.xml에서 @Controller를 제외한 나머지를 등록시켜 주는 역할을 한다. -->
+	<context:component-scan base-package="project">	<!-- action-servlet.xml에서 Controller만 추가했는데, context-common.xml에서 @Controller를 제외한 나머지를 등록시켜 주는 역할을 한다. -->
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>	<!-- action-servlet.xml에서는 include였고, 여기서는 exclude인것을 명확히 확인하자. -->
 	</context:component-scan>	
 	
