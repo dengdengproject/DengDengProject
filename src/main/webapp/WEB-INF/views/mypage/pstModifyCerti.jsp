@@ -14,8 +14,12 @@
 
 <script type="text/javascript">
 
-var gfv_count = '${fn:length(list)+1}';
+	function get(){
+	document.getElementById("CERTI_NAME").value = opener.document.getElementById("CERTI_NAME").value;
+	document.getElementById("CERTI_ORG").value = opener.document.getElementById("CERTI_ORG").value;
+	document.getElementById("CERTI_DATE").value = opener.document.getElementById("CERTI_DATE").value;
 
+	}
 	$(document).ready(function() {
 		
 		$("#modify").on("click", function(e) {
@@ -31,7 +35,7 @@ var gfv_count = '${fn:length(list)+1}';
 		var comSubmit = new ComSubmit("modifyCerti");
 		comSubmit.setUrl("<c:url value='/modifyCerti' />");
 		comSubmit.submit();
-		//window.opener.parent.location.reload();
+		window.opener.parent.location.reload();
 		//window.opener.parent.location.href="memInfoModifyForm";
 		window.close();
 	}
@@ -52,13 +56,15 @@ var gfv_count = '${fn:length(list)+1}';
 <div style="margin-top:2em;">
 	<form action="" id="modifyCerti" enctype="multipart/form-data" method="post">
 	
-	자격증 이름<input type="text"  style="width: 10em; margin-left:1em;" id="CERTI_NAME" name="CERTI_NAME" value="${certi.CERTI_NAME}"></input>
-				발급 기관<input type="text"  style="width:10em; margin-left:1em" id="CERTI_ORG" name="CERTI_ORG" value="${certi.CERTI_ORG}"></input>
-				취득일자<input type="text"  style="width:10em; margin-lefg:1em" id="CERTI_DATE" name="CERTI_DATE" value="${certi.CERTI_DATE}"></input>
+	<div style= "TEXT-ALIGN: center">
+	자격증 이름<input type="text"  style="width: 10em; margin-left:1em;" id="CERTI_NAME" name="CERTI_NAME" value="${certi.CERTI_NAME }"></input>
+				발급 기관<input type="text"  style="width:10em; margin-left:1em" id="CERTI_ORG" name="CERTI_ORG" value="${certi.CERTI_ORG }"></input>
+				취득일자<input type="text"  style="width:10em; margin-lefg:1em" id="CERTI_DATE" name="CERTI_DATE" value="${certi.CERTI_DATE }"></input>
 	
-	자격증 파일 선택			
-	<input type="file" id="file" name="file_0" style="position: relative; left: 60em; margin-top:1em;">				
-	
+	<p>자격증 파일 선택			
+	<input type="file" id="file" name="file_0" style="position: relative; left: 60em; margin-top:1em;">
+	</div>			
+
 	
 	<div align="center">
 		<div
@@ -103,11 +109,5 @@ var gfv_count = '${fn:length(list)+1}';
 
 
 
-	
-
-
-
-
-<%@ include file="/WEB-INF/views/include/include-footer.jspf"%>
 
 </html>

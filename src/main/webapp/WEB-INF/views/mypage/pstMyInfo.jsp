@@ -123,7 +123,9 @@
 				<span style="margin-left:7em; font-weight: bold">#자격증 이름 &nbsp; &nbsp; &nbsp; &nbsp;</span>${certi.CERTI_NAME} 
 				<span style="margin-left:1em; font-weight: bold">#발급 기관 &nbsp; &nbsp; &nbsp; &nbsp;</span>${certi.CERTI_ORG}
 				<span style="margin-left:1em; font-weight: bold">#취득일자 &nbsp; &nbsp; &nbsp; &nbsp;</span>${certi.CERTI_DATE}
-			
+				
+				<p>${certi.PROFILE_ORIGINAL_FILE_NAME } (${certi.PROFILE_FILE_SIZE }kb)
+			<button style="width: auto; height: 2em; margin-left:1em; margin-right:1em" id="modifyCerti" onclick="window.open('modifyCertiForm')">파일 수정하기</button></p>
 		</div>
 		
 		<!-- 관련학과 졸업 여부-->
@@ -185,7 +187,7 @@
 		<!-- 프로필 사진 등록 -->
 				<div align="center">
 					<div
-						style="text-align: center; position: relative; left: 30em; bottom: 55em; width: 15em">
+						style="text-align: center; position: relative; left: 30em; bottom: 65em; width: 15em">
 						<span>프로필 사진</span>
 						<div align="center">
 								<div class="imgs_wrap" style="text-align: center;">
