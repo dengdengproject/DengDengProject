@@ -1,3 +1,4 @@
+//2020.02.11. PM6:10
 package project.common.join;
 
 import java.util.Map;
@@ -26,10 +27,10 @@ public class JoinDAO extends AbstractDAO {
 		insert("join.insertMember", map);
 	}
 
-	//지연: 일반회원 프로필 파일 저장
-	public void insertMemFile(Map<String, Object> map) throws Exception {
+	//지연: 프로필 파일 저장
+	public void insertProfile(Map<String, Object> map) throws Exception {
 		System.out.println("-----------joinDAO.insertFile()실행중--------------");
-		insert("join.insertMemFile", map);
+		insert("join.insertProfile", map);
 	}
 
 	
@@ -55,11 +56,6 @@ public class JoinDAO extends AbstractDAO {
 
 	}
 	
-	// 펫시터 이미지 파일 추가
-	public void insertPstImage(Map<String, Object> map) throws Exception {
-		System.out.println("-----------joinDAO.insertFile()실행중--------------");
-		insert("join.insertPstFile", map);
-	}
 
 	// 펫시터 위탁장소 이미지
 	public void insertPstPlaceImg(Map<String, Object> map) throws Exception {
@@ -86,11 +82,6 @@ public class JoinDAO extends AbstractDAO {
 		insert("join.insertPet",map);
 	}
 		
-	//반려견 프로필 파일저장
-	public void insertPetFile(Map<String, Object> map)throws Exception{
-		System.out.println("-----------joinDAO.insertFile()실행중--------------");
-		insert("join.insertPetFile",map);
-	}
 
 	
 	//지연 : 반려견 추가정보 저장

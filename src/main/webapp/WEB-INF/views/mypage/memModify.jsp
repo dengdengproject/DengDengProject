@@ -1,3 +1,4 @@
+<!-- 2020.02.11. PM6:10 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -52,7 +53,7 @@
 	</div>
 
 	
- <form id="frm" name="frm" method="post" action="memInfoModify">
+ <form id="frm" name="frm" method="post" enctype="multipart/form-data" action="memInfoModify">
 	<!-- 아이디 -->
 	<div style="text-align: center; margin-top: 1em;">
 		<div style="position: relative; right: 25em; margin-top: 2em;">
@@ -165,21 +166,46 @@
 						</div>
 					</div>
 
-
+				
+				<!-- 프로필 사진 등록 -->
+				<div align="center">
+					<div
+						style="text-align: center; position: relative; left: 28em; bottom: 45em; width: 15em">
+						<span>프로필 사진</span>
+						<div align="center">
+								<div class="imgs_wrap" style="text-align: center;">
+									<img id="img" src ="/first/resources/downimage/${path}" />
+								</div>
+								<a href="javascript:" onclick="fileUploadAction();"
+									class="my_button">파일 수정</a> <input type="file" id="input_imgs" name="file"
+									multiple />
+						</div>
+								
+								<%-- <a href="#this" id="PROFILE_ORIGINAL_FILE_NAME" name="PROFILE_ORIGINAL_FILE_NAME"> ${map1.PROFILE_ORIGINAL_FILE_NAME} (${map1.PROFILE_FILE_SIZE }kb)</a>
+									<input type="file" id="file" name="file"></input> --%>
+									
+						
+						<input type="hidden" id="PROFILE_NO" name="PROFILE_NO" value="${map1.PROFILE_NO}">	
+						</div>
+					</div>
+			
+			
 
 
 		
 			
-			<div align="center" style= "position: relative; margin-top: 2em;">
+			<div align="center" style= "position: relative; margin-top: 2em; bottom:10em;">
 					<div
 						style="text-align: center; position: relative; right: 8em;  width: 14em">
 						<button style="width: 13em; height: 3em" onclick="fn_submit();">확인</button>
 					</div>
 
 			</div>
-			
 	</form>
-</div>
+	</div>
+
+
+
 
 
 
@@ -192,9 +218,9 @@ $(document).ready(function(){ });
 
 
 <style type="text/css">
-input[type=file] {
+ input[type=file] {
 	display: none;
-}
+} 
 
 .my_button {
 	display: inline-block;
@@ -287,6 +313,58 @@ input[type=file] {
 			}
 		}
 	});
+</script>
+
+<!-- 이미지 업로드 관련 스크립트 -->
+<script type="text/javascript" src="./js/jquery-3.1.0.min.js"
+	charset="utf-8"></script>
+<script type="text/javascript">
+	// 이미지 정보들을 담을 배열 
+var sel_files = [];
+
+	$(document).ready(function() {
+		$("#input_imgs").on("change", handleImgFileSelect);
+	});
+
+	function fileUploadAction() {
+		console.log("fileUploadAction");
+		$("#input_imgs").trigger('click');
+	}
+
+	function handleImgFileSelect(e) {
+
+		// 이미지 정보들을 초기화
+		sel_files = [];
+		$(".imgs_wrap").empty();
+
+		var files = e.target.files;
+		var filesArr = Array.prototype.slice.call(files);
+
+		var index = 0;
+		filesArr
+				.forEach(function(f) {
+					if (!f.type.match("image.*")) {
+						alert("확장자는 이미지 확장자만 가능합니다.");
+						return;
+					}
+
+					sel_files.push(f);
+
+					var reader = new FileReader();
+					reader.onload = function(e) {
+						var html = "<a href=\"javascript:void(0);\" onclick=\"deleteImageAction("
+								+ index
+								+ ")\" id=\"img_id_"
+								+ index
+								+ "\"><img src=\"" + e.target.result + "\" data-file='"+f.name+"' class='selProductFile' title='Click to remove'></a>";
+						$(".imgs_wrap").append(html);
+						index++;
+
+					}
+					reader.readAsDataURL(f);
+
+				});
+	}
 </script>
 
 

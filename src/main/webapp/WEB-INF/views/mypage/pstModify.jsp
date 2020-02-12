@@ -81,7 +81,15 @@
 		joinForm.submit();
 		}
 		
+	function sendCertiInfo(){
 		
+		openwin.document.getElecmentById("CERTI_NAME").value = document.getElementById("CERTI_NAME").value;
+		openwin.document.getElecmentById("CERTI_ORG").value = document.getElementById("CERTI_ORG").value;
+		openwin.document.getElecmentById("CERTI_DATE").value = document.getElementById("CERTI_DATE").value;
+		
+		window.name = "parentForm";
+		openwin = window.open("modifyCertiForm", "childForm");
+	}
 		
 		
 
@@ -229,17 +237,20 @@
 				name="PSMEM_CERTI_CHECK">아니오</label>
 			</div>
 				
-			<div style="text-align: center; margin-top: 1em; position: relative; left: 18em">
-			<span style="font-weight: bold;">자격증 정보</span>
+			<div style="text-align: center; margin-top: 1em; position: relative; left: 27em;">
+			<span style="font-weight: bold; margin-right:4em">자격증 정보</span>
 	
 		<!-- 자격증 파일 추가 -->
 		<!-- <div id="fileDiv" style="text-align: center">   -->
 		
 			
-				<input type="text" placeholder="자격 명칭" style="width: 10em; margin-left:5em;" id="CERTI_NAME" name="CERTI_NAME" value="${map2.CERTI_NAME}"></input>
-				<input type="text" placeholder="발급기관" style="width:10em; margin-left:1em" id="CERTI_ORG" name="CERTI_ORG" value="${map2.CERTI_ORG}"></input>
-				<input type="text" placeholder="취득일자" style="width:10em; margin-lefg:1em" id="CERTI_DATE" name="CERTI_DATE" value="${map2.CERTI_DATE}"></input><br>
-				<input type="file" id="file" name="file_0" style="position: relative; left: 60em; margin-top:1em;">
+				자격증 이름<input type="text"  style="width: 10em; margin-left:1em;" id="CERTI_NAME" name="CERTI_NAME" value="${certi.CERTI_NAME}"></input>
+				발급 기관<input type="text"  style="width:10em; margin-left:1em" id="CERTI_ORG" name="CERTI_ORG" value="${certi.CERTI_ORG}"></input>
+				취득일자<input type="text"  style="width:10em; margin-lefg:1em" id="CERTI_DATE" name="CERTI_DATE" value="${certi.CERTI_DATE}"></input>
+				
+				<!-- <button style="width: 13em; height: 2em; margin-left:1em" id="certi" onclick="sendCertiInfo()">자격증 파일수정</button> -->
+				<button style="width: 13em; height: 2em; margin-left:1em" id="certi" onclick="window.open('modifyCertiForm')">자격증 파일수정</button>
+				
  		
 		</div>
 		
@@ -292,15 +303,20 @@
 						<span>프로필 사진 등록</span>
 						<div align="center">
 								<div class="imgs_wrap" style="text-align: center;">
-									<img id="img" src ="/first/resources/images/dog_photo.jpg" />
+									<img id="img" src ="/first/resources/downimage/${path}" />
 								</div>
 							</div>
 							<a href="javascript:" onclick="fileUploadAction();"
 									class="my_button">파일 수정</a> <input type="file" id="input_imgs" name="file"
 									multiple />
 						</div>
+						<input type="hidden" id="PROFILE_NO" name="PROFILE_NO" value="${map2.PROFILE_NO}">	
 					</div>
 				</div>
+				
+				
+				
+				
 
 
 				<!--   <a href="javascript:" class="my_button" onclick="submitAction();">업로드</a> -->
@@ -324,6 +340,9 @@
 </div>
 
 <style type="text/css">
+input[type=file] {
+	display: none;
+} 
 
 .my_button {
 	display: inline-block;

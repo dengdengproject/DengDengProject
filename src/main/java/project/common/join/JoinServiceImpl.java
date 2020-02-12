@@ -1,3 +1,4 @@
+//2020.02.11. PM6:10
 package project.common.join;
 
 import java.util.Iterator;
@@ -38,10 +39,10 @@ public class JoinServiceImpl implements JoinService {
 		 joinDAO.insertMember(map); 
 		 
 		 
-		 List<Map<String,Object>> list = fileUtils.parseInsertFileInfo_MEM(map, request);
+		 List<Map<String,Object>> list = fileUtils.parseInsertFileInfo(map, request);
 		 for(int i=0, size=list.size(); i<size; i++){ 
 			
-			 joinDAO.insertMemFile(list.get(i));
+			 joinDAO.insertProfile(list.get(i));
 			 
 		 }
 	}
@@ -57,7 +58,7 @@ public class JoinServiceImpl implements JoinService {
 		 for(int i=0, size=list.size(); i<size; i++){ 
 			System.out.println(list.get(i));
 			
-			 joinDAO.insertPstImage(list.get(i));
+			 joinDAO.insertProfile(list.get(i));
 			 
 		 }
 
@@ -111,10 +112,10 @@ public class JoinServiceImpl implements JoinService {
 		//꺼내온 아이디값을 map에 넣어준다. 
 		map.put("PET_MEM_ID", pet_mem_id);
 		
-		 List<Map<String,Object>> list = fileUtils.parseInsertFileInfo_PET(map, request);
+		 List<Map<String,Object>> list = fileUtils.parseInsertFileInfo(map, request);
 		 for(int i=0, size=list.size(); i<size; i++){ 
 			System.out.println(list.get(i));
-			 joinDAO.insertPetFile(list.get(i));
+			 joinDAO.insertProfile(list.get(i));
 			 
 		 }
 }
