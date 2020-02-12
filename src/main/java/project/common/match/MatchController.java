@@ -106,7 +106,6 @@ public class MatchController {
 	}
 	
 	//Match Detail로 이동 : 호석
-	@SuppressWarnings("static-access")
 	@RequestMapping(value = "/matchDetail", method = {RequestMethod.GET})
 	public ModelAndView matchDetail(CommandMap commandmap, @RequestParam("seq") int seq, @RequestParam("ID") String ID) throws Exception {
 		ModelAndView mv = new ModelAndView("/match/matchDetail");
@@ -265,5 +264,4 @@ public class MatchController {
 			
 		return mv;
 	}
-	//basicDate는 , 기준으로 스플릿해서 리스트나 배열에 넣고 하나씩 꺼내 사용.    serviceChk은 마찬가지로 리스트나 배열에 넣어서 하나씩 꺼내 사용.searchDay./searchCheckArr
 }
