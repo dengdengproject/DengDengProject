@@ -116,17 +116,18 @@
 		</div>
        
         <!-- 자격증 정보 -->
-       <div style="text-align: center; margin-top: 1em;">
-       		<div style="position: relative; right: 24.2em; margin-top: 0.5em;" >
+       <div style="text-align: center; margin-top: 1em; margin-bottom: 2em; position: relative; right: 6em;">
+       		
 				<span style="font-weight: bold;">자격증 정보</span>
-			</div>
-			<div style ="position: relative; bottom:1.5em; ">	
-					<p>${map1.PSMEM_CERTI_CHECK}</p>
-			</div>
+						
+				<span style="margin-left:7em; font-weight: bold">#자격증 이름 &nbsp; &nbsp; &nbsp; &nbsp;</span>${certi.CERTI_NAME} 
+				<span style="margin-left:1em; font-weight: bold">#발급 기관 &nbsp; &nbsp; &nbsp; &nbsp;</span>${certi.CERTI_ORG}
+				<span style="margin-left:1em; font-weight: bold">#취득일자 &nbsp; &nbsp; &nbsp; &nbsp;</span>${certi.CERTI_DATE}
+			
 		</div>
 		
 		<!-- 관련학과 졸업 여부-->
-		<div style="text-align: center; margin-top: 1em;">
+		<div style="text-align: center; margin-top: 2em;">
        		<div style="position: relative; right: 24.2em; margin-top: 0.5em;" >
 				<span style="font-weight: bold;">관련학과 졸업 여부</span>
 			</div>
@@ -144,6 +145,20 @@
 				<p>${map1.PSMEM_CONSIGNMENT_ZIPCODE}&nbsp;&nbsp; ${map1.PSMEM_CONSIGNMENT_ADDRESS1} &nbsp;&nbsp;${map.PSMEM_CONSIGNMENT_ADDRESS_ADD}&nbsp;&nbsp;${map.PSMEM_CONSIGNMENT_ADDRESS2}</p>
 				</div>
 			</div>
+			
+			
+			<!-- 위탁장소 이미지 파일  -->
+		<div style="text-align: center; position: relative; right: 5.3em; margin-top:1em;">
+			<span style="font-weight: bold; position: relative; right: 20em; ">위탁장소 이미지</span>
+			<div id="fileDiv" style="position: relative; margin-left:5em; bottom:1em">  
+			<c:forEach var="row" items="${list }" varStatus="var">
+				<p>
+					<a href="#this" id="PSMEM_ORIGINAL_FILE_NAME_${var.index }" name="PSMEM_ORIGINAL_FILE_NAME_${var.index }"> ${row.PSMEM_ORIGINAL_FILE_NAME } (${row.PSMEM_FILE_SIZE }kb)</a>
+				</p>
+			</c:forEach>
+			
+			<button style="width: auto; height: 2em; margin-right:1em" id="modifyPlace" onclick="window.open('modifyPstPlaceForm')">이미지 수정하기</button>
+		</div>	
 			
 			
 		<!-- 활동경력-->
@@ -170,7 +185,7 @@
 		<!-- 프로필 사진 등록 -->
 				<div align="center">
 					<div
-						style="text-align: center; position: relative; left: 28em; bottom: 45em; width: 15em">
+						style="text-align: center; position: relative; left: 30em; bottom: 55em; width: 15em">
 						<span>프로필 사진</span>
 						<div align="center">
 								<div class="imgs_wrap" style="text-align: center;">

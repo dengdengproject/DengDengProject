@@ -46,6 +46,10 @@ public class MyInfoDAO extends AbstractDAO {
 			System.out.println("==============update DAO에서 펫시터구분 성공!!===============");
 			update("myInfo.updatepstinfo",map);
 			update("myInfo.updatepstaddinfo",map);
+			//자격증파일없이 자격증 정보만 입력한 경우를 위해 파일관련 정보는 null로 처리
+			map.put("PROFILE_ORIGINAL_FILE_NAME", "NULL");
+			map.put("PROFILE_FILE_SIZE", 0);
+			map.put("PROFILE_STORED_FILE_NAME", "NULL");
 			update("myInfo.updatecertiinfo",map);
 			
 		}
@@ -56,6 +60,12 @@ public class MyInfoDAO extends AbstractDAO {
 	public void updateProfile(Map<String, Object> map) throws Exception{
 		update("myInfo.updateProfile", map);
 	}
+	
+	//자격증 수정
+	public void updateCertifile(Map<String, Object> map) throws Exception{
+		update("myInfo.updatecertiinfo", map);
+	}
+	
 	
 	//회원 탈퇴
 	public void deleteMyInfo(Map<String, Object> map) throws Exception {

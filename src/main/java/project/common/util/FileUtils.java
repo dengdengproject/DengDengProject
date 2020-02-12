@@ -306,7 +306,7 @@ public class FileUtils {
 	//자격증 등록  
 	public List<Map<String, Object>> parseInsertCerti(Map<String, Object> map, HttpServletRequest request)
 			throws Exception {
-
+ 
 		String filePath = request.getSession().getServletContext().getRealPath("/resources/downimage/");
 		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
 		Iterator<String> iterator = multipartHttpServletRequest.getFileNames();

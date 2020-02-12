@@ -3,6 +3,7 @@ package project.common.mypage;
 
 import java.util.List;
 import java.util.Map;
+import project.common.join.JoinDAO;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -24,7 +25,10 @@ public interface MyInfoService {
 	
 	void updateMyInfoModify(Map<String, Object> map, HttpServletRequest request) throws Exception;  //회원정보수정
 	
-	void updatePstPlace(Map<String, Object> map, HttpServletRequest request) throws Exception;  //회원정보수정
+	void updatePstPlace(Map<String, Object> map, HttpServletRequest request) throws Exception;  //위탁장소 수정
+	
+	void updateCerti(Map<String, Object> map, HttpServletRequest request) throws Exception;  //자격증 정보 수정
+	
 	
 	int deleteMyInfo(Map<String, Object> map) throws Exception; //회원탈퇴
 	

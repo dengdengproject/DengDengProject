@@ -29,7 +29,7 @@ public class MyInfoServiceImpl implements MyInfoService{
 	@Resource(name="fileUtils")
 	private FileUtils fileUtils;
 	
-	@Resource(name="JoinDAO")
+	@Resource(name="joinDAO")
 	private JoinDAO joinDAO;
 	
 	
@@ -123,19 +123,39 @@ public class MyInfoServiceImpl implements MyInfoService{
 	@Override //위탁장소 이미지 수정
 	public void updatePstPlace(Map<String, Object> map, HttpServletRequest request) throws Exception {
 		// TODO Auto-generated method stub
+		System.out.println("ServiceImpl 위탁장소 이미지 수정진입");
 		myInfoDAO.deleteFile(map);
-		List<Map<String,Object>> list = fileUtils.parseUpdateFileInfo_board(map, request);
+		List<Map<String,Object>> list = fileUtils.parseUpdateFileInfo_PstPlace(map, request);
+		System.out.println("ServiceImpl 파일유틸성공");
 		Map<String,Object> tempMap = null;
 		for(int i=0, size=list.size(); i<size; i++) {
 			tempMap = list.get(i);
 			if(tempMap.get("IS_NEW").equals("Y")){
-				joinDAO.insertPstAdd2(tempMap);
+				System.out.println("ServiceImpl 파일이 IS_NEW일때");
+				joinDAO.insertPstPlaceImg(tempMap);
 			}
 			else{
+				System.out.println("ServiceImpl 파일이 IS_NEW가 아닐때");
 				myInfoDAO.updateFile(tempMap);
 			}
 		}
 	}
+ 
+	@Override
+	public void updateCerti(Map<String, Object> map, HttpServletRequest request) throws Exception {
+		// TODO Auto-generated method stub
+		
+		List<Map<String,Object>> list = fileUtils.parseInsertCerti(map, request);
+		
+		
+		if(list.size()!=0) { //파일 수정일경우
+			Map<String,Object> tempMap = list.get(0);
+			myInfoDAO.updateCertifile(tempMap);
+		}
+	}
+	
+	
+	
 	
 	
 	
