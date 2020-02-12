@@ -81,15 +81,16 @@
 		joinForm.submit();
 		}
 		
+	/*자격증 파일수정 추후에 할예정
 	function sendCertiInfo(){
 		
 		openwin.document.getElecmentById("CERTI_NAME").value = document.getElementById("CERTI_NAME").value;
 		openwin.document.getElecmentById("CERTI_ORG").value = document.getElementById("CERTI_ORG").value;
 		openwin.document.getElecmentById("CERTI_DATE").value = document.getElementById("CERTI_DATE").value;
-		
+		alert("@@@@@@@@@@@@@@@@@@@@@@@@@@");
 		window.name = "parentForm";
 		openwin = window.open("modifyCertiForm", "childForm");
-	}
+	} */
 		
 		
 
@@ -244,12 +245,12 @@
 		<!-- <div id="fileDiv" style="text-align: center">   -->
 		
 			
-				자격증 이름<input type="text"  style="width: 10em; margin-left:1em;" id="CERTI_NAME" name="CERTI_NAME" value="${certi.CERTI_NAME}"></input>
-				발급 기관<input type="text"  style="width:10em; margin-left:1em" id="CERTI_ORG" name="CERTI_ORG" value="${certi.CERTI_ORG}"></input>
-				취득일자<input type="text"  style="width:10em; margin-lefg:1em" id="CERTI_DATE" name="CERTI_DATE" value="${certi.CERTI_DATE}"></input>
+				자격증 이름<input type="text"  style="width: 10em; margin-left:1em; margin-right:1em;" id="CERTI_NAME" name="CERTI_NAME" value="${certi.CERTI_NAME}"></input>
+				발급 기관<input type="text"  style="width:10em; margin-left:1em; margin-right:1em;" id="CERTI_ORG" name="CERTI_ORG" value="${certi.CERTI_ORG}"></input>
+				취득일자<input type="text"  style="width:10em; margin-left:1em" id="CERTI_DATE" name="CERTI_DATE" value="${certi.CERTI_DATE}"></input>
 				
 				<!-- <button style="width: 13em; height: 2em; margin-left:1em" id="certi" onclick="sendCertiInfo()">자격증 파일수정</button> -->
-				<button style="width: 13em; height: 2em; margin-left:1em" id="certi" onclick="window.open('modifyCertiForm')">자격증 파일수정</button>
+				<!-- <button style="width: 13em; height: 2em; margin-left:1em" id="certi" onclick="window.open('modifyCertiForm')">자격증 파일수정</button> -->
 				
  		
 		</div>
