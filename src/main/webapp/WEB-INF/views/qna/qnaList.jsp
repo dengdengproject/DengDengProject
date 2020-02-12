@@ -21,13 +21,13 @@
 		<div  class="tab-box">
 				<ul>
 
-					<li>공지사항</li>
+					<li onclick="location.href = '/first/noticeList'">공지사항</li>
 
-					<li class="selected">Q&A</li>
+					<li class="selected" onclick="location.href = '/first/qnaList'">Q&A</li>
 
-					<li>신고하기</li>
+					<li onclick="location.href = '/first/qnaList'">신고하기</li>
 
-					<li>댕댕이 자랑</li>
+					<li onclick="location.href = '/first/mypetList'">댕댕이 자랑</li>
 
 
 
