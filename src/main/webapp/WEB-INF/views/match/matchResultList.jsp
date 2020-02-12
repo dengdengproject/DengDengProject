@@ -35,9 +35,9 @@
 										<c:choose>
 											<c:when test="${resultComplete != null}">
 												<c:choose>
-													<c:when test="${ID != null}">
+													<c:when test="${NAME != null}">
 														<span style="font-family: 'Arial'; font-weight: 700; font-size: 2em; color: rgba(5, 38, 55, 1);">
-															${ID} 님의 검색 조건과 일치하는 펫시터 목록입니다.</span>
+															${NAME} 님의 검색 조건과 일치하는 펫시터 목록입니다.</span>
 													</c:when>
 													<c:otherwise>
 														<span style="font-family: 'Arial'; font-weight: 700; font-size: 2em; color: rgba(5, 38, 55, 1);">
@@ -47,9 +47,9 @@
 											</c:when>
 											<c:otherwise>
 												<c:choose>
-													<c:when test="${ID != null}">
+													<c:when test="${NAME != null}">
 														<span style="font-family: 'Arial'; font-weight: 700; font-size: 2em; color: rgba(5, 38, 55, 1);">
-															${ID} 님의 검색 조건과 일치하는 펫시터가 없습니다.</span>
+															${NAME} 님의 검색 조건과 일치하는 펫시터가 없습니다.</span>
 													</c:when>
 													<c:otherwise>
 														<span style="font-family: 'Arial'; font-weight: 700; font-size: 2em; color: rgba(5, 38, 55, 1);">
@@ -75,8 +75,8 @@
 									<div style="height: 0px; width: 0px; overflow: hidden; -webkit-margin-top-collapse: separate;"></div>
 									<div class="html_content" style="position:relative; right:5em;">
 										<p>
-											<span style="float: none; display: block; text-align: center; overflow: hidden; margin: 0em 0em 0em 0em;">
-												<span><img src="resources/images/<c:out value='${list.MATCH_PLACE_IMAGE}'/>" style="max-width: 300px; max-height: 300px;" /></span></span>
+											<span style="float: none; display: block; text-align: center; overflow: hidden; margin: 0em 0em 0em 0em; cursor: pointer;" onclick="location.href='matchDetail?seq=${list.MATCH_NO}&&ID=${list.PSMEM_ID}'">
+												<span><img src="resources/images/<c:out value='${list.MATCH_PLACE_IMAGE}'/>" style="max-width: 300px; max-height: 300px;"/></span></span>
 										</p>
 									</div>
 									<div style="height: 0px; width: 0px; overflow: hidden; -webkit-margin-top-collapse: separate;"></div>
@@ -89,95 +89,89 @@
 								<div class="ttr_Training_html_column11">
 									<div style="height: 0px; width: 0px; overflow: hidden; -webkit-margin-top-collapse: separate;"></div>
 									<div class="html_content" style="position:relative; right:5em; margin-top: 15px;">
-										<p>
-											<span style="font-family: 'Arial'; font-weight: 700; font-size: 1.143em; color: #6E6E6E; position: relative;">
-												<c:out value="${list.PSMEM_ADDRESS1}"/></span>
-										</p>
-										<p style="margin: 0.71em 0em 0.36em 0em;">
-											<a href="PSTMatchingDetail1.html">
-												<span style="font-family: 'Arial'; font-weight: bold; font-size: 2em; color: #2E2E2E;">
-													<c:out value="${list.MATCH_SUBJECT}"/></span></a>
-										</p>
-										<p style="margin: 0.71em 0em 0.36em 0em;">
-											<a href="PSTMatchingDetail1.html">
-												<span style="font-family: 'Arial'; font-weight: bold; font-size: 1.5em; color: #2E2E2E;">
-													<c:out value="${list.PSMEM_CLASS}"/>&nbsp;펫시터&nbsp;<c:out value="${list.PSMEM_NAME}"/>&nbsp;님</span></a>
-										</p>
-										<p style="margin: 1.43em 0em 0.36em 0em; line-height: 1.76056338028169;">
-											<c:forEach var="service" items="<c:out value='${list.POSSIBLE_SERVICE}'/>" end="6">
-												<c:if test="${service == 'service01'}">
-													<span style="color: rgba(5, 38, 55, 1);">#현재 반려동물 없음&nbsp;</span>
-												</c:if>
-												<c:if test="${service == 'service02'}">
-													<span style="color: rgba(5, 38, 55, 1);">#집 앞 픽업 가능&nbsp;</span>
-												</c:if>
-												<c:if test="${service == 'service03'}">
+										<div style="position: relative; align-items: center; text-align: center; vertical-align: middle; width: 550px;">
+											<p>
+												<span style="font-family: 'Arial'; font-weight: 700; font-size: 1.143em; color: #6E6E6E; position: relative;">
+													<c:out value="${list.PSMEM_ADDRESS1}"/></span>
+											</p>
+											<p style="margin: 1em 0em 1em 0em;">
+													<span style="font-family: 'Arial'; font-weight: bold; font-size: 2em; color: #2E2E2E; cursor: pointer;" onclick="location.href='matchDetail?seq=${list.MATCH_NO}&&ID=${list.PSMEM_ID}'">
+														<c:out value="${list.MATCH_SUBJECT}"/></span>
+											</p>
+											<p style="margin: 0.71em 0em 0.36em 0em;">
+													<span style="font-family: 'Arial'; font-weight: bold; font-size: 1.5em; color: #2E2E2E;">
+														<c:out value="${list.PSMEM_CLASS}"/>&nbsp;펫시터&nbsp;<c:out value="${list.PSMEM_NAME}"/>&nbsp;님</span>
+											</p>
+											<p style="margin: 1.43em 0em 0.36em 0em; line-height: 1.76056338028169;">
+												<c:forEach var="service" items="<c:out value='${list.POSSIBLE_SERVICE}'/>" end="6">
+													<c:if test="${service == 'service01'}">
+														<span style="color: rgba(5, 38, 55, 1);">#현재 반려동물 없음&nbsp;</span>
+													</c:if>
+													<c:if test="${service == 'service02'}">
+														<span style="color: rgba(5, 38, 55, 1);">#집 앞 픽업 가능&nbsp;</span>
+													</c:if>
+													<c:if test="${service == 'service03'}">
 														<span style="color: rgba(5, 38, 55, 1);">#대형견 예약 가능&nbsp;</span>
-												</c:if>
-												<c:if test="${service == 'service04'}">
+													</c:if>
+													<c:if test="${service == 'service04'}">
 														<span style="color: rgba(5, 38, 55, 1);">#뛰어놀 마당 보유&nbsp;</span>
-												</c:if>
-												<c:if test="${service == 'service05'}">
+													</c:if>
+													<c:if test="${service == 'service05'}">
 														<span style="color: rgba(5, 38, 55, 1);">#노견 집중 케어 가능&nbsp;</span>
-												</c:if>
-												<c:if test="${service == 'service06'}">
+													</c:if>
+													<c:if test="${service == 'service06'}">
 														<span style="color: rgba(5, 38, 55, 1);">#14일 이상 돌봄 가능&nbsp;</span>
-												</c:if>
-												<c:if test="${service == 'service07'}">
+													</c:if>
+													<c:if test="${service == 'service07'}">
 														<span style="color: rgba(5, 38, 55, 1);">#편한 실내 놀이 가능&nbsp;</span>
-												</c:if>
-												<c:if test="${service == 'service08'}">
+													</c:if>
+													<c:if test="${service == 'service08'}">
 														<span style="color: rgba(5, 38, 55, 1);">#매일 근처 산책 가능&nbsp;</span>
-												</c:if>
-												<c:if test="${service == 'service09'}">
+													</c:if>
+													<c:if test="${service == 'service09'}">
 														<span style="color: rgba(5, 38, 55, 1);">#댕댕이 목욕 가능&nbsp;</span>
-												</c:if>
-												<c:if test="${service == 'service10'}">
+													</c:if>
+													<c:if test="${service == 'service10'}">
 														<span style="color: rgba(5, 38, 55, 1);">#약물 먹이기 가능&nbsp;</span>
-												</c:if>
-												<c:if test="${service == 'service11'}">
+													</c:if>
+													<c:if test="${service == 'service11'}">
 														<span style="color: rgba(5, 38, 55, 1);">#어린 댕댕 집중 관리&nbsp;</span>
-												</c:if>
-												<c:if test="${service == 'service12'}">
+													</c:if>
+													<c:if test="${service == 'service12'}">
 														<span style="color: rgba(5, 38, 55, 1);">#아파트 거주 중&nbsp;</span>
-												</c:if>
-												<c:if test="${service == 'service13'}">
+													</c:if>
+													<c:if test="${service == 'service13'}">
 														<span style="color: rgba(5, 38, 55, 1);">#빌라 거주 중&nbsp;</span>
-												</c:if>
-												<c:if test="${service == 'service14'}">
+													</c:if>
+													<c:if test="${service == 'service14'}">
 														<span style="color: rgba(5, 38, 55, 1);">#단독 주택 거주 중&nbsp;</span>
-												</c:if>
-												<c:if test="${service == 'service15'}">
+													</c:if>
+													<c:if test="${service == 'service15'}">
 														<span style="color: rgba(5, 38, 55, 1);">#집중 케어가 가능해요&nbsp;</span>
-												</c:if>
-												<c:if test="${service == 'service16'}">
+													</c:if>
+													<c:if test="${service == 'service16'}">
 														<span style="color: rgba(5, 38, 55, 1);">#집중 케어가 가능해요&nbsp;</span>
-												</c:if>
-												<c:if test="${service == 'service17'}">
+													</c:if>
+													<c:if test="${service == 'service17'}">
 														<span style="color: rgba(5, 38, 55, 1);">#댕댕 등록 대행 가능</span>
-												</c:if>
-											</c:forEach>
-										</p>
-										<div style="position: relative; left:8em; bottom: 6em; ">
-										<p style="margin-top: 10px; margin-bottom:5px; text-align: right">
-											<b>대형견</b> : &nbsp;<span style="font-size: 1.2em; font-weight: bold; color: #084B8A;"><c:out value="${list.PRICE_LARGE_ALL}"/></span>&nbsp;/&nbsp;맡김&nbsp;&nbsp;|&nbsp;&nbsp;
-											<span style="font-size: 1.2em; font-weight: bold; color: #084B8A;"><c:out value="${list.PRICE_LARGE_HALF}"/></span>&nbsp;/&nbsp;돌봄
-										</p>
-										<p style="margin-top: 10px; margin-bottom:5px; text-align: right">
-											<b>중형견</b> : &nbsp;<span style="font-size: 1.2em; font-weight: bold; color: #084B8A;"><c:out value="${list.PRICE_MEDIUM_ALL}"/></span>&nbsp;/&nbsp;맡김&nbsp;&nbsp;|&nbsp;&nbsp;
-											<span style="font-size: 1.2em; font-weight: bold; color: #084B8A;"><c:out value="${list.PRICE_MEDIUM_ALL}"/></span>&nbsp;/&nbsp;돌봄
-										</p>
-										<p style="margin-top: 10px; margin-bottom:5px; text-align: right">
-											<b>소형견</b> : &nbsp;<span style="font-size: 1.2em; font-weight: bold; color: #084B8A;"><c:out value="${list.PRICE_SMALL_ALL}"/></span>&nbsp;/&nbsp;맡김&nbsp;&nbsp;|&nbsp;&nbsp;
-											<span style="font-size: 1.2em; font-weight: bold; color: #084B8A;"><c:out value="${list.PRICE_SMALL_ALL}"/></span>&nbsp;/&nbsp;돌봄
-										</p>
+													</c:if>
+												</c:forEach>
+											</p>
 										</div>
-										<!--  일단 삭제
-										<p style="line-height: 1.76056338028169;">
-											<span style="color: rgba(7, 129, 150, 1);">후기
-												★★★★★(20)</span>
-										</p>  -->
-
+										<div style="position: relative; left:8em; bottom: 8em;">
+											<p style="margin-top: 10px; margin-bottom:5px; text-align: right">
+												<b>대형견</b> : &nbsp;<span style="font-size: 1.2em; font-weight: bold; color: #084B8A;"><c:out value="${list.PRICE_LARGE_ALL}"/></span>&nbsp;/&nbsp;맡김&nbsp;&nbsp;|&nbsp;&nbsp;
+												<span style="font-size: 1.2em; font-weight: bold; color: #084B8A;"><c:out value="${list.PRICE_LARGE_HALF}"/></span>&nbsp;/&nbsp;돌봄
+											</p>
+											<p style="margin-top: 10px; margin-bottom:5px; text-align: right">
+												<b>중형견</b> : &nbsp;<span style="font-size: 1.2em; font-weight: bold; color: #084B8A;"><c:out value="${list.PRICE_MEDIUM_ALL}"/></span>&nbsp;/&nbsp;맡김&nbsp;&nbsp;|&nbsp;&nbsp;
+												<span style="font-size: 1.2em; font-weight: bold; color: #084B8A;"><c:out value="${list.PRICE_MEDIUM_ALL}"/></span>&nbsp;/&nbsp;돌봄
+											</p>
+											<p style="margin-top: 10px; margin-bottom:5px; text-align: right">
+												<b>소형견</b> : &nbsp;<span style="font-size: 1.2em; font-weight: bold; color: #084B8A;"><c:out value="${list.PRICE_SMALL_ALL}"/></span>&nbsp;/&nbsp;맡김&nbsp;&nbsp;|&nbsp;&nbsp;
+												<span style="font-size: 1.2em; font-weight: bold; color: #084B8A;"><c:out value="${list.PRICE_SMALL_ALL}"/></span>&nbsp;/&nbsp;돌봄
+											</p>
+										</div>
 									</div>
 									<div
 										style="height: 0px; width: 0px; overflow: hidden; -webkit-margin-top-collapse: separate;"></div>

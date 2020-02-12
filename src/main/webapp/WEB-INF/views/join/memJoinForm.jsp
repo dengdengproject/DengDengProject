@@ -251,7 +251,7 @@ function fn_idCheck(){
 							<span style="font-weight: bold">생년월일*</span>
 						</div>
 						<div>
-							<input type="text" placeholder="2020/01/01" name="BIRTHDAY" id="BIRTHDAY"
+							<input type="text" placeholder="생년월일을 선택해주세요." type="text" name="BIRTHDAY" id="BIRTHDAY" class="flatpickr-input"
 								style="width: 20em; position: relative; right: 8em; bottom: 2em;">
 						</div>
 					</div>
@@ -509,6 +509,19 @@ input[type=file] {
 	}
 
 	
+</script>
+
+<!-- flatpickr jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- Flatpickr -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.js"></script>
+<!-- flatpickr -->  
+<script id="INLINE_PEN_JS_ID">
+	$("#BIRTHDAY").flatpickr({
+		mode: "single",
+		dateFormat: "Y/m/d",
+		maxDate: "today"
+	});
 </script>
 
 <%@ include file="/WEB-INF/views/include/include-footer.jspf"%>
