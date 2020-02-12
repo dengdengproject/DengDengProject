@@ -10,73 +10,13 @@
 
 <%@ include file="/WEB-INF/views/include/include-header-menu.jspf"%>
 
-<%-- <%@ include file="/WEB-INF/views/include/include-board-menu.jspf"%> --%>
+ <%@ include file="/WEB-INF/views/include/include-board-menu.jspf"%> 
 
 
 
 
-<style type="text/css">
-* {
-	margin: 0;
-	padding: 0
-}
-
-ul li {
-	list-style-type: none;
-}
-
-.tab-box {
-	margin: 50px auto 0 auto;
-	width: 520px;
-	position: relative;
-	top: 1.4em;
-	right: 17em;
-	
-}
-
-.tab-box ul {
-	height: 20px;
-}
-
-.tab-box li {
-	float: left;
-	width: 100px;
-	height: 30px;
-	line-height: 30px; /* 중앙정렬 */
-	margin-right: 2px;
-	text-align: center;
-	background-color: #ccc;
-	border-radius: 3px 3px 0 0;
-	cursor: pointer;
-	border-top-left-radius: 15px;
-	border-top-right-radius: 15px;
-	font-weight: bold;
-}
-
-.tab-box li.selected {
-	background-color: orange;
-}
-
-.tab-box li:hover {
-	background-color: #C27C00;
-}
 
 
-.tab-view {
-	width: 506px;
-	height: 100px;
-	line-height: 100px;
-	border: 1px solid gray;
-	text-align: center;
-	margin-top: -1px;
-}
-</style>
-
-<nav style="height: 10em">
-	<div style="text-align: left">
-		<div style="position: relative; top: 1em; left: 2em;">
-			<span style="font-weight: bold; font-size: 2em;">Community</span>
-		</div>
 
 		<div  class="tab-box">
 				<ul>
@@ -96,7 +36,7 @@ ul li {
 	</div>
 </nav>
 
-<div style="height: 400px; border-top: solid;">
+<div style="height: 600px; border-top: solid;">
 	<div style="height: auto;">
 		<div class="wrapper">
 			<div style="text-align: center; margin-top: 5em">
@@ -299,7 +239,7 @@ th, td {
 }
 </style>
 
-<%-- <%@ include file="/WEB-INF/views/include/include-footer.jspf"%> --%>
+ <%@ include file="/WEB-INF/views/include/include-footer.jspf"%> 
 
 </body>
 </html>

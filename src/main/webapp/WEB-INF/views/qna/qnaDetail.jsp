@@ -18,7 +18,26 @@
 
 </script>
 
-<div style="height: 400px; border-top: solid;">
+<div  class="tab-box">
+				<ul>
+
+					<li>공지사항</li>
+
+					<li class="selected">Q&A</li>
+
+					<li>신고하기</li>
+
+					<li>댕댕이 자랑</li>
+
+
+
+				</ul>
+		</div>
+	</div>
+</nav>
+
+
+<div style="height: 600px; border-top: solid;">
 	<!-- <div style="text-align: center; margin-top: 4em;">
   			<span style=" font-weight: bold; font-size: 2em;">공지사항</span>
   		</div> -->
@@ -175,6 +194,6 @@
 	</div>
 </div>
 
-<%-- <%@ include file="/WEB-INF/views/include/include-footer.jspf"%> --%>
+ <%@ include file="/WEB-INF/views/include/include-footer.jspf"%> 
 
 </html>

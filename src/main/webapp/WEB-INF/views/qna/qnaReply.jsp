@@ -33,6 +33,25 @@ $(document).ready(function() {
 
 </head>
 
+
+<div  class="tab-box">
+				<ul>
+
+					<li>공지사항</li>
+
+					<li class="selected">Q&A</li>
+
+					<li>신고하기</li>
+
+					<li>댕댕이 자랑</li>
+
+
+
+				</ul>
+		</div>
+	</div>
+</nav>
+
 <form id="frm" name="frm" enctype="multipart/form-data">
 <div style="height: 400px; border-top: solid;">
 	<div style="height: auto;">

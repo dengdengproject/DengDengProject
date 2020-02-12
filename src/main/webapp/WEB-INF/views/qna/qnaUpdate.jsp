@@ -14,13 +14,35 @@
 <%@ include file="/WEB-INF/views/include/include-board-menu.jspf"%>
 
 <%-- <%@ include file="/WEB-INF/views/include/include-header-add.jspf" %> --%>
+
+
+
+<div  class="tab-box">
+				<ul>
+
+					<li>공지사항</li>
+
+					<li class="selected">Q&A</li>
+
+					<li>신고하기</li>
+
+					<li>댕댕이 자랑</li>
+
+
+
+				</ul>
+		</div>
+	</div>
+</nav>
+
+
 <form id="frm" name="frm" enctype="multipart/form-data">
-	<div style="height: 400px; border-top: solid;">
+	<div style="height: auto; border-top: solid;">
 
 		<!-- <div style="text-align: center; margin-top: 4em;">
   			<span style=" font-weight: bold; font-size: 2em;">공지사항</span>
   		</div> -->
-		<div style="height: 600px;">
+		<div style="height: auto;">
 			<div align="center" class="container">
 				<div align="left"
 					style="width: 1200px; border: 1px solid #cccccc; padding: 2em; padding-left: 2em; padding-right: 5em; margin-top: 20px; margin-bottom: 1em; background-color: #ffffff">
@@ -115,8 +137,14 @@
 				</div>
 			</div>
 		</div>
+		</div>
 </form>
 <%@ include file="/WEB-INF/views/include/include-body.jspf"%>
+
+
+ <%@ include file="/WEB-INF/views/include/include-footer.jspf"%> 
+
+
 
 
 
@@ -221,6 +249,5 @@
 	}
 </script>
 
-<%-- <%@ include file="/WEB-INF/views/include/include-footer.jspf"%> --%>
 
 </html>
