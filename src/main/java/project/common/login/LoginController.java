@@ -48,6 +48,7 @@ public class LoginController {
 		} else {
 			if(Check.get("PASSWORD1").equals(commandMap.get("PASSWORD1"))) {
 				session.setAttribute("ID", commandMap.get("ID"));
+				session.setAttribute("MEM_ID", commandMap.get("ID")); //읽어온 ID를 MEM_ID이름으로 세션에 저장
 				session.setAttribute("MEM_TYPE", Check.get("MEM_TYPE"));
 				session.setAttribute("NAME", Check.get("NAME"));
 				
@@ -55,7 +56,7 @@ public class LoginController {
 				String NAME = (String)Check.get("NAME");
 				
 				message = MEM_TYPE + " " + NAME + " 님의 방문을 환영합니다.";
-				url = "/main";
+				url = "/main";   //추후 main으로 수정해야함. 테스트용으로 수정하며쓰고 있음.
 			} else {
 				message = "비밀번호가 일치하지 않습니다.";
 			}

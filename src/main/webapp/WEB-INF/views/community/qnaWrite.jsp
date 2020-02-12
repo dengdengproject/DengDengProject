@@ -16,7 +16,7 @@
 		<div align="center" class="container">
 			<div align="left"
 				style="width: 1200px; border: 1px solid #cccccc; padding: 2em; padding-left: 2em; padding-right: 5em; margin-top: 20px; margin-bottom: 1em; background-color: #ffffff">
-				<span style="font-weight: bold">Q&A 글쓰기</span>
+				<span style="font-weight: bold"> 글쓰기</span>
 				<hr />
 				<div class="form-inline" style="margin-bottom: 1em">
 					<label style="width: 90px">글제목</label> <label><select
@@ -58,12 +58,26 @@
 
 			<div
 				style="text-align: center; width: 8em; height: 2em; position: relative; left: 1em; margin-top: 1em; margin-bottom: 1em;">
-				<button style="width: 8em; height: 2em"
+				<button style="width: 8em; height: 2em" class="btn_style"
 					onclick="location.href='Q&A.html'">취소</button>
 			</div>
 		</div>
 	</div>
 </div>
+
+
+<style>
+
+.btn_style {
+	background-color: #649EE1;
+	color: white;
+	width: 3.5em;
+	border-radius: 5px;
+	height: 2.5em;
+}
+
+</style>
+
 
 <%@ include file="/WEB-INF/views/include/include-footer.jspf"%>
 
