@@ -82,9 +82,6 @@
 			</table>
 			<br /> 
 			
-			<!-- <input type="button" value="쓰기"
-				style="width: 7em; position: relative; left: 30em; margin-bottom: 1em; margin-right: 5em;"
-				onclick="location.href='NoticeWrite.html'" /> -->
 			<c:if test = "${ID != null || ADMIN_ID != null}">
 				<a href="#this" class="btn" id="write">글작성</a>
 			</c:if>
@@ -120,7 +117,6 @@
 				}
 				  
 			</script>
-			
 		</div>
 	</div>
 </div>

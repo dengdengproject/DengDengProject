@@ -126,4 +126,5 @@ public class QnaServiceImpl implements QnaService {
 	public List<Map<String, Object>> qnaSearch(Map<String, Object> map) throws Exception {
 		return qnaDAO.qnaSearch(map);
 	}
+	
 }

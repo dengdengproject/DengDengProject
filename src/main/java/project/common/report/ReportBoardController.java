@@ -78,10 +78,12 @@ public class ReportBoardController {
 			}
 			
 			reportList = reportList.subList(paging.getStartCount(), lastCount);
+			
 			mv.addObject("currentPage", currentPage);
 			mv.addObject("pagingHtml", pagingHtml);
 			mv.addObject("reportList", reportList);
 			mv.setViewName("/report/reportList");
+			
 			return mv;
 		}
 		
@@ -103,6 +105,7 @@ public class ReportBoardController {
 		mv.addObject("pagingHtml", pagingHtml);
 		mv.addObject("reportList", reportList);
 		mv.setViewName("/report/reportList");
+		
 		return mv;
 	}
 		
@@ -124,8 +127,10 @@ public class ReportBoardController {
 		}
 		
 	    Map<String, Object> mem = reportService.selectMemInfo(map);
+	    
 	    mv.addObject("mem", mem);
 		mv.setViewName("/report/reportWrite");
+		
 		return mv;
 	}
 

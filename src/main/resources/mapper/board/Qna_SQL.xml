@@ -266,7 +266,6 @@
 	
 	<!-- QNA 검색 (제목,작성자,내용) -->
 	<select id="qnaSearch" resultType="hashmap" parameterType="hashmap">
-		<![CDATA[
 			SELECT *
 			FROM
 				QNA
@@ -283,8 +282,6 @@
 				    </when>
 				</choose>
 			ORDER BY BOARD_NO DESC
-		]]>
 	</select>
-	
 	
 </mapper>

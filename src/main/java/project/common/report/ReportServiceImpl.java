@@ -18,7 +18,7 @@ public class ReportServiceImpl implements ReportService {
 	
 	Logger log = Logger.getLogger(this.getClass());
 	
-	@Resource(name="reportDAO")	//Service�뿉�꽌 �뜲�씠�꽣 �젒洹쇱쓣 �쐞�븳 DAO媛앹껜瑜� �꽑�뼵�븿
+	@Resource(name="reportDAO")	
 	private ReportDAO reportDAO;
 	
 	@Resource(name="fileUtils")
@@ -125,4 +125,5 @@ public class ReportServiceImpl implements ReportService {
 	public List<Map<String, Object>> reportSearch(Map<String, Object> map) throws Exception {
 		return reportDAO.reportSearch(map);
 	}
+	
 }

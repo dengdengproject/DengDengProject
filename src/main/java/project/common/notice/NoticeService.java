@@ -20,5 +20,5 @@ public interface NoticeService {
 	List<Map<String, Object>> noticeSearch(Map<String, Object> map) throws Exception;
 
 	Map<String, Object> selectAdminInfo(Map<String, Object> map) throws Exception;
-
+	
 }

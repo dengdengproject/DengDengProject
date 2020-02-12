@@ -5,11 +5,12 @@
 %>
 <!DOCTYPE html>
 <html>
+
 <style>
 	li{float:left;}
 	li{list-style:none;}
-	
 </style>
+
 <%@ include file="/WEB-INF/views/include/include-head.jspf"%>
 
 <%@ include file="/WEB-INF/views/include/include-header.jspf"%>

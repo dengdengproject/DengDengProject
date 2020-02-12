@@ -25,4 +25,5 @@ public interface QnaService {
 	void updateReplyBoard(Map<String, Object> map, HttpServletRequest request) throws Exception;
 
 	List<Map<String, Object>> qnaSearch(Map<String, Object> map) throws Exception;
+	
 }

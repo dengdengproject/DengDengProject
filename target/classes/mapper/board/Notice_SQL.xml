@@ -3,23 +3,79 @@
 
 <mapper namespace="notice">
 
-<!--  공지사항 리스트 보기 -->
-<select id="selectBoardList" parameterType="hashmap" resultType="hashmap">
-	 
-	<![CDATA[
-	SELECT
-			ROW_NUMBER() OVER (ORDER BY RNUM DESC) ROW_NUM,
-			RNUM,
-			BOARD_NO,
-			NOTICE_SUBJECT,
-			ADMIN_ID,
-			NOTICE_WRITER,
-			NOTICE_CONTENT,
-			TO_CHAR(NOTICE_DATE, 'YYYY/MM/DD') AS NOTICE_DATE,
-			NOTICE_COUNT
-		FROM
-			(SELECT
-				ROW_NUMBER() OVER (ORDER BY BOARD_NO DESC) RNUM,
+	<!--  공지사항 리스트 보기 -->
+	<select id="selectBoardList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+					ROW_NUMBER() OVER (ORDER BY RNUM DESC) ROW_NUM,
+					RNUM,
+					BOARD_NO,
+					NOTICE_SUBJECT,
+					ADMIN_ID,
+					NOTICE_WRITER,
+					NOTICE_CONTENT,
+					TO_CHAR(NOTICE_DATE, 'YYYY/MM/DD') AS NOTICE_DATE,
+					NOTICE_COUNT
+				FROM
+					(SELECT
+						ROW_NUMBER() OVER (ORDER BY BOARD_NO DESC) RNUM,
+						BOARD_NO,
+						NOTICE_SUBJECT,
+						ADMIN_ID,
+						NOTICE_WRITER,
+						NOTICE_CONTENT,
+						NOTICE_DATE,
+						NOTICE_COUNT
+					FROM
+						NOTICE
+					) 
+				ORDER BY ROW_NUM DESC
+		]]>
+	</select>
+
+	<!-- 공지사항 글 작성 -->
+	<insert id="insertBoard" parameterType="hashmap" useGeneratedKeys="true" keyProperty="BOARD_NO">
+		<selectKey keyProperty="BOARD_NO" resultType="string" order="BEFORE">
+			SELECT NOTICE_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+			<![CDATA[
+				INSERT INTO NOTICE (
+					BOARD_NO,
+					NOTICE_SUBJECT,	
+					ADMIN_ID,
+					NOTICE_WRITER,
+					NOTICE_CONTENT,
+					NOTICE_DATE,
+					NOTICE_COUNT
+				)
+				VALUES (
+					#{BOARD_NO},
+					#{NOTICE_SUBJECT},
+					#{ADMIN_ID},
+					#{NOTICE_WRITER},
+					#{NOTICE_CONTENT},
+					SYSDATE,
+					0
+				)
+			]]>
+	</insert>
+	
+	<!-- 공지사항 글 조회수 증가 -->
+	<update id="updateHitCnt" parameterType="hashMap">
+		<![CDATA[
+			UPDATE
+				NOTICE
+			SET
+				NOTICE_COUNT = NVL(NOTICE_COUNT, 0) + 1
+			WHERE
+				BOARD_NO = #{BOARD_NO}
+		]]>
+	</update>
+
+	<!--  공지사항 상세보기  -->
+	<select id="selectBoardDetail" resultType="hashmap" parameterType="hashmap">
+		 <![CDATA[ 
+			SELECT
 				BOARD_NO,
 				NOTICE_SUBJECT,
 				ADMIN_ID,
@@ -29,147 +85,71 @@
 				NOTICE_COUNT
 			FROM
 				NOTICE
-			) ORDER BY ROW_NUM DESC
-	]]>
-	 
-</select>
+			WHERE
+				BOARD_NO = #{BOARD_NO}
+		]]> 
+	</select> 
 
-<!-- 	SELECT	
-			BOARD_NO,
-			NOTICE_SUBJECT,
-			ADMIN_ID,
-			NOTICE_WRITER,
-			NOTICE_DATE,
-			NOTICE_COUNT
-		FROM
-			NOTICE
-		ORDER BY BOARD_NO DESC -->
-
-<!-- 공지사항 글 작성 -->
-<insert id="insertBoard" parameterType="hashmap" useGeneratedKeys="true" keyProperty="BOARD_NO">
-	<selectKey keyProperty="BOARD_NO" resultType="string" order="BEFORE">
-		SELECT NOTICE_SEQ.NEXTVAL FROM DUAL
-	</selectKey>
-	<![CDATA[
-		INSERT INTO NOTICE (
-			BOARD_NO,
-			NOTICE_SUBJECT,	
-			ADMIN_ID,
-			NOTICE_WRITER,
-			NOTICE_CONTENT,
-			NOTICE_DATE,
-			NOTICE_COUNT
-		)
-		VALUES (
-			#{BOARD_NO},
-			#{NOTICE_SUBJECT},
-			#{ADMIN_ID},
-			#{NOTICE_WRITER},
-			#{NOTICE_CONTENT},
-			SYSDATE,
-			0
-		)
-		]]>
-</insert>
-
-
-<!-- 공지사항 글 조회수 증가 -->
-<update id="updateHitCnt" parameterType="hashMap">
-	<![CDATA[
-		UPDATE
-			NOTICE
-		SET
-			NOTICE_COUNT = NVL(NOTICE_COUNT, 0) + 1
-		WHERE
-			BOARD_NO = #{BOARD_NO}
-	]]>
-</update>
-
-
-
-
- <!--  공지사항 상세보기  -->
-<select id="selectBoardDetail" resultType="hashmap" parameterType="hashmap">
-	 <![CDATA[ 
-		SELECT
-			BOARD_NO,
-			NOTICE_SUBJECT,
-			ADMIN_ID,
-			NOTICE_WRITER,
-			NOTICE_CONTENT,
-			NOTICE_DATE,
-			NOTICE_COUNT
-		FROM
-			NOTICE
-		WHERE
-			BOARD_NO = #{BOARD_NO}
-	]]> 
-</select> 
-
-<!-- 공지사항 수정 -->
+	<!-- 공지사항 수정 -->
 	<update id="updateBoard" parameterType="hashmap">
 		<![CDATA[
 			UPDATE NOTICE
 			SET
-			NOTICE_SUBJECT = #{NOTICE_SUBJECT},
-			NOTICE_CONTENT = #{NOTICE_CONTENT}
+				NOTICE_SUBJECT = #{NOTICE_SUBJECT},
+				NOTICE_CONTENT = #{NOTICE_CONTENT}
 			WHERE
-			BOARD_NO = #{BOARD_NO}
+				BOARD_NO = #{BOARD_NO}
 		]]>
 	</update>
 	
 	<!-- 공지사항 삭제 -->
 	<delete id="deleteBoard" parameterType="hashmap">
 	    <![CDATA[
-		DELETE NOTICE
-		WHERE
-		BOARD_NO = #{BOARD_NO}
-	    
+			DELETE NOTICE
+			WHERE
+			BOARD_NO = #{BOARD_NO}
 	    ]]>
 	</delete>
 	
 	<!-- 파일 추가 -->
 	<insert id="insertFile" parameterType="hashmap">
 		<![CDATA[
-        INSERT INTO BOARD_FILE (
-         		BOARD_TYPE,
-       			BOARD_NO,
-       			BOARD_FILE_NO,
-                BOARD_ORIGINAL_FILE_NAME,
-         		BOARD_STORED_FILE_NAME,
-       			BOARD_FILE_SIZE,
-       			BOARD_DATE,
-       			BOARD_CREA_ID	
-         )
-         VALUES (
-         		'NOTICE',
-        		#{BOARD_NO},
-            	BOARD_FILE_SEQ.NEXTVAL,
-                #{BOARD_ORIGINAL_FILE_NAME},
-         		#{BOARD_STORED_FILE_NAME},
-            	#{BOARD_FILE_SIZE},
-            	sysdate,
-            	'작성자'
-         )
-      ]]>
-   
+	        INSERT INTO BOARD_FILE (
+	         		BOARD_TYPE,
+	       			BOARD_NO,
+	       			BOARD_FILE_NO,
+	                BOARD_ORIGINAL_FILE_NAME,
+	         		BOARD_STORED_FILE_NAME,
+	       			BOARD_FILE_SIZE,
+	       			BOARD_DATE,
+	       			BOARD_CREA_ID	
+	         )
+	         VALUES (
+	         		'NOTICE',
+	        		#{BOARD_NO},
+	            	BOARD_FILE_SEQ.NEXTVAL,
+	                #{BOARD_ORIGINAL_FILE_NAME},
+	         		#{BOARD_STORED_FILE_NAME},
+	            	#{BOARD_FILE_SIZE},
+	            	sysdate,
+	            	'작성자'
+	         )
+     	 ]]>
 	</insert>
 
-<!-- 파일 리스트 -->
+	<!-- 파일 리스트 -->
  	<select id="selectFileList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 			SELECT
 			     BOARD_FILE_NO,
 			     BOARD_ORIGINAL_FILE_NAME,
 			     ROUND(BOARD_FILE_SIZE/1024,1) AS BOARD_FILE_SIZE
-			
 			FROM
 			     BOARD_FILE
 			WHERE
 			     BOARD_NO = #{BOARD_NO} AND FILE_DEL = 'N'
 		]]>
 	</select> <!-- BOARD_FILE_NO -->
-	
 	
 	<select id="selectAdminInfo" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
@@ -182,12 +162,10 @@
 						ADMIN_ACCOUNT
 				WHERE
 						ADMIN_ID = #{ADMIN_ID}
-				
-		
 		]]>
 	</select>
 	
-		<update id="deleteFile" parameterType="hashmap">
+	<update id="deleteFile" parameterType="hashmap">
 		<![CDATA[
 			UPDATE BOARD_FILE
 			SET 
@@ -207,29 +185,7 @@
 		]]>
 	</update>
 	
-	<!-- 공지사항 검색 <제목, 작성자, 내용> -->
-<!-- <select id="noticeSearch" resultType="hashmap" parameterType="hashmap">
-	<![CDATA[
-		SELECT *
-		FROM
-			NOTICE
-		WHERE
-			<choose>
-				<when test = "NOTICE_CONTENT != NULL OR !NOTICE_CONTENT.EQUALS('')">
-					NOTICE_CONTENT LIKE '%'||#{NOTICE_CONTENT}||'%'
-				</when>
-				<when test = "NOTICE_WRITER != NULL" OR !NOTICE_WRITER.EQUALS('')">
-					NOTICE_WRITER LIKE '%'||#{NOTICE_WRITER}||'%'
-				</when>
-				<when test = "NOTICE_SUBJECT != NULL" OR !NOTICE_SUBJECT.EQUALS('')">
-					NOTICE_SUBJECT LIKE '%'||#{NOTICE_SUBJECT}||'%'
-				</when>
-			</choose>
-		ORDER BY NOTICE_NO DESC
-	]]>
-</select> -->
-
-<!-- 공지사항 검색 -->
+	<!-- 공지사항 검색 -->
 	<select id="noticeSearch" resultType="hashmap" parameterType="hashmap">
 		SELECT * FROM NOTICE
 		WHERE
@@ -246,25 +202,5 @@
 		</choose>
 		ORDER BY BOARD_NO DESC
 	</select>
-	
-	<!-- 공지사항 검색 -->
-	<!-- <select id="noticeSearch" resultType="hashmap" parameterType="hashmap">
-		SELECT * FROM MC_NOTICE 
-		WHERE 
-		<choose>
-			<when test = "NOTICE_SUB != NULL">
-				NOTICE_SUB LIKE '%'||#{NOTICE_SUB}||'%'
-			</when>
-			<when test = "NOTICE_CONTENT != NULL">
-				NOTICE_CONTENT LIKE '%'||#{NOTICE_CONTENT}||'%'
-			</when>
-		</choose>
-		ORDER BY NOTICE_NO DESC
-	</select> -->
-
-
-
-
-
 
 </mapper>

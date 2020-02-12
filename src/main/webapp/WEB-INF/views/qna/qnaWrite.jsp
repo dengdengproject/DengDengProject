@@ -23,6 +23,7 @@
 
 <!-- 게시판 에디터 스크립트 -->   
 <script>
+
 $(document).ready(function() {
 	  $('#summernote').summernote();
 });
@@ -60,16 +61,11 @@ $(document).ready(function() {
 					<input type="hidden" name="ID" id="ID" value="${mem.ID }"></input>
 					<input type="hidden" name="BOARD_CREA_ID" id="BOARD_CREA_ID" value="${mem.ID }"></input>
 					<input type="hidden" name="adminId" id="adminId" value="${mem.ADMIN_ID }"></input>
-					<%-- <input type="hidden" name="ADMIN_ID" id="ADMIN_ID">${ADMIN_ID }</input> --%>
-					<%-- <label style="width: 90px; margin-left: 3em">비밀번호</label>
-						<input type="password" id="QNA_PASSWORD" name="QNA_PASSWORD" value="${QNA_PASSWORD }" class="form-control" style="width: 150px" /> --%>
-					<!-- <input type="text" class="form-control" style="width:200px" placeholder="작성자를 입력하세요." /> -->
 					<label style="margin-left: 3em">
 						<input type="checkbox" id="QNA_PRIVATE_CHECK" name="QNA_PRIVATE_CHECK" value="Y"> 비밀글 </input>
 					</label>
 				</div>
 				
-				<!-- <div id="summernote"></div> -->
 				<div>
 					<textarea rows="20" cols="100" title="내용" id="QNA_CONTENT" name="QNA_CONTENT" placeholder="내용을 입력하세요.">${QNA_CONTENT }</textarea>
 				</div> 
@@ -88,28 +84,15 @@ $(document).ready(function() {
 							</p>
 						</div>
 				</div>
-
-			<!-- <div
-				style="text-align: center; width: 8em; height: 2em; position: relative; right: 8em; top: 3em; margin-top: 1em; margin-bottom: 1em;">
-				<button style="width: 8em; height: 2em"
-					onclick="location.href='/first/qnaList'">등록</button>
-			</div>
-
-			<div
-				style="text-align: center; width: 8em; height: 2em; position: relative; left: 1em; margin-top: 1em; margin-bottom: 1em;">
-				<button style="width: 8em; height: 2em"
-					onclick="location.href='/first/qnaList'">취소</button>
-			</div> -->
-			
-			<a href="#this" class="btn" id="addFile" >파일추가</a>
-			<a href="#this" class="btn" id="write" >등록</a>
-			<a href="#this" class="btn" id="list">취소</a>
+				
+				<a href="#this" class="btn" id="addFile" >파일추가</a>
+				<a href="#this" class="btn" id="write" >등록</a>
+				<a href="#this" class="btn" id="list">취소</a>
 			
 		</div>
 	</div>
 </div>
 </div>
-
 </form>
 
 		<%@ include file="/WEB-INF/views/include/include-body.jspf" %> 

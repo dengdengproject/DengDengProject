@@ -14,8 +14,6 @@
 
 <%@ include file="/WEB-INF/views/include/include-board-menu.jspf"%>
 
-<%-- <%@ include file="/WEB-INF/views/include/include-header-add.jspf" %> --%>
-
 <!-- 게시판 에디터 Summernote-->
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
@@ -30,7 +28,6 @@ $(document).ready(function() {
 });
 
 </script>  
-
 </head>
 
 <form id="frm" name="frm" enctype="multipart/form-data">
@@ -55,13 +52,8 @@ $(document).ready(function() {
 					<input type="hidden" name="BOARD_CREA_ID" id="BOARD_CREA_ID" value="${ADMIN_ID }"></input>
 					<input type="hidden" name="BOARD_NO" id="BOARD_NO" value="${map.BOARD_NO }">
 					<input type="hidden" name="QNA_RE_NO" id="QNA_RE_NO" value="${map.BOARD_NO }">
-					<%-- <input type="hidden" name="ADMIN_ID" id="ADMIN_ID">${ADMIN_ID }</input> --%>
-					<%-- <label style="width: 90px; margin-left: 3em">비밀번호</label>
-						<input type="password" id="QNA_PASSWORD" name="QNA_PASSWORD" value="${QNA_PASSWORD }" class="form-control" style="width: 150px" /> --%>
-					<!-- <input type="text" class="form-control" style="width:200px" placeholder="작성자를 입력하세요." /> -->
 				</div>
 				
-				<!-- <div id="summernote"></div> -->
 				<label style="width: 90px">내용</label> [Q&A질문] ${map.QNA_CONTENT}
 				<div>
 					<textarea rows="20" cols="100" title="내용" id="QNA_CONTENT" name="QNA_CONTENT" placeholder="질문의 답변을 입력하세요.">${QNA_CONTENT }</textarea>
@@ -81,18 +73,6 @@ $(document).ready(function() {
 							</p>
 						</div>
 				</div>
-
-			<!-- <div
-				style="text-align: center; width: 8em; height: 2em; position: relative; right: 8em; top: 3em; margin-top: 1em; margin-bottom: 1em;">
-				<button style="width: 8em; height: 2em"
-					onclick="location.href='/first/qnaList'">등록</button>
-			</div>
-
-			<div
-				style="text-align: center; width: 8em; height: 2em; position: relative; left: 1em; margin-top: 1em; margin-bottom: 1em;">
-				<button style="width: 8em; height: 2em"
-					onclick="location.href='/first/qnaList'">취소</button>
-			</div> -->
 			
 			<a href="#this" class="btn" id="addFile" >파일추가</a>
 			<a href="#this" class="btn" id="write" >등록</a>
@@ -102,7 +82,6 @@ $(document).ready(function() {
 	</div>
 </div>
 </div>
-
 </form>
 
 		<%@ include file="/WEB-INF/views/include/include-body.jspf" %> 
@@ -129,7 +108,6 @@ $(document).ready(function() {
 						e.preventDefault();
 						fn_deleteFile($(this));
 					});
-					
 				});
 				
 				function fn_openBoardList(){
@@ -165,6 +143,7 @@ $(document).ready(function() {
 					obj.parent().remove();
 				}
 			</script>
+			
 <%-- <%@ include file="/WEB-INF/views/include/include-footer.jspf"%> --%>
 
 </html>

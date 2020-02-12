@@ -25,4 +25,5 @@ public interface ReportService {
 	void updateReplyBoard(Map<String, Object> map, HttpServletRequest request) throws Exception;
 	
 	List<Map<String, Object>> reportSearch(Map<String, Object> map) throws Exception;
+	
 }

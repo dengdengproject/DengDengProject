@@ -84,10 +84,12 @@ public class QnaBoardController {
 			}
 			
 			qnaList = qnaList.subList(paging.getStartCount(), lastCount);
+			
 			mv.addObject("currentPage", currentPage);
 			mv.addObject("pagingHtml", pagingHtml);
 			mv.addObject("qnaList", qnaList);
 			mv.setViewName("/qna/qnaList");
+			
 			return mv;
 		}
 		
@@ -109,6 +111,7 @@ public class QnaBoardController {
 		mv.addObject("pagingHtml", pagingHtml);
 		mv.addObject("qnaList", qnaList);
 		mv.setViewName("/qna/qnaList");
+		
 		return mv;
 	}
 		
@@ -130,8 +133,10 @@ public class QnaBoardController {
 		}
 		
 	    Map<String, Object> mem = qnaService.selectMemInfo(map);
+	    
 	    mv.addObject("mem", mem);
 		mv.setViewName("/qna/qnaWrite");
+		
 		return mv;
 	}
 

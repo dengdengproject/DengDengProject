@@ -32,23 +32,8 @@ public class MyPetServiceImpl implements MyPetService {
 
 	@Override
 	public void insertBoard(Map<String, Object> map, HttpServletRequest request) throws Exception {
-		/*
-		 * List<Map<String,Object>> list = fileUtils.parseInsertFileInfo(map, request);
-		 * for(int i=0, size=list.size(); i<1; i++) { String[] sungi = list.get(i);
-		 * map.put("", sungi); }
-		 */
-		
-		/*
-		 * List<Map<String, Object>> list2 = fileUtils.parseInsertFileInfo2_board(map,
-		 * request); for (int i = 0, size = list2.size(); i < size; i++) {
-		 * mypetDAO.insertFile2(list2.get(i)); }
-		 */
 		
 		mypetDAO.insertBoard(map);
-		
-		//map = fileUtils.goodsThumbnail(map, request);
-		
-		//mypetDAO.mypetThumbnail(map, request);
 
 		List<Map<String, Object>> list = fileUtils.parseInsertFileInfo_board(map, request);
 		for (int i = 0, size = list.size(); i < size; i++) {
@@ -58,17 +43,18 @@ public class MyPetServiceImpl implements MyPetService {
 
 	@Override
 	public Map<String, Object> selectBoardDetail(Map<String, Object> map) throws Exception {
-		// System.out.println("list");
 		mypetDAO.updateHitCnt(map);
+		
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		Map<String, Object> tempMap = mypetDAO.selectBoardDetail(map);
 		resultMap.put("map", tempMap);
 
 		List<Map<String, Object>> list = mypetDAO.selectFileList(map); // 파일을 리스트로 저장했기 때문에 Detail.jsp에서 map이 아닌 list로
-																		// 써서 데이터를 가져온다 ex ${list.blahblah}
 		resultMap.put("list", list);
-		/* 댓글 */ List<Map<String, Object>> cmtList = mypetDAO.selectCmtList(map);
+		
+		List<Map<String, Object>> cmtList = mypetDAO.selectCmtList(map);
 		resultMap.put("cmtList", cmtList); // 댓글
+		
 		return resultMap;
 	}
 
@@ -97,30 +83,22 @@ public class MyPetServiceImpl implements MyPetService {
 
 	@Override
 	public List<Map<String, Object>> mypetSearch(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
 		return mypetDAO.mypetSearch(map);
 	}
 
 	@Override
 	public void insertComment(Map<String, Object> map) throws Exception {
 		mypetDAO.insertComment(map);
-
 	}
 
 	@Override
 	public void deleteComment(Map<String, Object> map) throws Exception {
 		mypetDAO.deleteComment(map);
-
 	}
 
 	@Override
 	public Map<String, Object> selectMemInfo(Map<String, Object> map) throws Exception {
-		
 		return mypetDAO.selectMemInfo(map)	;
 	}
-	
-	
-
-	
 
 }

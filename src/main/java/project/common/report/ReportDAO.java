@@ -13,7 +13,7 @@ public class ReportDAO extends AbstractDAO {
 
 	@SuppressWarnings("unchecked")
 	public List<Map<String, Object>> selectBoardList(Map<String, Object> map) throws Exception {
-		return (List<Map<String, Object>>)selectList("report.selectBoardList", map); //selectPagingList????
+		return (List<Map<String, Object>>)selectList("report.selectBoardList", map);
 	}
 
 	@SuppressWarnings("unchecked")

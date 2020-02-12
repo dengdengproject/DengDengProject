@@ -13,13 +13,8 @@
 
 <%@ include file="/WEB-INF/views/include/include-board-menu.jspf"%> 
 
-<%-- <%@ include file="/WEB-INF/views/include/include-header-add.jspf" %> --%>
 <form id="frm" name="frm" enctype="multipart/form-data">
 <div style="height: 400px; border-top: solid;">
-
-	<!-- <div style="text-align: center; margin-top: 4em;">
-  			<span style=" font-weight: bold; font-size: 2em;">공지사항</span>
-  		</div> -->
 	<div style="height: 600px;">
 		<div align="center" class="container">
 			<div align="left"
@@ -53,8 +48,6 @@
 					<textarea rows="20" cols="100" title="내용" id="QNA_CONTENT" name="QNA_CONTENT" placeholder="질문의 답변을 입력하세요.">${map.QNA_CONTENT }</textarea>
 				</div>
 				
-				<%-- <div>${map.NOTICE_CONTENT }</div> --%>
-				
 				<div class="table file">
 					<h1>첨부 파일</h1>
 						<div class="message">
@@ -74,24 +67,17 @@
 						</div>
 					</div>
 				</div>
-
-			<!-- <div
-				style="text-align: center; position: relative; right: 8em; top: 3em; margin-top: 1em">
-				<button style="width: 8em; height: 2em">수정</button>
-			</div> -->
-			<br/><br/>
+				<br/><br/>
+				
 				<a href="#this" class="btn" id="addFile">파일추가</a>
 				<a href="#this" class="btn" id="list">목록</a>
 				<a href="#this" class="btn" id="update">수정</a>
 				<a href="#this" class="btn" id="delete">삭제</a>
-			<!-- <div
-				style="text-align: center; position: relative; left: 1em; margin-top: 1em">
-				<button style="width: 8em; height: 2em">목록</button>
-			</div> -->
-					</div>
+		</div>
 	</div>
 </div>
 </form>			
+
 			<%@ include file="/WEB-INF/views/include/include-body.jspf" %>
 			<script type="text/javascript">
 			
