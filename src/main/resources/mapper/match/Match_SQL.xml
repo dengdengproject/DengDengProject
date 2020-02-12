@@ -310,14 +310,14 @@
 			FROM
 				MATCH_REGISTER
 			WHERE
-				PSMEM_ADDRESS1 LIKE '%'||#{add1}||'%' AND PSMEM_ADDRESS1 LIKE '%'||#{add2}||'%' 
+				DEL_GB = 'N' AND PSMEM_ADDRESS1 LIKE '%'||#{add1}||'%' AND PSMEM_ADDRESS1 LIKE '%'||#{add2}||'%' 
 			    <choose>
-			    	<when test="serviceLt != null || serviceLt != null">
+			    	<when test="serviceLt != null and serviceLt != ''">
 						<foreach item="item" collection="serviceLt" index="index">
 							AND POSSIBLE_SERVICE LIKE '%'||#{item}||'%'
 						</foreach>
 					</when>
-					<when test="searchDay != '' || searchDay != null">
+					<when test="searchDay != null and searchDay != ''">
 						<foreach collection="searchDay" item="day">
 							AND MATCH_DATE LIKE '%'||'#{day}'||'%'
 						</foreach>

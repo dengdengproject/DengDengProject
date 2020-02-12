@@ -113,7 +113,7 @@ public class MatchController {
 
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		
-		//세션에서 ID 가져오기
+		// ID 값 param으로 가져오기
 		map.put("ID", ID);
 		
 		Map<String, Object> mthdtl = matchService.matchDetail(seq);
@@ -160,15 +160,10 @@ public class MatchController {
 		for(String item1 : date4) {
 			chkList.add(item1);
 		}
-		System.out.println(chkList);
+		System.out.println("큰 따옴표 붙인 날짜(리스트) : " + chkList);
 		//이 위까지 확인 부분입니다.
 		
-		System.out.println("선택 가능 날짜(리스트) : " + flickr);
-		
-		JSONArray flikr = new JSONArray();
-		
 		mv.addObject("chkList", chkList);	//리스트 넘어가나 확인 중
-		mv.addObject("flikr", flikr.fromObject(flickr));				//선택 날짜 리스트
 		mv.addObject("serviceList", serviceList);	//선택 서비스 배열
 		mv.addObject("matchDtl", mthdtl);			//매치 정보(해당 글)
 		mv.addObject("pst", pst);					//펫시터 정보
@@ -215,28 +210,42 @@ public class MatchController {
 		
 		String arr[] = request.getParameterValues("serviceChk");
 		
-		System.out.println("넘어온 서비스(배열) : " + Arrays.toString(arr));
+		if(arr != null) {
+			System.out.println("넘어온 서비스(배열) : " + Arrays.toString(arr));
+			
+			for(String item : arr) {
+				serviceLt.add(item);
+			}
 		
-		for(String item : arr) {
-			serviceLt.add(item);
-		}
+			System.out.println("서비스 리스트 : " + serviceLt);
 		
-		System.out.println("서비스 리스트 : " + serviceLt);
-		try {
-			map.put("serviceLt", serviceLt);
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
+			try {
+				map.put("serviceLt", serviceLt);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}	//조건 검색 끝
 		
 		//날짜 선택 부분
-		System.out.println("넘어온 날짜(스트링) : " + request.getParameter("basicDate"));
 		
-		if(request.getParameter("basicDate") != null) {
-			String searchDate = request.getParameter("basicDate");
+		String searchDate = request.getParameter("basicDate");
+
+		System.out.println("넘어온 날짜(스트링) : " + searchDate);
+
+		if(searchDate != null && searchDate != "") {
 			String[] searchDay = searchDate.split(",");
-			System.out.println("날짜 배열 : " + Arrays.toString(searchDay));
-			map.put("searchDay", searchDay);
-		}	//예약 날짜 쪼개기 끝
+
+			if(!searchDay.equals(null)) {
+				System.out.println("넘어온 날짜(배열) : " + searchDay);
+
+				try {
+					map.put("searchDay", searchDay);
+				} catch(Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		//예약 날짜 쪼개기 끝
 		
 		//맵 키, 값 확인하기
 		for(Map.Entry<String, Object> entry : map.entrySet()) {
@@ -244,7 +253,20 @@ public class MatchController {
 		}
 		
 		List<Map<String, Object>> resultComplete = matchService.mtchSearch(map);
-		//이 윗부분 실행해서 값이 null이거나 ""이면 알럿 띄우고 다시 메인으로 돌아가게 해야 함.
+		
+		//아래는 서비스 목록만 뽑아오는 부분
+		String serviceString = "";
+		
+		for(Map<String, Object> mapper : resultComplete) {
+			serviceString = (String) mapper.get("POSSIBLE_SERVICE");
+		}
+		
+		System.out.println("서비스 목록 뽑기(스트링) : " + serviceString);
+		
+		String[] serviceArray = serviceString.split(",");
+		//여기까지 서비스 목록 뽑기
+		
+		mv.addObject("serviceArray", serviceArray);
 		mv.addObject("resultComplete", resultComplete);
 			
 		return mv;

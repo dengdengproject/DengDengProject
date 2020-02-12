@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!-- 
-2020.02.11 호석 
+2020.02.12 호석 
 -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="kr" lang="kr">
@@ -71,16 +71,7 @@
 	<input type="hidden" name="PSMEM_ID" id="PSMEM_ID" value="${ID}" />
 	<input type="hidden" name="name" id="name" value="${name}"/>
 	<input type="hidden" name="GRADE" id="GRADE" value="${grade}"/>
-	<input type="hidden" name="flikr" id="fiikr" value="${flikr}"/>
 	<input type="hidden" name="chkList" id="chkList" value="${chkList}"/>
-	<!-- 기능 완료되면 삭제할 부분 아래 3줄 -->
-	<c:forEach items="${flikr}" var="list">
-	${list}
-	</c:forEach>
-	<br/>
-	<c:forEach items="${chkList}" var="list1">
-	${list1}
-	</c:forEach>
 	
 <!-- 이미지 슬라이드 -->
 	<div class="container" style="text-align: center;">
@@ -135,7 +126,7 @@
 									<p style="font-family: &amp; amp; amp; amp; quot; Noto Sans KR&amp;amp; amp; amp; quot; , sans-serif; font-size: 13px; letter-spacing: -0.2px; line-height: 13px; color: rgb(85, 85, 85);">
 										<b>반려동물 없음</b></p>
 									<p style="font-size: 11px; letter-spacing: -0.2px; line-height: 11px; color: rgb(94, 99, 109); margin-top: 5px;">
-										현재 반려동물 없음!</p>
+										현재 반려동물 없음</p>
 								</div>
 							</div>
 						</c:if>
@@ -652,21 +643,20 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.js"></script>
 <!-- flatpickr -->  
 <script id="INLINE_PEN_JS_ID">
-	var form = document.matchInsert;
-
+	console.log("chkList:", '${chkList}');
 	
 	$("#basicDate").flatpickr({  // 이 방식은 펫시터가 사용. //일단 disable이 불가능한 것 같으니 일반 회원도 이걸로 사용.
 		mode: "multiple",	//다중 선택
 		dateFormat: "Y-m-d",
 		minDate: "today",  //펫시터가 선택하는 날짜는 DB에 리스트로 저장했다가 일반 회원이 고를 때 enable로 가능한 날짜만 표시.
-		disable: [form]
+		disable: ${chkList}
 	});					  //그렇게 DB에 저장하면 펫시터가 원하는 날짜만 골라서 매칭할 수 있을 것 같음.
 	
 	$("#rangeDate").flatpickr({	//이 방식은 일반 회원이 사용
 		mode: "range",		//시작에서 끝까지 from to 형식으로 선택	//이 방식은 또 어떻게 검색해야 할지 감이 안 온다.
 		dateFormat: "Y-m-d",
 		minDate: "today",
-		disable: [form]	//배열을 읽지를 못하네 어쩌지
+		disable: [result]	//배열을 읽지를 못하네 어쩌지
 		//disable: ["2020-02-18", "2020-02-19", "2020-02-21", "2020-02-20", "2020-02-27", "2020-02-26"]  //이 부분은 테이블에 불가능한 날짜를 리스트로 저장하고, 회원이 일정 고를 때 긁어와서 저기에 넣어야 할 것 같음.
 	});
 

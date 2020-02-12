@@ -48,7 +48,6 @@ public class MatchDAO extends AbstractDAO {
 		
 		return (Map<String, Object>) selectOne("matchSql.selectPetsitterProfile", map);
 	}
-	//자격증 여러 개 
 	
 	//위탁 장소 이미지 가져오기
 	@SuppressWarnings("unchecked")
@@ -64,7 +63,7 @@ public class MatchDAO extends AbstractDAO {
 		return (List<Map<String, Object>>) selectList("matchSql.selectPet", map);
 	}
 	
-	//펫 정보 가져오기
+	//자격증 정보 사져오기
 	@SuppressWarnings("unchecked")
 	public List<Map<String, Object>> sltCertificate(Map<String, Object> map) throws Exception {
 		
