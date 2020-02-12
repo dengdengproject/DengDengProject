@@ -23,7 +23,7 @@
 		<div id="ttr_page" class="container">
 			<div id="ttr_content_and_sidebar_container">
 				<div id="ttr_content">
-					<div id="ttr_content_margin" class="container-fluid">
+					<div id="ttr_content_margin" class="container-fluid" style="">
 						<div style="height: 0px; width: 0px; overflow: hidden; -webkit-margin-top-collapse: separate;"></div>
 						<!-- 본문 큰 제목부분 : 펫시터 -->
 						<div class="ttr_Training_html_row0 row">
@@ -33,7 +33,7 @@
 									<div class="html_content" style="position: relative; margin-top: 50px; margin-bottom: 60px;">
 										<p style="text-align: Center;">
 										<c:choose>
-											<c:when test="${resultComplete != ''}">
+											<c:when test="${resultComplete != null}">
 												<c:choose>
 													<c:when test="${ID != null}">
 														<span style="font-family: 'Arial'; font-weight: 700; font-size: 2em; color: rgba(5, 38, 55, 1);">
@@ -60,6 +60,7 @@
 										</c:choose>
 										</p>
 									</div>
+
 								</div>
 							</div>
 						</div>
@@ -87,7 +88,7 @@
 							<div class="post_column col-lg-8 col-md-8 col-sm-8 col-xs-12">
 								<div class="ttr_Training_html_column11">
 									<div style="height: 0px; width: 0px; overflow: hidden; -webkit-margin-top-collapse: separate;"></div>
-									<div class="html_content" style="position:relative; right:5em;">
+									<div class="html_content" style="position:relative; right:5em; margin-top: 15px;">
 										<p>
 											<span style="font-family: 'Arial'; font-weight: 700; font-size: 1.143em; color: #6E6E6E; position: relative;">
 												<c:out value="${list.PSMEM_ADDRESS1}"/></span>
@@ -97,8 +98,13 @@
 												<span style="font-family: 'Arial'; font-weight: bold; font-size: 2em; color: #2E2E2E;">
 													<c:out value="${list.MATCH_SUBJECT}"/></span></a>
 										</p>
+										<p style="margin: 0.71em 0em 0.36em 0em;">
+											<a href="PSTMatchingDetail1.html">
+												<span style="font-family: 'Arial'; font-weight: bold; font-size: 1.5em; color: #2E2E2E;">
+													<c:out value="${list.PSMEM_CLASS}"/>&nbsp;펫시터&nbsp;<c:out value="${list.PSMEM_NAME}"/>&nbsp;님</span></a>
+										</p>
 										<p style="margin: 1.43em 0em 0.36em 0em; line-height: 1.76056338028169;">
-											<c:forEach var="service" items="${serviceArray}" end="3">
+											<c:forEach var="service" items="<c:out value='${list.POSSIBLE_SERVICE}'/>" end="6">
 												<c:if test="${service == 'service01'}">
 													<span style="color: rgba(5, 38, 55, 1);">#현재 반려동물 없음&nbsp;</span>
 												</c:if>
@@ -154,16 +160,16 @@
 										</p>
 										<div style="position: relative; left:8em; bottom: 6em; ">
 										<p style="margin-top: 10px; margin-bottom:5px; text-align: right">
-											대형견 : &nbsp;<span style="font-size: 1.2em; font-weight: bold; color: rgba(1, 0, 255, 1);"><c:out value="${list.PRICE_LARGE_ALL}"/>원</span>&nbsp;/&nbsp;맡김&nbsp;&nbsp;|&nbsp;&nbsp;
-											<span style="font-size: 1.2em; font-weight: bold; color: rgba(1, 0, 255, 1);"><c:out value="${list.PRICE_LARGE_HALF}"/>원</span>&nbsp;/&nbsp;돌봄
+											<b>대형견</b> : &nbsp;<span style="font-size: 1.2em; font-weight: bold; color: #084B8A;"><c:out value="${list.PRICE_LARGE_ALL}"/></span>&nbsp;/&nbsp;맡김&nbsp;&nbsp;|&nbsp;&nbsp;
+											<span style="font-size: 1.2em; font-weight: bold; color: #084B8A;"><c:out value="${list.PRICE_LARGE_HALF}"/></span>&nbsp;/&nbsp;돌봄
 										</p>
 										<p style="margin-top: 10px; margin-bottom:5px; text-align: right">
-											중형견 : &nbsp;<span style="font-size: 1.2em; font-weight: bold; color: rgba(1, 0, 255, 1);"><c:out value="${list.PRICE_MEDIUM_ALL}"/>원</span>&nbsp;/&nbsp;맡김&nbsp;&nbsp;|&nbsp;&nbsp;
-											<span style="font-size: 1.2em; font-weight: bold; color: rgba(1, 0, 255, 1);"><c:out value="${list.PRICE_MEDIUM_ALL}"/>원</span>&nbsp;/&nbsp;돌봄
+											<b>중형견</b> : &nbsp;<span style="font-size: 1.2em; font-weight: bold; color: #084B8A;"><c:out value="${list.PRICE_MEDIUM_ALL}"/></span>&nbsp;/&nbsp;맡김&nbsp;&nbsp;|&nbsp;&nbsp;
+											<span style="font-size: 1.2em; font-weight: bold; color: #084B8A;"><c:out value="${list.PRICE_MEDIUM_ALL}"/></span>&nbsp;/&nbsp;돌봄
 										</p>
 										<p style="margin-top: 10px; margin-bottom:5px; text-align: right">
-											소형견 : &nbsp;<span style="font-size: 1.2em; font-weight: bold; color: rgba(1, 0, 255, 1);"><c:out value="${list.PRICE_SMALL_ALL}"/>원</span>&nbsp;/&nbsp;맡김&nbsp;&nbsp;|&nbsp;&nbsp;
-											<span style="font-size: 1.2em; font-weight: bold; color: rgba(1, 0, 255, 1);"><c:out value="${list.PRICE_SMALL_ALL}"/>원</span>&nbsp;/&nbsp;돌봄
+											<b>소형견</b> : &nbsp;<span style="font-size: 1.2em; font-weight: bold; color: #084B8A;"><c:out value="${list.PRICE_SMALL_ALL}"/></span>&nbsp;/&nbsp;맡김&nbsp;&nbsp;|&nbsp;&nbsp;
+											<span style="font-size: 1.2em; font-weight: bold; color: #084B8A;"><c:out value="${list.PRICE_SMALL_ALL}"/></span>&nbsp;/&nbsp;돌봄
 										</p>
 										</div>
 										<!--  일단 삭제

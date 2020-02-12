@@ -254,20 +254,14 @@ public class MatchController {
 		
 		List<Map<String, Object>> resultComplete = matchService.mtchSearch(map);
 		
-		//아래는 서비스 목록만 뽑아오는 부분
-		String serviceString = "";
-		
-		for(Map<String, Object> mapper : resultComplete) {
-			serviceString = (String) mapper.get("POSSIBLE_SERVICE");
+		//resultComplete의 키 값을 확인해서 있으면 넘기고, 없으면 안 넘기고.
+		for(Map<String, Object> result : resultComplete) {
+			if(result.get("PSMEM_ID") != null && (String)result.get("PSMEM_ID") != "") {
+				mv.addObject("resultComplete", resultComplete); //원 파일
+			} 
 		}
 		
-		System.out.println("서비스 목록 뽑기(스트링) : " + serviceString);
-		
-		String[] serviceArray = serviceString.split(",");
-		//여기까지 서비스 목록 뽑기
-		
-		mv.addObject("serviceArray", serviceArray);
-		mv.addObject("resultComplete", resultComplete);
+		//mv.addObject("resultComplete", resultComplete);
 			
 		return mv;
 	}
