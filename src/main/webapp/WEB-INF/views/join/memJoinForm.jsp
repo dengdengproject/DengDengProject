@@ -13,10 +13,10 @@
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript" src="resources/js/common.js"></script>
 
-<script type="text/javascript"> 
+<script type="text/javascript">
 function fn_idCheck(){
 	    var ID = {ID : $('#MEM_ID').val()};    // {ID="입력한 ID값"}
-	  
+	    alert(ID +"입력한 ID값입니다.")
 	    $.ajax({
 	        url:"<c:url value='/join/idCheck'/>",
 	        type:'get',
@@ -120,81 +120,18 @@ function fn_idCheck(){
 		}
 
 	
+		if ($("#PASSWORD1").val() != $("#PASSWORD2").val()) {
+			
+			alert("비밀번호가 일치하지 않습니다. 비밀번호를 재확인해주세요.");
+			$("#PASSWORD2").focus();
+			return false;
+		}
 		
-		
+
 		
 		
 	/* 	var id = $("#MEM_ID").val()
 		comSubmit.addParam("ID", id); */
-	
-		var comSubmit = new ComSubmit("joinForm");
-		//값이 넘어가는지 확인하는 alert
- 		/* alert("MEM_ID" + $('#MEM_ID').val());
-		alert("PASSWORD1" + $('#PASSWORD1').val());
-		alert("PASSWORD2" + $('#PASSWORD2').val());
-		alert("NAME" + $('#NAME').val());
-		alert("PHONE" + $('#PHONE').val());
-		alert("EMAIL" + $('#EMAIL').val());
-		alert("SEX" + $('#SEX').val());
-		alert("BIRTHDAY" + $('#BIRTHDAY').val());
-		alert("ZIPCODE" + $('#ZIPCODE').val());
-		alert("ADDRESS1" + $('#ADDRESS1').val());
-		alert("ADDRESS2" + $('#ADDRESS2').val());
-		alert("ADDRESS_ADD" + $('#ADDRESS_ADD').val());
-		alert("JOIN_DATE" + $('#SYSDATE').val()); */
-		
-		if(!$("#MEM_ID").val()){
-			alert("아이디를 입력해주세요.");
-			$("#MEM_ID").focus();
-			return false;
-		}
-		if($("#chkMsg").html()!="사용가능한 아이디 입니다."){
-			alert("아이디 중복확인을 해주세요.");
-			return false;
-		}
-		if(!$("#PASSWORD1").val()){
-			alert("비밀번호를 입력해주세요.");
-			$("#PASSWORD1").focus();
-			return false;
-		}
-		if(!$("#PASSWORD2").val()){
-			alert("비밀번호 확인을 입력해주세요.");
-			$("#PASSWORD2").focus();
-			return false;
-		}
-		if(!$("#NAME").val()){
-			alert("이름을 입력해주세요.");
-			$("#NAME").focus();
-			return false;
-		}
-		if(!$("#PHONE").val()){
-			alert("연락처를 입력해주세요.");
-			$("#PHONE").focus();
-			return false;
-		}
-
-		if(!$("#BIRTHDAY").val()){
-			alert("생일을 입력해주세요.");
-			$("#BIRTHDAY").focus();
-			return false;
-		}
-		if(!$("#ZIPCODE").val()){
-			alert("우편번호를 입력해주세요.");
-			$("#ZIPCODE").focus();
-			return false;
-		}
-		if(!$("#ADDRESS1").val()){
-			alert("주소를 입력해주세요.");
-			$("#ADDRESS1").focus();
-			return false;
-		}
-
-	
-		
-		
-		
-		
-		
 		comSubmit.setUrl("<c:url value='/join' />");
 		comSubmit.submit();
 	}
@@ -215,11 +152,11 @@ function fn_idCheck(){
 <!-- 회원가입 입력 시작 -->
 <div style="height: 900px; text-align: center">
 
-	<div style="text-align: center; margin-top: 4em">
-		<span style="font-size: 2em; font-weight: bold;">일반 회원 가입</span>
+	<div style="text-align: center; margin-top: 4em; filter: drop-shadow(0 0 15px rgba(0, 0, 0, 0.7));  ">
+		<span style="font-size: 2em; font-weight: bold; color:black" >일반 회원 가입</span>
 	</div>
 	<div style="width: 80%; text-align: right;; margin-top: 1em">
-		<span style="">* 표시는 필수 입력 사항입니다.</span>
+		<span style="color:black">* 표시는 필수 입력 사항입니다.</span>
 	</div>
 
   <form action="join" id="joinForm" enctype="multipart/form-data" method="post">
@@ -233,14 +170,10 @@ function fn_idCheck(){
 				style="width: 10em; position: relative; right: 13em; bottom: 1.8em;">
 		</div>
 		<div>
-			<input type="button" value="아이디중복확인" onclick="fn_idCheck();"
-				style="width: 8em; height: 32px; position: relative; left:2em; bottom: 4.2em;">
-				
+			<input type="button" value="아이디중복확인" onclick="fn_idCheck();" class="mini_btn"
+				style="width: 8em; height: 32px; position: relative; left:2em; bottom: 4.2em; margin-left: 2em; ">
+				<span id = "chkMsg" style= "position: relative; left:3em; bottom:4em"></span>
 		</div>
-		<div>
-			<span id = "chkMsg" style= "position: relative; left:14em; bottom:6em"></span>
-		</div>
-		
 		
 	</div>
 	<!-- 아이디 -->
@@ -248,27 +181,25 @@ function fn_idCheck(){
 	<!-- 패스워드 -->
 	<div style="text-align: center;">
 		<div style="position: relative; right: 25.5em; bottom: 1.5em">
-			<span style="font-weight: bold">비밀번호*</span>
+			<span style="font-weight: 900">비밀번호*</span>
 		</div>
 		<div>
 			<input type="password" name="PASSWORD1" id="PASSWORD1"
 				style="width: 15em; position: relative; right: 10.3em; bottom: 3.5em;">
 		</div>
 		<div style="text-align: center;">
-			<div style="position: relative; right: 26.5em; bottom: 1.3em">
+			<div style="position: relative; right: 26.5em; bottom: 1.3em; heihgt:1em;">
 				<span style="font-weight: bold">비밀번호 확인*</span>
 			</div>
-			<div>
+			<div style="">
 				<input type="password" name="PASSWORD2" id="PASSWORD2"
 					style="width: 15em; position: relative; right: 10.3em; bottom: 2.9em;">
 			</div>
-			<span id="empty">&nbsp;</span> <span id="alert-success"
-				style="display: none; color: blue; position: relative; bottom: 2.2em; right: 12.5em">비밀번호가
-				일치합니다.</span> <span id="alert-danger"
-				style="display: none; color: #d92742; font-weight: bold; position: relative; bottom: 2.2em; right: 11em">비밀번호가
-				일치하지 않습니다.</span>
+			<font id="empty" style="width:10em; height:0.5em; position: relative; bottom: 1.7em; right:13em ">&nbsp;</font>
 			<!-- 패스워드 -->
-		</div>
+			</div>
+			</div>
+			
 			<!-- 이름 -->
 			<div style="text-align: center;">
 				<div style="position: relative; right: 24.2em; bottom: 0.7em">
@@ -317,10 +248,10 @@ function fn_idCheck(){
 					<!-- 생년월일 --> 
 					<div style="text-align: center;">
 						<div style="position: relative; right: 25.5em;">
-							<span style="font-weight: bold">생년월일*></span>
+							<span style="font-weight: bold">생년월일*</span>
 						</div>
 						<div>
-							<input type="text" placeholder="생년월일을 선택해주세요." type="text" name="BIRTHDAY" id="BIRTHDAY" class="flatpickr-input"
+							<input type="text" placeholder="2020/01/01" name="BIRTHDAY" id="BIRTHDAY"
 								style="width: 20em; position: relative; right: 8em; bottom: 2em;">
 						</div>
 					</div>
@@ -331,7 +262,7 @@ function fn_idCheck(){
                      <span style="font-weight: bold">주소</span>
                   </div>
                   <div style="text-align: center; position: relative; right:9em; bottom: 2em">
-                     <button type="button" style="width: 8em; height: 32px;"
+                     <button type="button" style="width: 8em; height: 32px;" class="mini_btn"
                         onclick="openZipSearch()">우편번호 검색</button>
                      <input type="text" name="ZIPCODE" id="ZIPCODE" style="width: 9em; height: 26px; left:1em; placeholder="우편번호"/>
                       <br><input type="text" name="ADDRESS1" id="ADDRESS1"  placeholder="주소"
@@ -355,7 +286,7 @@ function fn_idCheck(){
 								</div>
 							</div>
 							<a href="javascript:" onclick="fileUploadAction();"
-									class="my_button">파일 업로드</a> <input type="file" id="input_imgs" name="file"
+									class="my_button" style="color:white; width: 200px;">이미지 업로드</a> <input type="file" id="input_imgs" name="file"
 									multiple />
 						</div>
 					</div>
@@ -367,11 +298,11 @@ function fn_idCheck(){
 						<div
 							style="position: relative; right: 8em; bottom: 18em; margin-top: 1em; width: 15em">
 							<button style="width: 13em; height: 3em"
-								id="cancel">처음으로</button>
+								id="cancel" class="btn_style">처음으로</button>
 						</div>
 						<div
 							style="position: relative; left: 13em; bottom: 22em; margin-top: 1em; width: 15em">
-							<button style="width: 13em; height: 3em" id="join">
+							<button style="width: 13em; height: 3em" id="join" class="btn_style">
 								가입완료</button>
 						</div>
 					</div>
@@ -394,18 +325,50 @@ $(document).ready(function(){ });
 
 
 <style type="text/css">
+
+
+.btn_style{
+
+	 background: #5483EC;
+    color: #fff;
+    font-weight:bold;
+    border-radius: 20px;
+    transition: 0.4s;
+    border: none;
+
+}
+
+.btn_style:hover{
+	cursor: pointer;
+    background: #0B2564;
+}
+
+
+span{
+
+color:#5483EC;
+}
+
+
 input[type=file] {
 	display: none;
 }
 
 .my_button {
 	display: inline-block;
-	width: 200px;
 	text-align: center;
 	padding: 10px;
 	background-color: #006BCC;
 	color: #fff;
 	text-decoration: none;
+	border-radius: 5px;
+}
+
+.mini_btn{
+	font-weight:bold;
+	border: none;
+	background-color: #79BFFF;
+	color: white;
 	border-radius: 5px;
 }
 
@@ -471,22 +434,26 @@ input[type=file] {
 		}).open();
 	}
 
-	//비밀번호 확인 
-	$('#PASSWORD2').keyup(function() {
-		var pwd1 = $("#PASSWORD1").val();
-		var pwd2 = $("#PASSWORD2").val();
-		if (pwd1 != "" && pwd2 != "") {
-			if (pwd1 == pwd2) {
-				$("#empty").css('display', 'none');
-				$("#alert-success").css('display', 'inline-block');
-				$("#alert-danger").css('display', 'none');
-			} else {
-				alert("비밀번호가 일치하지 않습니다. 비밀번호를 재확인해주세요.");
-				$("#empty").css('display', 'none');
-				$("#alert-success").css('display', 'none');
-				$("#alert-danger").css('display', 'inline-block');
-			}
-		}
+
+	
+	
+	
+	$(function(){
+	    $('#PASSWORD1').keyup(function(){
+	      $('#alert-success').html('');
+	    });
+
+	    $('#PASSWORD2').keyup(function(){
+
+	        if($('#PASSWORD1').val() != $('#PASSWORD2').val()){
+	          $('#empty').html('비밀번호 일치하지 않음<br><br>');
+	          $('#empty').attr('color', '#f82a2aa3');
+	        } else{
+	          $('#empty').html('비밀번호 일치함<br><br>');
+	          $('#empty').attr('color', '#199894b3');
+	        }
+
+	    });
 	});
 </script>
 
@@ -544,18 +511,6 @@ input[type=file] {
 	
 </script>
 
-<!-- flatpickr jQuery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!-- Flatpickr -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.js"></script>
-<!-- flatpickr -->  
-<script id="INLINE_PEN_JS_ID">
-	$("#BIRTHDAY").flatpickr({
-		mode: "single",
-		dateFormat: "Y/m/d",
-		maxDate: "today"
-	});
-</script>
 <%@ include file="/WEB-INF/views/include/include-footer.jspf"%>
 
 </html>

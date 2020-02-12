@@ -8,7 +8,8 @@
 <%@ include file="/WEB-INF/views/include/include-header.jspf"%>
 
 <%@ include file="/WEB-INF/views/include/include-header-menu.jspf"%>
-<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script
+	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript" src="resources/js/common.js"></script>
 
 <%
@@ -16,14 +17,14 @@
 
 %>
 
- 
+
 
 
 <script type="text/javascript">
 
 function fn_idCheck(){
 	    var ID = {ID : $('#PSMEM_ID').val()};    // {ID="입력한 ID값"}
-	   
+	    alert(ID +"입력한 ID값입니다.")
 	    $.ajax({
 	        url:"<c:url value='/join/idCheck'/>",
 	        type:'get',
@@ -113,17 +114,25 @@ function fn_idCheck(){
 			return false;
 		}
 
+		
+		if ($("#PASSWORD1").val() != $("#PASSWORD2").val()) {
+				
+			alert("비밀번호가 일치하지 않습니다. 비밀번호를 재확인해주세요.");
+			$("#PASSWORD2").focus();
+			return false;
+		}
+		
 	
 		else{
 			
 			
-			var id = joinForm.PSMEM_ID.value; //id값을 다음페이지에 넘겨준다. 
+			var id = joinForm.PSMEM_ID.value;
 			joinForm.pst_id.value = id;
 			
 			alert("가입이 완료되었습니다! 추가정보 입력 페이지로 이동합니다.");
 			
 			
-			comSubmit.setUrl("<c:url value='/joinPst1' />");
+			comSubmit.setUrl("<c:url value='/joinPst' />");
 			comSubmit.submit();
 			return false;
 		}
@@ -149,14 +158,16 @@ function fn_idCheck(){
 <!-- 회원가입 입력 시작 -->
 <div style="height: 900px; text-align: center">
 
-	<div style="text-align: center; margin-top: 4em">
-		<span style="font-size: 2em; font-weight: bold;">펫시터 회원 가입</span>
+	<div
+		style="text-align: center; margin-top: 4em; filter: drop-shadow(0 0 15px rgba(0, 0, 0, 0.7));">
+		<span style="font-size: 2em; font-weight: bold; color: black">펫시터
+			회원 가입</span>
 	</div>
 	<div style="width: 80%; text-align: right;; margin-top: 1em">
-		<span style="">* 표시는 필수 입력 사항입니다.</span>
+		<span style="color: black">* 표시는 필수 입력 사항입니다.</span>
 	</div>
 
-	<form action="joinPst1" id="joinForm" enctype="multipart/form-data"
+	<form action="join" id="joinForm" enctype="multipart/form-data"
 		method="post">
 		<!-- 아이디 -->
 		<div style="text-align: center;">
@@ -166,17 +177,16 @@ function fn_idCheck(){
 			<div>
 				<input type="text" id="PSMEM_ID" name="PSMEM_ID"
 					style="width: 10em; position: relative; right: 13em; bottom: 1.8em;">
-				<input type="hidden" name="pst_id" value=""> 
+				<input type="hidden" name="pst_id" value="">
 			</div>
 			<div>
 				<input type="button" value="아이디중복확인" onclick="fn_idCheck();"
-					style="width: 8em; height: 32px; position: relative; left:2em; bottom: 4.2em;">
-				</div>
-		<div>
-			<span id = "chkMsg" style= "position: relative; left:14em; bottom:6em"></span>
+					class="mini_btn"
+					style="width: 8em; height: 32px; position: relative; left: 2em; bottom: 4.2em; margin-left: 2em;">
+				<span id="chkMsg" style="position: relative; left: 3em; bottom: 4em"></span>
+			</div>
+
 		</div>
-		</div>
-		
 		<!-- 아이디 -->
 
 		<!-- 패스워드 -->
@@ -189,129 +199,129 @@ function fn_idCheck(){
 					style="width: 15em; position: relative; right: 10.3em; bottom: 3.5em;">
 			</div>
 			<div style="text-align: center;">
-				<div style="position: relative; right: 26.5em; bottom: 1.3em">
+				<div
+					style="position: relative; right: 26.5em; bottom: 1.3em; heihgt: 1em;">
 					<span style="font-weight: bold">비밀번호 확인*</span>
 				</div>
 				<div>
 					<input type="password" name="PASSWORD2" id="PASSWORD2"
 						style="width: 15em; position: relative; right: 10.3em; bottom: 2.9em;">
 				</div>
-				<span id="empty">&nbsp;</span> <span id="alert-success"
-					style="display: none; color: blue; position: relative; bottom: 2.2em; right: 12.5em">비밀번호가
-					일치합니다.</span> <span id="alert-danger"
-					style="display: none; color: #d92742; font-weight: bold; position: relative; bottom: 2.2em; right: 11em">비밀번호가
-					일치하지 않습니다.</span>
-				<!-- 패스워드 -->
+				<font id="empty"
+					style="width: 10em; height: 0.5em; position: relative; bottom: 1.7em; right: 13em">&nbsp;</font>
+
+			</div>
+			<!-- 패스워드 -->
+
+			<!-- 이름 -->
+			<div style="text-align: center;">
+				<div style="position: relative; right: 24.2em; bottom: 0.7em">
+					<span style="font-weight: bold">이름*</span>
 				</div>
 
-				<!-- 이름 -->
-				<div style="text-align: center;">
-					<div style="position: relative; right: 24.2em; bottom: 0.7em">
-						<span style="font-weight: bold">이름*</span>
-					</div>
+				<div>
+					<input type="text" name="NAME" id="NAME"
+						style="width: 10em; position: relative; right: 13em; bottom: 2.3em;">
+				</div>
+			</div>
 
-					<div>
-						<input type="text" name="NAME" id="NAME"
-							style="width: 10em; position: relative; right: 13em; bottom: 2.3em;">
-					</div>
+			<!-- 연락처 -->
+			<div style="text-align: center;">
+				<div style="position: relative; right: 25em;">
+					<span style="font-weight: bold">연락처*</span>
 				</div>
-
-				<!-- 연락처 -->
-				<div style="text-align: center;">
-					<div style="position: relative; right: 25em;">
-						<span style="font-weight: bold">연락처*</span>
-					</div>
-					<div>
-						<input type="text" name="PHONE" id="PHONE"
-							style="width: 20em; position: relative; right: 8em; bottom: 2em;">
-					</div>
+				<div>
+					<input type="text" name="PHONE" id="PHONE"
+						style="width: 20em; position: relative; right: 8em; bottom: 2em;">
 				</div>
-				<!-- 연락처 -->
-				<!-- 이메일 -->
-				<div style="text-align: center;">
-					<div style="position: relative; right: 25em;">
-						<span style="font-weight: bold">이메일</span>
-					</div>
-					<div>
-						<input type="text" name="EMAIL" id="EMAIL"
-							style="width: 20em; position: relative; right: 8em; bottom: 2em;">
-					</div>
+			</div>
+			<!-- 연락처 -->
+			<!-- 이메일 -->
+			<div style="text-align: center;">
+				<div style="position: relative; right: 25em;">
+					<span style="font-weight: bold">이메일</span>
 				</div>
-				<!-- 성별 -->
-				<div style="text-align: center;">
-					<div style="position: relative; right: 24.2em;">
-						<span style="font-weight: bold">성별*</span>
-					</div>
-					<div style="position: relative; right: 13.7em; bottom: 1.5em;">
-						<label><input type="radio" name="SEX" value="남" checked>남자</label>
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<label><input type="radio" name="SEX" value="여">여자</label>
-					</div>
+				<div>
+					<input type="text" name="EMAIL" id="EMAIL"
+						style="width: 20em; position: relative; right: 8em; bottom: 2em;">
 				</div>
+			</div>
+			<!-- 성별 -->
+			<div style="text-align: center;">
+				<div style="position: relative; right: 24.2em;">
+					<span style="font-weight: bold">성별*</span>
+				</div>
+				<div style="position: relative; right: 13.7em; bottom: 1.5em;">
+					<label><input type="radio" name="SEX" value="남" checked>남자</label>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<label><input type="radio" name="SEX" value="여">여자</label>
+				</div>
+			</div>
 
 
-				<!-- 생년월일 -->
-				<div style="text-align: center;">
-					<div style="position: relative; right: 25.5em;">
-						<span style="font-weight: bold">생년월일*</span>
-					</div>
-					<div>
-						<input type="text" placeholder="2020/01/01" name="BIRTHDAY" id="BIRTHDAY" class="flatpickr-input"
-							style="width: 20em; position: relative; right: 8em; bottom: 2em;">
-					</div>
+			<!-- 생년월일 -->
+			<div style="text-align: center;">
+				<div style="position: relative; right: 25.5em;">
+					<span style="font-weight: bold">생년월일*</span>
 				</div>
-
-				<!-- 주소 -->
-				<div style="text-align: center;">
-					<div style="position: relative; right: 24.4em; top: 0.5em">
-						<span style="font-weight: bold">주소</span>
-					</div>
-					<div
-						style="text-align: center; position: relative; right: 11em; bottom: 1em">
-						<button type="button" style="width: 8em; height: 32px;"
-							onclick="openZipSearch()">우편번호 검색</button>
-						<input type="text" name="ZIPCODE" id="ZIPCODE"
-							style="width: 9em; height: 26px; left: 1em;" 우편번호"/> <br> <input
-							type="text" name="ADDRESS1" id="ADDRESS1" placeholder="주소"
-							style="position: relative; left: 80px; margin-top: 0.5em; width: 200px; height: 30px;" />
-						<input type="text" name="ADDRESS_ADD" id="ADDRESS_ADD"
-							style="position: relative; left: 7em; margin-top: 0.5em; width: 200px; height: 30px;" /><br>
-						<input type="text" name="ADDRESS2" id="ADDRESS2"
-							placeholder="상세주소"
-							style="position: relative; left: 30px; margin-top: 0.5em; width: 300px; height: 30px;" />
-					</div>
+				<div>
+					<input type="text" placeholder="2020/01/01" name="BIRTHDAY"
+						id="BIRTHDAY"
+						style="width: 20em; position: relative; right: 8em; bottom: 2em;">
 				</div>
+			</div>
 
-				<!-- 프로필 사진 등록 -->
-				<div align="center">
-					<div
-						style="text-align: center; position: relative; left: 20em; bottom: 40em; width: 15em">
-						<span>프로필 사진 등록</span>
-						<div align="center">
-								<div class="imgs_wrap" style="text-align: center;">
-									<img id="img" />
-								</div>
-							</div>
-							<a href="javascript:" onclick="fileUploadAction();"
-									class="my_button">파일 업로드</a> <input type="file" id="input_imgs" name="file"
-									multiple />
+			<!-- 주소 -->
+			<div style="text-align: center;">
+				<div style="position: relative; right: 24.4em; top: 0.5em">
+					<span style="font-weight: bold">주소</span>
+				</div>
+				<div
+					style="text-align: center; position: relative; right: 11em; bottom: 1em">
+					<button type="button" style="width: 8em; height: 32px;"
+						class="mini_btn" onclick="openZipSearch()">우편번호 검색</button>
+					<input type="text" name="ZIPCODE" id="ZIPCODE"
+						style="width: 9em; height: 26px; left: 1em;" 우편번호"/> <br> <input
+						type="text" name="ADDRESS1" id="ADDRESS1" placeholder="주소"
+						style="position: relative; left: 80px; margin-top: 0.5em; width: 200px; height: 30px;" />
+					<input type="text" name="ADDRESS_ADD" id="ADDRESS_ADD"
+						style="position: relative; left: 7em; margin-top: 0.5em; width: 200px; height: 30px;" /><br>
+					<input type="text" name="ADDRESS2" id="ADDRESS2" placeholder="상세주소"
+						style="position: relative; left: 30px; margin-top: 0.5em; width: 300px; height: 30px;" />
+				</div>
+			</div>
+
+			<!-- 프로필 사진 등록 -->
+			<div align="center">
+				<div
+					style="text-align: center; position: relative; left: 20em; bottom: 40em; width: 15em">
+					<span>프로필 사진 등록</span>
+					<div align="center">
+						<div class="imgs_wrap" style="text-align: center;">
+							<img id="img" />
 						</div>
 					</div>
+					<a href="javascript:" onclick="fileUploadAction();"
+						style="color: white" class="my_button">이미지 업로드</a> <input
+						type="file" id="input_imgs" name="file" multiple />
 				</div>
+			</div>
+		</div>
 
 
-				<!--   <a href="javascript:" class="my_button" onclick="submitAction();">업로드</a> -->
+		<!--   <a href="javascript:" class="my_button" onclick="submitAction();">업로드</a> -->
 
-				<div align="center">
-					<div
-						style="position: relative; right: 8em; bottom: 18em; margin-top: 1em; width: 15em">
-						<button style="width: 13em; height: 3em" id="cancel">처음으로</button>
-					</div>
-					<div
-						style="position: relative; left: 13em; bottom: 22em; margin-top: 1em; width: 15em">
-						<button style="width: 13em; height: 3em" id="join">가입완료</button>
-					</div>
-				</div>
+		<div align="center">
+			<div
+				style="position: relative; right: 8em; bottom: 18em; margin-top: 1em; width: 15em">
+				<button style="width: 13em; height: 3em" id="cancel"
+					class="btn_style">처음으로</button>
+			</div>
+			<div
+				style="position: relative; left: 13em; bottom: 22em; margin-top: 1em; width: 15em">
+				<button style="width: 13em; height: 3em" id="join" class="btn_style">가입완료</button>
+			</div>
+		</div>
 	</form>
 
 	<%@ include file="/WEB-INF/views/include/include-body.jspf"%>
@@ -320,6 +330,32 @@ function fn_idCheck(){
 </div>
 
 <style type="text/css">
+.mini_btn {
+	font-weight: bold;
+	border: none;
+	background-color: #79BFFF;
+	color: white;
+	border-radius: 5px;
+}
+
+.btn_style {
+	background: #5483EC;
+	color: #fff;
+	font-weight: bold;
+	border-radius: 20px;
+	transition: 0.4s;
+	border: none;
+}
+
+.btn_style:hover {
+	cursor: pointer;
+	background: #0B2564;
+}
+
+span {
+	color: #5483EC;
+}
+
 input[type=file] {
 	display: none;
 }
@@ -330,7 +366,7 @@ input[type=file] {
 	text-align: center;
 	padding: 10px;
 	background-color: #006BCC;
-	color: #fff;
+	color: white;
 	text-decoration: none;
 	border-radius: 5px;
 }
@@ -404,21 +440,22 @@ $(document).ready(function(){ });
 	}
 
 	//비밀번호 확인 
-	$('#PASSWORD2').keyup(function() {
-		var pwd1 = $("#PASSWORD1").val();
-		var pwd2 = $("#PASSWORD2").val();
-		if (pwd1 != "" && pwd2 != "") {
-			if (pwd1 == pwd2) {
-				$("#empty").css('display', 'none');
-				$("#alert-success").css('display', 'inline-block');
-				$("#alert-danger").css('display', 'none');
-			} else {
-				alert("비밀번호가 일치하지 않습니다. 비밀번호를 재확인해주세요.");
-				$("#empty").css('display', 'none');
-				$("#alert-success").css('display', 'none');
-				$("#alert-danger").css('display', 'inline-block');
-			}
-		}
+$(function(){
+	    $('#PASSWORD1').keyup(function(){
+	      $('#alert-success').html('');
+	    });
+
+	    $('#PASSWORD2').keyup(function(){
+
+	        if($('#PASSWORD1').val() != $('#PASSWORD2').val()){
+	          $('#empty').html('비밀번호 일치하지 않음<br><br>');
+	          $('#empty').attr('color', '#f82a2aa3');
+	        } else{
+	          $('#empty').html('비밀번호 일치함<br><br>');
+	          $('#empty').attr('color', '#199894b3');
+	        }
+
+	    });
 	});
 	
 	
@@ -475,19 +512,6 @@ var sel_files = [];
 
 				});
 	}
-</script>
-
-<!-- flatpickr jQuery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!-- Flatpickr -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.js"></script>
-<!-- flatpickr -->  
-<script id="INLINE_PEN_JS_ID">
-	$("#BIRTHDAY").flatpickr({
-		mode: "single",
-		dateFormat: "Y/m/d",
-		maxDate: "today"
-	});  
 </script>
 
 <%@ include file="/WEB-INF/views/include/include-footer.jspf"%>
