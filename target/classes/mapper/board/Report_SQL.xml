@@ -1,133 +1,127 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- 20.02.11 -->
-<mapper namespace="qna">
+<mapper namespace="report">
 	
-	<!-- QNA 리스트 -->
+	<!-- REPORT 리스트 -->
 	<select id="selectBoardList" parameterType="hashmap" resultType="hashmap">
-	<!-- 테이블에서 목록을 조회하는 쿼리 -->
-	<!-- 원래는 java.util.HashMap으로 parameter, result을 지정해야하는데, MyBatis는 간단히 사용할 수 있도록 지원해줌 -->
-	<!-- 쿼리의 id는 selectBoardList 라고 정의함 -->
-	<!-- parameterType="hashmap" 이 부분은 쿼리가 실행될 떄 필요한 변수는 HashMap형태를 의미함 -->
-	<!-- resultType="hashmap" 이부분은 이 쿼리의 결과 값은 HashMap에 담겨서 반환된다는 것을 의미함 -->
-	<!-- parameterType과 resultType으로 모두 HashMap을 사용할 것인데, 다른 클래스를 사용할 경우 해당 클래스의 이름을 적어주면 됨 -->
 		<![CDATA[
 			SELECT
 				ID,
 				BOARD_NO,
 				RNUM,
 				RE_RNUM,
-				QNA_SUBJECT,
-				QNA_WRITER,
-				QNA_CONTENT,
-				TO_CHAR(QNA_DATE, 'YYYY/MM/DD') AS QNA_DATE,
-				QNA_COUNT,
-				QNA_HEADER,
-				QNA_PRIVATE_CHECK,	
+				REPORT_SUBJECT,
+				REPORT_WRITER,
+				REPORT_CONTENT,
+				TO_CHAR(REPORT_DATE, 'YYYY/MM/DD') AS REPORT_DATE,
+				REPORT_COUNT,
+				REPORT_HEADER,
+				REPORT_PRIVATE_CHECK,	
 				RANK() OVER (ORDER BY RNUM DESC) ROW_NUM,
 				ROW_NUMBER() OVER (ORDER BY RE_RNUM DESC) RE_ROW_NUM,
-				QNA_RE_STEP
+				REPORT_RE_STEP
 			FROM	
 				(SELECT		
 					ID,
 					BOARD_NO,
-					QNA_SUBJECT,
-					QNA_WRITER,
-					QNA_CONTENT,
-					QNA_DATE,
-					QNA_COUNT,
-					QNA_HEADER,
-					QNA_PRIVATE_CHECK,
-					RANK() OVER (ORDER BY QNA_RE_NO DESC) RNUM,
-					QNA_RE_NO,
-					ROW_NUMBER() OVER (ORDER BY QNA_RE_STEP DESC) RE_RNUM,
-					QNA_RE_STEP
+					REPORT_SUBJECT,
+					REPORT_WRITER,
+					REPORT_CONTENT,
+					REPORT_DATE,
+					REPORT_COUNT,
+					REPORT_HEADER,
+					REPORT_PRIVATE_CHECK,
+					RANK() OVER (ORDER BY REPORT_RE_NO DESC) RNUM,
+					REPORT_RE_NO,
+					ROW_NUMBER() OVER (ORDER BY REPORT_RE_STEP DESC) RE_RNUM,
+					REPORT_RE_STEP
 				FROM
-					QNA 
+					REPORT 
 				) ORDER BY ROW_NUM DESC, RE_ROW_NUM ASC
 		]]>
 	</select>
 	
-	<!-- QNA 글작성 -->
+	<!-- REPORT 글작성 -->
 	<insert id="insertBoard" parameterType="hashmap" useGeneratedKeys="true" keyProperty="BOARD_NO">
 		<selectKey keyProperty="BOARD_NO" resultType="string" order="BEFORE">
-	 		SELECT QNA_SEQ.NEXTVAL FROM DUAL
+	 		SELECT REPORT_SEQ.NEXTVAL FROM DUAL
 	 	</selectKey>
 		<![CDATA[  
-			INSERT INTO QNA (
+			INSERT INTO REPORT (
 				BOARD_NO,
-				QNA_SUBJECT,
+				REPORT_SUBJECT,
 				ID,
-				QNA_WRITER,
-				QNA_COUNT,
-				QNA_CONTENT,
-				QNA_DATE,
-				QNA_HEADER,
-				QNA_PRIVATE_CHECK,
-				QNA_RE_NO
+				REPORT_WRITER,
+				REPORT_COUNT,
+				REPORT_CONTENT,
+				REPORT_DATE,
+				REPORT_HEADER,
+				REPORT_PRIVATE_CHECK,
+				REPORT_RE_NO
 			)
        		VALUES ( 
 				#{BOARD_NO},
-				#{QNA_SUBJECT},
+				#{REPORT_SUBJECT},
 				#{ID},
-				#{QNA_WRITER},
+				#{REPORT_WRITER},
 				0,
-				#{QNA_CONTENT},
+				#{REPORT_CONTENT},
 				SYSDATE,
-				#{QNA_HEADER},
-				#{QNA_PRIVATE_CHECK},
+				#{REPORT_HEADER},
+				'Y',
 				#{BOARD_NO}
 			)
 		]]>
 	</insert>
 	
-	<!-- QNA 글 조회수 증가 -->
+	<!-- REPORT 글 조회수 증가 -->
 	<update id="updateHitCnt" parameterType="hashmap">
 		<![CDATA[
 				UPDATE 
-					QNA
+					REPORT
 				SET
-					QNA_COUNT = NVL(QNA_COUNT, 0) + 1
+					REPORT_COUNT = NVL(REPORT_COUNT, 0) + 1
 				WHERE
 					BOARD_NO = #{BOARD_NO}
 		]]>
 	</update>
 	
-	<!-- QNA 상세보기 -->
+	<!-- REPORT 상세보기 -->
 	<select id="selectBoardDetail" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 				SELECT * 
 				FROM
-					QNA
+					REPORT
 				WHERE 
 					BOARD_NO = #{BOARD_NO}
 		]]>
 	</select>
 	
-	<!-- QNA 수정 -->
+	<!-- REPORT 수정 -->
 	<update id="updateBoard" parameterType="hashMap">
 		<![CDATA[
-			UPDATE QNA
+			UPDATE REPORT
 			SET
-				QNA_SUBJECT = #{QNA_SUBJECT},
-				QNA_CONTENT = #{QNA_CONTENT},
-				QNA_HEADER = #{QNA_HEADER}
+				REPORT_SUBJECT = #{REPORT_SUBJECT},
+				REPORT_CONTENT = #{REPORT_CONTENT},
+				REPORT_HEADER = #{REPORT_HEADER}
 			WHERE
 				BOARD_NO = #{BOARD_NO}
 		]]>
 	</update>	
 
-	<!-- QNA 삭제 -->
+	<!-- REPORT 삭제 -->
 	<delete id="deleteBoard" parameterType="hashmap"> 
 		<![CDATA[
 			DELETE
-				QNA
+				REPORT
 			WHERE
 				BOARD_NO = #{BOARD_NO}
 		]]>
 	</delete>
 	
-	<!-- QNA 파일 추가 -->
+	<!-- REPORT 파일 추가 -->
 	<insert id="insertFile" parameterType="hashmap">
 		<![CDATA[
 	         INSERT INTO BOARD_FILE (
@@ -141,7 +135,7 @@
 	         		BOARD_CREA_ID
 	         )
 	         VALUES (
-	         		'QNA',
+	         		'REPORT',
 	        		#{BOARD_NO},
 	            	BOARD_FILE_SEQ.NEXTVAL,
 	         		#{BOARD_ORIGINAL_FILE_NAME},
@@ -153,7 +147,7 @@
      	]]>
   	</insert>
 	
-	<!-- QNA 파일 리스트 -->
+	<!-- REPORT 파일 리스트 -->
 	<select id="selectFileList" parameterType="hashmap" resultType="hashmap">
 	     <![CDATA[
 	        SELECT
@@ -168,7 +162,7 @@
 	      ]]>
    	</select>
 
-	<!-- QNA 파일 수정 -->
+	<!-- REPORT 파일 수정 -->
 	<update id="updateFile" parameterType="hashmap">
 		<![CDATA[
 			UPDATE BOARD_FILE 
@@ -179,7 +173,7 @@
 		]]>
 	</update>
 
-	<!-- QNA 파일 삭제 -->
+	<!-- REPORT 파일 삭제 -->
 	<update id="deleteFile" parameterType="hashmap">
 		<![CDATA[
 			UPDATE BOARD_FILE
@@ -219,31 +213,31 @@
 		]]>
 	</select>
 	
-	<!-- QNA 답변 작성(관리자) -->
+	<!-- REPORT 답변 작성(관리자) -->
 	<insert id="insertReplyBoard" parameterType="hashmap">
 		<![CDATA[
-			INSERT INTO QNA (
+			INSERT INTO REPORT (
 				BOARD_NO,
-				QNA_SUBJECT,
+				REPORT_SUBJECT,
 				ID,
-				QNA_WRITER,
-				QNA_CONTENT,
-				QNA_DATE,
-				QNA_HEADER,
-				QNA_PRIVATE_CHECK,
-				QNA_RE_NO,
-				QNA_RE_STEP
+				REPORT_WRITER,
+				REPORT_CONTENT,
+				REPORT_DATE,
+				REPORT_HEADER,
+				REPORT_PRIVATE_CHECK,
+				REPORT_RE_NO,
+				REPORT_RE_STEP
 			)
 			VALUES (
-				QNA_SEQ.NEXTVAL,
-				#{QNA_SUBJECT},
+				REPORT_SEQ.NEXTVAL,
+				#{REPORT_SUBJECT},
 				#{ID},
-				#{QNA_WRITER},
-				#{QNA_CONTENT},
+				#{REPORT_WRITER},
+				#{REPORT_CONTENT},
 				SYSDATE,
-				#{QNA_HEADER},
+				#{REPORT_HEADER},
 				'Y',
-				#{QNA_RE_NO},
+				#{REPORT_RE_NO},
 				1
 			)
 		]]>
@@ -264,27 +258,26 @@
 		]]>
 	</update>
 	
-	<!-- QNA 검색 (제목,작성자,내용) -->
-	<select id="qnaSearch" resultType="hashmap" parameterType="hashmap">
+	<!-- REPORT 검색 (제목,작성자,내용) -->
+	<select id="reportSearch" resultType="hashmap" parameterType="hashmap">
 		<![CDATA[
 			SELECT *
 			FROM
-				QNA
+				REPORT
 			WHERE
 				<choose>
-					<when test = "QNA_SUBJECT != NULL">
-						QNA_SUBJECT LIKE '%'||#{QNA_SUBJECT}||'%'
+					<when test = "REPORT_SUBJECT != NULL">
+						REPORT_SUBJECT LIKE '%'||#{REPORT_SUBJECT}||'%'
 				    </when>
-				    <when test = "QNA_WRITER != NULL">
-						QNA_WRITER LIKE '%'||#{QNA_WRITER}||'%'
+				    <when test = "REPORT_WRITER != NULL">
+						REPORT_WRITER LIKE '%'||#{REPORT_WRITER}||'%'
 				    </when>
-				    <when test = "QNA_CONTENT != NULL">
-				   		QNA_CONTENT LIKE '%'||#{QNA_CONTENT}||'%' 
+				    <when test = "REPORT_CONTENT != NULL">
+				   		REPORT_CONTENT LIKE '%'||#{REPORT_CONTENT}||'%' 
 				    </when>
 				</choose>
 			ORDER BY BOARD_NO DESC
 		]]>
 	</select>
-	
 	
 </mapper>

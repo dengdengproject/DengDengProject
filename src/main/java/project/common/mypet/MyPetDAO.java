@@ -3,6 +3,8 @@ package project.common.mypet;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Repository;
 
 import project.common.dao.AbstractDAO;
@@ -83,6 +85,21 @@ public class MyPetDAO extends AbstractDAO {
 
 	public void updateFile(Map<String, Object> map) throws Exception{
 		update("mypet.updateFile", map);
+	}
+
+	public void insertFile2(Map<String, Object> map) throws Exception {
+		insert("mypet.insertFile2", map);
+		
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> selectFileList2(Map<String, Object> map) throws Exception {
+		return (List<Map<String, Object>>)selectList("mypet.selectFileList2", map);
+	}
+
+	public void mypetThumbnail(Map<String, Object> map, HttpServletRequest request) {
+		update("mypet.mypetThumbnail", map);
+		
 	}
 
 	/*

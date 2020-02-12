@@ -37,8 +37,18 @@ public class MyPetServiceImpl implements MyPetService {
 		 * for(int i=0, size=list.size(); i<1; i++) { String[] sungi = list.get(i);
 		 * map.put("", sungi); }
 		 */
-
+		
+		/*
+		 * List<Map<String, Object>> list2 = fileUtils.parseInsertFileInfo2_board(map,
+		 * request); for (int i = 0, size = list2.size(); i < size; i++) {
+		 * mypetDAO.insertFile2(list2.get(i)); }
+		 */
+		
 		mypetDAO.insertBoard(map);
+		
+		//map = fileUtils.goodsThumbnail(map, request);
+		
+		//mypetDAO.mypetThumbnail(map, request);
 
 		List<Map<String, Object>> list = fileUtils.parseInsertFileInfo_board(map, request);
 		for (int i = 0, size = list.size(); i < size; i++) {

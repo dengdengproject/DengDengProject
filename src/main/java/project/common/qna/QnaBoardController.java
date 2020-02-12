@@ -1,4 +1,4 @@
-/*20.02.11*/
+/*20.02.12*/
 package project.common.qna;
 
 import java.util.HashMap;
@@ -151,7 +151,7 @@ public class QnaBoardController {
 	}
 
 	@RequestMapping(value = "/qnaDetail")
-	public ModelAndView QnaDetail(CommandMap commandMap) throws Exception {
+	public ModelAndView qnaDetail(CommandMap commandMap) throws Exception {
 
 		ModelAndView mv = new ModelAndView("/qna/qnaDetail");
 		
@@ -159,7 +159,7 @@ public class QnaBoardController {
 		
 		mv.addObject("map", map.get("map"));
 		mv.addObject("list", map.get("list"));
-		System.out.println(map);
+		
 		return mv;
 	}
 
@@ -182,14 +182,10 @@ public class QnaBoardController {
 	    
 	    Map<String, Object> mem = qnaService.selectMemInfo(mapp);
 		Map<String, Object> map = qnaService.selectBoardDetail(commandMap.getMap());
-
 		
 		mv.addObject("mem", mem);
 		mv.addObject("map", map.get("map"));
 		mv.addObject("list", map.get("list"));
-	    
-		
-		System.out.println(mem);
 		
 		return mv;
 	}
@@ -215,30 +211,17 @@ public class QnaBoardController {
 		return mv;
 	}
 	
-	
-
-	
-	
-	
 	@RequestMapping(value = "/qnaReplyForm")
 	public ModelAndView qnaReplyForm(CommandMap commandMap, HttpSession session) throws Exception {
 
 		ModelAndView mv = new ModelAndView();
-		
-		/*
-		 * String adminId = (String)session.getAttribute("ADMIN_ID"); Map<String,
-		 * Object> mapp = new HashMap<String, Object>(); mapp.put("ADMIN_ID", adminId);
-		 * 
-		 * Map<String, Object> ad = qnaService.selectMemInfo(mapp);
-		 */
+	
 		Map<String, Object> map = qnaService.selectBoardDetail(commandMap.getMap());
-		
-		/* mv.addObject("ad", ad); */
-		System.out.println(map);
-	    mv.addObject("map", map.get("map"));
+	    
+		mv.addObject("map", map.get("map"));
 		mv.addObject("list", map.get("list"));
 		mv.setViewName("/qna/qnaReply");
-		System.out.println(map);
+		
 		return mv;
 	}
 
@@ -247,18 +230,48 @@ public class QnaBoardController {
 
 		ModelAndView mv = new ModelAndView("redirect:/qnaList");
 		
-		if(request.getParameter("QNA_PRIVATE_CHECK") == null) {
-			String check  = (String)"N";
-			commandMap.put("QNA_PRIVATE_CHECK", check);
-		} 
-		
 		qnaService.insertReplyBoard(commandMap.getMap(), request);
 		mv.addObject("BOARD_NO", commandMap.get("BOARD_NO"));
-
+		
 		return mv;
 	}
 
-	
-	
+	@RequestMapping(value = "/qnaReUpdateForm")
+	public ModelAndView qnaReUpdateForm(CommandMap commandMap, HttpSession session) throws Exception {
+
+		ModelAndView mv = new ModelAndView("/qna/qnaReUpdate");
+		
+		Map<String, Object> mapp = new HashMap<String, Object>();
+		
+		if(session.getAttribute("ID") != null) {
+			String ID = (String)session.getAttribute("ID"); 
+		    
+		    mapp.put("ID", ID);
+		} else if(session.getAttribute("ADMIN_ID") != null) {
+			String ID = (String)session.getAttribute("ADMIN_ID"); 
+
+			mapp.put("ID", ID);
+		}
+		
+		Map<String, Object> mem = qnaService.selectMemInfo(mapp);
+		Map<String, Object> map = qnaService.selectBoardDetail(commandMap.getMap());
+		
+		mv.addObject("mem", mem);
+	    mv.addObject("map", map.get("map"));
+		mv.addObject("list", map.get("list"));
+		
+		return mv;
+	}
+
+	@RequestMapping(value = "/qnaReUpdate")
+	public ModelAndView qnaReUpdate(CommandMap commandMap, HttpServletRequest request) throws Exception {
+
+		ModelAndView mv = new ModelAndView("redirect:/qnaDetail");
+		
+		qnaService.updateReplyBoard(commandMap.getMap(), request);
+		mv.addObject("BOARD_NO", commandMap.get("BOARD_NO"));
+		
+		return mv;
+	}
 	
 }

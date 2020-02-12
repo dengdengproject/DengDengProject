@@ -1,4 +1,4 @@
-<!-- 20.02.11 -->
+<!-- 20.02.12 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -16,7 +16,7 @@
 	<div style="height: auto;">
 		<div class="wrapper">
 			<div style="text-align: center; margin-top: 5em">
-				<span style="font-weight: bold; font-size: 2em;">Q&A</span>
+				<span style="font-weight: bold; font-size: 2em;">신고하기</span>
 			</div>
 			
 			<form>
@@ -45,35 +45,32 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="row" items="${qnaList }">
+					<c:forEach var="row" items="${reportList }">
 						<tr>
 							<td class="BOARD_NO" id="BOARD_NO">${row.BOARD_NO }</td>
 							<td align="left" class="secret">
-								<c:if test="${row.QNA_PRIVATE_CHECK=='Y'}">
+								<c:if test="${row.REPORT_PRIVATE_CHECK=='Y'}">
                        				<img src="/DengDengTelling/resources/images/icon_secret.jpg">
                        			</c:if>
                        		</td>
 							<td align="left" class="subject">
-								<c:if test="${row.QNA_RE_STEP == 0 }">
-						 			<a href="#this" name="subject">${row.QNA_SUBJECT }</a>
-						 			<%-- <td class="writer" id=writer">${row.QNA_WRITER }</td> --%>
+								<c:if test="${row.REPORT_RE_STEP == 0 }">
+						 			<a href="#this" name="subject">${row.REPORT_SUBJECT }</a>
 						 		</c:if>
-								<c:if test="${row.QNA_RE_STEP > 0}">
+								<c:if test="${row.REPORT_RE_STEP > 0}">
 										&nbsp;&nbsp;  <!-- 답변글일 경우 글 제목 앞에 공백을 준다. -->
-									<a href="#this" name="subject">&rarrhk;&nbsp;[답변] ${row.QNA_SUBJECT }</a>
-								<!-- 	<td class="writer" id=writer">관리자</td> -->
+									<a href="#this" name="subject">&rarrhk;&nbsp;[답변] ${row.REPORT_SUBJECT }</a>
 								</c:if>
 								<input type="hidden" id="BOARD_NO" name="BOARD_NO" value="${row.BOARD_NO }">
 								<input type="hidden" id="ID" name="ID" value="${row.ID }">
-								<input type="hidden" id="QNA_PRIVATE_CHECK" name="QNA_PRIVATE_CHECK" value="${row.QNA_PRIVATE_CHECK }">
 							</td>
-							<td class="writer" id=writer">${row.QNA_WRITER }</td>
-							<td class="hitcount">${row.QNA_COUNT }</td>
-							<td class="writeDate">${row.QNA_DATE }</td>
+							<td class="writer" id=writer">${row.REPORT_WRITER }</td>
+							<td class="hitcount">${row.REPORT_COUNT }</td>
+							<td class="writeDate">${row.REPORTDATE }</td>
 						</tr>
 					</c:forEach>
 					<!--  등록된 게시글이 없을때 -->
-					<c:if test="${fn:length(qnaList) le 0}"> <!-- qnaList가 0보다 작거나 같으면 -->
+					<c:if test="${fn:length(reportList) le 0}"> <!-- reportList가 0보다 작거나 같으면 -->
 						<tr>
 							<td colspan="11" style="text-align: center;">등록된 게시글이 없습니다.</td>
 						</tr>
@@ -108,13 +105,13 @@
 				
 				function fn_openBoardWrite(){
 					var comSubmit = new ComSubmit();
-					comSubmit.setUrl("<c:url value='/qnaWriteForm' />")    //이거 글작성으로 넘어가는거 위에랑 연결된다. 
+					comSubmit.setUrl("<c:url value='/reportWriteForm' />")    //이거 글작성으로 넘어가는거 위에랑 연결된다. 
 					comSubmit.submit();
 				}
 				
 				function fn_openBoardDetail(obj){
 					var comSubmit = new ComSubmit();
-					comSubmit.setUrl("<c:url value='/qnaDetail' />")
+					comSubmit.setUrl("<c:url value='/reportDetail' />")
 					comSubmit.addParam("BOARD_NO", obj.parent().find("#BOARD_NO").val());
 					comSubmit.submit();
 				}

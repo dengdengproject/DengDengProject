@@ -1,5 +1,5 @@
 /*20.02.12*/
-package project.common.qna;
+package project.common.report;
 
 import java.util.HashMap;
 import java.util.List;
@@ -13,46 +13,45 @@ import org.springframework.stereotype.Service;
 
 import project.common.util.FileUtils;
 
-@Service("qnaService")	
-public class QnaServiceImpl implements QnaService {
+@Service("reportService")	
+public class ReportServiceImpl implements ReportService {
 	
 	Logger log = Logger.getLogger(this.getClass());
 	
-	@Resource(name="qnaDAO")	//Service에서 데이터 접근을 위한 DAO객체를 선언함
-	private QnaDAO qnaDAO;
+	@Resource(name="reportDAO")	//Service�뿉�꽌 �뜲�씠�꽣 �젒洹쇱쓣 �쐞�븳 DAO媛앹껜瑜� �꽑�뼵�븿
+	private ReportDAO reportDAO;
 	
 	@Resource(name="fileUtils")
 	private FileUtils fileUtils; 
 	
 	@Override
 	public List<Map<String, Object>> selectBoardList(Map<String, Object> map) throws Exception {
-		return qnaDAO.selectBoardList(map);
-		// Service의 selectQnaList의 결과값으로 qnaDAO클래스의  selectQnaList() 호출 후 그 결과값을 return함
+		return reportDAO.selectBoardList(map);
 	}
 	
 	@Override
 	public Map<String, Object> selectMemInfo(Map<String, Object> map) throws Exception {
-		return qnaDAO.selectMemInfo(map);
+		return reportDAO.selectMemInfo(map);
 	}
 	
 	@Override 
 	public void insertBoard(Map<String, Object> map, HttpServletRequest request) throws Exception {
-		qnaDAO.insertBoard(map);
+		reportDAO.insertBoard(map);
 		
 		List<Map<String,Object>> list = fileUtils.parseInsertFileInfo_board(map, request);
 		for(int i=0, size=list.size(); i<size; i++) {
-			qnaDAO.insertFile(list.get(i));
+			reportDAO.insertFile(list.get(i));
 		} 
 	}
 
 	@Override
 	public Map<String, Object> selectBoardDetail(Map<String, Object> map) throws Exception {
-		qnaDAO.updateHitCnt(map);
+		reportDAO.updateHitCnt(map);
 		Map<String,Object> resultMap = new HashMap<String,Object>();
-		Map<String,Object> tempMap = qnaDAO.selectBoardDetail(map);
+		Map<String,Object> tempMap = reportDAO.selectBoardDetail(map);
 		resultMap.put("map", tempMap);
 		
-		List<Map<String,Object>> list = qnaDAO.selectFileList(map);
+		List<Map<String,Object>> list = reportDAO.selectFileList(map);
 		resultMap.put("list", list);
 		
 		return resultMap;
@@ -60,70 +59,70 @@ public class QnaServiceImpl implements QnaService {
 	
 	@Override
 	public void updateBoard(Map<String, Object> map, HttpServletRequest request) throws Exception {
-		qnaDAO.updateBoard(map); 
+		reportDAO.updateBoard(map); 
 		
-		qnaDAO.deleteFile(map);
+		reportDAO.deleteFile(map);
 		List<Map<String,Object>> list = fileUtils.parseUpdateFileInfo_board(map, request);
 		Map<String,Object> tempMap = null;
 		for(int i=0, size=list.size(); i<size; i++) {
 			tempMap = list.get(i);
 			if(tempMap.get("IS_NEW").equals("Y")){
-				qnaDAO.insertFile(tempMap);
+				reportDAO.insertFile(tempMap);
 			}
 			else{
-				qnaDAO.updateFile(tempMap);
+				reportDAO.updateFile(tempMap);
 			}
 		}
 	}
 
 	@Override
 	public void deleteBoard(Map<String, Object> map) throws Exception {
-		qnaDAO.deleteBoard(map);
+		reportDAO.deleteBoard(map);
 	}
 	
 	@Override 
 	public void insertReplyBoard(Map<String, Object> map, HttpServletRequest request) throws Exception {
-		qnaDAO.insertReplyBoard(map);
+		reportDAO.insertReplyBoard(map);
 		
 		List<Map<String,Object>> list = fileUtils.parseInsertFileInfo_board(map, request);
 		for(int i=0, size=list.size(); i<size; i++) {
-			qnaDAO.insertFile(list.get(i));
+			reportDAO.insertFile(list.get(i));
 		} 
 		
-		qnaDAO.deleteFile(map);
+		reportDAO.deleteFile(map);
 		List<Map<String,Object>> fileList = fileUtils.parseUpdateFileInfo_board(map, request);
 		Map<String,Object> tempMap = null;
 		for(int i=0, size=fileList.size(); i<size; i++) {
 			tempMap = fileList.get(i);
 			if(tempMap.get("IS_NEW").equals("Y")){
-				qnaDAO.insertFile(tempMap);
+				reportDAO.insertFile(tempMap);
 			}
 			else{
-				qnaDAO.updateFile(tempMap);
+				reportDAO.updateFile(tempMap);
 			}
 		}
 	}
 	
 	@Override
 	public void updateReplyBoard(Map<String, Object> map, HttpServletRequest request) throws Exception {
-		qnaDAO.updateReplyBoard(map); 
+		reportDAO.updateReplyBoard(map); 
 		
-		qnaDAO.deleteFile(map);
+		reportDAO.deleteFile(map);
 		List<Map<String,Object>> list = fileUtils.parseUpdateFileInfo_board(map, request);
 		Map<String,Object> tempMap = null;
 		for(int i=0, size=list.size(); i<size; i++) {
 			tempMap = list.get(i);
 			if(tempMap.get("IS_NEW").equals("Y")){
-				qnaDAO.insertFile(tempMap);
+				reportDAO.insertFile(tempMap);
 			}
 			else{
-				qnaDAO.updateFile(tempMap);
+				reportDAO.updateFile(tempMap);
 			}
 		}
 	}
 	
 	@Override
-	public List<Map<String, Object>> qnaSearch(Map<String, Object> map) throws Exception {
-		return qnaDAO.qnaSearch(map);
+	public List<Map<String, Object>> reportSearch(Map<String, Object> map) throws Exception {
+		return reportDAO.reportSearch(map);
 	}
 }

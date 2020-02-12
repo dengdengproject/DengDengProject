@@ -143,8 +143,12 @@ $(document).ready(function() {
 				
 				function fn_insertBoard(){
 					var comSubmit = new ComSubmit("frm");
+					if(confirm("등록하시겠습니까?") == true) {
 					comSubmit.setUrl("<c:url value='/noticeInsert' />");
 					comSubmit.submit();
+					} else {
+						return;
+					}
 				}
 				
 				function fn_addFile(){

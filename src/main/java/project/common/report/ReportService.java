@@ -1,12 +1,12 @@
 /*20.02.12*/
-package project.common.qna;
+package project.common.report;
 
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-public interface QnaService {
+public interface ReportService {
 
 	List<Map<String, Object>> selectBoardList(Map<String, Object> map) throws Exception;
 
@@ -21,8 +21,8 @@ public interface QnaService {
 	Map<String, Object> selectMemInfo(Map<String, Object> map) throws Exception;
 	
 	void insertReplyBoard(Map<String, Object> map, HttpServletRequest request) throws Exception;
-	
-	void updateReplyBoard(Map<String, Object> map, HttpServletRequest request) throws Exception;
 
-	List<Map<String, Object>> qnaSearch(Map<String, Object> map) throws Exception;
+	void updateReplyBoard(Map<String, Object> map, HttpServletRequest request) throws Exception;
+	
+	List<Map<String, Object>> reportSearch(Map<String, Object> map) throws Exception;
 }

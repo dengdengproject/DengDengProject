@@ -1,4 +1,4 @@
-<!-- 20.02.11 -->
+<!-- 20.02.12 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -47,6 +47,7 @@ $(document).ready(function() {
 							<option value="펫시터문의">펫시터문의</option>
 							<option value="결제관련">결제관련</option>
 							<option value="이용취소">이용취소</option>
+							<option value="기타">기타</option>
 						</select>
 					</label>
 					<input type="text" id="QNA_SUBJECT" name="QNA_SUBJECT" value="${QNA_SUBJECT }"
@@ -82,7 +83,7 @@ $(document).ready(function() {
 						</div>
 						<div id="fileDiv">
 							<p>
-								<input type="file" id="file" name="file_0" maxlength="5" style="width: 300px;" /> 
+								<input type="file" id="file" name="file_0" style="width: 300px;" /> 
 								<a href="#this" class="btn" id="delete" name="delete">삭제</a>
 							</p>
 						</div>
@@ -140,8 +141,12 @@ $(document).ready(function() {
 				
 				function fn_openBoardList(){
 					var comSubmit = new ComSubmit();
+					if(confirm("취소 하시겠습니까?") == true) {
 					comSubmit.setUrl("<c:url value='/qnaList' />");
 					comSubmit.submit();
+					} else {
+						return;
+					}
 				}
 				
 				function fn_insertBoard(){
@@ -155,7 +160,7 @@ $(document).ready(function() {
 				}
 				
 				function fn_addFile(){
-					var str = "<p><input type='file' name='file_"+(gfv_count++)+"' maxlength='5' style='width: 300px;'><a href='#this' class='btn' name='delete'>삭제</a><p>";
+					var str = "<p><input type='file' name='file_"+(gfv_count++)+"' style='width: 300px;'><a href='#this' class='btn' name='delete'>삭제</a><p>";
 					$("#fileDiv").append(str);
 					$("a[name='delete']").on("click",function(e){
 						e.preventDefault();

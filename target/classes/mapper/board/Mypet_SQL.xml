@@ -193,6 +193,41 @@
       ]]>
    </insert>
    
+   <insert id="insertFile2" parameterType="hashmap">
+      <![CDATA[
+        INSERT INTO BOARD_FILE2 (
+         		BOARD_TYPE,
+       			BOARD_NO,
+       			BOARD_FILE_NO,
+                BOARD_ORIGINAL_MAIN_FILE_NAME,
+         		BOARD_STORED_MAIN_FILE_NAME,
+       			BOARD_FILE_SIZE,
+       			BOARD_DATE,
+       			BOARD_CREA_ID	
+         )
+         VALUES (
+         		'MYPET',
+        		#{BOARD_NO},
+            	BOARD_FILE_SEQ.NEXTVAL,
+                #{BOARD_ORIGINAL_MAIN_FILE_NAME},
+         		#{BOARD_STORED_MAIN_FILE_NAME},
+            	#{BOARD_FILE_SIZE},
+            	sysdate,
+            	'작성자'
+         )
+      ]]>
+   </insert>
+   
+   <update id="mypetThumbnail" parameterType="hashmap">
+   		<![CDATA[
+   			UPDATE SG_GOODS SET
+				MAIN_IMG = #{MAIN_IMG}
+			WHERE
+				BOARD_NO = #{BOARD_NO}
+   		]]>
+   		
+   </update>
+   
    <!-- 진짜 -->
    <!-- <select id="selectFileList" parameterType="hashmap" resultType="hashmap">
       <![CDATA[
@@ -209,20 +244,7 @@
       ]]>
    </select> -->
    
-   <select id="selectFileList" parameterType="hashmap" resultType="hashmap">
-      <![CDATA[
-         SELECT
-              BOARD_FILE_NO,
-              BOARD_ORIGINAL_FILE_NAME,
-              BOARD_STORED_FILE_NAME
-              
-         FROM
-              BOARD_FILE
-         WHERE
-               BOARD_NO = #{BOARD_NO}
-              AND FILE_DEL = 'N'
-      ]]>
-   </select>
+   
 	
 	<!-- MYPET 글 조회수 증가 -->
 <update id="updateHitCnt" parameterType="hashMap">
@@ -295,6 +317,36 @@
 	 
 </select>  
 
+<select id="selectFileList" parameterType="hashmap" resultType="hashmap">
+      <![CDATA[
+         SELECT
+              BOARD_FILE_NO,
+              BOARD_ORIGINAL_FILE_NAME,
+              BOARD_STORED_FILE_NAME
+              
+         FROM
+              BOARD_FILE
+         WHERE
+               BOARD_NO = #{BOARD_NO}
+              AND FILE_DEL = 'N'
+      ]]>
+   </select>
+   
+   <select id="selectFileList2" parameterType="hashmap" resultType="hashmap">
+      <![CDATA[
+         SELECT
+              BOARD_FILE_NO,
+              BOARD_ORIGINAL_MAIN_FILE_NAME,
+              BOARD_STORED_MAIN_FILE_NAME
+              
+         FROM
+              BOARD_FILE2
+         WHERE
+               BOARD_NO = #{BOARD_NO}
+              AND FILE_DEL = 'N'
+      ]]>
+   </select>
+
 <!-- 
 
 	SELECT
@@ -342,32 +394,20 @@
 
 <select id="selectCmtList" parameterType="hashmap" resultType="hashmap">
 	<![CDATA[
-						SELECT
-			BOARD_NO,
+		SELECT
 			MYPET_COMMENT_NO,
-			RNUM,
-			RE_RNUM,
+			MYPET_COMMENT_CONTENT,
 			ID,
 			MYPET_COMMENT_WRITER,
-			MYPET_COMMENT_CONTENT,
-			TO_CHAR(MYPET_COMMENT_DATE, 'YYYY/MM/DD') AS MYPET_COMMENT_DATE,
-			RANK() OVER (ORDER BY RNUM DESC) ROW_NUM,
-			ROW_NUMBER() OVER (ORDER BY RE_RNUM DESC) RE_ROW_NUM
+			MYPET_COMMENT_DATE
+			
 		FROM
-			(SELECT
-				BOARD_NO,
-				MYPET_COMMENT_NO,
-				ID,
-				MYPET_COMMENT_WRITER,
-				MYPET_COMMENT_CONTENT,
-				MYPET_COMMENT_DATE,
-				RANK() OVER (ORDER BY MYPET_RE_COMMENT_NO DESC) RNUM,
-				MYPET_RE_COMMENT_NO,
-				ROW_NUMBER() OVER (ORDER BY MYPET_RE_COMMENT_STEP DESC) RE_RNUM,
-				MYPET_RE_COMMENT_STEP
-			FROM
-				MYPET_COMMENT
-			) ORDER BY ROW_NUM ASC
+			MYPET_COMMENT
+			
+		WHERE
+			BOARD_NO = #{BOARD_NO}
+			ORDER BY MYPET_COMMENT_NO ASC
+		
 	
 	]]>
 </select>

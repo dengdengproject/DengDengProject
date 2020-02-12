@@ -113,6 +113,7 @@ public class MyPetBoardController {
 		mv.addObject("currentPage", currentPage);
 		mv.addObject("pagingHtml", pagingHtml);
 		mv.addObject("mypetList", mypetList);
+		 
 		mv.setViewName("/mypet/mypetList");
 		return mv;
 	}
@@ -155,18 +156,20 @@ public class MyPetBoardController {
 		Map<String, Object> map = mypetService.selectBoardDetail(commandMap.getMap());
 		
 		//댓글을 위해서 
-		String ID = (String)session.getAttribute("ID"); 
-		Map<String, Object> mapp = new HashMap<String, Object>(); mapp.put("ID", ID);
-		  
-		Map<String, Object> mem = mypetService.selectMemInfo(mapp);
-		  
-		mv.addObject("mem", mem);
+		
+		//String ID = (String)session.getAttribute("ID"); 
+		//Map<String, Object> mapp = new HashMap<String, Object>(); mapp.put("ID", ID);
+		 
+		//Map<String, Object> mem = mypetService.selectMemInfo(mapp);
+		 
+		//mv.addObject("mem", mem);
+		
 
 		mv.addObject("map", map.get("map"));
 		mv.addObject("list", map.get("list"));
 		//댓글 디테일
 		mv.addObject("cmtList", map.get("cmtList"));
-		
+		System.out.println(map);
 		
 		return mv;
 	}
@@ -219,7 +222,7 @@ public class MyPetBoardController {
 	@RequestMapping(value = "/mypetInsert")
 	public ModelAndView insertComment(CommandMap commandMap, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView("redirect:/mypetDetail");
-		//System.out.println(" 컨트롤러에서 받아오는 값 : " + commandMap.getMap());
+		System.out.println(" 컨트롤러에서 받아오는 값 : " + commandMap.getMap());
 		mypetService.insertComment(commandMap.getMap());
 		mv.addObject("BOARD_NO", commandMap.get("BOARD_NO"));
 		

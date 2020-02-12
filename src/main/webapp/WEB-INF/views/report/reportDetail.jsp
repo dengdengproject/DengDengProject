@@ -16,7 +16,7 @@
 
 <%@ include file="/WEB-INF/views/include/include-board-menu.jspf"%>
 
-<c:if test="${map.QNA_PRIVATE_CHECK == 'Y'}">
+<c:if test="${map.REPORT_PRIVATE_CHECK == 'Y'}">
 	<c:if test="${ID != map.ID && ADMIN_ID == null}">
 		<script type="text/javascript">
   			alert("본인만 내용을 확인할 수 있습니다.");
@@ -33,25 +33,26 @@
 		<div align="center" class="container">
 			<div align="left"
 				style="width: 1200px; border: 1px solid #cccccc; padding: 2em; padding-left: 2em; padding-right: 5em; margin-top: 20px; margin-bottom: 1em; background-color: #ffffff">
-				<span style="font-weight: bold">Q&A</span>
+				<span style="font-weight: bold">신고하기</span>
 				<hr />
 				
 				<div class="form-inline" style="margin-bottom: 1em">
 					<label style="font-weight: bold; width: 50px">글번호</label> ${map.BOARD_NO }
-					<label style="font-weight: bold; width: 90px">말머리</label> ${map.QNA_HEADER }
+					<label style="font-weight: bold; width: 90px">말머리</label> ${map.REPORT_HEADER }
 					<label class="form-inline" style="margin-bottom: 1em">
-					<label style="font-weight: bold; width: 90px">글제목</label> ${map.QNA_SUBJECT }
+					<label style="font-weight: bold; width: 90px">글제목</label> ${map.REPORT_SUBJECT }
 				</div>
-				
+
 				<div class="form-inline" style="margin-bottom: 1em">
-					<label style="font-weight: bold; width: 90px">작성자</label> ${map.QNA_WRITER } 
+					<label style="font-weight: bold; width: 90px">작성자</label> ${map.REPORT_WRITER } 
 					<input type="hidden" name="ID" id="ID" value="${map.ID }">
-					<input type="hidden" name="QNA_RE_NO" id="QNA_RE_NO" value="${map.BOARD_NO }">
+					<input type="hidden" name="writerId" id="writerId" value="${ID }">
+					<input type="hidden" name="REPORT_RE_NO" id="REPORT_RE_NO" value="${map.BOARD_NO }">
 					<input type="hidden" name="BOARD_CREA_ID" id="BOARD_CREA_ID" value="${mem.ID }">
 					<label style="width: 90px; position: relative; left: 5em">조회수</label>
-					<span style="position: relative; left: 5em">${map.QNA_COUNT }</span>
+					<span style="position: relative; left: 5em">${map.REPORT_COUNT }</span>
 					<label style="width: 90px; position: relative; left: 10em">등록일</label>
-					<span style="position: relative; left: 10em">${map.QNA_DATE }</span>
+					<span style="position: relative; left: 10em">${map.REPORT_DATE }</span>
 				</div>
 				
 				
@@ -62,7 +63,7 @@
 					</c:forEach>
 					<br/><br/>
 					<p>
-					${map.QNA_CONTENT }
+					${map.REPORT_CONTENT }
 					</p>
 				</div>
 				
@@ -94,15 +95,15 @@
 			</div> -->
 			<a href="#this" class="btn" id="list">목록</a>
 			<c:if test="${ID == map.ID || ADMIN_ID != null}">
-				<c:if test="${map.QNA_RE_STEP == 0}">
+				<c:if test="${map.REPORT_RE_STEP == 0}">
 					<a href="#this" class="btn" id="update">수정</a>
 				</c:if>
 			</c:if>
 			<c:if test="${ADMIN_ID != null }">
-				<c:if test="${map.QNA_RE_STEP == 0}">
+				<c:if test="${map.REPORT_RE_STEP == 0}">
 					<a href="#this" class="btn" id="reply">답변작성</a>
 				</c:if>
-				<c:if test="${map.QNA_RE_STEP > 0}">
+				<c:if test="${map.REPORT_RE_STEP > 0}">
 					<a href="#this" class="btn" id="reUpdate">답변수정</a>
 				</c:if>
 			</c:if>
@@ -128,7 +129,7 @@
 				 	$("#reply").on("click", function(e){ //답변작성하기
 						e.preventDefault();
 						fn_openBoardReply();
-					});
+					}); 
 				 	
 				 	$("#reUpdate").on("click", function(e){ //답변수정하기
 						e.preventDefault();
@@ -138,14 +139,14 @@
 				
 				function fn_openBoardList(){
 					var comSubmit = new ComSubmit();
-					comSubmit.setUrl("<c:url value='/qnaList' />");
+					comSubmit.setUrl("<c:url value='/reportList' />");
 					comSubmit.submit();
 				}
 				
 				function fn_openBoardUpdate(){
 					var idx = "${map.BOARD_NO}";
 					var comSubmit = new ComSubmit();
-					comSubmit.setUrl("<c:url value='/qnaUpdateForm' />");
+					comSubmit.setUrl("<c:url value='/reportUpdateForm' />");
 					comSubmit.addParam("BOARD_NO", idx);
 					comSubmit.submit();
 				}
@@ -153,19 +154,18 @@
 			 	function fn_openBoardReply(){
 			 		var idx = "${map.BOARD_NO}";
 					var comSubmit = new ComSubmit();
-					comSubmit.setUrl("<c:url value='/qnaReplyForm' />");
-					comSubmit.addParam("BOARD_NO", idx);
-					comSubmit.submit();
-				}
-			 	
-			 	function fn_openBoardReUpdate(){
-			 		var idx = "${map.BOARD_NO}";
-					var comSubmit = new ComSubmit();
-					comSubmit.setUrl("<c:url value='/qnaReUpdateForm' />");
+					comSubmit.setUrl("<c:url value='/reportReplyForm' />");
 					comSubmit.addParam("BOARD_NO", idx);
 					comSubmit.submit();
 				} 
 			 	
+			 	function fn_openBoardReUpdate(){
+			 		var idx = "${map.BOARD_NO}";
+					var comSubmit = new ComSubmit();
+					comSubmit.setUrl("<c:url value='/reportReUpdateForm' />");
+					comSubmit.addParam("BOARD_NO", idx);
+					comSubmit.submit();
+				} 
 			</script>
 			
 		</div>

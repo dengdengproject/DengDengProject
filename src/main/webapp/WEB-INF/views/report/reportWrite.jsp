@@ -1,7 +1,6 @@
-<!-- 20.02.11 -->
+<!-- 20.02.12 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,8 +13,6 @@
 
 <%@ include file="/WEB-INF/views/include/include-board-menu.jspf"%>
 
-<%-- <%@ include file="/WEB-INF/views/include/include-header-add.jspf" %> --%>
-
 <!-- 게시판 에디터 Summernote-->
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
@@ -23,6 +20,7 @@
 <!-- 게시판 에디터 summernote css/js-->
 <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+
 <!-- 게시판 에디터 스크립트 -->   
 <script>
 $(document).ready(function() {
@@ -39,33 +37,44 @@ $(document).ready(function() {
 		<div align="center" class="container">
 			<div align="left"
 				style="width: 1200px; border: 1px solid #cccccc; padding: 2em; padding-left: 2em; padding-right: 5em; margin-top: 20px; margin-bottom: 1em; background-color: #ffffff">
-				<span style="font-weight: bold">Q&A 답변쓰기</span>
+				<span style="font-weight: bold">신고하기 글쓰기</span>
 				<hr />
 				<div class="form-inline" style="margin-bottom: 1em">
-					<label style="width: 90px">말머리</label> ${map.QNA_HEADER }
-					<input type="hidden" name="QNA_HEADER" id="QNA_HEADER" value="${map.QNA_HEADER }"></input>	
-					<label style="width: 90px">글제목</label> [답변] ${map.QNA_SUBJECT }
-					<input type="hidden" name="QNA_SUBJECT" id="QNA_SUBJECT" value="${map.QNA_SUBJECT }"></input>
+					<label style="width: 90px">글제목</label> 
+					<label>
+						<select	id="REPORT_HEADER" name="REPORT_HEADER" style="width: 7em">
+							<option value="">말머리선택</option>
+							<option value="펫시터문의">펫시터이용</option>
+							<option value="결제관련">결제관련</option>
+							<option value="이용취소">이용취소</option>
+							<option value="홍보성게시물">홍보성게시물</option>
+							<option value="음란성게시물">음란성게시물</option>
+							<option value="기타">기타</option>
+						</select>
+					</label>
+					<input type="text" id="REPORT_SUBJECT" name="REPORT_SUBJECT" value="${REPORT_SUBJECT }"
+						class="form-control" style="width: 400px" placeholder="글 제목을 입력하세요." />
 				</div>
 
 				<div class="form-inline" style="margin-bottom: 1em">
-					<label style="width: 90px">작성자</label> 관리자
-					<input type="hidden" name="QNA_WRITER" id="QNA_WRITER" value="관리자"></input>
-					<input type="hidden" name="ID" id="ID" value="${map.ID }"></input>
-					<input type="hidden" name="BOARD_CREA_ID" id="BOARD_CREA_ID" value="${ADMIN_ID }"></input>
-					<input type="hidden" name="BOARD_NO" id="BOARD_NO" value="${map.BOARD_NO }">
-					<input type="hidden" name="QNA_RE_NO" id="QNA_RE_NO" value="${map.BOARD_NO }">
+					<label style="width: 90px">작성자</label> <strong>${mem.NAME }</strong>
+					<input type="hidden" name="REPORT_WRITER" id="REPORT_WRITER" value="${mem.NAME}"></input>
+					<input type="hidden" name="ID" id="ID" value="${mem.ID }"></input>
+					<input type="hidden" name="BOARD_CREA_ID" id="BOARD_CREA_ID" value="${mem.ID }"></input>
+					<input type="hidden" name="adminId" id="adminId" value="${mem.ADMIN_ID }"></input>
 					<%-- <input type="hidden" name="ADMIN_ID" id="ADMIN_ID">${ADMIN_ID }</input> --%>
 					<%-- <label style="width: 90px; margin-left: 3em">비밀번호</label>
-						<input type="password" id="QNA_PASSWORD" name="QNA_PASSWORD" value="${QNA_PASSWORD }" class="form-control" style="width: 150px" /> --%>
+						<input type="password" id="REPORT_PASSWORD" name="REPORT_PASSWORD" value="${REPORT_PASSWORD }" class="form-control" style="width: 150px" /> --%>
 					<!-- <input type="text" class="form-control" style="width:200px" placeholder="작성자를 입력하세요." /> -->
+					<label style="margin-left: 3em">
+						<input type="checkbox" id="REPORT_PRIVATE_CHECK" name="REPORT_PRIVATE_CHECK" value="Y"> 비밀글 </input>
+					</label>
 				</div>
 				
 				<!-- <div id="summernote"></div> -->
-				<label style="width: 90px">내용</label> [Q&A질문] ${map.QNA_CONTENT}
 				<div>
-					<textarea rows="20" cols="100" title="내용" id="QNA_CONTENT" name="QNA_CONTENT" placeholder="질문의 답변을 입력하세요.">${QNA_CONTENT }</textarea>
-				</div>
+					<textarea rows="20" cols="100" title="내용" id="REPORT_CONTENT" name="REPORT_CONTENT" placeholder="내용을 입력하세요.">${REPORT_CONTENT }</textarea>
+				</div> 
 				
 				<div class="table file">
 					<h1>첨부 파일</h1>
@@ -76,7 +85,7 @@ $(document).ready(function() {
 						</div>
 						<div id="fileDiv">
 							<p>
-								<input type="file" id="file" name="file_0"> 
+								<input type="file" id="file" name="file_0" style="width: 300px;" /> 
 								<a href="#this" class="btn" id="delete" name="delete">삭제</a>
 							</p>
 						</div>
@@ -85,13 +94,13 @@ $(document).ready(function() {
 			<!-- <div
 				style="text-align: center; width: 8em; height: 2em; position: relative; right: 8em; top: 3em; margin-top: 1em; margin-bottom: 1em;">
 				<button style="width: 8em; height: 2em"
-					onclick="location.href='/first/qnaList'">등록</button>
+					onclick="location.href='/first/reportList'">등록</button>
 			</div>
 
 			<div
 				style="text-align: center; width: 8em; height: 2em; position: relative; left: 1em; margin-top: 1em; margin-bottom: 1em;">
 				<button style="width: 8em; height: 2em"
-					onclick="location.href='/first/qnaList'">취소</button>
+					onclick="location.href='/first/reportList'">취소</button>
 			</div> -->
 			
 			<a href="#this" class="btn" id="addFile" >파일추가</a>
@@ -110,22 +119,22 @@ $(document).ready(function() {
 				var gfv_count = 1;
 				
 				$(document).ready(function(){
-					$("#list").on("click", function(e){ //취소하고 리스트로 가는 버튼
+					$("#list").on("click", function(e){		//취소
 						e.preventDefault();
 						fn_openBoardList();
 					});
 					
-					$("#write").on("click", function(e){
+					$("#write").on("click", function(e){	//등록
 						e.preventDefault();
 						fn_insertBoard();
 					});
 					
-					$("#addFile").on("click", function(e){
+					$("#addFile").on("click", function(e){	//파일추가
 						e.preventDefault();
 						fn_addFile();
 					});
 					
-					$("a[name='delete']").on("click", function(e){
+					$("a[name='delete']").on("click", function(e){	//파일삭제
 						e.preventDefault();
 						fn_deleteFile($(this));
 					});
@@ -134,8 +143,8 @@ $(document).ready(function() {
 				
 				function fn_openBoardList(){
 					var comSubmit = new ComSubmit();
-					if(confirm("취소하시겠습니까?") == true) {
-					comSubmit.setUrl("<c:url value='/qnaList' />");
+					if(confirm("취소 하시겠습니까?") == true) {
+					comSubmit.setUrl("<c:url value='/reportList' />");
 					comSubmit.submit();
 					} else {
 						return;
@@ -144,8 +153,8 @@ $(document).ready(function() {
 				
 				function fn_insertBoard(){
 					var comSubmit = new ComSubmit("frm");
-					if(confirm("답변등록 하시겠습니까?") == true) {
-					comSubmit.setUrl("<c:url value='/qnaReply' />"); 
+					if(confirm("등록 하시겠습니까?") == true) {
+					comSubmit.setUrl("<c:url value='/reportWrite' />"); 
 					comSubmit.submit();
 					} else {
 						return;
@@ -153,7 +162,7 @@ $(document).ready(function() {
 				}
 				
 				function fn_addFile(){
-					var str = "<p><input type='file' name='file_"+(gfv_count++)+"'><a href='#this' class='btn' name='delete'>삭제</a><p>";
+					var str = "<p><input type='file' name='file_"+(gfv_count++)+"' style='width: 300px;'><a href='#this' class='btn' name='delete'>삭제</a><p>";
 					$("#fileDiv").append(str);
 					$("a[name='delete']").on("click",function(e){
 						e.preventDefault();
@@ -164,6 +173,7 @@ $(document).ready(function() {
 				function fn_deleteFile(obj) {
 					obj.parent().remove();
 				}
+				
 			</script>
 <%-- <%@ include file="/WEB-INF/views/include/include-footer.jspf"%> --%>
 

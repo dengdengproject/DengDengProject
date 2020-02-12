@@ -1,4 +1,4 @@
-<!-- 20.02.10 -->
+<!-- 20.02.12 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -131,8 +131,12 @@
 				
 				function fn_openBoardList(){
 					var comSubmit = new ComSubmit();
+					if(confirm("취소 하시겠습니까?") == true) {
 					comSubmit.setUrl("<c:url value='/qnaList' />");
 					comSubmit.submit();
+					} else {
+						return;
+					}
 				}
 				
 				function fn_openBoardUpdate(){

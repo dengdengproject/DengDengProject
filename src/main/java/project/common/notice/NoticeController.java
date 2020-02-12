@@ -61,10 +61,10 @@ ModelAndView mv = new ModelAndView();
 			}else if(searchNum == 1){
 				smap.put("NOTICE_WRITER", isSearch);
 				noList = noticeService.noticeSearch(smap.getMap());
-			}else if(searchNum == 3){
+			} else if(searchNum == 2){
 				smap.put("NOTICE_CONTENT", isSearch);
 				noList = noticeService.noticeSearch(smap.getMap());
-			}
+			} 
 			
 			totalCount = noList.size();
 			paging = new Paging(currentPage, totalCount, blockCount, blockpaging, "noticeList", searchNum, isSearch);
@@ -80,7 +80,7 @@ ModelAndView mv = new ModelAndView();
 			mv.addObject("currentPage", currentPage);
 			mv.addObject("pagingHtml", pagingHtml);
 			mv.addObject("noList", noList);
-			mv.setViewName("/notice/notice");
+			mv.setViewName("/notice/noticeList");
 			return mv;
 		}
 		
@@ -101,7 +101,7 @@ ModelAndView mv = new ModelAndView();
 		mv.addObject("currentPage", currentPage);
 		mv.addObject("pagingHtml", pagingHtml);
 		mv.addObject("noList", noList);
-		mv.setViewName("/notice/notice");
+		mv.setViewName("/notice/noticeList");
 		return mv;
 	}
 		

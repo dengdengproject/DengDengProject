@@ -166,7 +166,7 @@
 			FROM
 			     BOARD_FILE
 			WHERE
-			     BOARD_NO = #{BOARD_NO}
+			     BOARD_NO = #{BOARD_NO} AND FILE_DEL = 'N'
 		]]>
 	</select> <!-- BOARD_FILE_NO -->
 	
@@ -208,7 +208,7 @@
 	</update>
 	
 	<!-- 공지사항 검색 <제목, 작성자, 내용> -->
-<select id="noticeSearch" resultType="hashmap" parameterType="hashmap">
+<!-- <select id="noticeSearch" resultType="hashmap" parameterType="hashmap">
 	<![CDATA[
 		SELECT *
 		FROM
@@ -227,7 +227,40 @@
 			</choose>
 		ORDER BY NOTICE_NO DESC
 	]]>
-</select>
+</select> -->
+
+<!-- 공지사항 검색 -->
+	<select id="noticeSearch" resultType="hashmap" parameterType="hashmap">
+		SELECT * FROM NOTICE
+		WHERE
+		<choose>
+		        <when test = "NOTICE_SUBJECT != NULL">
+			NOTICE_SUBJECT LIKE '%'||#{NOTICE_SUBJECT}||'%'
+		        </when>
+		        <when test = "NOTICE_WRITER != NULL">
+			NOTICE_WRITER LIKE '%'||#{NOTICE_WRITER}||'%'
+		        </when>
+		        <when test = "NOTICE_CONTENT != NULL">
+		    NOTICE_CONTENT LIKE '%'||#{NOTICE_CONTENT}||'%' 
+		        </when>
+		</choose>
+		ORDER BY BOARD_NO DESC
+	</select>
+	
+	<!-- 공지사항 검색 -->
+	<!-- <select id="noticeSearch" resultType="hashmap" parameterType="hashmap">
+		SELECT * FROM MC_NOTICE 
+		WHERE 
+		<choose>
+			<when test = "NOTICE_SUB != NULL">
+				NOTICE_SUB LIKE '%'||#{NOTICE_SUB}||'%'
+			</when>
+			<when test = "NOTICE_CONTENT != NULL">
+				NOTICE_CONTENT LIKE '%'||#{NOTICE_CONTENT}||'%'
+			</when>
+		</choose>
+		ORDER BY NOTICE_NO DESC
+	</select> -->
 
 
 

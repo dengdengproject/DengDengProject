@@ -34,7 +34,7 @@
 				</div>
 
 				<div class="form-inline" style="margin-bottom: 1em">
-					<label style="font-weight: bold; width: 90px">작성자</label> ${map.ADMIN_ID } <label
+					<label style="font-weight: bold; width: 90px">작성자</label> ${map.NOTICE_WRITER } <label
 						style="width: 90px; position: relative; left: 5em">조회수</label> <span
 						style="position: relative; left: 5em">${map.NOTICE_COUNT }</span> <label
 						style="width: 90px; position: relative; left: 10em">등록일</label> <span
