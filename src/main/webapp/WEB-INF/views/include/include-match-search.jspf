@@ -19,6 +19,22 @@
 	}
 </script>
 
+<script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+<script type="text/javascript">
+	function searchResult() {
+		var form = document.searchBar;
+		if(form.ADDRESS1.value == null || form.ADDRESS1.value == '') {
+			alert("주소는 필수 입력 사항입니다.")
+			form.ADDRESS1.focus();
+			return false;
+		}
+		form.action = "/first/matchSearchClick";
+		form.submit();
+	}
+</script>
+
 <!-- 검색부분 시작 -->
 <form id="searchBar" name="searchBar">
 <div class="tm-main-content" id="top">

@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 
@@ -53,36 +55,26 @@
 				<input type="hidden" name="BOARD_NO" id="BOARD_NO" value="${map.BOARD_NO }"/>
 				<div><textarea rows="20" cols="100" title="내용" id="MYPET_CONTENT" name="MYPET_CONTENT">${map.MYPET_CONTENT }</textarea></div>
 				
-				<%-- <div>${map.NOTICE_CONTENT }</div> --%>
 				
-				<!-- <div class="form-inline" style="margin-bottom: 10px">
-					<div class="form-group">
-						<label style="width: 90px">첨부파일</label>
-					</div>
-					<div class="form-group">
-						<input type="file" placeholder="첨부파일을 선택하세요."
-							style="width: 400px; position: relative; left: 1em" />
-					</div>
-				</div> -->
 				
-				<div class="table file">
-					<h1>첨부 파일</h1>
+				<!-- <div class="table file"> -->
+					<!-- <h1>첨부 파일</h1>
 						<div class="message">
 							<p> - 사진은 가로로 찍은 사진을 권장합니다. (가로 사이즈 최소 800px)</p>
 							<p> - 사진 용량은 사진 한 장당 10MB까지 등록이 가능합니다.</p>
 							<p> - 사진은 최소 1장 이상 등록해야 하며, 최대 5장까지 권장합니다. 그 이상 등록할 경우 업로드 시간이 다소 지연될 수 있습니다.</p>
-						</div>
+						</div> -->
 						<div id="fileDiv">
 							<c:forEach var="row" items="${list }" varStatus="var">
 								<p>
 									<input type="hidden" id="BOARD_FILE_NO" name="BOARD_FILE_NO_${var.index }" value="${row.BOARD_FILE_NO }"></input>
 									<a href="#this" id="BOARD_ORIGINAL_FILE_NAME_${var.index }" name="BOARD_ORIGINAL_FILE_NAME_${var.index }"> ${row.BOARD_ORIGINAL_FILE_NAME } (${row.BOARD_FILE_SIZE }kb)</a>
 									<input type="file" id="file_${var.index }" name="file_${var.index }"></input>
-									<a href="#this" class="btn" id="delete_${var.index }" name="delete_${var.index }">삭제</a>
+									<%-- <a href="#this" class="btn" id="delete_${var.index }" name="delete_${var.index }">삭제</a> --%>
 								</p>
 							</c:forEach>
 						</div>
-					</div>
+				<!-- </div> -->
 			</div>
 
 			<!-- <div
@@ -90,7 +82,7 @@
 				<button style="width: 8em; height: 2em">수정</button>
 			</div> -->
 			<br/><br/>
-			<a href="#this" class="btn" id="addFile">파일추가</a>
+			<!-- <a href="#this" class="btn" id="addFile">파일추가</a> -->
 			<a href="#this" class="btn" id="list">목록</a>
 			<a href="#this" class="btn" id="update">수정</a>
 			<a href="#this" class="btn" id="delete">삭제</a>

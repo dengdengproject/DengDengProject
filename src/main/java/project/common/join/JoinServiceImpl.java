@@ -38,7 +38,6 @@ public class JoinServiceImpl implements JoinService {
 	 { // TODO Auto-generated method stub 
 		 joinDAO.insertMember(map); 
 		 
-		 
 		 List<Map<String,Object>> list = fileUtils.parseInsertFileInfo(map, request);
 		 for(int i=0, size=list.size(); i<size; i++){ 
 			
@@ -52,15 +51,12 @@ public class JoinServiceImpl implements JoinService {
 		// TODO Auto-generated method stub
 		joinDAO.insertPst(map);
 
-		
-		
-		 List<Map<String,Object>> list = fileUtils.parseInsertFileInfo(map, request);
-		 for(int i=0, size=list.size(); i<size; i++){ 
+		List<Map<String,Object>> list = fileUtils.parseInsertFileInfo(map, request);
+		for(int i=0, size=list.size(); i<size; i++){ 
 			System.out.println(list.get(i));
 			
-			 joinDAO.insertProfile(list.get(i));
-			 
-		 }
+			joinDAO.insertProfile(list.get(i));
+		}
 
 	}
 
@@ -71,11 +67,10 @@ public class JoinServiceImpl implements JoinService {
 		
 		//자격증파일 등록
 		List<Map<String,Object>> list = fileUtils.parseInsertCerti(map, request);
-		 for(int i=0, size=list.size(); i<size; i++){ 
+		for(int i=0, size=list.size(); i<size; i++){ 
 			System.out.println(list.get(i));
 			
-			 joinDAO.insertCerti(list.get(i));
-		
+			joinDAO.insertCerti(list.get(i));
 		 }		 
 		 
 	}
@@ -91,18 +86,12 @@ public class JoinServiceImpl implements JoinService {
 			System.out.println(list.get(i));
 			
 			 joinDAO.insertPstPlaceImg(list.get(i));
-		
 		 }
-
-		 
-		 
 	}
-
-	
 	
 //댕댕이 등록
-	 @Override public void petRegist(Map<String, Object> map, HttpServletRequest request) throws Exception
-	 { // TODO Auto-generated method stub 
+	 @Override public void petRegist(Map<String, Object> map, HttpServletRequest request) throws Exception{ 
+		 // TODO Auto-generated method stub 
 		 joinDAO.insertPet(map); 
 		 
 		//PET_MEM_ID를 DB에서 꺼내오기
@@ -110,15 +99,14 @@ public class JoinServiceImpl implements JoinService {
 		//PET_MEM_ID를 DB에서 꺼내오기
 		 System.out.println("PET_MEM_ID는" +pet_mem_id);
 		//꺼내온 아이디값을 map에 넣어준다. 
-		map.put("PET_MEM_ID", pet_mem_id);
+		 map.put("PET_MEM_ID", pet_mem_id);
 		
 		 List<Map<String,Object>> list = fileUtils.parseInsertFileInfo(map, request);
 		 for(int i=0, size=list.size(); i<size; i++){ 
 			System.out.println(list.get(i));
 			 joinDAO.insertProfile(list.get(i));
-			 
 		 }
-}
+	 }
 
 	@Override
 	public Map<String, Object> getPstId(Map<String, Object> map) throws Exception {
@@ -140,7 +128,5 @@ public class JoinServiceImpl implements JoinService {
 		return joinDAO.selectPetMemId(map);
 		
 	} 
-	
-	
 
 }

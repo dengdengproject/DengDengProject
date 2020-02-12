@@ -1,3 +1,4 @@
+/*20.02.12*/
 package project.common.qna;
 
 import java.util.List;
@@ -20,5 +21,9 @@ public interface QnaService {
 	Map<String, Object> selectMemInfo(Map<String, Object> map) throws Exception;
 	
 	void insertReplyBoard(Map<String, Object> map, HttpServletRequest request) throws Exception;
+	
+	void updateReplyBoard(Map<String, Object> map, HttpServletRequest request) throws Exception;
 
+	List<Map<String, Object>> qnaSearch(Map<String, Object> map) throws Exception;
+	
 }

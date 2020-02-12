@@ -139,13 +139,6 @@
 	$("#joinForm").on("submit",function(e){
 	});
 	
- 
-	
-	
-	
-	
-	
-
 	</script>
 
 
@@ -248,7 +241,7 @@
 					<!-- 생년월일 --> 
 					<div style="text-align: center;">
 						<div style="position: relative; right: 25.5em;">
-							<span style="font-weight: bold">생년월일*</span>
+							<span style="font-weight: bold">생년월일*></span>
 						</div>
 						<div>
 							<input type="text" placeholder="생년월일을 선택해주세요." type="text" name="BIRTHDAY" id="BIRTHDAY" class="flatpickr-input"

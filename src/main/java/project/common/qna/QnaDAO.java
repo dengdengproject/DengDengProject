@@ -1,3 +1,4 @@
+/*20.02.12*/
 package project.common.qna;
 
 import java.util.List;
@@ -12,7 +13,7 @@ public class QnaDAO extends AbstractDAO {
 
 	@SuppressWarnings("unchecked")
 	public List<Map<String, Object>> selectBoardList(Map<String, Object> map) throws Exception {
-		return (List<Map<String, Object>>)selectList("qna.selectBoardList", map); //selectPagingList????
+		return (List<Map<String, Object>>)selectList("qna.selectBoardList", map); 
 		 /* selectList는 리스트를 조회할 때 사용됨 selectQnaList쿼리 이름, Map<String,Object> map 쿼리 실행시
 		       필요한 변수들임 결과값은 List<Map<String, Object>> 형식으로 반환할 수 있도록 형변환 함
 		    qna.selectQnaList에서 qna는 XML에서 설정한 namespace의 이름임 */
@@ -63,6 +64,15 @@ public class QnaDAO extends AbstractDAO {
 
 	public void insertReplyBoard(Map<String, Object> map) throws Exception{
 		update("qna.insertReplyBoard", map);
+	}
+	
+	public void updateReplyBoard(Map<String, Object> map) throws Exception {
+		update("qna.updateReplyBoard", map);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> qnaSearch(Map<String, Object> map) throws Exception {
+		return (List<Map<String, Object>>)selectList("qna.qnaSearch", map);
 	}
 	
 }

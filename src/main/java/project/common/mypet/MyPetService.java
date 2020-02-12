@@ -25,12 +25,4 @@ public interface MyPetService {
 
 	Map<String, Object> selectMemInfo(Map<String, Object> map) throws Exception;
 
-	
-
-	/*
-	 * void updateComment(Map<String, Object> map) throws Exception;
-	 */
-	
-	 
-
 }

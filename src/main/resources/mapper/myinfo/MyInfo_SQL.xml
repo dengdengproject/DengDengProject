@@ -4,8 +4,6 @@
 
 <mapper namespace="myInfo">
 
-
-
 <!-- 일반회원 상세정보 꺼내오기 -->
 <select id = "selectmeminfo" parameterType = "hashmap" resultType = "hashmap">
 	<![CDATA[
@@ -244,6 +242,5 @@
 				#{MEM_ID}
 		]]>
 </select>
-
 	
 </mapper>

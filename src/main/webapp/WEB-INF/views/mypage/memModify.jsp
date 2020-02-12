@@ -217,6 +217,16 @@ $(document).ready(function(){ });
 
 
 
+
+
+
+<script type="text/javascript">
+$(document).ready(function(){ }); 
+</script>
+
+
+
+
 <style type="text/css">
  input[type=file] {
 	display: none;

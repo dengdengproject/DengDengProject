@@ -1,4 +1,4 @@
-<!-- 20.02.10 -->
+<!-- 20.02.11 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
@@ -14,8 +14,6 @@
 
 <%@ include file="/WEB-INF/views/include/include-board-menu.jspf"%>
 
-<%-- <%@ include file="/WEB-INF/views/include/include-header-add.jspf" %> --%>
-
 <!-- 게시판 에디터 Summernote-->
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
@@ -30,27 +28,7 @@ $(document).ready(function() {
 });
 
 </script>  
-
 </head>
-
-
-<div  class="tab-box">
-				<ul>
-
-					<li onclick="location.href = '/first/noticeList'">공지사항</li>
-
-					<li class="selected" onclick="location.href = '/first/qnaList'">Q&A</li>
-
-					<li onclick="location.href = '/first/qnaList'">신고하기</li>
-
-					<li onclick="location.href = '/first/mypetList'">댕댕이 자랑</li>
-
-
-
-				</ul>
-		</div>
-	</div>
-</nav>
 
 <form id="frm" name="frm" enctype="multipart/form-data">
 <div style="height: 400px; border-top: solid;">
@@ -68,21 +46,14 @@ $(document).ready(function() {
 				</div>
 
 				<div class="form-inline" style="margin-bottom: 1em">
-					<input type="hidden" name="ID" id="ID" value="${ADMIN_ID }"></input>
+					<label style="width: 90px">작성자</label> 관리자
+					<input type="hidden" name="QNA_WRITER" id="QNA_WRITER" value="관리자"></input>
+					<input type="hidden" name="ID" id="ID" value="${map.ID }"></input>
 					<input type="hidden" name="BOARD_CREA_ID" id="BOARD_CREA_ID" value="${ADMIN_ID }"></input>
 					<input type="hidden" name="BOARD_NO" id="BOARD_NO" value="${map.BOARD_NO }">
 					<input type="hidden" name="QNA_RE_NO" id="QNA_RE_NO" value="${map.BOARD_NO }">
-					<label style="width: 90px">작성자</label> 관리자
-					<input type="hidden" name="QNA_WRITER" id="QNA_WRITER" value="${ADMIN_NAME}"></input>
-					<%-- <input type="hidden" name="ADMIN_ID" id="ADMIN_ID">${ADMIN_ID }</input> --%>
-					<%-- <label style="width: 90px; margin-left: 3em">비밀번호</label>
-						<input type="password" id="QNA_PASSWORD" name="QNA_PASSWORD" value="${QNA_PASSWORD }" class="form-control" style="width: 150px" /> --%>
-					<!-- <input type="text" class="form-control" style="width:200px" placeholder="작성자를 입력하세요." /> -->
-					<label style="margin-left: 3em">
-						<input type="checkbox" id="QNA_PRIVATE_CHECK" name="QNA_PRIVATE_CHECK" value="Y"/>비밀글</label>
 				</div>
 				
-				<!-- <div id="summernote"></div> -->
 				<label style="width: 90px">내용</label> [Q&A질문] ${map.QNA_CONTENT}
 				<div>
 					<textarea rows="20" cols="100" title="내용" id="QNA_CONTENT" name="QNA_CONTENT" placeholder="질문의 답변을 입력하세요.">${QNA_CONTENT }</textarea>
@@ -102,18 +73,6 @@ $(document).ready(function() {
 							</p>
 						</div>
 				</div>
-
-			<!-- <div
-				style="text-align: center; width: 8em; height: 2em; position: relative; right: 8em; top: 3em; margin-top: 1em; margin-bottom: 1em;">
-				<button style="width: 8em; height: 2em"
-					onclick="location.href='/first/qnaList'">등록</button>
-			</div>
-
-			<div
-				style="text-align: center; width: 8em; height: 2em; position: relative; left: 1em; margin-top: 1em; margin-bottom: 1em;">
-				<button style="width: 8em; height: 2em"
-					onclick="location.href='/first/qnaList'">취소</button>
-			</div> -->
 			
 			<a href="#this" class="btn" id="addFile" >파일추가</a>
 			<a href="#this" class="btn" id="write" >등록</a>
@@ -123,7 +82,6 @@ $(document).ready(function() {
 	</div>
 </div>
 </div>
-
 </form>
 
 		<%@ include file="/WEB-INF/views/include/include-body.jspf" %> 
@@ -150,18 +108,21 @@ $(document).ready(function() {
 						e.preventDefault();
 						fn_deleteFile($(this));
 					});
-					
 				});
 				
 				function fn_openBoardList(){
 					var comSubmit = new ComSubmit();
+					if(confirm("취소하시겠습니까?") == true) {
 					comSubmit.setUrl("<c:url value='/qnaList' />");
 					comSubmit.submit();
+					} else {
+						return;
+					}
 				}
 				
 				function fn_insertBoard(){
 					var comSubmit = new ComSubmit("frm");
-					if(confirm("답변 등록 하시겠습니까?") == true) {
+					if(confirm("답변등록 하시겠습니까?") == true) {
 					comSubmit.setUrl("<c:url value='/qnaReply' />"); 
 					comSubmit.submit();
 					} else {
@@ -182,6 +143,7 @@ $(document).ready(function() {
 					obj.parent().remove();
 				}
 			</script>
+			
 <%-- <%@ include file="/WEB-INF/views/include/include-footer.jspf"%> --%>
 
 </html>

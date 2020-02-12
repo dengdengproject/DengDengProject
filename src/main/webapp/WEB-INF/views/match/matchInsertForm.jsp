@@ -657,4 +657,5 @@ function testDate() {
 	//document.write("값은", typeof document.matchInsert.basicDate);
 } -->
 <%@ include file="/WEB-INF/views/include/include-footer.jspf"%>
+
 </html>

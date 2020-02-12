@@ -18,7 +18,6 @@ import org.springframework.web.servlet.ModelAndView;
 import project.common.common.CommandMap;
 import project.common.paging.Paging;
 
-
 @Controller
 public class MyPetBoardController {
 
@@ -33,8 +32,6 @@ public class MyPetBoardController {
 
 	@Resource(name = "mypetService") // Service 영역의 접근을 위한 선언
 	private MyPetService mypetService;
-	
-	
 	
 	// mypet 리스트
 	@RequestMapping(value = "/mypetList") // 요청 URL(/qnaList)이 호출되면 어노테이션이 매핑되어, qnaList() 실행됨
@@ -82,8 +79,8 @@ public class MyPetBoardController {
 				lastCount = paging.getEndCount() + 1;
 			}
 		
-		// System.out.println(qnalist);
 			mypetList = mypetList.subList(paging.getStartCount(), lastCount);
+			
 			mv.addObject("currentPage", currentPage);
 			mv.addObject("pagingHtml", pagingHtml);
 			mv.addObject("mypetlist", mypetList);
@@ -96,6 +93,7 @@ public class MyPetBoardController {
 		
 		return mv;
 	}
+		
 		mypetList = mypetService.selectBoardList(commandMap.getMap());
 		
 		totalCount = mypetList.size();
@@ -114,6 +112,7 @@ public class MyPetBoardController {
 		mv.addObject("pagingHtml", pagingHtml);
 		mv.addObject("mypetList", mypetList);
 		mv.setViewName("/mypet/mypetList");
+		
 		return mv;
 	}
 
@@ -122,18 +121,16 @@ public class MyPetBoardController {
 
 		ModelAndView mv = new ModelAndView();
 		
-		
 		String ID = (String)session.getAttribute("ID"); 
 	    Map<String, Object> map = new HashMap<String, Object>();
 	    map.put("ID", ID);
 	    
 	    Map<String, Object> mem = mypetService.selectMemInfo(map);
+	    
 	    mv.addObject("mem", mem);
 		mv.setViewName("/mypet/mypetWrite");
-		System.out.println(mem);
-		return mv;
-
 		
+		return mv;
 	}
 
 	@RequestMapping(value = "/mypetWrite")
@@ -153,39 +150,26 @@ public class MyPetBoardController {
 		
 		//시작
 		Map<String, Object> map = mypetService.selectBoardDetail(commandMap.getMap());
-		
-		//댓글을 위해서 
-		String ID = (String)session.getAttribute("ID"); 
-		Map<String, Object> mapp = new HashMap<String, Object>(); mapp.put("ID", ID);
-		  
-		Map<String, Object> mem = mypetService.selectMemInfo(mapp);
-		  
-		mv.addObject("mem", mem);
 
 		mv.addObject("map", map.get("map"));
 		mv.addObject("list", map.get("list"));
 		//댓글 디테일
 		mv.addObject("cmtList", map.get("cmtList"));
 		
-		
 		return mv;
 	}
-
-	
-	
 	  
 	@RequestMapping(value="/mypetUpdateForm") 
 	public ModelAndView	mypetUpdateForm(CommandMap commandMap, HttpSession session) throws Exception {
 	  
 		ModelAndView mv = new ModelAndView("/mypet/mypetUpdate");
+		
 		String ID = (String)session.getAttribute("ID"); 
 	    Map<String, Object> mapp = new HashMap<String, Object>();
 	    mapp.put("ID", ID);
 	    
 	    Map<String, Object> mem = mypetService.selectMemInfo(mapp);
 		Map<String,Object> map = mypetService.selectBoardDetail(commandMap.getMap());
-		
-		System.out.println(mem);
 		
 		mv.addObject("mem", mem);
 		mv.addObject("map", map.get("map"));
@@ -219,30 +203,17 @@ public class MyPetBoardController {
 	@RequestMapping(value = "/mypetInsert")
 	public ModelAndView insertComment(CommandMap commandMap, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView("redirect:/mypetDetail");
-		//System.out.println(" 컨트롤러에서 받아오는 값 : " + commandMap.getMap());
+		System.out.println(" 컨트롤러에서 받아오는 값 : " + commandMap.getMap());
 		mypetService.insertComment(commandMap.getMap());
 		mv.addObject("BOARD_NO", commandMap.get("BOARD_NO"));
-		
-		
-		 //혹시 몰라서 넣어봄 
-		/*
-		 * String ID = (String)session.getAttribute("ID"); Map<String, Object> map = new
-		 * HashMap<String, Object>(); map.put("ID", ID);
-		 * 
-		 * Map<String, Object> mem = mypetService.selectMemInfo(map);
-		 * mv.addObject("mem", mem);
-		 */
-		 
-		
 
 		return mv;
 	}
 	
 	@RequestMapping(value ="/mypetCommentDelete", method= {RequestMethod.GET})
 	public ModelAndView mypetCommentDelete(CommandMap commandMap, @RequestParam("seq") int seq, @RequestParam("sed") int sed ) throws Exception {
-		ModelAndView mv = new ModelAndView("/mypet/mypetDetail");
 		
-		System.out.println(sed);
+		ModelAndView mv = new ModelAndView("/mypet/mypetDetail");
 		
 		HashMap<String, Object> mapp = new HashMap<String, Object>();
 		mapp.put("MYPET_COMMENT_NO", seq);
@@ -250,56 +221,14 @@ public class MyPetBoardController {
 		HashMap<String, Object> mappp = new HashMap<String, Object>();
 		mappp.put("BOARD_NO", sed);
 		
-		
-		
 		mypetService.deleteComment(mapp);
 		Map<String, Object> map = mypetService.selectBoardDetail(mappp);
+		
 		mv.addObject("map", map.get("map"));
 		mv.addObject("list", map.get("list"));
 		//댓글 디테일
 		mv.addObject("cmtList", map.get("cmtList"));
-		// mv.addObject("BOARD_NO", commandMap.get("BOARD_NO")); 
-		//mv.addObject("MYPET_COMMENT_NO", commandMap.get("MYPET_COMMENT_NO"));
 		
 		return mv;
 	}
-	
-	/*
-	 * @RequestMapping(value="mypetCommentUpdate") //댓글 수정 public ModelAndView
-	 * mypetCommentUpdate(CommandMap commandMap) throws Exception { ModelAndView mv
-	 * = new ModelAndView("redirect:/mypetDetail");
-	 * 
-	 * mypetService.updateComment(commandMap.getMap());
-	 * 
-	 * mv.addObject("BOARD_NO", commandMap.get("BOARD_NO"));
-	 * 
-	 * return mv; }
-	 */
-	
-	
-	/* @RequestMapping(value ="/mypetCommentDelete", method= {RequestMethod.GET})
-	public ModelAndView mypetCommentDelete(CommandMap commandMap, @RequestParam("seq") int seq, @RequestParam("sed") int sed ) throws Exception {
-		ModelAndView mv = new ModelAndView("/mypet/mypetDetail");
-		
-		System.out.println(sed);
-		
-		HashMap<String, Object> mapp = new HashMap<String, Object>();
-		mapp.put("MYPET_COMMENT_NO", seq);
-		
-		HashMap<String, Object> mappp = new HashMap<String, Object>();
-		mappp.put("BOARD_NO", sed);
-		
-		
-		
-		mypetService.deleteComment(mapp);
-		Map<String, Object> map = mypetService.selectBoardDetail(mappp);
-		mv.addObject("map", map);
-		// mv.addObject("BOARD_NO", commandMap.get("BOARD_NO")); 
-		//mv.addObject("MYPET_COMMENT_NO", commandMap.get("MYPET_COMMENT_NO"));
-		
-		return mv;
-	}*/
-	
-	
-	 
 }

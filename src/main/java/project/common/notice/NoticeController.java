@@ -36,7 +36,8 @@ public class NoticeController {
 	
 	@RequestMapping(value="/noticeList")
 	public ModelAndView noticeList(CommandMap commandMap, HttpServletRequest request) throws Exception {
-ModelAndView mv = new ModelAndView();
+		
+		ModelAndView mv = new ModelAndView();
 		
 		if(request.getParameter("currentPage") == null || request.getParameter("currentPage").trim().isEmpty() || request.getParameter("currentPage").equals("0")){
 			currentPage = 1;
@@ -61,10 +62,10 @@ ModelAndView mv = new ModelAndView();
 			}else if(searchNum == 1){
 				smap.put("NOTICE_WRITER", isSearch);
 				noList = noticeService.noticeSearch(smap.getMap());
-			}else if(searchNum == 3){
+			} else if(searchNum == 2){
 				smap.put("NOTICE_CONTENT", isSearch);
 				noList = noticeService.noticeSearch(smap.getMap());
-			}
+			} 
 			
 			totalCount = noList.size();
 			paging = new Paging(currentPage, totalCount, blockCount, blockpaging, "noticeList", searchNum, isSearch);
@@ -80,7 +81,7 @@ ModelAndView mv = new ModelAndView();
 			mv.addObject("currentPage", currentPage);
 			mv.addObject("pagingHtml", pagingHtml);
 			mv.addObject("noList", noList);
-			mv.setViewName("/notice/notice");
+			mv.setViewName("/notice/noticeList");
 			return mv;
 		}
 		
@@ -101,7 +102,7 @@ ModelAndView mv = new ModelAndView();
 		mv.addObject("currentPage", currentPage);
 		mv.addObject("pagingHtml", pagingHtml);
 		mv.addObject("noList", noList);
-		mv.setViewName("/notice/notice");
+		mv.setViewName("/notice/noticeList");
 		return mv;
 	}
 		
@@ -110,6 +111,7 @@ ModelAndView mv = new ModelAndView();
 	
 	@RequestMapping(value="/noticeWrite")
 	public ModelAndView noticeWrite(CommandMap commandMap, HttpSession session) throws Exception {
+	
 		ModelAndView mv = new ModelAndView();
 		
 		String ADMIN_ID = (String)session.getAttribute("ADMIN_ID");
@@ -119,13 +121,13 @@ ModelAndView mv = new ModelAndView();
 		Map<String, Object> mem = noticeService.selectAdminInfo(map);
 		mv.addObject("mem", mem);
 		mv.setViewName("/notice/noticeWrite");
-		System.out.println(mem);
 		
 		return mv;
 	}
 	
 	@RequestMapping(value="/noticeInsert")
 	public ModelAndView noticeInsert(CommandMap commandMap, HttpServletRequest request) throws Exception{
+		
 		ModelAndView mv = new ModelAndView("redirect:/noticeList");
 		
 		noticeService.insertBoard(commandMap.getMap(), request);
@@ -135,19 +137,20 @@ ModelAndView mv = new ModelAndView();
 	
 	@RequestMapping(value="/noticeDetail")
 	public ModelAndView noticeDetail(CommandMap commandMap) throws Exception {
+		
 		ModelAndView mv = new ModelAndView("/notice/noticeDetail");
 		
 		Map<String, Object> map = noticeService.selectBoardDetail(commandMap.getMap());
 		mv.addObject("map", map.get("map"));
 		mv.addObject("list", map.get("list"));
 		mv.addObject("currentPage", commandMap.get("currentPage"));
-		//mv.addObject("list",map.get("list"));
 		
 		return mv;
 	}
 	
 	@RequestMapping(value ="/noticeUpdate")
 	public ModelAndView noticeUpdate(CommandMap commandMap, HttpSession session) throws Exception {
+		
 		ModelAndView mv = new ModelAndView("/notice/noticeModify");
 		
 		String ADMIN_ID = (String)session.getAttribute("ADMIN_ID");
@@ -156,7 +159,6 @@ ModelAndView mv = new ModelAndView();
 		
 		Map<String, Object> mem = noticeService.selectAdminInfo(mapp);
 		Map<String, Object> map = noticeService.selectBoardDetail(commandMap.getMap());
-		System.out.println(mem);
 		
 		mv.addObject("mem", mem);
 		mv.addObject("map", map.get("map"));
@@ -167,6 +169,7 @@ ModelAndView mv = new ModelAndView();
 	
 	@RequestMapping(value="/noticeWUpdate")
 	public ModelAndView noticeWUpdate(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		
 		ModelAndView mv = new ModelAndView("redirect:/noticeDetail");
 		
 		noticeService.updateBoard(commandMap.getMap(), request);
@@ -177,6 +180,7 @@ ModelAndView mv = new ModelAndView();
 	
 	@RequestMapping(value="/noticeDelete")
 	public ModelAndView noticeDelete(CommandMap commandMap) throws Exception {
+		
 		ModelAndView mv = new ModelAndView("redirect:/noticeList");
 		
 		noticeService.deleteBoard(commandMap.getMap());

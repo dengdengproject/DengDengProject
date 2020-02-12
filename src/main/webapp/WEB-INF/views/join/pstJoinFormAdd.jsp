@@ -4,7 +4,7 @@
 <html>
 
 <%@ include file="/WEB-INF/views/include/include-head.jspf"%>
-
+ 
 <%@ include file="/WEB-INF/views/include/include-header.jspf"%>
 
 <%@ include file="/WEB-INF/views/include/include-header-menu.jspf"%>
@@ -273,9 +273,6 @@
 </div>
 
 <style type="text/css">
-input[type=file] {
-	display: none;
-}
 
 .mini_btn {
 	font-weight: bold;

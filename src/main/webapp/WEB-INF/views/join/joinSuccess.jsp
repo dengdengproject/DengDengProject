@@ -16,7 +16,7 @@
 	<div style="text-align: center; margin-top: 3em">
 		<button style="width: 14em; height: 3em" class="btn_style" onclick="location.href = 'login'">로그인 페이지로 돌아가기</button>
 	</div>
-</div>
+</div> 
 
 <style>
 .btn_style {

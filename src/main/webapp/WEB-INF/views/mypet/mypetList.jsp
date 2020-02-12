@@ -5,11 +5,12 @@
 %>
 <!DOCTYPE html>
 <html>
+
 <style>
 	li{float:left;}
 	li{list-style:none;}
-	li{text-align:center;}
 </style>
+
 <%@ include file="/WEB-INF/views/include/include-head.jspf"%>
 
 <%@ include file="/WEB-INF/views/include/include-header.jspf"%>
@@ -24,17 +25,17 @@
 			<span style="font-weight: bold; font-size: 2em;">댕댕이 자랑 게시판</span>
 		</div>
 
-		<div style="text-align: right; margin-top: 1em; margin-right: 5em">
+		<!-- <div style="text-align: right; margin-top: 1em; margin-right: 5em">
 			<span style="font-size: 1em;">전체글수:4</span>
-		</div>
+		</div> -->
 		
-		
+	  
 		<ul>
 					<c:choose>
 						<c:when test="${fn:length(mypetList) > 0}">
 							<c:forEach items="${mypetList}" var="row">
 
-								<li id="qwer"><a href="#this" name="subject" class="list"> <img width="170" height="230"
+								<li id="qwer"><a href="#this" name="subject" class="list"> <img width="200" height="265"
 										src="<%=cp%>/resources/images/board/${row.BOARD_STORED_FILE_NAME}"
 										 /> <input type="hidden" id="BOARD_NO"
 										value="${row.BOARD_NO}"> <input type="hidden"
@@ -57,7 +58,8 @@
 				</c:otherwise>
 					</c:choose>
 				</ul>
-
+		
+		
 			
 			<div id="asdf">
 				<a href="#this" class="btn" id="write">글작성</a>
@@ -101,9 +103,9 @@
 			</script>
 
 			
-		</div>
+		
 	</div>
-
+</div>
 
 <%-- <%@ include file="/WEB-INF/views/include/include-footer.jspf"%>
  --%>

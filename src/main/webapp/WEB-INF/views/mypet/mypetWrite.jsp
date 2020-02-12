@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -58,51 +60,33 @@ $(document).ready(function() {
 					<input type="hidden" name="ID" id="ID" value="${mem.ID }"></input>
 					<label style="width: 90px">작성자</label>${mem.NAME}
 					<input type="hidden" name="MYPET_WRITER" id="MYPET_WRITER" value="${mem.NAME }"></input>
-					<%-- <label style="width: 90px">
-						<input type="hidden" name="ID" id="ID">${ID }</input>
-					</label>  --%>
-					<%-- <label style="width: 90px; margin-left: 3em">비밀번호</label>
-						<input type="password" id="MYPET_PASSWORD" name="MYPET_PASSWORD" value="${MYPET_PASSWORD }" class="form-control" style="width: 150px" /> --%>
-					<!-- <input type="text" class="form-control" style="width:200px" placeholder="작성자를 입력하세요." /> -->
-					<%-- <label style="margin-left: 3em">
-						<input type="checkbox" id="QNA_PRIVATE_CHECK" name="QNA_PRIVATE_CHECK" value="${QNA_PRIVATE_CHECK }"/>비밀글</label>
-				</div> --%>
+					
 				
-				<!-- <div id="summernote"></div> -->
-				<div>
+				<!-- <div id="summernote" name="MYPET_CONTENT"></div> --> 
+				 <div>
 					<textarea rows="20" cols="100" title="내용" id="MYPET_CONTENT" name="MYPET_CONTENT" ></textarea>
-				</div> 
+				</div>  
 				
-					 <div class="table file">
+					 <!-- div class="table file">
                			<h1>첨부 파일</h1>
                   <div class="message">
                      <p> - 사진은 가로로 찍은 사진을 권장합니다. (가로 사이즈 최소 800px)</p>
                      <p> - 사진 용량은 사진 한 장당 10MB까지 등록이 가능합니다.</p>
                      <p> - 사진은 최소 1장 이상 등록해야 하며, 최대 5장까지 권장합니다. 그 이상 등록할 경우 업로드 시간이 다소 지연될 수 있습니다.</p>
-                  </div>
+                  </div> -->
                   <div id="fileDiv">
                      <p>
                         <input type="file" id="file" name="file_0"> 
-                        <a href="#this" class="btn" id="delete" name="delete">삭제</a>
+                       <!--  <a href="#this" class="btn" id="delete" name="delete">삭제</a> -->
                      </p>
                   </div>
-            </div>
+            <!-- </div> -->
 					
 				</div>
 
-			<!-- <div
-				style="text-align: center; width: 8em; height: 2em; position: relative; right: 8em; top: 3em; margin-top: 1em; margin-bottom: 1em;">
-				<button style="width: 8em; height: 2em"
-					onclick="location.href='/first/qnaList'">등록</button>
-			</div>
-
-			<div
-				style="text-align: center; width: 8em; height: 2em; position: relative; left: 1em; margin-top: 1em; margin-bottom: 1em;">
-				<button style="width: 8em; height: 2em"
-					onclick="location.href='/first/qnaList'">취소</button>
-			</div> -->
+			
 			<br/><br/>
-			<a href="#this" class="btn" id="addFile">파일 추가</a>
+			<!-- <a href="#this" class="btn" id="addFile">파일 추가</a> -->
 			<a href="#this" class="btn" id="write" >등록</a>
 			<a href="#this" class="btn" id="list">취소</a>
 			
@@ -146,8 +130,12 @@ $(document).ready(function() {
 				
 				function fn_insertBoard(){
 					var comSubmit = new ComSubmit("frm");
+					if(confirm("등록하시겠습니까?") == true){
 					comSubmit.setUrl("<c:url value='/mypetWrite' />");
 					comSubmit.submit();
+					} else {
+						return;
+					}
 				}
 				
 				function fn_addFile(){

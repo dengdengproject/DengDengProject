@@ -27,7 +27,6 @@ public class NoticeServiceImpl implements NoticeService {
 	
 	@Override
 	public List<Map<String, Object>> selectBoardList(Map<String, Object> map) throws Exception {
-		
 		return noticeDAO.selectBoardList(map);
 	}
 
@@ -35,12 +34,10 @@ public class NoticeServiceImpl implements NoticeService {
 	public void insertBoard(Map<String, Object> map, HttpServletRequest request) throws Exception {
 		noticeDAO.insertBoard(map);
 		
-		  List<Map<String, Object>> list = fileUtils.parseInsertFileInfo_board(map, request);
-		  for(int i=0, size=list.size(); i<size; i++) {
-			  noticeDAO.insertFile(list.get(i));
-			  }
-		 
-		
+		List<Map<String, Object>> list = fileUtils.parseInsertFileInfo_board(map, request);
+		for(int i=0, size=list.size(); i<size; i++) {
+			noticeDAO.insertFile(list.get(i));
+		}
 	}
 
 	@Override
@@ -80,32 +77,16 @@ public class NoticeServiceImpl implements NoticeService {
 	@Override
 	public void deleteBoard(Map<String, Object> map) throws Exception {
 		noticeDAO.deleteBoard(map);
-		
 	}
 
 	@Override
 	public List<Map<String, Object>> noticeSearch(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
 		return noticeDAO.noticeSearch(map);
 	}
 
 	@Override
 	public Map<String, Object> selectAdminInfo(Map<String, Object> map) throws Exception {
-		
 		return noticeDAO.selectAdminInfo(map);
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
 }

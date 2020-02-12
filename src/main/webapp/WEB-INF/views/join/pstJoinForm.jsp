@@ -216,6 +216,12 @@
 				<div style="position: relative; right: 24.2em; bottom: 0.7em">
 					<span style="font-weight: bold">이름*</span>
 				</div>
+		<div>
+			<span id = "chkMsg" style= "position: relative; left:14em; bottom:6em"></span>
+		</div>
+		</div>
+		
+		<!-- 아이디 -->
 
 				<div>
 					<input type="text" name="NAME" id="NAME"
@@ -225,8 +231,8 @@
 
 			<!-- 연락처 -->
 			<div style="text-align: center;">
-				<div style="position: relative; right: 25em;">
-					<span style="font-weight: bold">연락처*</span>
+				<div style="position: relative; right: 26.5em; bottom: 1.3em">
+					<span style="font-weight: bold">비밀번호 확인*</span>
 				</div>
 				<div>
 					<input type="text" name="PHONE" id="PHONE"

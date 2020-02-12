@@ -64,7 +64,6 @@
 	]]>
 </insert>
 
-
 <!-- 프로필 파일 업로드 -->
 <insert id="insertProfile" parameterType="hashmap">
 	<![CDATA[
@@ -322,7 +321,6 @@
 </select>
 
 
-
 <!-- 펫시터 회원가입 위탁장소입력 페이지에서 정보를 수정하는 형식으로 쓰는 쿼리 -->
 <update id="insertPstPlace" parameterType="hashMap">
 	<![CDATA[
@@ -340,8 +338,6 @@
 			PSMEM_ID = #{PSMEM_ID}				
 	]]>
 </update>
-
-
 
 
 </mapper>

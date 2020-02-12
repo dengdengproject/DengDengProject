@@ -154,10 +154,5 @@ public class MyInfoServiceImpl implements MyInfoService{
 		}
 	}
 	
-	
-	
-	
-	
-	
 		
 }  

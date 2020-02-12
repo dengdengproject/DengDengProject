@@ -17,6 +17,8 @@
 <%@ include file="/WEB-INF/views/include/include-board-menu.jspf"%>
 
 <%@ include file="/WEB-INF/views/include/include-header-add.jspf" %>
+
+
 <div style="height: 400px; border-top: solid;">
 
 	<!-- <div style="text-align: center; margin-top: 4em;">
@@ -46,12 +48,13 @@
 				</div>
 				
 				
-				<div class="form-inline" style="margin-bottom: 1em">
+				<div class="form-inline"  style="margin-bottom: 1em">
 					<label style="font-weight: bold; width: 90px">내용</label>										
 					<%-- <img width="200" height="200" src="<%=cp%>/resources/images/board/${list.get(0).BOARD_STORED_FILE_NAME}" /> --%>
 					<!-- c:forEach 로 뽑아내기 -->
+		
 					<c:forEach var="imgs" items="${list }">
-						<img width="200" height="200" src="<%=cp%>/resources/images/board/${imgs.BOARD_STORED_FILE_NAME}" />
+						<img width="200" height="200" src="<%=cp%>/resources/images/board/${imgs.BOARD_STORED_FILE_NAME}"  />
 					</c:forEach>
 					<p>
 						 ${map.MYPET_CONTENT}
@@ -73,6 +76,8 @@
 						</c:forEach>
 					</td>
 				</tr>
+				
+				
 				
 				<!-- <div class="form-inline" style="margin-bottom: 10px">
 					<div class="form-group">
@@ -113,18 +118,23 @@
 					<caption></caption>
 					<thead>
 						<tr height="80px">
-							<%-- <th scope="row">작성자</th>
-							<td>${ID}</td> --%>
+							<th scope="row">작성자</th>
+								<td>${ID}      <%-- ${ID} --%>
+									 <input type="hidden" name="ID" id="ID" value="${ID }" />
+								</td> 
+							 
+							 
 							<th rowspan="2" align="center"><p align="right" class="pr">댓글쓰기</p></th>
-							<td rowspan="2"><textarea title="MYPET_COMMENT_CONTENT"
+								<td rowspan="2"><textarea title="MYPET_COMMENT_CONTENT"
 									id="MYPET_COMMENT_CONTENT" name="MYPET_COMMENT_CONTENT" cols="100"
-									rows="2" ></textarea></td>
-							<td rowspan="2" align="center">
-							
-							<a href="#this" id="comment">댓글쓰기</a>
-							</td>
+									rows="2" ></textarea>
+								</td>
+								<td rowspan="2" align="center">
+									<a href="#this" id="comment"><strong>댓글쓰기</strong></a>
+								</td>
 							
 						</tr>
+					   
 						<tr height="80px"></tr>
 
 						<tr>
@@ -141,23 +151,22 @@
 								<c:forEach items="${cmtList }" var="rows">
 									<tr>
 										<td>${rows.MYPET_COMMENT_NO }</td>
-										<td>${rows.MYPET_COMMENT_WRITER }
-										  <input type="hidden" name="ID" id="ID" value="${mem_ID}"/>
-										  <input type="hidden" name="MYPET_COMMENT_WRITER" name="MYPET_COMMENT_WRITER" value="${mem_NAME}"/>  
-										</td>
+										<td>${rows.ID}
+											</td>
 										<td>${rows.MYPET_COMMENT_DATE }</td>
 										<td>${rows.MYPET_COMMENT_CONTENT }</td>
 										<td>
 										<%-- <c:if test = "${ID == ID}" > --%>
 											<div>
-												<%-- <c:if test="${ID == map.ID || ADMIN_ID != null}"> --%>
+												<c:if test="${ID == rows.ID || ADMIN_ID != null}"> 
 													<a href="mypetCommentDelete?seq=${rows.MYPET_COMMENT_NO}&&sed=${map.BOARD_NO}"  id="deleteComment" 
 														name="deleteComment" 
 														id="deleteComment" >삭제</a>
-												<%-- </c:if> --%>
+											    </c:if> 
 												
 												<input type="hidden" id="MYPET_COMMENT_NO"
 													value="${rows.MYPET_COMMENT_NO }" />
+											
 											</div>
 											<%-- </c:if> --%>
 										</td>

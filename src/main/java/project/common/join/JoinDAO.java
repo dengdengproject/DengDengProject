@@ -82,7 +82,6 @@ public class JoinDAO extends AbstractDAO {
 		insert("join.insertPet",map);
 	}
 		
-
 	
 	//지연 : 반려견 추가정보 저장
 	public void insertPetAdd(Map<String, Object> map) throws Exception {
@@ -91,15 +90,11 @@ public class JoinDAO extends AbstractDAO {
 	}
 		
 	//지연 : 반려견 ID꺼내오기 
-		@SuppressWarnings("unchecked")
-		public String selectPetMemId(Map<String, Object> map) throws Exception {
-			// TODO Auto-generated method stub
-			return (String)((Map)selectOne("join.selectPetMemId", map)).get("PET_MEM_ID");
-		}
+	@SuppressWarnings("unchecked")
+	public String selectPetMemId(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return (String)((Map)selectOne("join.selectPetMemId", map)).get("PET_MEM_ID");
+	}
 		
-	
-	
-	
-	
 
 }

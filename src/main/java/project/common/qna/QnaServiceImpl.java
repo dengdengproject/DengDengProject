@@ -1,3 +1,4 @@
+/*20.02.12*/
 package project.common.qna;
 
 import java.util.HashMap;
@@ -17,11 +18,11 @@ public class QnaServiceImpl implements QnaService {
 	
 	Logger log = Logger.getLogger(this.getClass());
 	
-	@Resource(name="fileUtils")
-	private FileUtils fileUtils; 
-	
 	@Resource(name="qnaDAO")	//Service에서 데이터 접근을 위한 DAO객체를 선언함
 	private QnaDAO qnaDAO;
+	
+	@Resource(name="fileUtils")
+	private FileUtils fileUtils; 
 	
 	@Override
 	public List<Map<String, Object>> selectBoardList(Map<String, Object> map) throws Exception {
@@ -102,4 +103,28 @@ public class QnaServiceImpl implements QnaService {
 			}
 		}
 	}
+	
+	@Override
+	public void updateReplyBoard(Map<String, Object> map, HttpServletRequest request) throws Exception {
+		qnaDAO.updateReplyBoard(map); 
+		
+		qnaDAO.deleteFile(map);
+		List<Map<String,Object>> list = fileUtils.parseUpdateFileInfo_board(map, request);
+		Map<String,Object> tempMap = null;
+		for(int i=0, size=list.size(); i<size; i++) {
+			tempMap = list.get(i);
+			if(tempMap.get("IS_NEW").equals("Y")){
+				qnaDAO.insertFile(tempMap);
+			}
+			else{
+				qnaDAO.updateFile(tempMap);
+			}
+		}
+	}
+	
+	@Override
+	public List<Map<String, Object>> qnaSearch(Map<String, Object> map) throws Exception {
+		return qnaDAO.qnaSearch(map);
+	}
+	
 }

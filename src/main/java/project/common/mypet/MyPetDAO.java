@@ -3,6 +3,8 @@ package project.common.mypet;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Repository;
 
 import project.common.dao.AbstractDAO;
@@ -51,29 +53,24 @@ public class MyPetDAO extends AbstractDAO {
 
 	@SuppressWarnings("unchecked")
 	public List<Map<String, Object>> mypetSearch(Map<String, Object> map) throws Exception {
-		
 		return (List<Map<String, Object>>)selectList("mypet.mypetSearch", map);
 	}
 	
 	@SuppressWarnings("unchecked") //댓글 디테일
 	public List<Map<String, Object>> selectCmtList(Map<String, Object> map) throws Exception {
-		
 		return (List<Map<String, Object>>)selectList("mypet.selectCmtList", map);
 	}
 
 	public void insertComment(Map<String, Object> map) throws Exception {
 		insert("mypet.insertComment", map);
-		
 	}
 
 	public void deleteComment(Map<String, Object> map) throws Exception {
 		delete("mypet.deleteComment", map);
-		
 	}
 	
 	@SuppressWarnings("unchecked")
 	public Map<String, Object> selectMemInfo(Map<String, Object> map) throws Exception {
-		
 		return (Map<String, Object>)selectOne("mypet.selectMemInfo", map);
 	}
 
@@ -84,14 +81,18 @@ public class MyPetDAO extends AbstractDAO {
 	public void updateFile(Map<String, Object> map) throws Exception{
 		update("mypet.updateFile", map);
 	}
-
-	/*
-	 * public void updateComment(Map<String, Object> map) throws Exception{
-	 * update("mypet.updateComment", map);
-	 * 
-	 * }
-	 */
 	
-	 
+	public void insertFile2(Map<String, Object> map) throws Exception {
+		insert("mypet.insertFile2", map);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> selectFileList2(Map<String, Object> map) throws Exception {
+		return (List<Map<String, Object>>)selectList("mypet.selectFileList2", map);
+	}
+
+	public void mypetThumbnail(Map<String, Object> map, HttpServletRequest request) {
+		update("mypet.mypetThumbnail", map);
+	}
 	 
 }

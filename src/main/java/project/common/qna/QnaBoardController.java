@@ -1,3 +1,4 @@
+/*20.02.12*/
 package project.common.qna;
 
 import java.util.HashMap;
@@ -44,46 +45,98 @@ public class QnaBoardController {
 		 * 목록에 여러가지 정보가 있기에, 그 내용을 Map에 저장함 Map은 key와 value로 구분되어짐. 각 컬럼의 키와 값이 저장됨.
 		 * qnaService 부분은 상세조회, 조회수 증가 등을 Service에서 처리해줌
 		 */
-		if (request.getParameter("currentPage") == null || request.getParameter("currentPage").trim().isEmpty()
-				|| request.getParameter("currentPage").equals("0")) {
+
+		if (request.getParameter("currentPage") == null || request.getParameter("currentPage").trim().isEmpty() || request.getParameter("currentPage").equals("0")) {
 			currentPage = 1;
 		} else {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
+		
+		String isSearch  = null;
+		int searchNum = 0;
+		
+		isSearch = request.getParameter("isSearch");
+		
+		CommandMap smap = new CommandMap();
 
+		if(isSearch != null){
+			searchNum = Integer.parseInt(request.getParameter("searchNum"));
+			
+			if(searchNum == 0){
+				smap.put("QNA_SUBJECT", isSearch);
+				qnaList = qnaService.qnaSearch(smap.getMap());
+			}else if(searchNum == 1){
+				smap.put("QNA_WRITER", isSearch);
+				qnaList = qnaService.qnaSearch(smap.getMap());
+			}else if(searchNum == 2){
+				smap.put("QNA_CONTENT", isSearch);
+				qnaList = qnaService.qnaSearch(smap.getMap());
+			}
+
+			totalCount = qnaList.size(); //리스트 전체 수를 구해서 저장
+			paging = new Paging(currentPage, totalCount, blockCount, blockpaging, "qnaList", searchNum, isSearch);
+			pagingHtml = paging.getPagingHtml().toString(); //페이징 생성자에 필요한 정보를 담아서 세팅 후 url 받음
+
+			int lastCount = totalCount;
+
+			if (paging.getEndCount() < totalCount) {
+				lastCount = paging.getEndCount() + 1;
+			}
+			
+			qnaList = qnaList.subList(paging.getStartCount(), lastCount);
+			
+			mv.addObject("currentPage", currentPage);
+			mv.addObject("pagingHtml", pagingHtml);
+			mv.addObject("qnaList", qnaList);
+			mv.setViewName("/qna/qnaList");
+			
+			return mv;
+		}
+		
 		qnaList = qnaService.selectBoardList(commandMap.getMap());
 
-		totalCount = qnaList.size(); //리스트 전체 수를 구해서 저장
+		totalCount = qnaList.size();
 		paging = new Paging(currentPage, totalCount, blockCount, blockpaging, "qnaList");
-		pagingHtml = paging.getPagingHtml().toString(); //페이징 생성자에 필요한 정보를 담아서 세팅 후 url 받음
-
+		pagingHtml = paging.getPagingHtml().toString();
+		
 		int lastCount = totalCount;
-
-		if (paging.getEndCount() < totalCount) {
+		
+		if(paging.getEndCount() < totalCount){
 			lastCount = paging.getEndCount() + 1;
 		}
-
+		
 		qnaList = qnaList.subList(paging.getStartCount(), lastCount);
-		System.out.println(qnaList);
+		
 		mv.addObject("currentPage", currentPage);
 		mv.addObject("pagingHtml", pagingHtml);
 		mv.addObject("qnaList", qnaList);
 		mv.setViewName("/qna/qnaList");
+		
 		return mv;
 	}
-
+		
 	@RequestMapping(value = "/qnaWriteForm")
 	public ModelAndView qnaWriteForm(CommandMap commandMap, HttpSession session) throws Exception {
 
 		ModelAndView mv = new ModelAndView();
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		if(session.getAttribute("ID") != null) {
+			String ID = (String)session.getAttribute("ID"); 
+		    
+		    map.put("ID", ID);
+		} else if(session.getAttribute("ADMIN_ID") != null) {
+			String ID = (String)session.getAttribute("ADMIN_ID"); 
 
-		String ID = (String)session.getAttribute("ID"); 
-	    Map<String, Object> map = new HashMap<String, Object>();
-	    map.put("ID", ID);
-	    
+			map.put("ID", ID);
+		}
+		
 	    Map<String, Object> mem = qnaService.selectMemInfo(map);
+	    
 	    mv.addObject("mem", mem);
 		mv.setViewName("/qna/qnaWrite");
+		
 		return mv;
 	}
 
@@ -103,7 +156,7 @@ public class QnaBoardController {
 	}
 
 	@RequestMapping(value = "/qnaDetail")
-	public ModelAndView QnaDetail(CommandMap commandMap) throws Exception {
+	public ModelAndView qnaDetail(CommandMap commandMap) throws Exception {
 
 		ModelAndView mv = new ModelAndView("/qna/qnaDetail");
 		
@@ -111,7 +164,7 @@ public class QnaBoardController {
 		
 		mv.addObject("map", map.get("map"));
 		mv.addObject("list", map.get("list"));
-
+		
 		return mv;
 	}
 
@@ -119,19 +172,26 @@ public class QnaBoardController {
 	public ModelAndView qnaUpdateForm(CommandMap commandMap, HttpSession session) throws Exception {
 
 		ModelAndView mv = new ModelAndView("/qna/qnaUpdate");
-		String ID = (String)session.getAttribute("ID"); 
-	    Map<String, Object> mapp = new HashMap<String, Object>();
-	    mapp.put("ID", ID);
+		
+		Map<String, Object> mapp = new HashMap<String, Object>();
+		
+		if(session.getAttribute("ID") != null) {
+			String ID = (String)session.getAttribute("ID"); 
+		    
+		    mapp.put("ID", ID);
+		} else if(session.getAttribute("ADMIN_ID") != null) {
+			String ID = (String)session.getAttribute("ADMIN_ID"); 
+
+			mapp.put("ID", ID);
+		}
 	    
 	    Map<String, Object> mem = qnaService.selectMemInfo(mapp);
 		Map<String, Object> map = qnaService.selectBoardDetail(commandMap.getMap());
 		
-		System.out.println(mem);
-		
 		mv.addObject("mem", mem);
 		mv.addObject("map", map.get("map"));
 		mv.addObject("list", map.get("list"));
-	    
+		
 		return mv;
 	}
 
@@ -152,34 +212,21 @@ public class QnaBoardController {
 		ModelAndView mv = new ModelAndView("redirect:/qnaList");
 
 		qnaService.deleteBoard(commandMap.getMap());
-
+		
 		return mv;
 	}
-	
-	
-
-	
-	
 	
 	@RequestMapping(value = "/qnaReplyForm")
 	public ModelAndView qnaReplyForm(CommandMap commandMap, HttpSession session) throws Exception {
 
 		ModelAndView mv = new ModelAndView();
-		
-		/*
-		 * String adminId = (String)session.getAttribute("ADMIN_ID"); Map<String,
-		 * Object> mapp = new HashMap<String, Object>(); mapp.put("ADMIN_ID", adminId);
-		 * 
-		 * Map<String, Object> ad = qnaService.selectMemInfo(mapp);
-		 */
+	
 		Map<String, Object> map = qnaService.selectBoardDetail(commandMap.getMap());
-		
-		/* mv.addObject("ad", ad); */
-		System.out.println(map);
-	    mv.addObject("map", map.get("map"));
+	    
+		mv.addObject("map", map.get("map"));
 		mv.addObject("list", map.get("list"));
 		mv.setViewName("/qna/qnaReply");
-		System.out.println(map);
+		
 		return mv;
 	}
 
@@ -188,18 +235,48 @@ public class QnaBoardController {
 
 		ModelAndView mv = new ModelAndView("redirect:/qnaList");
 		
-		if(request.getParameter("QNA_PRIVATE_CHECK") == null) {
-			String check  = (String)"N";
-			commandMap.put("QNA_PRIVATE_CHECK", check);
-		} 
-		
 		qnaService.insertReplyBoard(commandMap.getMap(), request);
 		mv.addObject("BOARD_NO", commandMap.get("BOARD_NO"));
-
+		
 		return mv;
 	}
 
-	
-	
+	@RequestMapping(value = "/qnaReUpdateForm")
+	public ModelAndView qnaReUpdateForm(CommandMap commandMap, HttpSession session) throws Exception {
+
+		ModelAndView mv = new ModelAndView("/qna/qnaReUpdate");
+		
+		Map<String, Object> mapp = new HashMap<String, Object>();
+		
+		if(session.getAttribute("ID") != null) {
+			String ID = (String)session.getAttribute("ID"); 
+		    
+		    mapp.put("ID", ID);
+		} else if(session.getAttribute("ADMIN_ID") != null) {
+			String ID = (String)session.getAttribute("ADMIN_ID"); 
+
+			mapp.put("ID", ID);
+		}
+		
+		Map<String, Object> mem = qnaService.selectMemInfo(mapp);
+		Map<String, Object> map = qnaService.selectBoardDetail(commandMap.getMap());
+		
+		mv.addObject("mem", mem);
+	    mv.addObject("map", map.get("map"));
+		mv.addObject("list", map.get("list"));
+		
+		return mv;
+	}
+
+	@RequestMapping(value = "/qnaReUpdate")
+	public ModelAndView qnaReUpdate(CommandMap commandMap, HttpServletRequest request) throws Exception {
+
+		ModelAndView mv = new ModelAndView("redirect:/qnaDetail");
+		
+		qnaService.updateReplyBoard(commandMap.getMap(), request);
+		mv.addObject("BOARD_NO", commandMap.get("BOARD_NO"));
+		
+		return mv;
+	}
 	
 }
