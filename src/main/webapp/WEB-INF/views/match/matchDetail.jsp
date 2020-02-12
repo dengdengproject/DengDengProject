@@ -49,7 +49,7 @@
 	}
 	
 // 매치 등록
-	function petsittingInsert() {
+	function pstInsert() {
 		var form = document.matchInsert;
 
 		//이 부분에는 이제 입력할 값을 넣어야 한다는 거
@@ -618,21 +618,25 @@
 					</script>
 				</div>
 			</div>
-			<div style="width: 375px; border-radius: 8px; border: 1px solid #DFE3EA; box-shadow: 1px 3px 7px rgba(0, 0, 0, 0.07); padding-left: 25px; padding-right: 25px; padding-bottom: 32px; margin-top: 40px; text-align: center; vertical-align: middle; align-items: center; position: relative;">
-				<p style="font-size: 17px; letter-spacing: -0.2px; line-height: 25px; color: #393C47; margin-top: 38px; margin-bottom: 30px; font-weight: 600"></p>
-				<div style="display: block; height: 80px; width: auto; position: relative; text-align: center; vertical-align: middle;">
-					<div style="display: inline-block; height: auto; width: auto; text-align: center; position: relative; vertical-align: middle;">
-						<div style="height: 30px; width: auto; margin-top: 10px; margin-left: 10px; margin-right: 10px; text-align: center; position: relative; vertical-align: middle;">
-							<button type="button" style="height: 50px; width: 130px; font-size: 20px; font: bold; background-color: #037FBB; border: none; color:#fff; cursor: pointer; border-radius: 10px;" name="petsittingReserveBt" id="petsittingReserveBt" onclick="petsittingInsert()">예약하기</button>
+			<c:choose>
+				<c:when test="${MEM_TYPE == '일반 회원'}">
+					<div style="width: 375px; border-radius: 8px; border: 1px solid #DFE3EA; box-shadow: 1px 3px 7px rgba(0, 0, 0, 0.07); padding-left: 25px; padding-right: 25px; padding-bottom: 32px; margin-top: 40px; text-align: center; vertical-align: middle; align-items: center; position: relative;">
+						<p style="font-size: 17px; letter-spacing: -0.2px; line-height: 25px; color: #393C47; margin-top: 38px; margin-bottom: 30px; font-weight: 600"></p>
+						<div style="display: block; height: 80px; width: auto; position: relative; text-align: center; vertical-align: middle;">
+							<div style="display: inline-block; height: auto; width: auto; text-align: center; position: relative; vertical-align: middle;">
+								<div style="height: 30px; width: auto; margin-top: 10px; margin-left: 10px; margin-right: 10px; text-align: center; position: relative; vertical-align: middle;">
+									<button type="button" style="height: 50px; width: 130px; font-size: 20px; font: bold; background-color: #037FBB; border: none; color:#fff; cursor: pointer; border-radius: 10px;" name="petsittingReserveBt" id="petsittingReserveBt" onclick="pstInsert()">예약하기</button>
+								</div>
+							</div>
+							<div style="display: inline-block; height: auto; width: auto; text-align: center; position: relative; vertical-align: middle;">
+								<div style="height: 30px; width: auto; margin-top: 10px; margin-left: 10px; margin-right: 10px; text-align: center; position: relative; vertical-align: middle;">
+									<button type="button" style="height: 50px; width: 130px; font-size: 20px; font: bold; background-color: #037FBB; border: none; color:#fff; cursor: pointer; border-radius: 10px;" name="petsittingReserveBt" id="petsittingReserveBt" onclick="pstfavorite()">찜하기</button>
+								</div>
+							</div>
 						</div>
 					</div>
-					<div style="display: inline-block; height: auto; width: auto; text-align: center; position: relative; vertical-align: middle;">
-						<div style="height: 30px; width: auto; margin-top: 10px; margin-left: 10px; margin-right: 10px; text-align: center; position: relative; vertical-align: middle;">
-							<button type="button" style="height: 50px; width: 130px; font-size: 20px; font: bold; background-color: #037FBB; border: none; color:#fff; cursor: pointer; border-radius: 10px;" name="petsittingReserveBt" id="petsittingReserveBt" onclick="petsittingInsert()">찜하기</button>
-						</div>
-					</div>
-				</div>
-			</div>
+				</c:when>
+			</c:choose>
 		</div>
 	</div>
 </form>

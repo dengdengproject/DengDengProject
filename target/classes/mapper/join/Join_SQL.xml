@@ -65,13 +65,13 @@
 </insert>
 
 
-<!-- 일반회원 프로필 파일 업로드 -->
-<insert id="insertMemFile" parameterType="hashmap">
+<!-- 프로필 파일 업로드 -->
+<insert id="insertProfile" parameterType="hashmap">
 	<![CDATA[
 		INSERT INTO PROFILE_FILE
 			(
 			PROFILE_NO,
-			MEM_ID,
+			ID,
 			PROFILE_ORIGINAL_FILE_NAME,
 			PROFILE_STORED_FILE_NAME,
 			PROFILE_FILE_SIZE,
@@ -80,7 +80,7 @@
 		VALUES
 			(
 			PROFILE_FILE_SEQ.NEXTVAL,
-			#{MEM_ID},
+			#{ID},
 			#{PROFILE_ORIGINAL_FILE_NAME},
 			#{PROFILE_STORED_FILE_NAME},
 			#{PROFILE_FILE_SIZE},
@@ -193,31 +193,6 @@
 </insert>
 
 
-<!-- 펫시터 프로필 파일 업로드 -->
-<insert id="insertPstFile" parameterType="hashmap">
-	<![CDATA[
-		INSERT INTO PROFILE_FILE
-			(
-			PROFILE_NO,
-			PSMEM_ID,
-			PROFILE_ORIGINAL_FILE_NAME,
-			PROFILE_STORED_FILE_NAME,
-			PROFILE_FILE_SIZE,
-			PROFILE_DATE
-		)
-		VALUES
-			(
-			PROFILE_FILE_SEQ.NEXTVAL,
-			#{PSMEM_ID},
-			#{PROFILE_ORIGINAL_FILE_NAME},
-			#{PROFILE_STORED_FILE_NAME},
-			#{PROFILE_FILE_SIZE},
-			SYSDATE
-		)
-		
-	]]>
-</insert>
-	
 <!-- 펫시터 위탁장소  사진-->		
 <insert id="insertPstPlaceFile" parameterType="hashmap">
 	<![CDATA[
@@ -347,31 +322,6 @@
 </select>
 
 
-<!-- 펫 프로필 파일 업로드 -->
-<insert id="insertPetFile" parameterType="hashmap">
-	<![CDATA[
-		INSERT INTO PROFILE_FILE
-			(
-			PROFILE_NO,
-			MEM_ID,
-			PET_MEM_ID,
-			PROFILE_ORIGINAL_FILE_NAME,
-			PROFILE_STORED_FILE_NAME,
-			PROFILE_FILE_SIZE,
-			PROFILE_DATE
-		)
-		VALUES
-			(
-			PROFILE_FILE_SEQ.NEXTVAL,
-			#{MEM_ID},
-			#{PET_MEM_ID},
-			#{PROFILE_ORIGINAL_FILE_NAME},
-			#{PROFILE_STORED_FILE_NAME},
-			#{PROFILE_FILE_SIZE},
-			SYSDATE
-		)
-	]]>
-</insert>
 
 <!-- 펫시터 회원가입 위탁장소입력 페이지에서 정보를 수정하는 형식으로 쓰는 쿼리 -->
 <update id="insertPstPlace" parameterType="hashMap">

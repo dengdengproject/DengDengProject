@@ -14,25 +14,25 @@
 <script type="text/javascript" src="resources/js/common.js"></script>
 
 <script type="text/javascript">
-function fn_idCheck(){
-	    var ID = {ID : $('#MEM_ID').val()};    // {ID="입력한 ID값"}
-	    alert(ID +"입력한 ID값입니다.")
-	    $.ajax({
-	        url:"<c:url value='/join/idCheck'/>",
-	        type:'get',
-	        data: ID,
-	        success:function(data){	
-	        	
-	            if($.trim(data)==""){
-	            	$('#chkMsg').html("사용가능한 아이디 입니다.").css("color", "blue");         
-	            }else{
-	            	$('#chkMsg').html("사용불가능한 아이디 입니다.").css("color", "red");
-	            }
-	        },
-	        error:function(){
-	                alert("조회할 아이디를 입력해주세요.");
-	        }
-	    });
+	function fn_idCheck(){
+    	var ID = {ID : $('#MEM_ID').val()};    // {ID="입력한 ID값"}
+  
+    	$.ajax({
+        	url:"<c:url value='/join/idCheck'/>",
+        	type:'get',
+        	data: ID,
+        	success:function(data){   
+           
+            	if($.trim(data)==""){
+               		$('#chkMsg').html("사용가능한 아이디 입니다.").css("color", "blue");         
+            	}else{
+               		$('#chkMsg').html("사용불가능한 아이디 입니다.").css("color", "red");
+            	}
+        	},
+        	error:function(){
+            	alert("조회할 아이디를 입력해주세요.");
+        	}
+    	});
 	};
 	
 	 

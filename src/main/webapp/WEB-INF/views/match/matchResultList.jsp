@@ -68,7 +68,7 @@
 						<!-- 첫번째 펫시터 상세내용 -->
 						<c:forEach var="list" items="${resultComplete}">	<!-- 이 부분에 디테일 링크 어디에 걸지 생각해보자. 링크는 get 방식으로 넘겨서 이동하는 걸로. detail method 그대로 사용 -->
 						<div class="ttr_Training_html_row1 row"
-							style="position: relative; margin-top: 1em; margin-bottom: 2em; ">
+							style="position: relative; margin-top: 1em; margin-bottom: 1em; ">
 							<!-- 첫번째 시터 이미지 -->
 							<div class="post_column col-lg-4 col-md-4 col-sm-4 col-xs-12">
 								<div class="ttr_Training_html_column10">
