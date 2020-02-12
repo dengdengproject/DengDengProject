@@ -25,8 +25,23 @@ function fn_join() {
 }
 
 </script>
+<style>
+.btn_style{
 
+	 background: #5483EC;
+    color: #fff;
+    font-weight:bold;
+    border-radius: 20px;
+    transition: 0.4s;
+    border: none;
 
+}
+
+.btn_style:hover{
+	cursor: pointer;
+    background: #0B2564;
+}
+</style>
 
 <div style="height: 600px">
 	<div style="text-align: center; margin-top: 3em">
@@ -63,13 +78,13 @@ function fn_join() {
 	<div align="center">
 		<div style="text-align: center; margin-top: 2e; width: 9em">
 			<button
-				style="width: 10em; height: 2.5em; position: relative; right: 8em"
-				onclick="fn_join();">다음</button>
+				style="width: 10em; height: 2.5em; position: relative; right: 8em; top:1em"
+				onclick="fn_join();" class="btn_style">다음</button>
 		</div>
 		<div style="text-align: center; margin-top: 2em; width: 12em">
 			<button
-				style="width: 10em; height: 2.5em; position: relative; left: 8em; bottom: 4.5em"
-				onclick="location.href = 'main' ">동의하지 않습니다</button>
+				style="width: 10em; height: 2.5em; position: relative; left: 8em; bottom: 3.5em"
+				onclick="location.href = 'main' " class="btn_style">동의하지 않습니다</button>
 		</div>
 	</div>
 

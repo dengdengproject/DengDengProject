@@ -4,7 +4,7 @@
 <html>
 
 <%@ include file="/WEB-INF/views/include/include-head.jspf"%>
- 
+
 <%@ include file="/WEB-INF/views/include/include-header.jspf"%>
 
 <%@ include file="/WEB-INF/views/include/include-header-menu.jspf"%>
@@ -14,9 +14,9 @@
 	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript" src="resources/js/common.js"></script>
 
-<%-- <% 
+<%
 	String id = request.getParameter("PSMEM_ID");
-%> --%>
+%>
 
 
 <script type="text/javascript">
@@ -30,12 +30,6 @@
 		$("#join").on("click", function(e) {
 			e.preventDefault();
 			fn_joinSubmit();
-		});
-		
-		$("#addFile").on("click", function(e){ 
-			//파일 추가 버튼 
-			e.preventDefault();
-			fn_addFile(); 
 		});
 	});
 
@@ -69,34 +63,20 @@
 			$("#NAME").focus();
 			return false;
 		}
+		if (!$("#PSMEM_INTRODUCE").val()) {
+			alert("자기소개를 작성해주세요.");
+			$("#PHONE").focus();
+			return false;
+		}
 		
 
-		comSubmit.setUrl("<c:url value='/joinPst2' />");
+
+		comSubmit.setUrl("<c:url value='/joinPstAdd' />");
 		comSubmit.submit();
 	}
 
 	$("#joinForm").on("submit", function(e) {
 	});
-	
-	
-	var gfv_count = 1;
-	
-	function fn_addFile(){
-        var str = "<input type='text' placeholder='자격 명칭' style='width: 10em' id='CERTI_NAME' name='CERTI_NAME'></input><input type='text' placeholder='발급기관' style='width:10em;' id='CERTI_ORG' name='CERTI_ORG'></input><br><input type='text' placeholder='취득일자' style='width:10em;' id='CERTI_DATE' name='CERTI_DATE'></input><input type='file' name='file_"+(gfv_count++)+"'><a href='#this' class='btn' name='delete'>삭제</a>";   
-        
-		$("#fileDiv").append(str);
-        $("a[name='delete']").on("click",function(e){
-            e.preventDefault();
-            fn_deleteFile($(this));
-           });
-        }
-        
-        function fn_deleteFile(obj) {
-           obj.parent().remove();
-        }
-	
-	
-	
 </script>
 
 
@@ -104,17 +84,17 @@
 
 <!--  회원가입 탭 -->
 <div style="height: 950px">
-	<div style="text-align: center; margin-top: 3em">
-		<span style="font-size: 2em; font-weight: bold;">펫시터 정보 입력</span>
+	<div style="text-align: center; margin-top: 3em; filter: drop-shadow(0 0 15px rgba(0, 0, 0, 0.7));">
+		<span style="font-size: 2em; font-weight: bold; color:black">펫시터 정보 입력</span>
 	</div>
 
 	<div
 		style="text-align: center; position: relative; left: 20em; margin-top: 1em">
-		<span>* 표시는 필수 입력 사항입니다.</span>
+		<span style="color:black">* 표시는 필수 입력 사항입니다.</span>
 	</div>
 
 
-	<form action="joinPst2" id="joinForm" enctype="multipart/form-data"
+	<form action="join" id="joinForm" enctype="multipart/form-data"
 		method="post">
 
 
@@ -141,54 +121,31 @@
 			style="text-align: center; position: relative; right: 22.9em; bottom: 0.5em;">
 			<span style="font-weight: bold;">자격증 보유 여부*</span>
 		</div>
-		<div style="text-align: center; position: relative; right: 9em; bottom: 2em;">
-			<label><input type="radio" id="PSMEM_CERTI_CHECK"
-				name="PSMEM_CERTI_CHECK" value="Y" checked>예</label>
+		<div
+			style="text-align: center; position: relative; right: 9em; bottom: 2em;">
+			<label><input type="radio" id="PSMEM_LICENSE_CHECK"
+				name="PSMEM_LICENSE_CHECK" value="Y" checked>예</label>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <label><input
-				type="radio" value="N" id="PSMEM_CERTI_CHECK"
-				name="PSMEM_CERTI_CHECK">아니오</label>
+				type="radio" value="N" id="PSMEM_LICENSE_CHECK"
+				name="PSMEM_LICENSE_CHECK">아니오</label>
 		</div>
-		
 		
 		<div
-			style="text-align: center; margin-top: 1em; margin-bottom:2em; position: relative; right: 3em">
-			<span style="font-weight: bold;">자격증 정보</span>
-	
-		<!-- 자격증 파일 추가 -->
-		<!-- <div id="fileDiv" style="text-align: center">   -->
-		
-			
-				<input type="text" placeholder="자격 명칭" style="width: 10em; margin-left:5em;" id="CERTI_NAME" name="CERTI_NAME"></input>
-				<input type="text" placeholder="발급기관" style="width:10em; margin-left:1em" id="CERTI_ORG" name="CERTI_ORG"></input>
-				<input type="text" placeholder="취득일자" style="width:10em; margin-lefg:1em" id="CERTI_DATE" name="CERTI_DATE"></input><br>
-				<input type="file" id="file" name="file_0" style="position: relative; left: 56em; margin-top:1em;">
- 		
-		</div>
-			<!--  다중업로드할떄 다시 쓸예정 <a href="#this" class="btn" id="addFile">자격증 추가</a> -->
-		
-		
-		
-		
-		
-		
-		<!-- <div
 			style="text-align: center; position: relative; right: 21.9em; bottom: 0.5em;">
 			<span style="font-weight: bold;">자격증 등록</span>
 		</div>
 		<div id="license_add" style="text-align: center">
 			<div
-				style="text-align: center; position: relative; right: 9em; bottom: 2.5em; margin-left:4em;">
-				<input type="text" placeholder="자격 명칭" style="width: 10em" id="CERTI_NAME" name="CERTI_NAME"></input>
-				<input type="text" placeholder="발급기관" style="width:10em;" id="CERTI_ORG" name="CERTI_ORG"></input><br>
-				<input type="text" placeholder="취득일자" style="width:10em;" id="CERTI_DATE" name="CERTI_DATE"></input>
- 			</div>
-			
+				style="text-align: center; position: relative; right: 9em; bottom: 2.5em;">
+				<input type="text" placeholder="자격 명칭" style="width: 10em" id="PSMEM_LICENSE_NAME" name="PSMEM_LICENSE_NAME"></input>
+			</div>
+
 			<div align="center">
 				<div
-					style="text-align: center; position: relative; bottom: 4.7em; margin-left:1em; width: 5.5em;">
+					style="text-align: center; position: relative; bottom: 4.7em; width: 5.5em;">
 
 					<label
-						style="outline: none; background: #337AB7; color: white; width: 5.5em; height: 2em; line-height: 190%; border-radius: 10px; margin-left:1em;">
+						style="outline: none; background: #337AB7; color: white; width: 5.5em; height: 2em; line-height: 190%; border-radius: 10px;">
 
 						파일 추가<input type="file" id="input-file"
 						style="position: relative;">
@@ -199,18 +156,16 @@
 			</div>
 
 			<span
-				style="position: relative; bottom: 4.5em; right: 10em;" id="PSMEM_CERTI_FILE" name="PSMEM_CERTI_FILE">선택된
+				style="position: relative; bottom: 4.5em; right: 10em;" id="PSMEM_LICENSE_FILE" name="PSMEM_LICENSE_FILE">선택된
 				파일 없음</span>
-	</div> -->
-<!-- <div id="field"></div>
+</div>
+<div id="field"></div>
 <div
-	style="text-align: center; position: relative; margin-top:1em; bottom: 4.7em; right: 5.5em">
+	style="text-align: center; position: relative; bottom: 4.7em; right: 5.5em">
 
 	<button style="width: 17em" onclick="add_item()">자격증 추가</button>
-</div> -->
+</div>
 
-
-<!-- 관련학과 졸업여부-->
 <div
 	style="text-align: center; position: relative; right: 23em; bottom: 0.5em;">
 	<span style="font-weight: bold;">관련학과 졸업 여부*</span>
@@ -224,7 +179,30 @@
 		name="PSMEM_SCHOOL_FINISH_CHECK">아니오</label>
 </div>
 
-<!-- 활동경력 -->
+<div
+	style="text-align: center; position: relative; right: 21em; bottom: 0.5em;">
+	<span style="font-weight: bold;">위탁 장소*</span>
+</div>
+<div style="text-align: center;">
+
+	<div
+		style="text-align: center; position: relative; right: 5.3em; bottom: 1em">
+		<button type="button" style="width: 8em; height: 32px;" class="mini_btn"
+			onclick="openZipSearch()">우편번호 검색</button>
+		<input type="text" name="PSMEM_CONSIGNMENT_ZIPCODE"
+			id="PSMEM_CONSIGNMENT_ZIPCODE"
+			style="width: 9em; height: 26px; left: 1em;" 우편번호"/> <br> <input
+			type="text" name="PSMEM_CONSIGNMENT_ADDRESS1"
+			id="PSMEM_CONSIGNMENT_ADDRESS1" placeholder="주소"
+			style="position: relative; left: 80px; margin-top: 0.5em; width: 200px; height: 30px;" />
+		<input type="text" name="PSMEM_CONSIGNMENT_ADDRESS_ADD"
+			id="PSMEM_CONSIGNMENT_ADDRESS_ADD"
+			style="position: relative; left: 7em; margin-top: 0.5em; width: 200px; height: 30px;" /><br>
+		<input type="text" name="PSMEM_CONSIGNMENT_ADDRESS2"
+			id="PSMEM_CONSIGNMENT_ADDRESS2" placeholder="상세주소"
+			style="position: relative; left: 30px; margin-top: 0.5em; width: 300px; height: 30px;" />
+	</div>
+</div>
 <div
 	style="text-align: center; position: relative; right: 21em; top: 1em;">
 	<span style="font-weight: bold;">활동 경력*</span>
@@ -235,23 +213,59 @@
 	<textarea style="width: 500px; height: 5em; resize: none;"
 		id="PSMEM_CAREER" name="PSMEM_CAREER"></textarea>
 </div>
+<div
+	style="text-align: center; position: relative; right: 21em; top: 2em;">
+	<span style="font-weight: bold;">가능 서비스*</span>
+</div>
+<div
+	style="text-align: center; position: relative; left: 6em; top: 0.5:">
+	<label><input type="checkbox" name="service" value="?">
+		픽업가능 &nbsp; &nbsp; &nbsp;</label> <label><input type="checkbox"
+		name="service" value="?">대형견 가능</label> <label><input
+		type="checkbox" name="service" value="?"> 산책가능 &nbsp; &nbsp;
+		&nbsp;</label> <label><input type="checkbox" name="service" value="?">
+		기본 케어 가능 &nbsp; &nbsp; &nbsp;</label> <label><input type="checkbox"
+		name="service" value="?"> 출퇴근 가능 &nbsp; &nbsp; &nbsp;</label>
+</div>
+<div
+	style="text-align: center; position: relative; right: 20.5em; top: 1em; margin-top: 1em">
+	<span style="font-weight: bold;">자기 소개*</span>
+</div>
+<div
+	style="text-align: center; position: relative; left: 4em; bottom: 0.5em;">
 
+	<textarea style="width: 500px; height: 5em; resize: none;"
+		id="PSMEM_INTRODUCE" name="PSMEM_INTRODUCE"></textarea>
+</div>
 
-	<!-- 펫시터 ID는 히든타입으로 전송/ 위탁장소관련 정보들은 0으로 임의 저장한후 다음페이지에서 쿼리를 update형식으로 하여 처리 -->
-	<input type="hidden" id="PSMEM_ID" name="PSMEM_ID"	value="${map.PSMEM_ID}">
-	<input type="hidden" id="PSMEM_CONSIGNMENT_ZIPCODE" name="PSMEM_CONSIGNMENT_ZIPCODE"	value="0000">
-	<input type="hidden" id="PSMEM_CONSIGNMENT_ADDRESS1" name="PSMEM_CONSIGNMENT_ADDRESS1"	value="OOOO">
-	<input type="hidden" id="PSMEM_CONSIGNMENT_ADDRESS2" name="PSMEM_CONSIGNMENT_ADDRESS2"	value="OOOO">
-	<input type="hidden" id="PSMEM_CONSIGNMENT_ADDRESS_ADD" name="PSMEM_CONSIGNMENT_ADDRESS_ADD" value="OOOO"> 
-	<input type="hidden" id="PSMEM_INTRODUCE" name="PSMEM_INTRODUCE" value="OOOO">
-	
-
-	<div style="margin-top:2em;text-align: center; position: relative">
-		<button style="width: 13em; height: 3em;" id="cancle">처음으로</button>
-		<button style="width: 13em; height: 3em; margin-left:3em;" id="join">다음</button>
+<!-- 프로필 사진 등록 -->
+<div align="center">
+	<div
+		style="text-align: center; position: relative; left: 20em; bottom: 48em; width: 15em">
+		<span>프로필 사진 등록</span>
+		<div align="center">
+			<div class="imgs_wrap" style="text-align: center;">
+				<img id="img" />
+			</div>
+		</div>
+		<a href="javascript:" onclick="fileUploadAction();" class="my_button" style="color:white">이미지
+			업로드</a> <input type="file" id="input_imgs" name="file" multiple />
 	</div>
+</div>
 
-    <%--  넘어온 펫시터 아이디는<p>${map.PSMEM_ID}</p>입니다.  --%>
+
+
+<div align="center">
+	<div
+		style="text-align: center; position: relative; right: 8em; bottom: 16em; margin-top: 1em; width: 14em">
+		<button style="width: 13em; height: 3em" id="cancle" class="btn_style">처음으로</button>
+	</div>
+	<div
+		style="text-align: center; position: relative; left: 13em; bottom: 20em; margin-top: 1em; width: 14em">
+		<button style="width: 13em; height: 3em" id="join" class="btn_style">다음</button>
+	</div>
+</div>
+
 </form>
 
 <%@ include file="/WEB-INF/views/include/include-body.jspf"%>
@@ -259,6 +273,39 @@
 </div>
 
 <style type="text/css">
+input[type=file] {
+	display: none;
+}
+
+.mini_btn {
+	font-weight: bold;
+	border: none;
+	background-color: #79BFFF;
+	color: white;
+	border-radius: 5px;
+}
+
+.btn_style {
+	background: #5483EC;
+	color: #fff;
+	font-weight: bold;
+	border-radius: 20px;
+	transition: 0.4s;
+	border: none;
+}
+
+.btn_style:hover {
+	cursor: pointer;
+	background: #0B2564;
+}
+
+
+
+span {
+	color: #5483EC;
+}
+
+
 
 .my_button {
 	display: inline-block;
@@ -351,7 +398,7 @@
 	//자격증 파일 이름 적용
 	document.getElementById('input-file').addEventListener('change',
 			function() {
-				var filename = document.getElementById('PSMEM_CERTI_FILE');
+				var filename = document.getElementById('PSMEM_LICENSE_FILE');
 				if (this.files[0] == undefined) {
 					filename.innerText = '선택된 파일없음';
 					return;
