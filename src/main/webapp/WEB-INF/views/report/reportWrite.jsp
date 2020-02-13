@@ -31,13 +31,33 @@ $(document).ready(function() {
 
 </head>
 
+<div  class="tab-box">
+				<ul>
+
+					<li  onclick="location.href = '/first/noticeList'">공지사항</li>
+
+					<li onclick="location.href = '/first/qnaList'">Q&A</li>
+
+					<li  class="selected" onclick="location.href = '/first/reportList'">신고하기</li>
+
+					<li onclick="location.href = '/first/mypetList'">댕댕이 자랑</li>
+
+
+
+				</ul>
+		</div>
+	</div>
+</nav>
+
+
+
 <form id="frm" name="frm" enctype="multipart/form-data">
 <div style="height: 400px; border-top: solid;">
 	<div style="height: auto;">
 		<div align="center" class="container">
 			<div align="left"
 				style="width: 1200px; border: 1px solid #cccccc; padding: 2em; padding-left: 2em; padding-right: 5em; margin-top: 20px; margin-bottom: 1em; background-color: #ffffff">
-				<span style="font-weight: bold">신고하기 글쓰기</span>
+				<span style="font-weight: bold; font-size: 2em;">신고하기 글쓰기</span>
 				<hr />
 				<div class="form-inline" style="margin-bottom: 1em">
 					<label style="width: 90px">글제목</label> 
@@ -66,9 +86,7 @@ $(document).ready(function() {
 					<%-- <label style="width: 90px; margin-left: 3em">비밀번호</label>
 						<input type="password" id="REPORT_PASSWORD" name="REPORT_PASSWORD" value="${REPORT_PASSWORD }" class="form-control" style="width: 150px" /> --%>
 					<!-- <input type="text" class="form-control" style="width:200px" placeholder="작성자를 입력하세요." /> -->
-					<label style="margin-left: 3em">
-						<input type="checkbox" id="REPORT_PRIVATE_CHECK" name="REPORT_PRIVATE_CHECK" value="Y"> 비밀글 </input>
-					</label>
+
 				</div>
 				
 				<!-- <div id="summernote"></div> -->
@@ -77,7 +95,7 @@ $(document).ready(function() {
 				</div> 
 				
 				<div class="table file">
-					<h1>첨부 파일</h1>
+					<h1 style="font-size: 1em;">첨부 파일</h1>
 						<div class="message">
 							<p> - 사진은 가로로 찍은 사진을 권장합니다. (가로 사이즈 최소 800px)</p>
 							<p> - 사진 용량은 사진 한 장당 10MB까지 등록이 가능합니다.</p>
@@ -102,10 +120,12 @@ $(document).ready(function() {
 				<button style="width: 8em; height: 2em"
 					onclick="location.href='/first/reportList'">취소</button>
 			</div> -->
+			<div style="position: relative; right: 65em; top:3em;">
+						<a href="#this" class="btn_style" id="addFile" >파일추가</a>
 			
-			<a href="#this" class="btn" id="addFile" >파일추가</a>
-			<a href="#this" class="btn" id="write" >등록</a>
-			<a href="#this" class="btn" id="list">취소</a>
+			</div>
+			<a href="#this" class="btn_style" id="write" >등록</a>
+			<a href="#this" class="btn_style" id="list">취소</a>
 			
 		</div>
 	</div>
@@ -113,6 +133,34 @@ $(document).ready(function() {
 </div>
 
 </form>
+
+<style>
+.btn_style {
+	text-align: center;
+	position: relative;
+	bottom: 3.9em;
+	left: 65em;
+	background-color: #649EE1;
+	color: white !important;
+	width: 5em;
+	height: 2.5em;
+	text-decoration: none !important;
+	line-height: 2.5em;
+	border-radius: 5px;
+	display: inline-block;
+	transition: all 0.1s;
+	border-radius: 5px;
+	position: relative;
+	font-weight: bold;
+}
+
+.btn_style:hover{
+
+	background-color: #205EA2;
+}
+
+</style>
+
 
 		<%@ include file="/WEB-INF/views/include/include-body.jspf" %> 
 			<script type="text/javascript">

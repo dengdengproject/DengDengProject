@@ -14,6 +14,28 @@
 <%@ include file="/WEB-INF/views/include/include-board-menu.jspf"%> 
 
 <%-- <%@ include file="/WEB-INF/views/include/include-header-add.jspf" %> --%>
+
+
+<div  class="tab-box">
+				<ul>
+
+					<li  onclick="location.href = '/first/noticeList'">공지사항</li>
+
+					<li onclick="location.href = '/first/qnaList'">Q&A</li>
+
+					<li  class="selected" onclick="location.href = '/first/reportList'">신고하기</li>
+
+					<li onclick="location.href = '/first/mypetList'">댕댕이 자랑</li>
+
+
+
+				</ul>
+		</div>
+	</div>
+</nav>
+
+
+
 <form id="frm" name="frm" enctype="multipart/form-data">
 <div style="height: 400px; border-top: solid;">
 

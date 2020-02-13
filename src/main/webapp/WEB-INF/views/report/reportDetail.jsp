@@ -25,6 +25,28 @@
 	</c:if>
 </c:if>
 
+
+
+<div  class="tab-box">
+				<ul>
+
+					<li  onclick="location.href = '/first/noticeList'">공지사항</li>
+
+					<li onclick="location.href = '/first/qnaList'">Q&A</li>
+
+					<li  class="selected" onclick="location.href = '/first/reportList'">신고하기</li>
+
+					<li onclick="location.href = '/first/mypetList'">댕댕이 자랑</li>
+
+
+
+				</ul>
+		</div>
+	</div>
+</nav>
+
+
+
 <div style="height: 400px; border-top: solid;">
 	<!-- <div style="text-align: center; margin-top: 4em;">
   			<span style=" font-weight: bold; font-size: 2em;">공지사항</span>
@@ -93,18 +115,18 @@
 				style="text-align: center; position: relative; right: 8em; top: 3em; margin-top: 1em">
 				<button style="width: 8em; height: 2em">수정</button>
 			</div> -->
-			<a href="#this" class="btn" id="list">목록</a>
+			<a href="#this" class="btn_style" id="list">목록</a>
 			<c:if test="${ID == map.ID || ADMIN_ID != null}">
 				<c:if test="${map.REPORT_RE_STEP == 0}">
-					<a href="#this" class="btn" id="update">수정</a>
+					<a href="#this" class="btn_style" id="update">수정</a>
 				</c:if>
 			</c:if>
 			<c:if test="${ADMIN_ID != null }">
 				<c:if test="${map.REPORT_RE_STEP == 0}">
-					<a href="#this" class="btn" id="reply">답변작성</a>
+					<a href="#this" class="btn_style" id="reply">답변작성</a>
 				</c:if>
 				<c:if test="${map.REPORT_RE_STEP > 0}">
-					<a href="#this" class="btn" id="reUpdate">답변수정</a>
+					<a href="#this" class="btn_style" id="reUpdate">답변수정</a>
 				</c:if>
 			</c:if>
 			<!-- <div
@@ -172,6 +194,32 @@
 	</div>
 </div>
 
+
+
+<style>
+.btn_style {
+	text-align: center;
+	position: relative;
+	bottom: 3.9em;
+	left: 32em;
+	background-color: #649EE1;
+	color: white !important;
+	width: 5em;
+	height: 2.5em;
+	text-decoration: none !important;
+	line-height: 2.5em;
+	border-radius: 5px;
+	display: inline-block;
+	transition: all 0.1s;
+	border-radius: 5px;
+	position: relative;
+	font-weight: bold;
+}
+
+.btn_style:hover {
+	background-color: #205EA2;
+}
+</style>
 <%-- <%@ include file="/WEB-INF/views/include/include-footer.jspf"%> --%>
 
 </html>

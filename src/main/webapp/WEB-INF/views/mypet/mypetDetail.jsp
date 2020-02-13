@@ -1,3 +1,5 @@
+
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -17,6 +19,25 @@
 <%@ include file="/WEB-INF/views/include/include-board-menu.jspf"%>
 
 <%@ include file="/WEB-INF/views/include/include-header-add.jspf" %>
+
+
+<div  class="tab-box">
+				<ul>
+
+					<li   onclick="location.href = '/first/noticeList'">공지사항</li>
+
+					<li onclick="location.href = '/first/qnaList'">Q&A</li>
+
+					<li onclick="location.href = '/first/reportList'">신고하기</li>
+
+					<li class="selected" onclick="location.href = '/first/mypetList'">댕댕이 자랑</li>
+
+
+
+				</ul>
+		</div>
+	</div>
+</nav>
 
 
 <div style="height: 400px; border-top: solid;">

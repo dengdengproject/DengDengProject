@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,8 +32,29 @@ $(document).ready(function() {
 
 </head>
 
+
+<div  class="tab-box">
+				<ul>
+
+					<li   onclick="location.href = '/first/noticeList'">공지사항</li>
+
+					<li onclick="location.href = '/first/qnaList'">Q&A</li>
+
+					<li onclick="location.href = '/first/reportList'">신고하기</li>
+
+					<li class="selected" onclick="location.href = '/first/mypetList'">댕댕이 자랑</li>
+
+
+
+				</ul>
+		</div>
+	</div>
+</nav>
+
+
 <form id="frm" name="frm" enctype="multipart/form-data">
-<div style="height: 400px; border-top: solid;">
+<div style="height:auto; border-top: solid;">
+<input type="hidden" name="MAIN_IMG" id="MAIN_IMG" value="${MAIN_IMG }">
 	<div style="height: auto;">
 		<div align="center" class="container">
 			<div align="left"
@@ -74,10 +93,19 @@ $(document).ready(function() {
                      <p> - 사진 용량은 사진 한 장당 10MB까지 등록이 가능합니다.</p>
                      <p> - 사진은 최소 1장 이상 등록해야 하며, 최대 5장까지 권장합니다. 그 이상 등록할 경우 업로드 시간이 다소 지연될 수 있습니다.</p>
                   </div> -->
+                  
+					
+				<div>
+				   <input type="file" id="MAIN_IMG" value="${MAIN_IMG}" name="MAIN_IMG">
+				   <p>썸네일 이미지를 선택해주세요.</p>
+				</div>	
+				
+                  
+                  
                   <div id="fileDiv">
                      <p>
                         <input type="file" id="file" name="file_0"> 
-                       <!--  <a href="#this" class="btn" id="delete" name="delete">삭제</a> -->
+                        <a href="#this" class="btn" id="delete" name="delete">삭제</a> 
                      </p>
                   </div>
             <!-- </div> -->
@@ -86,14 +114,47 @@ $(document).ready(function() {
 
 			
 			<br/><br/>
-			<!-- <a href="#this" class="btn" id="addFile">파일 추가</a> -->
-			<a href="#this" class="btn" id="write" >등록</a>
-			<a href="#this" class="btn" id="list">취소</a>
+			<a href="#this" class="btn_style" id="addFile" style="position:relative; ">파일 추가</a> 
+			<div style="position: relative; 	left: 62em;">
+			<a href="#this" class="btn_style" id="write" >등록</a>
+			<a href="#this" class="btn_style" id="list">취소</a>
+			</div>
+			
+			
+			
 			
 		</div>
 	</div>
 </div>
 </form>
+
+<style>
+
+.btn_style {
+	text-align: center;
+	position: relative;
+	bottom: 3.9em;
+	background-color: #649EE1;
+	color: white !important;
+	width: 5em;
+	height: 2.5em;
+	text-decoration: none !important;
+	line-height: 2.5em;
+	border-radius: 5px;
+	display: inline-block;
+	transition: all 0.1s;
+	border-radius: 5px;
+	position: relative;
+	font-weight: bold;
+}
+
+.btn_style:hover{
+
+	background-color: #205EA2;
+}
+
+
+</style>
 
 		<%@ include file="/WEB-INF/views/include/include-body.jspf" %> 
 			<script type="text/javascript">
@@ -152,6 +213,6 @@ $(document).ready(function() {
 		               obj.parent().remove();
 		            }
 			</script>
-<%-- <%@ include file="/WEB-INF/views/include/include-footer.jspf"%> --%>
+ <%@ include file="/WEB-INF/views/include/include-footer.jspf"%>
 
 </html>

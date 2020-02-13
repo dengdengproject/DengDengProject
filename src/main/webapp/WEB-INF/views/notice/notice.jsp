@@ -11,7 +11,6 @@
 
 <%@ include file="/WEB-INF/views/include/include-header-menu.jspf"%>
 
-<%@ include file="/WEB-INF/views/include/include-board-menu.jspf"%>
 
 <%-- <%@ include file="/WEB-INF/views/include/include-header-menu-admin.jspf"%>  --%>
 
@@ -21,6 +20,27 @@
 <meta http-equiv="Cache-Control" content="no-cache" />
 <meta http-equiv="Expires" content="0" />
 <meta http-equiv="Pragma" content="no-cache" />
+
+<%@ include file="/WEB-INF/views/include/include-board-menu.jspf"%>
+
+<div  class="tab-box">
+				<ul>
+
+					<li  class="selected" onclick="location.href = '/first/noticeList'">공지사항</li>
+
+					<li onclick="location.href = '/first/qnaList'">Q&A</li>
+
+					<li onclick="location.href = '/first/reportList'">신고하기</li>
+
+					<li onclick="location.href = '/first/mypetList'">댕댕이 자랑</li>
+
+
+
+				</ul>
+		</div>
+	</div>
+</nav>
+
 
 <div style="height: 400px; border-top: solid;">
 
@@ -102,7 +122,7 @@
 
 			<table border="0.2" class="boardTable" style="margin-top: 1em">
 				<thead>
-					<tr>
+					<tr class="table_head">
 						<th>글번호</th>
 						<th>제목</th>
 						<th>작성자</th>
@@ -194,6 +214,74 @@
 	</div>
 </div>
 
-<%-- <%@ include file="/WEB-INF/views/include/include-footer.jspf"%> --%>
+
+
+
+
+
+<style>
+.qnaTable {
+	border-color: #F1F1F3;
+}
+
+.table_head {
+	background-color: #F4F4F4;
+}
+
+th {
+	text-align: center;
+}
+
+th, td {
+	border-bottom: 1px solid #F1F1F3;
+	padding: 10px;
+}
+
+.keyword {
+	background-color: #649EE1;
+	color: white;
+	width: 3.5em;
+	border-radius: 5px;
+	height: 2.5em;
+}
+
+.write {
+	position: relative;
+	bottom: 3.9em;
+	left: 32em;
+	background-color: #649EE1;
+	color: white;
+	width: 5em;
+	height: 2.5em;
+	text-decoration: none !important;
+	line-height: 2.5em;
+	border-radius: 5px;
+	display: inline-block;
+	transition: all 0.1s;
+	border-radius: 5px;
+}
+
+.write:hover{
+
+	background-color: #205EA2;
+}
+
+.write:active {
+	transform: translateY(1px);
+}
+
+.board_num {
+	position: relative;
+	right: 32em;
+	font-size: 1em;
+	font-weight: bold;
+}
+</style>
+
+
+
+
+
+ <%@ include file="/WEB-INF/views/include/include-footer.jspf"%> 
 
 </html>

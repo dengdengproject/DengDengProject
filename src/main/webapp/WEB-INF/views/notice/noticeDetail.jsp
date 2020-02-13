@@ -71,9 +71,9 @@
 				<button style="width: 8em; height: 2em">수정</button>
 			</div> -->
 			
-			<a href="#this" class="btn" id="list">목록</a>
+			<a href="#this" class="btn_style" id="list">목록</a>
 			<c:if test="${ADMIN_ID != null }">
-			<a href="#this" class="btn" id="update">수정</a>
+			<a href="#this" class="btn_style" id="update">수정</a>
 			</c:if>
 			<!-- <div
 				style="text-align: center; position: relative; left: 1em; margin-top: 1em">
@@ -118,6 +118,32 @@
 		</div>
 	</div>
 </div>
+
+
+			<style>
+.btn_style {
+	text-align: center;
+	position: relative;
+	bottom: 3.9em;
+	left: 32em;
+	background-color: #649EE1;
+	color: white !important;
+	width: 5em;
+	height: 2.5em;
+	text-decoration: none !important;
+	line-height: 2.5em;
+	border-radius: 5px;
+	display: inline-block;
+	transition: all 0.1s;
+	border-radius: 5px;
+	position: relative;
+	font-weight: bold;
+}
+
+.btn_style:hover {
+	background-color: #205EA2;
+}
+</style>
 
 <%-- <%@ include file="/WEB-INF/views/include/include-footer.jspf"%> --%>
 
