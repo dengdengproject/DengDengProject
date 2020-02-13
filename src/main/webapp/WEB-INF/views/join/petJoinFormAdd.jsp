@@ -33,7 +33,7 @@
 	}
 	
 	function fn_joinSubmit(){
-		alert("petRegistAdd Submit!!!!!!!!!!!!!!!")
+		//alert("petRegistAdd Submit!!!!!!!!!!!!!!!")
 		var comSubmit = new ComSubmit("joinForm");
 		comSubmit.setUrl("<c:url value='petRegisterAdd' />");
 		comSubmit.submit();
@@ -180,7 +180,7 @@
 		<div style="margin-top: 1em">
 			<span>※ 사실과 다른 정보로 인해 사고가 발생할 경우 책임은 견주 본인에게 있음을 안내해드립니다.</span>
 		</div>
-      <p>PET_MEM_NAME은</p><p>${map.PET_MEM_NAME}</p>
+      
 		<div align="center">
 			<div
 				style="text-align: center; position: relative; right: 8em; top: 1em; margin-top: 1em; width: 14em;">

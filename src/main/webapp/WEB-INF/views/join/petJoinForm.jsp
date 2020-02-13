@@ -34,7 +34,7 @@
 	}
 
 	function fn_joinSubmit() {
-		alert("joinSubmit!!!!!!!!!!!!!!!")
+		//alert("joinSubmit!!!!!!!!!!!!!!!")
 		var comSubmit = new ComSubmit("joinForm");
 		comSubmit.setUrl("<c:url value='/petRegister' />");
 		comSubmit.submit();

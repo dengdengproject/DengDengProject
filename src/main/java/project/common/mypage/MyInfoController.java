@@ -267,11 +267,11 @@ public ModelAndView MyInfoDeleteConfirm(CommandMap commandMap, HttpServletReques
 		String pet_mem_id = joinService.getPetMemId(commandMap); 
 		System.out.println("맵에서 꺼내온 펫아이디는 " + pet_mem_id);
 		//꺼내온 아이디값을 map에 넣어준다. 
-		commandMap.put("PET_MEM_ID", pet_mem_id);
+		commandMap.put("ID", pet_mem_id);
 
 		System.out.println("마이펫리스트에서 불러올 펫 이미지 회원 아이디와 펫아이디는 "+ commandMap.get("ID") + commandMap.get("PET_MEM_ID"));
 		
-		//DB에서 PET_MEM_ID값과 MEM_ID값으로 저장된 프로필이미지파일이름을 가져온다.
+		//DB에서 PET_MEM_ID값으로 저장된 프로필이미지파일이름을 가져온다.
 		String path = myInfoService.selectProfile(commandMap);
 		System.out.println("경로는~!!!!!!!!!"+path);
 		
