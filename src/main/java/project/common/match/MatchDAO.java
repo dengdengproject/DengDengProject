@@ -121,7 +121,21 @@ public class MatchDAO extends AbstractDAO {
 		return (List<Map<String, Object>>) selectList("matchSql.matchSearch", map);
 	}
 	
-	//매치 검색 결과 리스트(둘다)
+	//멤버 정보 가져오기 : 멤버 + 프로필
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> sltMember(Map<String, Object> map) throws Exception {
+		
+		return (Map<String, Object>) selectOne("matchSql.selectMember", map);
+	}
+	
+	//멤버 펫 정보 가져오기 : 펫 + 추가 + 프로필
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> sltMemPet(Map<String, Object> map) throws Exception {
+		
+		return (List<Map<String, Object>>) selectList("matchSql.selectMemPet", map);
+	}
+	
+	
 	//매치 등록 수정(펫시터)
 	//매치 등록 취소(펫시터)
 }

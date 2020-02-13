@@ -18,35 +18,6 @@
 <c:set var="certiChk" value="${pstAdd.PSMEM_CERTI_CHECK}" />
 
 <script type="text/javascript">
-	// 이미지 슬라이드
-	var slideIndex = 1;
-	showSlides(slideIndex);
-
-	function plusSlides(n) {
-		showSlides(slideIndex += n);
-	}
-
-	function currentSlide(n) {
-		showSlides(slideIndex = n);
-	}
-
-	function showSlides(n) {
-		var i;
-		var slides = document.getElementsByClassName("mySlides");
-		var dots = document.getElementsByClassName("demo");
-		var captionText = document.getElementById("caption");
-		if (n > slides.length) {slideIndex = 1}
-		if (n < 1) {slideIndex = slides.length}
-		for (i = 0; i < slides.length; i++) {
-			slides[i].style.display = "none";
-		}
-		for (i = 0; i < dots.length; i++) {
-			dots[i].className = dots[i].className.replace(" active", "");
-		}
-		slides[slideIndex-1].style.display = "block";
-		dots[slideIndex-1].className += " active";
-		captionText.innerHTML = dots[slideIndex-1].alt;
-	}
 	
 // 매치 등록
 	function petsittingInsert() {
@@ -78,16 +49,11 @@
 
 
 	<!-- 펫시터 소개 상단 -->
-	<div 
-		style="margin-top: 73px; margin-left: auto; margin-right: auto; width: 1200px; height:1500px; display: flex; flex-direction: row; justify-content: space-between;">
-		<div class="div_flex"
-			style=" width: 66%; padding: 40px; position: relative; top: 10em; left: 1em;">
+	<div style="margin-top: 1px; margin-left: auto; margin-right: auto; width: 1200px; height:1500px; display: flex; flex-direction: row; justify-content: space-between;">
+		<div class="div_flex" style=" width: 66%; padding: 40px; position: relative; top: 10em; left: 1em;">
 			<div style="display: flex; flex-direction: row">
-				<div
-					style="overflow: hidden; width: 150px; height: 150px; border: none; border-radius: 12px; margin-top: 5px; margin-left: 10px; margin-right: 32px; position: relative; bottom: 4em; right: 4em;">
-					<img width="150px" height="150px"
-						style="object-fit: cover; display: inline-block;"
-						src="resources/images/${pstPfl.PROFILE_ORIGINAL_FILE_NAME}" />
+				<div style="overflow: hidden; width: 150px; height: 150px; border: none; border-radius: 12px; margin-top: 5px; margin-left: 10px; margin-right: 32px; position: relative; bottom: 4em; right: 4em;">
+					<img width="150px" height="150px" style="object-fit: cover; display: inline-block;" src="resources/images/${pstPfl.PROFILE_ORIGINAL_FILE_NAME}" />
 					<!-- 윗단은 멤버 프로필 사진 -->
 					<!-- 프로필 사진도 가져와야 함 -->
 				</div>
@@ -102,20 +68,16 @@
 					<p
 						style="font-family: Noto Sans KR, sans-serif; margin-top: 5px; font-size: 25px; color: #383C48; line-height: 30px; letter-spacing: -0.2px;">
 						${matchDtl.MATCH_SUBJECT}</p>
-					<!-- 해시 태그 시작 x service로 바꿈 -->
 				</div>
 			</div>
 			<div
 				style="display: flex; flex-direction: row; position: relative; right: 3em;">
-				<!-- 다음에 수정할 때는 이 지랄하지 말고 테이블에 넣어서 반복 돌려야지... 이건 미친 짓이다. -->
 				<div>
-					<!-- 서비스 부분은 컨트롤러에서 스플릿 해서 배열로 담아오자. 그 다음 반복문으로 꺼내면서 조건문을 포함해서 나오도록. -->
 					<div
 						style="display: flex; margin-top: 50px; width: 600px; position: relative; text-align: center;">
 						<h2
 							style="font-weight: 600; font-size: 17px; letter-spacing: 1px; margin-bottom: 30px; line-height: 25px; color: #393C47">
-							<img width="17px" height="17px"
-								style="object-fit: cover; display: inline-block; margin-right: 5px;"
+							<img width="17px" height="17px" style="object-fit: cover; display: inline-block; margin-right: 5px;"
 								src="resources/images/point.png"> ${name} 펫시터님의 상세 조건입니다.
 						</h2>
 					</div>
@@ -955,28 +917,8 @@
 					</div>
 				</div>
 			</div>
-
-
-
-
-
-
-
-
 		<!-- 두번째 아이템  끝 -->
-
-
-
-			<!-- 이 부분에 펫시터 문의하기랑 이용후기가 달려야 함. -->
 		</div>
-
-
-
-
-
-
-
-
 
 		<div style="float: left; width: 30%;">
 			<!-- 펫시터 예약 날짜 선택 -->
@@ -1060,7 +1002,7 @@
 						var form = document.matchInsert;
 					
 						//이 부분 이미지를 인터넷에서 가져올 수 있도록 해야할 듯.
-						var imageSrc = 'file:///C:/Users/Dead Cat/git/DengDengProject/src/main/webapp/resources/images/dogmaker_after.png', // 마커이미지의 주소입니다    
+						var imageSrc = 'https://i.imgur.com/YYv8igP.png', // 마커이미지의 주소입니다    
 							imageSize = new kakao.maps.Size(60, 60), // 마커이미지의 크기입니다
 							imageOption = {offset : new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 
@@ -1196,72 +1138,5 @@
 }
 </style>
 
-
-<!-- flatpickr jQuery -->
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!-- Flatpickr -->
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.js"></script>
-<!-- flatpickr -->
-<script id="INLINE_PEN_JS_ID">
-	console.log("chkList:", '${chkList}');
-	
-	$("#basicDate").flatpickr({  // 이 방식은 펫시터가 사용. //일단 disable이 불가능한 것 같으니 일반 회원도 이걸로 사용.
-		mode: "multiple",	//다중 선택
-		dateFormat: "Y-m-d",
-		minDate: "today",  //펫시터가 선택하는 날짜는 DB에 리스트로 저장했다가 일반 회원이 고를 때 enable로 가능한 날짜만 표시.
-		disable: ${chkList}
-	});					  //그렇게 DB에 저장하면 펫시터가 원하는 날짜만 골라서 매칭할 수 있을 것 같음.
-	
-	$("#rangeDate").flatpickr({	//이 방식은 일반 회원이 사용
-		mode: "range",		//시작에서 끝까지 from to 형식으로 선택	//이 방식은 또 어떻게 검색해야 할지 감이 안 온다.
-		dateFormat: "Y-m-d",
-		minDate: "today",
-		disable: [result]	//배열을 읽지를 못하네 어쩌지
-		//disable: ["2020-02-18", "2020-02-19", "2020-02-21", "2020-02-20", "2020-02-27", "2020-02-26"]  //이 부분은 테이블에 불가능한 날짜를 리스트로 저장하고, 회원이 일정 고를 때 긁어와서 저기에 넣어야 할 것 같음.
-	});
-
-</script>
-
-<!-- flatPickr 나머지 기능 -->
-<!-- <div>
-	<img src="https://chmln.github.io/flatpickr/images/logo.png"
-		alt="flatpickr">
-		<h1>Flatpickr</h1>
-		<hr>
-			<div class="flatpickr">
-				<h2>Basic DateTime</h2>
-				<input type="text" id="basicDate"
-					placeholder="Please select Date Time" data-input
-					class="flatpickr-input">
-
-					<h2>Range Datetime</h2> <input type="text" id="rangeDate"
-					placeholder="Please select Date Range" data-input
-					class="flatpickr-input">
-			</div> -->
-<!-- 테스트용 코드 -->
-<!-- <button type="button" class="testBt" name="test" id="test" onclick="testDate()">확인</button> -->
-<!-- 
-function testDate() {
-	var form = document.matchInsert;
-	var testVal = document.matchInsert.basicDate
-	var str = "";
-	
-	if(testVal.value == null || testVal.value == '') {
-		alert("값이 들어오지 않았습니다.");
-	} else {
-		alert("값이 있습니다.")
-	}
-	alert("1")
-
-	for(help in testVal) {
-		str += help + "=" + testVal[help] + "\n";
-	}
-	alert("2")
-	alert(str)
-	alert("3")
-	//document.write("값은", typeof document.matchInsert.basicDate);
-} -->
 <%@ include file="/WEB-INF/views/include/include-footer.jspf"%>
 </html>

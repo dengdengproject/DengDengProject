@@ -108,13 +108,27 @@ public class MatchServiceImpl implements MatchService{
 	}
 	
 	//매치 디테일
+	@Override
 	public Map<String, Object> matchDetail(int seq) throws Exception {
 		return matchDAO.matchDtlAdd(seq);
 	}
 	
 	//매치 검색 기능
+	@Override
 	public List<Map<String, Object>> mtchSearch(Map<String, Object> map) throws Exception {
 		return matchDAO.matchSrch(map);
+	}
+	
+	//멤버 정보 : 멤버 + 프로필
+	@Override
+	public Map<String, Object> selMember(Map<String, Object> map) throws Exception {
+		return matchDAO.sltMember(map);
+	}
+		
+	//펫 정보(펫 + 추가 + 프로필)
+	@Override
+	public List<Map<String, Object>> selMemPet(Map<String, Object> map) throws Exception {
+		return matchDAO.sltMemPet(map);
 	}
 	
 }

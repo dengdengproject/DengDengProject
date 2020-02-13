@@ -56,4 +56,9 @@ public interface MatchService {
 	//매치 검색 기능
 	public List<Map<String, Object>> mtchSearch(Map<String, Object> map) throws Exception;
 
+	//멤버 정보 : 멤버 + 프로필
+	public Map<String, Object> selMember(Map<String, Object> map) throws Exception;
+	
+	//펫 정보(펫 + 추가 + 프로필)
+	public List<Map<String, Object>> selMemPet(Map<String, Object> map) throws Exception;
 } 

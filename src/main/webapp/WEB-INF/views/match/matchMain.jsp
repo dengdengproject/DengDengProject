@@ -32,7 +32,7 @@
 				<span style="font-weight: bold; font-size: 2em;">모든 펫시터를 만나보세요!</span>
 			</div>
 			<div class="form-group tm-form-element tm-form-element-2" style="position: relative; left: 97em; margin-top: 1em">
-				<button type="submit" class="btn btn-primary1 tm-btn-search" style="font-size: 1em">전체보기</button>	<!-- 이 부분에 모든 매칭 리스트 뽑아오는 쿼리 -->
+				<button type="button" class="btn btn-primary1 tm-btn-search" style="font-size: 1em" onclick="location.href='matchAddList?num=1'">전체보기</button>	<!-- 이 부분에 모든 매칭 리스트 뽑아오는 쿼리 -->
 			</div><!-- 각 버튼은 검색 결과 페이지로 넘어가는데, 리스트를 모두 다 가져온다. 그리고 페이징 해야지! -->
 			
 			<div class="ttr_Services_html_row3 row" style="margin-top: 2em">
@@ -67,7 +67,7 @@
 			<span style="font-weight: bold; font-size: 2em;">프로 펫시터를 만나보시겠어요?</span>
 		</div>
 		<div class="form-group tm-form-element tm-form-element-2" style="position: relative; left: 97em; margin-top: 1em">
-			<button type="submit" class="btn btn-primary1 tm-btn-search" style="font-size: 1em">전체보기</button> <!-- 이 부분에 프로 펫시터 모든 목록 뽑아와야 함 -->
+			<button type="button" class="btn btn-primary1 tm-btn-search" style="font-size: 1em" onclick="location.href='matchAddList?num=2'">전체보기</button> <!-- 이 부분에 프로 펫시터 모든 목록 뽑아와야 함 -->
 		</div>
 		
 		<div class="ttr_Services_html_row3 row" style="margin-top: 2em">
@@ -101,7 +101,7 @@
 			<span style="font-weight: bold; font-size: 2em;">신규 펫시터를 할인된 가격으로 만나보세요.</span>
 		</div>
 		<div class="form-group tm-form-element tm-form-element-2" style="position: relative; left: 97em; margin-top: 1em">
-			<button type="submit" class="btn btn-primary1 tm-btn-search" style="font-size: 1em">전체보기</button>
+			<button type="button" class="btn btn-primary1 tm-btn-search" style="font-size: 1em" onclick="location.href='matchAddList?num=3'">전체보기</button>
 		</div>
 
 		<div class="ttr_Services_html_row3 row" style="margin-top: 2em; margin-bottom: 100px;">

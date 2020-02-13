@@ -50,12 +50,12 @@
 	
 // 매치 등록
 	function pstInsert() {
-		var form = document.matchInsert;
+		var form = document.matchDetail;
 
 		//이 부분에는 이제 입력할 값을 넣어야 한다는 거
-		if (form.largeHalf.value == "선택") {
-			alert("요금을 설정해주세요.")
-			form.largeHalf.focus();
+		if (form.basicDate.value == "") {
+			alert("날짜를 선택해주세요.")
+			form.basicDate.focus();
 			return false;
 		}
 		
@@ -65,13 +65,16 @@
 	
 </script>
 
-<form id="matchInsert" name="matchInsert" method="post">
+<form id="matchDetail" name="matchDetail" method="post">
+	<!-- 카카오 지도에 사용 -->
 	<input type="hidden" name="address1" id="address1" value="${pstAdd.PSMEM_CONSIGNMENT_ADDRESS1}" />
-	<input type="hidden" name="address2" id="address2" value="${pstAdd.PSMEM_CONSIGNMENT_ADDRESS2}" />	
-	<input type="hidden" name="PSMEM_ID" id="PSMEM_ID" value="${ID}" />
-	<input type="hidden" name="name" id="name" value="${name}"/>
-	<input type="hidden" name="GRADE" id="GRADE" value="${grade}"/>
+	<input type="hidden" name="address2" id="address2" value="${pstAdd.PSMEM_CONSIGNMENT_ADDRESS2}" />
+	<!-- flatPickr에 사용 -->	
 	<input type="hidden" name="chkList" id="chkList" value="${chkList}"/>
+	<!-- petsitting 예약하기 쪽으로 넘어가는 펫시터 아이디 -->
+	<input type="hidden" name="PSMEM_ID" id="PSMEM_ID" value="${matchDtl.PSMEM_ID}"/>
+	<!-- petsitting 예약하기 쪽으로 넘아가는 매치 글 번호 -->
+	<input type="hidden" name="MATCH_NO" id="MATCH_NO" value="${matchDtl.MATCH_NO}"/>
 	
 <!-- 이미지 슬라이드 -->
 	<div class="container" style="text-align: center;">
@@ -577,10 +580,10 @@
 						var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
 
 						//회원의 주소값을 바로 지도에 표시하기 위해 가져오는 form 정보.
-						var form = document.matchInsert;
+						var form = document.matchDetail;
 					
 						//이 부분 이미지를 인터넷에서 가져올 수 있도록 해야할 듯.
-						var imageSrc = 'file:///C:/Users/Dead Cat/git/DengDengProject/src/main/webapp/resources/images/dogmaker_after.png', // 마커이미지의 주소입니다    
+						var imageSrc = 'https://i.imgur.com/YYv8igP.png', // 마커이미지의 주소입니다    
 							imageSize = new kakao.maps.Size(60, 60), // 마커이미지의 크기입니다
 							imageOption = {offset : new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 
@@ -592,7 +595,7 @@
 						var geocoder = new kakao.maps.services.Geocoder();
 
 						// 주소로 좌표를 검색합니다 + 주소를 가져와서 합쳐도 출력이 된다는 것을 알았으니 나중에 조건문을 넣어서 진행 단계에 따라 다르게 나오도록 하면 될 듯함.
-						geocoder.addressSearch((matchInsert.address1.value), function(result, status) {
+						geocoder.addressSearch((matchDetail.address1.value), function(result, status) {
 						//geocoder.addressSearch('경기도 의정부시 용민로 21', function(result, status) { //확인용
 							// 정상적으로 검색이 완료됐으면 
 							if (status === kakao.maps.services.Status.OK) {
@@ -615,6 +618,8 @@
 								map.setCenter(coords);
 							}
 						});
+						//마커 이미지(막대 문 강아지) : https://i.imgur.com/YYv8igP.png  <img src="https://i.imgur.com/YYv8igP.png" title="dogmaker_after.png"/>
+						//마커 이미지(서있는 강아지) : https://i.imgur.com/5qoSokU.png  <img src="https://i.imgur.com/5qoSokU.png" title="dogmaker_before.png"/>
 					</script>
 				</div>
 			</div>
@@ -686,8 +691,8 @@
 <!-- <button type="button" class="testBt" name="test" id="test" onclick="testDate()">확인</button> -->
 <!-- 
 function testDate() {
-	var form = document.matchInsert;
-	var testVal = document.matchInsert.basicDate
+	var form = document.matchDetail;
+	var testVal = document.matchDetail.basicDate
 	var str = "";
 	
 	if(testVal.value == null || testVal.value == '') {
@@ -703,7 +708,7 @@ function testDate() {
 	alert("2")
 	alert(str)
 	alert("3")
-	//document.write("값은", typeof document.matchInsert.basicDate);
+	//document.write("값은", typeof document.matchDetail.basicDate);
 } -->
 <%@ include file="/WEB-INF/views/include/include-footer.jspf"%>
 </html>

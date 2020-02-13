@@ -12,6 +12,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.annotations.Param;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -115,15 +116,15 @@ public class MatchController {
 		// ID 값 param으로 가져오기
 		map.put("ID", ID);
 		
-		Map<String, Object> mthdtl = matchService.matchDetail(seq);
-		//아래의 내용을 불러와야 되는데, seq로 넘어가는 건 게시글 번호 뿐이라 불가능하다. 어떻게 해야 할까? get 방식으로 받아서 어쩔 수 없는데...
-		Map<String, Object> pst = matchService.selPetsitter(map);				//펫시터 정보 가져오기
-		Map<String, Object> pstAdd = matchService.selPetsitterAdd(map);			//펫시터 추가 정보 가져오기
-		Map<String, Object> pstPfl = matchService.selPetsitterProfile(map);		//펫시터 프로필 가져오기
+		Map<String, Object> mthdtl = matchService.matchDetail(seq);					//매치 정보 가져오기
 		
-		List<Map<String, Object>> pet = matchService.selPet(map);				//펫 정보 가져오기
-		List<Map<String, Object>> pstImg = matchService.selPetsitterAddImg(map);//위탁 장소 이미지 가져오기
-		List<Map<String, Object>> certi = matchService.selCertificate(map);//자격증 이미지 가져오기
+		Map<String, Object> pst = matchService.selPetsitter(map);					//펫시터 정보 가져오기
+		Map<String, Object> pstAdd = matchService.selPetsitterAdd(map);				//펫시터 추가 정보 가져오기
+		Map<String, Object> pstPfl = matchService.selPetsitterProfile(map);			//펫시터 프로필 가져오기
+		
+		List<Map<String, Object>> pet = matchService.selPet(map);					//펫 정보 가져오기
+		List<Map<String, Object>> pstImg = matchService.selPetsitterAddImg(map);	//위탁 장소 이미지 가져오기
+		List<Map<String, Object>> certi = matchService.selCertificate(map);			//자격증 이미지 가져오기
 		
 		//가능한 서비스 목록 가져오기
 		String serviceLt = (String) mthdtl.get("POSSIBLE_SERVICE");
@@ -162,13 +163,13 @@ public class MatchController {
 		System.out.println("큰 따옴표 붙인 날짜(리스트) : " + chkList);
 		//이 위까지 확인 부분입니다.
 		
-		mv.addObject("chkList", chkList);	//리스트 넘어가나 확인 중
+		mv.addObject("chkList", chkList);			//선택 가능 날짜 리스트
 		mv.addObject("serviceList", serviceList);	//선택 서비스 배열
 		mv.addObject("matchDtl", mthdtl);			//매치 정보(해당 글)
 		mv.addObject("pst", pst);					//펫시터 정보
 		mv.addObject("pstAdd", pstAdd);				//펫시터 추가 정보
 		mv.addObject("pet", pet);					//펫 정보(펫시터)
-		mv.addObject("pstPfl", pstPfl);				//펫 프로필 이미지(펫시터)
+		mv.addObject("pstPfl", pstPfl);				//펫시터 프로필 이미지
 		mv.addObject("pstImg", pstImg);				//펫시터 위탁 장소 이미지
 		mv.addObject("certi", certi);				//펫시터 자격증 이미지
 		
@@ -261,6 +262,83 @@ public class MatchController {
 		}
 		
 		//mv.addObject("resultComplete", resultComplete);
+			
+		return mv;
+	}
+	
+	//Petsitting Reserve
+	@RequestMapping(value = "/petsittingReserve")
+	public ModelAndView petsitting(CommandMap commandMap, HttpServletRequest request, HttpSession session) throws Exception {
+		ModelAndView mv = new ModelAndView("/match/matchDetail2");
+		
+		String basicDate = request.getParameter("basicDate");	//예약 날짜
+		String PSMEM_ID = request.getParameter("PSMEM_ID");		//매치에 등록된 펫시터 아이디
+		String MATCH_NO = request.getParameter("MATCH_NO");		//매치 번호
+		int seq = Integer.parseInt(MATCH_NO);
+
+		//로그인한 회원 아이디를 세션에서 가져옴
+		String MEM_ID = (String)session.getAttribute("ID");			//세션에서 가져온 회원 아이디
+
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		HashMap<String, Object> psmem = new HashMap<String, Object>();
+		
+		map.put("MEM_ID", MEM_ID);
+		psmem.put("ID", PSMEM_ID);
+		
+		Map<String, Object> mthdtl = matchService.matchDetail(seq);						//매치 정보 가져오기
+		
+		Map<String, Object> pst = matchService.selPetsitter(psmem);						//펫시터 정보 가져오기
+		Map<String, Object> pstAdd = matchService.selPetsitterAdd(psmem);				//펫시터 추가 정보 가져오기
+		Map<String, Object> pstPfl = matchService.selPetsitterProfile(psmem);			//펫시터 프로필 가져오기
+		
+		List<Map<String, Object>> pet = matchService.selPet(psmem);						//펫시터 펫 정보 가져오기(펫, 추가, 프로필)
+		List<Map<String, Object>> pstImg = matchService.selPetsitterAddImg(psmem);		//위탁 장소 이미지 가져오기
+		List<Map<String, Object>> certi = matchService.selCertificate(psmem);			//자격증 이미지 가져오기
+		
+		Map<String, Object> mem = matchService.selMember(map);							//멤버 정보 가져오기(멤버, 프로필)
+		List<Map<String, Object>> memPet = matchService.selPet(psmem);					//멤버 펫 정보 가져오기(펫, 추가, 프로필)
+		
+		//가능한 서비스 목록 가져오기. 근데 왜 스트링으로 나눠지지? 나눠지나 다시 한 번 확인해보자.
+		String serviceLt = (String) mthdtl.get("POSSIBLE_SERVICE");
+		String[] serviceList = serviceLt.split(",");
+		
+		System.out.println("가능한 서비스 : " + Arrays.toString(serviceList));
+		
+		mv.addObject("serviceList", serviceList);	//서비스 리스트
+		mv.addObject("matchDtl", mthdtl);			//매치 정보(해당 글)
+		mv.addObject("pst", pst);					//펫시터 정보
+		mv.addObject("pstAdd", pstAdd);				//펫시터 추가 정보
+		mv.addObject("pet", pet);					//펫 정보(펫시터)
+		mv.addObject("pstPfl", pstPfl);				//펫시터 프로필 이미지
+		mv.addObject("pstImg", pstImg);				//펫시터 위탁 장소 이미지
+		mv.addObject("certi", certi);				//펫시터 자격증 이미지
+		mv.addObject("mem", mem);					//멤버 정보
+		mv.addObject("memPet", memPet);				//펫 정보(멤버)
+		mv.addObject("basicDate", basicDate);		//예약 날짜
+		
+		return mv;
+	}
+	
+	//Match Main All View Button
+	@RequestMapping(value = "/matchAddList")
+	public ModelAndView matchAddList(CommandMap commandMap, @RequestParam("num") int num) throws Exception {
+		ModelAndView mv = new ModelAndView("/match/matchAddList");
+		
+		//이 부분은 값이 넘어오는지 확인하는 부분
+		System.out.println("넘어온 체크 값(인트) : " + num);
+		
+		List<Map<String, Object>> addList = new ArrayList<Map<String, Object>>();
+		
+		if(num == 1) {
+			addList = matchService.matchAllList(commandMap.getMap());
+			mv.addObject("addList", addList);
+		} else if(num == 2) {
+			addList = matchService.matchProList(commandMap.getMap());
+			mv.addObject("addList", addList);
+		} else if(num == 3) {
+			addList = matchService.matchNewList(commandMap.getMap());
+			mv.addObject("addList", addList);
+		}
 			
 		return mv;
 	}
