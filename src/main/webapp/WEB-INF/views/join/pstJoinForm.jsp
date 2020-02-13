@@ -21,7 +21,7 @@
 <script type="text/javascript">
 
 	function fn_idCheck(){
-		var ID = {ID : $('#MEM_ID').val()};    // {ID="입력한 ID값"}
+		var ID = {ID : $('#PSMEM_ID').val()};    // {ID="입력한 ID값"}
 
 		$.ajax({
     		url:"<c:url value='/join/idCheck'/>",
@@ -52,7 +52,7 @@
 		$("#join").on("click", function(e){
 			e.preventDefault();
 			fn_joinSubmit();
-		});
+		});s
 	});
 	
 	function fn_goHome(){
